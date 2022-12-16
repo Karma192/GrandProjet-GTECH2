@@ -81,4 +81,9 @@
       <Filter>Fichiers d%27en-tête\scene</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="ressources\sprites\player\1.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

@@ -1,10 +1,13 @@
 #include "game.hpp"
 
-sf::RenderWindow window(sf::VideoMode(1920, 1080), "Crusade Of The Abyss");
+
+
+sf::RenderWindow window(sf::VideoMode(640, 480), "Crusade Of The Abyss");
 
 void Game() {
     while (window.isOpen())
     {
+        
         sf::Event event;
         GameLoop();
         while (window.pollEvent(event))
@@ -13,6 +16,7 @@ void Game() {
                 window.close();
         }
 
+        
         GameRender();
     }
 }
@@ -25,6 +29,12 @@ void GameLoop() {
 // All Things to Render
 void GameRender() {
     window.clear();
+
+
+    Player test;
+    test.PlayerRender();
+
+
     // things to display
     window.display();
 }
