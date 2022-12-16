@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <string>
+#include "../GameMaster.hpp"
 #include "Menu.hpp"
 #include "Lobby.hpp"
 #include "InGame.hpp"
@@ -8,9 +10,8 @@
 
 class SceneManager {
 public:
-	int index;
-
 	sf::RenderWindow* window;
+	sf::Event* event;
 
 	Menu* menu;
 	Lobby* lobby;
@@ -20,16 +21,13 @@ public:
 	SceneManager();
 	virtual ~SceneManager();
 
-	void SetSM(sf::RenderWindow*);
+	void SetSM(sf::RenderWindow*, sf::Event*);
+	void SetActiveScene(int);
 	void SceneManagerLoop();
 	void SceneManagerRender();
 
 private:
-	enum {
-		MENU = 0,
-		LOBBY = 1,
-		INGAME = 2,
-	};
+	int index;
 
 	enum {
 		LOOP = 0,

@@ -4,12 +4,15 @@
 
 class Menu : public Scene {
 public:
+	SceneManager* sm;
+
 	Menu();
+	Menu(SceneManager*);
 	virtual ~Menu();
-	void MenuLoop();
-	void MenuRender(sf::RenderWindow* window);
-	Player test;
+
+	void MenuLoop(sf::Event*);
+	void MenuRender(sf::RenderWindow*);
 
 private:
-
+	Player player;
 };

@@ -142,7 +142,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Enemies.cpp" />
-    <ClCompile Include="src\game.cpp" />
+    <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameMaster.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MapGenerator.cpp" />
@@ -155,7 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Enemies.hpp" />
-    <ClInclude Include="src\game.hpp" />
+    <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\GameMaster.hpp" />
     <ClInclude Include="src\MapGenerator.hpp" />
     <ClInclude Include="src\Player.hpp" />
@@ -166,7 +166,10 @@
     <ClInclude Include="src\scene\SceneManager.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="icon.ico" />
+    <Image Include="icon.png" />
     <Image Include="ressources\sprites\player\1.png" />
+    <Image Include="ressources\sprites\player\idle.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

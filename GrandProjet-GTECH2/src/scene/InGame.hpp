@@ -3,10 +3,13 @@
 
 class InGame : public Scene {
 public:
+	SceneManager* sm;
+
 	InGame();
+	InGame(SceneManager*);
 	virtual ~InGame();
 
-	void InGameLoop();
+	void InGameLoop(sf::Event*);
 	void InGameRender(sf::RenderWindow*);
 
 private:
