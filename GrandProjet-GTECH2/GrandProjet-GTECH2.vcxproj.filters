@@ -48,8 +48,11 @@
     <ClCompile Include="src\Player.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\SceneManager.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="src\scene\Scene.cpp">
+      <Filter>Fichiers sources\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\SceneManager.cpp">
+      <Filter>Fichiers sources\scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -68,9 +71,6 @@
     <ClInclude Include="src\Player.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\SceneManager.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="src\scene\InGame.hpp">
       <Filter>Fichiers d%27en-tête\scene</Filter>
     </ClInclude>
@@ -78,6 +78,12 @@
       <Filter>Fichiers d%27en-tête\scene</Filter>
     </ClInclude>
     <ClInclude Include="src\scene\Menu.hpp">
+      <Filter>Fichiers d%27en-tête\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\Scene.hpp">
+      <Filter>Fichiers d%27en-tête\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\SceneManager.hpp">
       <Filter>Fichiers d%27en-tête\scene</Filter>
     </ClInclude>
   </ItemGroup>

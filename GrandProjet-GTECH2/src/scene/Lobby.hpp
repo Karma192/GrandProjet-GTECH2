@@ -1,11 +1,12 @@
 #include <iostream>
+#include "Scene.hpp"
 
-class Lobby {
+class Lobby : public Scene {
 public:
 	Lobby();
-	~Lobby();
+	virtual ~Lobby();
 	void LobbyLoop();
-	void LobbyRender();
+	void LobbyRender(sf::RenderWindow*);
 
 private:
 

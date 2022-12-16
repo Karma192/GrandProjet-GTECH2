@@ -1,10 +1,12 @@
 #include "game.hpp"
 
+sf::RenderWindow window(sf::VideoMode(1920, 1080), "Crusade Of The Abyss");
 
-
-sf::RenderWindow window(sf::VideoMode(640, 480), "Crusade Of The Abyss");
+SceneManager sm;
 
 void Game() {
+    sm.SetSM(&window);
+
     while (window.isOpen())
     {
         
@@ -23,18 +25,13 @@ void Game() {
 
 // Game's Loop
 void GameLoop() {
-
+    sm.SceneManagerLoop();
 }
 
 // All Things to Render
 void GameRender() {
     window.clear();
-
-
-    Player test;
-    test.PlayerRender();
-
-
+    sm.SceneManagerRender();
     // things to display
     window.display();
 }

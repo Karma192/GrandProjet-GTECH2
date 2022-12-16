@@ -12,6 +12,6 @@ void Lobby::LobbyLoop() {
 
 }
 
-void Lobby::LobbyRender() {
+void Lobby::LobbyRender(sf::RenderWindow* window) {
 
 }

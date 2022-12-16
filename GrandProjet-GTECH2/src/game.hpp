@@ -1,7 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "Player.hpp"
-
-
+#include "scene/SceneManager.hpp"
 
 void Game();
 void GameLoop();
