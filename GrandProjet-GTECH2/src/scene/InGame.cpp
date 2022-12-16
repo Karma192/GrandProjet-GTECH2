@@ -12,6 +12,6 @@ void InGame::InGameLoop() {
 
 }
 
-void InGame::InGameRender() {
+void InGame::InGameRender(sf::RenderWindow* window) {
 
 }

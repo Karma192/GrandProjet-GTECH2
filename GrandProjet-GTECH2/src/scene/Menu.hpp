@@ -1,9 +1,10 @@
 #include <iostream>
+#include "Scene.hpp"
 
-class Menu {
+class Menu : public Scene {
 public:
 	Menu();
-	~Menu();
+	virtual ~Menu();
 	void MenuLoop();
 	void MenuRender();
 

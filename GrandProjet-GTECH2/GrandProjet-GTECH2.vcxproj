@@ -110,12 +110,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\agrandpaul\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\agrandpaul\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -145,10 +145,11 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MapGenerator.cpp" />
     <ClCompile Include="src\Player.cpp" />
-    <ClCompile Include="src\SceneManager.cpp" />
     <ClCompile Include="src\scene\InGame.cpp" />
     <ClCompile Include="src\scene\Lobby.cpp" />
     <ClCompile Include="src\scene\Menu.cpp" />
+    <ClCompile Include="src\scene\Scene.cpp" />
+    <ClCompile Include="src\scene\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Enemies.hpp" />
@@ -156,10 +157,11 @@
     <ClInclude Include="src\GameMaster.hpp" />
     <ClInclude Include="src\MapGenerator.hpp" />
     <ClInclude Include="src\Player.hpp" />
-    <ClInclude Include="src\SceneManager.hpp" />
     <ClInclude Include="src\scene\InGame.hpp" />
     <ClInclude Include="src\scene\Lobby.hpp" />
     <ClInclude Include="src\scene\Menu.hpp" />
+    <ClInclude Include="src\scene\Scene.hpp" />
+    <ClInclude Include="src\scene\SceneManager.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

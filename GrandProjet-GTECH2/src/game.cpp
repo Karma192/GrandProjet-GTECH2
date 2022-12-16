@@ -2,7 +2,11 @@
 
 sf::RenderWindow window(sf::VideoMode(1920, 1080), "Crusade Of The Abyss");
 
+SceneManager sm;
+
 void Game() {
+    sm.SetSM(&window);
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -19,12 +23,13 @@ void Game() {
 
 // Game's Loop
 void GameLoop() {
-
+    sm.SceneManagerLoop();
 }
 
 // All Things to Render
 void GameRender() {
     window.clear();
+    sm.SceneManagerRender();
     // things to display
     window.display();
 }
