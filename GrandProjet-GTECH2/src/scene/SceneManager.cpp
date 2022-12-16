@@ -30,7 +30,7 @@ void SceneManager::SwitchScene(int x) {
 			std::cout << "C'est le menu loop !" << std::endl;
 		}
 		else if (x == RENDER) {
-			menu->MenuRender();
+			menu->MenuRender(window);
 			std::cout << "C'est le menu render !" << std::endl;
 		}
 		break;
