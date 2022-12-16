@@ -3,9 +3,13 @@
 
 class Lobby : public Scene {
 public:
+	SceneManager* sm;
+
 	Lobby();
+	Lobby(SceneManager*);
 	virtual ~Lobby();
-	void LobbyLoop();
+
+	void LobbyLoop(sf::Event*);
 	void LobbyRender(sf::RenderWindow*);
 
 private:

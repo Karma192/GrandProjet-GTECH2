@@ -4,11 +4,15 @@ InGame::InGame() {
 
 }
 
+InGame::InGame(SceneManager* sceneM) {
+	sm = sceneM;
+}
+
 InGame::~InGame() {
 
 }
 
-void InGame::InGameLoop() {
+void InGame::InGameLoop(sf::Event* event) {
 
 }
 

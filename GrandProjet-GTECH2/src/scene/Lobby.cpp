@@ -4,11 +4,15 @@ Lobby::Lobby() {
 
 }
 
+Lobby::Lobby(SceneManager* sceneM) {
+	sm = sceneM;
+}
+
 Lobby::~Lobby() {
 
 }
 
-void Lobby::LobbyLoop() {
+void Lobby::LobbyLoop(sf::Event* event) {
 
 }
 

@@ -1,15 +1,12 @@
 #include <iostream>
 
-class GameMaster {
-public:
-	struct player {
-		int gold, key;
-		float hp, resources, speed, baseSpeed, baseDmg, attackSpeed, speedProjectile, luck;
-	};
+struct player {
+	int gold, key;
+	float hp, resources, speed, baseSpeed, baseDmg, attackSpeed, speedProjectile, luck;
+};
 
-	GameMaster();
-	~GameMaster();
-
-private:
-
+enum {
+	MENU = 0,
+	LOBBY = 1,
+	INGAME = 2,
 };

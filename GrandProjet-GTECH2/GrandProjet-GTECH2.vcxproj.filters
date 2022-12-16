@@ -91,5 +91,14 @@
     <Image Include="ressources\sprites\player\1.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+    <Image Include="icon.ico">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="icon.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="ressources\sprites\player\idle.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
   </ItemGroup>
 </Project>
