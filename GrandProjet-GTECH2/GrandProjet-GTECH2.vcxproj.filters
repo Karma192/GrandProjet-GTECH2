@@ -54,6 +54,9 @@
     <ClCompile Include="src\scene\SceneManager.cpp">
       <Filter>Fichiers sources\scene</Filter>
     </ClCompile>
+    <ClCompile Include="src\Button.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.hpp">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="src\scene\SceneManager.hpp">
       <Filter>Fichiers d%27en-tête\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Button.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
