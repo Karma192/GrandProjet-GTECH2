@@ -13,9 +13,9 @@ public:
 	sf::RenderWindow* window;
 	sf::Event* event;
 
-	Menu* menu;
-	Lobby* lobby;
-	InGame* ingame;
+	Menu menu;
+	Lobby lobby;
+	InGame ingame;
 
 
 	SceneManager();

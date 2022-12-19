@@ -1,13 +1,7 @@
 #include "Menu.hpp"
 
-
-Menu::Menu() 
-{
-
-}
-
-Menu::Menu(SceneManager* sceneM) {
-	sm = sceneM;
+Menu::Menu() {
+	player = new Player;
 }
 
 Menu::~Menu() {
@@ -15,11 +9,10 @@ Menu::~Menu() {
 }
 
 void Menu::MenuLoop(sf::Event* event) {
-
+	
 }
 
 void Menu::MenuRender(sf::RenderWindow* window) 
 {
-	test.PlayerRender(window);
-
+	player->PlayerRender(window);
 }

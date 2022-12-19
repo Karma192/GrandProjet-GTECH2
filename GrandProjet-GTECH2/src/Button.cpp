@@ -5,7 +5,7 @@ Button::Button() {
 }
 
 // Concstructor for rect button
-Button::Button(int x, int y, int w, int h, sf::RenderWindow* win) {
+Button::Button(float x, float y, int w, int h, sf::RenderWindow* win) {
 	b_posx = x;
 	b_posy = y;
 	b_width = w;
@@ -15,7 +15,7 @@ Button::Button(int x, int y, int w, int h, sf::RenderWindow* win) {
 }
 
 // Concstructor for rect button with rotation
-Button::Button(int x, int y, int w, int h, float angle, sf::RenderWindow* win) {
+Button::Button(float x, float y, int w, int h, float angle, sf::RenderWindow* win) {
 	b_posx = x;
 	b_posy = y;
 	b_width = w;
@@ -26,35 +26,35 @@ Button::Button(int x, int y, int w, int h, float angle, sf::RenderWindow* win) {
 }
 
 // Concstructor for rect button with rotation and specifics colors
-Button::Button(int x, int y, int w, int h, float angle, int red, int green, int blue, int alpha, sf::RenderWindow* win) {
+Button::Button(float x, float y, int w, int h, float angle, int red, int green, int blue, int alpha, sf::RenderWindow* win) {
 	b_posx = x;
 	b_posy = y;
 	b_width = w;
 	b_height = h;
 	b_angle = angle;
-	c = sf::Color(red, green, blue, alpha);
+	b_color = sf::Color(red, green, blue, alpha);
 	b_window = win;
 	button = RECT;
 }
 
 // Concstructor for circle button
-Button::Button(int x, int y, float radius, int red, int green, int blue, int alpha, sf::RenderWindow* win) {
+Button::Button(float x, float y, float radius, int red, int green, int blue, int alpha, sf::RenderWindow* win) {
 	b_posx = x;
 	b_posy = y;
 	b_radius = radius;
-	c = sf::Color(red, green, blue, alpha);
+	b_color = sf::Color(red, green, blue, alpha);
 	b_window = win;
 	button = CIRCLE;
 }
 
 // Constructor for convex button
-Button::Button(int x, int y, int w, int h, int choice, int red, int green, int blue, int alpha, sf::RenderWindow* win) {
+Button::Button(float x, float y, int w, int h, int choice, int red, int green, int blue, int alpha, sf::RenderWindow* win) {
 	b_posx = x;
 	b_posy = y;
 	b_width = w;
 	b_height = h;
 	b_choice = choice;
-	c = sf::Color(red, green, blue, alpha);
+	b_color = sf::Color(red, green, blue, alpha);
 	b_window = win;
 	button = OTHER;
 }
@@ -89,8 +89,10 @@ bool Button::OnHover() {
 	if (sf::Mouse::getPosition(*b_window).x < b_posx && sf::Mouse::getPosition(*b_window).x > (b_posx + b_width)) {
 		if (sf::Mouse::getPosition(*b_window).y < b_posx && sf::Mouse::getPosition(*b_window).y >(b_posx + b_width)) {
 			std::cout << "on hover !" << std::endl;
+			return true;
 		}
 	}
+	return false;
 }
 
 // Function for detect the click
@@ -110,7 +112,7 @@ bool Button::IsClicking() {
 void Button::DrawRectButton() {
 	b_rectangle.setPosition(b_posx, b_posy);
 	b_rectangle.setSize(sf::Vector2f(b_width, b_height));
-	b_rectangle.setFillColor(c);
+	b_rectangle.setFillColor(b_color);
 
 	b_window->draw(b_rectangle);
 }
@@ -119,7 +121,7 @@ void Button::DrawRectButton() {
 void Button::DrawCircleButton() {
 	b_sphere.setPosition(b_posx, b_posy);
 	b_sphere.setRadius(b_radius);
-	b_sphere.setFillColor(c);
+	b_sphere.setFillColor(b_color);
 
 	b_window->draw(b_sphere);
 }
@@ -131,21 +133,21 @@ void Button::DrawOtherButton() {
 		b_sphere.setPointCount(DIAMOND);
 		b_sphere.setPosition(b_posx, b_posy);
 		b_sphere.setRadius(b_radius);
-		b_sphere.setFillColor(c);
+		b_sphere.setFillColor(b_color);
 		b_window->draw(b_sphere);
 		break;
 	case TRIANGLE :
 		b_sphere.setPointCount(TRIANGLE);
 		b_sphere.setPosition(b_posx, b_posy);
 		b_sphere.setRadius(b_radius);
-		b_sphere.setFillColor(c);
+		b_sphere.setFillColor(b_color);
 		b_window->draw(b_sphere);
 		break;
 	case HEXAGON :
 		b_sphere.setPointCount(HEXAGON);
 		b_sphere.setPosition(b_posx, b_posy);
 		b_sphere.setRadius(b_radius);
-		b_sphere.setFillColor(c);
+		b_sphere.setFillColor(b_color);
 		b_window->draw(b_sphere);
 		break;
 	default:

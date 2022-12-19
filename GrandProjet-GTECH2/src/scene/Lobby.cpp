@@ -4,10 +4,6 @@ Lobby::Lobby() {
 
 }
 
-Lobby::Lobby(SceneManager* sceneM) {
-	sm = sceneM;
-}
-
 Lobby::~Lobby() {
 
 }

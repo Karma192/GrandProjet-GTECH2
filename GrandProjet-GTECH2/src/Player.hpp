@@ -12,9 +12,9 @@ class Player {
 public:
 	Player();
 	virtual ~Player();
+
 	void PlayerLoop();
 	void PlayerRender(sf::RenderWindow* window);
-	//sf::Clock clock;
 	int frame = 0;
 
 private:

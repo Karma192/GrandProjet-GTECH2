@@ -4,10 +4,6 @@ InGame::InGame() {
 
 }
 
-InGame::InGame(SceneManager* sceneM) {
-	sm = sceneM;
-}
-
 InGame::~InGame() {
 
 }
