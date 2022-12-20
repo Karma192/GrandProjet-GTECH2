@@ -51,8 +51,18 @@ void Player::PlayerRender(sf::RenderWindow* win)
     
     // w = 900 h = 1200           900x1200
     // un drag 300 400
-    // sprite.setTexture(texture);
+    // sprite.setTexture(texture);	
+}
 
-    
-	
+
+//Je test des trucs sur le Player, celà sera supprimé (Etienne)
+void Player::PlayerTest(sf::RenderWindow* win)
+{
+    playerTexture.loadFromFile("C:/Users/etien/Pictures/IMG_5759.jpg");
+    if (!playerTexture.loadFromFile("C:/Users/etien/Pictures/IMG_5759.jpg"))
+    {
+        std::cout << "y'a pas d'image" << std::endl;
+    }
+    playerSprite.setTexture(playerTexture);
+    win->draw(playerSprite);
 }

@@ -14,7 +14,7 @@ public:
 	Projectiles(Enemies* e);
 
 	Projectiles();
-	virtual ~Projectiles();
+	~Projectiles();
 
 	void GetBounds();
 	void testCollision();
@@ -23,11 +23,3 @@ private:
 	sf::FloatRect playerBox;
 	sf::FloatRect enemiesBox;
 };
-
-Projectiles::Projectiles()
-{
-}
-
-Projectiles::~Projectiles()
-{
-}
