@@ -41,7 +41,7 @@ void Player::PlayerRender(sf::RenderWindow* win)
     //    else
     //    {
     //        rectSourceSprite.left += 64;
-    //    }
+    //    }s
 
     //    sprite.setTextureRect(rectSourceSprite);
     //    clock.restart();
