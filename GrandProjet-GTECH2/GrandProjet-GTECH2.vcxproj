@@ -148,7 +148,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MapGenerator.cpp" />
     <ClCompile Include="src\Player.cpp" />
-    <ClCompile Include="src\Projectiles.cpp" />
+    <ClCompile Include="src\Collision.cpp" />
     <ClCompile Include="src\scene\InGame.cpp" />
     <ClCompile Include="src\scene\Lobby.cpp" />
     <ClCompile Include="src\scene\Menu.cpp" />
@@ -162,7 +162,7 @@
     <ClInclude Include="src\GameMaster.hpp" />
     <ClInclude Include="src\MapGenerator.hpp" />
     <ClInclude Include="src\Player.hpp" />
-    <ClInclude Include="src\Projectiles.h" />
+    <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\scene\InGame.hpp" />
     <ClInclude Include="src\scene\Lobby.hpp" />
     <ClInclude Include="src\scene\Menu.hpp" />

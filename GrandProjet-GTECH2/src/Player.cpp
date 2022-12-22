@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-    
+    playerBox = playerSprite.getGlobalBounds();
 }
 
 Player::~Player() 

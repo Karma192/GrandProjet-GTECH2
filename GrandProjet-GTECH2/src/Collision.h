@@ -1,25 +1,24 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "scene/SceneManager.hpp"
 #include "Player.hpp"
 #include "Enemies.hpp"
 
-class Projectiles
+class Collision
 {
 public:
 	Player* player;
 	Enemies* enemies;
 
-	Projectiles(Player* p);
-	Projectiles(Enemies* e);
+	Collision(Player* p);
+	Collision(Enemies* e);
 
-	Projectiles();
-	~Projectiles();
+	Collision();
+	~Collision();
 
 	void GetBounds();
 	void testCollision();
 
 private:
-	sf::FloatRect playerBox;
+
 	sf::FloatRect enemiesBox;
 };

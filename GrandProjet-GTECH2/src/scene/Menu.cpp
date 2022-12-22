@@ -16,4 +16,5 @@ void Menu::MenuRender(sf::RenderWindow* window)
 {
 	player->PlayerRender(window);
 	player->PlayerTest(window);
+	collision.GetBounds();
 }

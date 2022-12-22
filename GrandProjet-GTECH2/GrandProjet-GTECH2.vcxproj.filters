@@ -57,7 +57,7 @@
     <ClCompile Include="src\scene\SceneManager.cpp">
       <Filter>Fichiers sources\scene</Filter>
     </ClCompile>
-    <ClCompile Include="src\Projectiles.cpp">
+    <ClCompile Include="src\Collision.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,7 +95,7 @@
     <ClInclude Include="src\scene\SceneManager.hpp">
       <Filter>Fichiers d%27en-tête\scene</Filter>
     </ClInclude>
-    <ClInclude Include="src\Projectiles.h">
+    <ClInclude Include="src\Collision.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
