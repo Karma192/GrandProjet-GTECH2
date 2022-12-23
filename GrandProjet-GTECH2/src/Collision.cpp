@@ -1,15 +1,7 @@
 #include "Collision.h"
 
 Collision::Collision() {
-
-}
-
-void Collision::SetPlayer(Player* p) {
-	player = p;
-}
-
-void Collision::SetEnemies(Enemies* e) {
-	enemies = e;
+	player = new Player();
 }
 
 Collision::~Collision() {
@@ -17,10 +9,9 @@ Collision::~Collision() {
 }
 
 void Collision::GetBounds() {
-	//SetPlayer(player);
 	this->player->playerBox = this->player->playerSprite.getGlobalBounds();
-//	this->enemiesBox = this->enemies->enemiesSprite.getGlobalBounds();
-//	testCollision();
+	this->enemiesBox = this->enemies->enemiesSprite.getGlobalBounds();
+	testCollision();
 }
 
 void Collision::testCollision() {

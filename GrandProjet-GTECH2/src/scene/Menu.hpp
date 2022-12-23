@@ -13,6 +13,7 @@ public:
 	void MenuLoop(sf::Event*);
 	void MenuRender(sf::RenderWindow*);
 
+
 private:
 	Player* player;
 };
