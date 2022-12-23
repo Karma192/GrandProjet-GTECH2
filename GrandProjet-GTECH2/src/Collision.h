@@ -9,8 +9,8 @@ public:
 	Player* player;
 	Enemies* enemies;
 
-	Collision(Player* p);
-	Collision(Enemies* e);
+	void SetPlayer(Player* p);
+	void SetEnemies(Enemies* e);
 
 	Collision();
 	~Collision();

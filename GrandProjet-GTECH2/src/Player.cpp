@@ -64,5 +64,6 @@ void Player::PlayerTest(sf::RenderWindow* win)
         std::cout << "y'a pas d'image" << std::endl;
     }
     playerSprite.setTexture(playerTexture);
+    playerSprite.setPosition(0, 0);
     win->draw(playerSprite);
 }
