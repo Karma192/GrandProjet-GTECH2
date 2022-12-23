@@ -48,11 +48,11 @@ void SceneManager::SwitchScene(int x) {
 	case MENU :
 		if (x == LOOP) {
 			menu.MenuLoop(event);
-			std::cout << "C'est le menu loop !" << std::endl;
+			//std::cout << "C'est le menu loop !" << std::endl;
 		}
 		else if (x == RENDER) {
 			menu.MenuRender(window);
-			std::cout << "C'est le menu render !" << std::endl;
+			//std::cout << "C'est le menu render !" << std::endl;
 		}
 		break;
 	case LOBBY :

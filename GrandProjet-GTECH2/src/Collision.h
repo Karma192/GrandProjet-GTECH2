@@ -9,9 +9,6 @@ public:
 	Player* player;
 	Enemies* enemies;
 
-	void SetPlayer(Player* p);
-	void SetEnemies(Enemies* e);
-
 	Collision();
 	~Collision();
 
@@ -20,5 +17,6 @@ public:
 
 private:
 
+	sf::FloatRect playerBox;
 	sf::FloatRect enemiesBox;
 };

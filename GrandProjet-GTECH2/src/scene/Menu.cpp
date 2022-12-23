@@ -2,6 +2,7 @@
 
 Menu::Menu() {
 	player = new Player;
+	enemies = new Enemies();
 }
 
 Menu::~Menu() {
@@ -16,5 +17,6 @@ void Menu::MenuRender(sf::RenderWindow* window)
 {
 	player->PlayerRender(window);
 	player->PlayerTest(window);
+	enemies->EnemiesTest(window);
 	collision.GetBounds();
 }

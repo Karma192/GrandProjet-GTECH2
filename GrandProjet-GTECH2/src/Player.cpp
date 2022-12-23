@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-    playerBox = playerSprite.getGlobalBounds();
+
 }
 
 Player::~Player() 
@@ -58,8 +58,8 @@ void Player::PlayerRender(sf::RenderWindow* win)
 //Je test des trucs sur le Player, celà sera supprimé (Etienne)
 void Player::PlayerTest(sf::RenderWindow* win)
 {
-    playerTexture.loadFromFile("C:/Users/etien/Pictures/IMG_5759.jpg");
-    if (!playerTexture.loadFromFile("C:/Users/etien/Pictures/IMG_5759.jpg"))
+    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
+    if (!playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png"))
     {
         std::cout << "y'a pas d'image" << std::endl;
     }

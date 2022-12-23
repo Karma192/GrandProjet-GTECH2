@@ -2,6 +2,7 @@
 #include "Scene.hpp"
 #include "../Player.hpp"
 #include "../Collision.h"
+#include "../Enemies.hpp"
 
 class Menu : public Scene {
 public:
@@ -16,4 +17,5 @@ public:
 
 private:
 	Player* player;
+	Enemies* enemies;
 };

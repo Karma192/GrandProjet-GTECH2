@@ -20,7 +20,6 @@ public:
 
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
-	sf::FloatRect playerBox;
 
 private:
 	sf::Clock clock;
