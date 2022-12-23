@@ -2,7 +2,7 @@
 
 Player::Player()
 {
-
+    playerSprite.setPosition(0, 0);
 }
 
 Player::~Player() 
@@ -56,14 +56,14 @@ void Player::PlayerRender(sf::RenderWindow* win)
 
 
 //Je test des trucs sur le Player, celà sera supprimé (Etienne)
-void Player::PlayerTest(sf::RenderWindow* win)
-{
-    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
-    if (!playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png"))
-    {
-        std::cout << "y'a pas d'image" << std::endl;
-    }
-    playerSprite.setTexture(playerTexture);
-    playerSprite.setPosition(0, 0);
-    win->draw(playerSprite);
-}
+//void Player::PlayerTest(sf::RenderWindow* win)
+//{
+//    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
+//    if (!playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png"))
+//    {
+//        std::cout << "y'a pas d'image" << std::endl;
+//    }
+//    playerSprite.setTexture(playerTexture);
+//    win->draw(playerSprite);
+//    std::cout << "player:" << playerSprite.getGlobalBounds().width << std::endl;
+//}
