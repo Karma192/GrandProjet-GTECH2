@@ -60,9 +60,6 @@
     <ClCompile Include="src\Collision.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\menuHUD.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.hpp">
@@ -99,9 +96,6 @@
       <Filter>Fichiers d%27en-tête\scene</Filter>
     </ClInclude>
     <ClInclude Include="src\Collision.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\menuHUD.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
