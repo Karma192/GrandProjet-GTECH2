@@ -2,13 +2,13 @@
 
 sf::RenderWindow window(sf::VideoMode(1920, 1080), "Crusade Of The Abyss");
 sf::Event event;
-sf::Image icon;
+//sf::Image icon;
 
 SceneManager sm;
 
 void Game() {
-    icon.loadFromFile("ICON.png");
-    window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
+    //icon.loadFromFile("ICON.png");
+    //window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
     sm.SetSM(&window, &event);
 

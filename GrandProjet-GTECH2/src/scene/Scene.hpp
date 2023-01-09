@@ -13,6 +13,8 @@ class Scene {
 public :
 	int x;
 
+	std::vector<Layer*> layers;
+
 	Scene();
 	virtual ~Scene();
 	
