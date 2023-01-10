@@ -10,14 +10,31 @@ Player::~Player()
 
 }
 
-void Player::PlayerLoop() 
+void Player::Loop(sf::Event* event) 
 {
 
 }
 
-void Player::PlayerRender(sf::RenderWindow* win)
+void Player::Render(sf::RenderWindow* win)
 {
 
+}
+
+
+//Je test des trucs sur le Player, celà sera supprimé (Etienne)
+//void Player::PlayerTest(sf::RenderWindow* win)
+//{
+//    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
+//    if (!playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png"))
+//    {
+//        std::cout << "y'a pas d'image" << std::endl;
+//    }
+//    playerSprite.setTexture(playerTexture);
+//    win->draw(playerSprite);
+//    std::cout << "player:" << playerSprite.getGlobalBounds().width << std::endl;
+//}
+
+void Player::AnimPlayer(sf::RenderWindow* win) {
     //sf::Texture texture;
 
     //if (!texture.loadFromFile("ressources/sprites/player/idle.png"))
@@ -48,22 +65,8 @@ void Player::PlayerRender(sf::RenderWindow* win)
     //}
 
     //win->draw(sprite);
-    
+
     // w = 900 h = 1200           900x1200
     // un drag 300 400
     // sprite.setTexture(texture);	
 }
-
-
-//Je test des trucs sur le Player, celà sera supprimé (Etienne)
-//void Player::PlayerTest(sf::RenderWindow* win)
-//{
-//    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
-//    if (!playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png"))
-//    {
-//        std::cout << "y'a pas d'image" << std::endl;
-//    }
-//    playerSprite.setTexture(playerTexture);
-//    win->draw(playerSprite);
-//    std::cout << "player:" << playerSprite.getGlobalBounds().width << std::endl;
-//}

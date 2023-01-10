@@ -7,12 +7,15 @@ menuHUD::menuHUD()
 
 menuHUD::~menuHUD()
 {
+
 }
 
-void menuHUD::menuRender(sf::RenderWindow* win) {
+void menuHUD::Render(sf::RenderWindow* window) {
     menuBackground.loadFromFile("ressources/background.jpg");
     menuBckSprite.setTexture(menuBackground);
-    win->draw(menuBckSprite);
+    window->draw(menuBckSprite);
+    menuSelection(window);
+    menuTitle(window);
 }
 
 void menuHUD::menuSelection(sf::RenderWindow* win)
@@ -48,5 +51,6 @@ void menuHUD::menuTitle(sf::RenderWindow* win)
 
 void menuHUD::menuTxt()
 {
+
 }
 

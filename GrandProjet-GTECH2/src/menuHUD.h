@@ -2,13 +2,14 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
+#include "GameObject.hpp"
 
-class menuHUD
+class menuHUD : public GameObject
 {
 public:
 	menuHUD();
 	virtual ~menuHUD();
-	void menuRender(sf::RenderWindow* win);
+	virtual void Render(sf::RenderWindow*);
 	void menuSelection(sf::RenderWindow* win);
 	void menuTitle(sf::RenderWindow* win);
 	void menuTxt();

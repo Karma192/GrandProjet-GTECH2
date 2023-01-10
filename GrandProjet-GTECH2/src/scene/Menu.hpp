@@ -10,14 +10,13 @@ public:
 	Menu();
 	virtual ~Menu();
 
-	Collision collision;
+	//Collision collision;
 
-	void MenuLoop(sf::Event*);
-	void MenuRender(sf::RenderWindow*);
-
+	//virtual void Loop(sf::Event*)override;
+	//virtual void Render(sf::RenderWindow*)override;
 
 private:
-	Player* player;
+	//Player* player;
 	menuHUD menu;
-	Enemies* enemies;
+	//Enemies* enemies;
 };
