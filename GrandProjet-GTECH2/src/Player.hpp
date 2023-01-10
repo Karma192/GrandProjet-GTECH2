@@ -16,12 +16,27 @@ public:
 	void PlayerLoop();
 	void PlayerTest(sf::RenderWindow* window);
 	void PlayerRender(sf::RenderWindow* window);
+
+	//Player HUD 
+
+	void playerEndurance();
+	void playerRegenEndurance();
+	void playerEnduranceUI();
+	sf::RectangleShape enduranceBar;
+	sf::RectangleShape enduranceBarBack;
+
+
 	int frame = 0;
 
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
 
+protected:
+	size_t endurancePlayer = 10000;
+	float cd_Endurance = endurance.getElapsedTime().asSeconds();
+	
+
 private:
-	sf::Clock clock;
+	sf::Clock endurance;
 
 };

@@ -12,47 +12,58 @@ Player::~Player()
 
 void Player::PlayerLoop() 
 {
-
+    playerEndurance();
+    playerRegenEndurance();
 }
 
 void Player::PlayerRender(sf::RenderWindow* win)
 {
-
-    //sf::Texture texture;
-
-    //if (!texture.loadFromFile("ressources/sprites/player/idle.png"))
-    //{
-    //    std::cout << "y'a pas d'image" << std::endl;
-    //}
-    //
-    ////left, top, w, h
-    //sf::IntRect rectSourceSprite(0, 0, 64, 64);
-    //sf::Sprite sprite(texture,rectSourceSprite);
-    //sprite.scale(10.0f, 10.0f);
-    //
-    //float elapsed1 = clock.getElapsedTime().asSeconds();
-
-    //if (elapsed1 >= 1)
-    //{
-    //    if (rectSourceSprite.left == 256)
-    //    {
-    //        rectSourceSprite.left = 0;
-    //    }
-    //    else
-    //    {
-    //        rectSourceSprite.left += 64;
-    //    }s
-
-    //    sprite.setTextureRect(rectSourceSprite);
-    //    clock.restart();
-    //}
-
-    //win->draw(sprite);
-    
-    // w = 900 h = 1200           900x1200
-    // un drag 300 400
-    // sprite.setTexture(texture);	
+    playerEnduranceUI();
+    win->draw(enduranceBar);
+    win->draw(enduranceBarBack);
+  
 }
+
+void Player::playerEndurance()
+{
+    //std::cout << "TEST" << std::endl;
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cd_Endurance >= 2 && endurancePlayer > 0)
+    {
+        endurancePlayer -= 1;
+        std::cout << "Il te reste " << endurancePlayer << "de point d'endurance" << std::endl; 
+    }
+    if(endurancePlayer == 0 && sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+    {
+        std::cout << "Tu peux plus courir" << std::endl;
+    }
+
+    float endurancePercent = static_cast<float>(endurancePlayer / 10000);
+    enduranceBar.setSize(sf::Vector2f(enduranceBar.getPosition().x * endurancePercent, enduranceBar.getPosition().y));
+}
+
+void Player::playerRegenEndurance()
+{
+    if (endurancePlayer == 0)
+    {
+        if (cd_Endurance >= 5 && sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        {
+            endurancePlayer += 5;
+            std::cout << "REGEN ENDURANCE : " << endurancePlayer << std::endl;
+        }
+    }
+}
+
+void Player::playerEnduranceUI()
+{
+    enduranceBar.setSize(sf::Vector2f(300.f, 25.f));
+    enduranceBar.setFillColor(sf::Color::Green);
+    enduranceBar.setPosition(960, 540);
+
+    enduranceBar = enduranceBarBack;
+    enduranceBarBack.setFillColor(sf::Color(25, 25, 25, 200)); 
+}
+
 
 
 //Je test des trucs sur le Player, celà sera supprimé (Etienne)
@@ -67,3 +78,4 @@ void Player::PlayerRender(sf::RenderWindow* win)
 //    win->draw(playerSprite);
 //    std::cout << "player:" << playerSprite.getGlobalBounds().width << std::endl;
 //}
+
