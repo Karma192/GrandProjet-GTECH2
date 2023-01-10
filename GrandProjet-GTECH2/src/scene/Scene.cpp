@@ -17,7 +17,7 @@ void Scene::Render(sf::RenderWindow* window) {
 	for (int i = sizeof(this->layers); i > 0; i--) {
 		if (this->layers[i] != nullptr) {
 			for (int j = 0; j < sizeof(this->layers[i]->objects); j++) {
-				if (this->layers[i]->objects[j] == NULL) {
+				if (!this->layers[i]->objects[j]) {
 					std::cout << "Pas d'objets sur ce layer !" << std::endl;
 				}
 				else {
@@ -32,7 +32,7 @@ void Scene::Loop(sf::Event* event) {
 	for (int i = sizeof(this->layers); i > 0; i--) {
 		if (this->layers[i] != nullptr) {
 			for (int j = 0; j < sizeof(this->layers[i]->objects); j++) {
-				if (this->layers[i]->objects[j] == NULL) {
+				if (!this->layers[i]->objects[j]) {
 					std::cout << "Pas d'objets sur ce layer !" << std::endl;
 				}
 				else {
