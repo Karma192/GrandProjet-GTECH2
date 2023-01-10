@@ -111,13 +111,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\agrandpaul\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dev\GrandProjet-GTECH2\SFML-2.5.1\include;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\agrandpaul\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalLibraryDirectories>D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\dev\GrandProjet-GTECH2\SFML-2.5.1\lib;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -145,8 +145,10 @@
     <ClCompile Include="src\Enemies.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameMaster.cpp" />
+    <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MapGenerator.cpp" />
+    <ClCompile Include="src\menuHUD.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Collision.cpp" />
     <ClCompile Include="src\scene\InGame.cpp" />
@@ -156,11 +158,14 @@
     <ClCompile Include="src\scene\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <ClInclude Include="src\Button.hpp" />
     <ClInclude Include="src\Enemies.hpp" />
     <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\GameMaster.hpp" />
+    <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\MapGenerator.hpp" />
+    <ClInclude Include="src\menuHUD.h" />
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\scene\InGame.hpp" />
@@ -170,10 +175,12 @@
     <ClInclude Include="src\scene\SceneManager.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="icon.ico" />
-    <Image Include="icon.png" />
+    <Image Include="ressources\ICON.png" />
     <Image Include="ressources\sprites\player\1.png" />
     <Image Include="ressources\sprites\player\idle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GrandProjet-GTECH2.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
