@@ -29,12 +29,12 @@ void menuHUD::menuSelection(sf::RenderWindow* win)
 
 void menuHUD::menuTitle(sf::RenderWindow* win)
 {
-    if (!this->fontTitle.loadFromFile("ressources/fonts/Heartless.ttf"))
+    if (!this->heartless.loadFromFile("ressources/fonts/Heartless.ttf"))
     {
         std::cout << "Error TTF Title Font" << std::endl;
     }
 
-    title.setFont(fontTitle);
+    title.setFont(heartless);
     title.setString("Crusade of the Abyss");
     title.setCharacterSize(200);
     sf::FloatRect bounds = title.getLocalBounds();
@@ -48,5 +48,13 @@ void menuHUD::menuTitle(sf::RenderWindow* win)
 
 void menuHUD::menuTxt()
 {
+    playRect.setSize(sf::Vector2f(100.f, 100.f));
+    playRect.setFillColor(sf::Color::Red);
+    sf::Vector2i mousePos = sf::Mouse::getPosition();
+    sf::Vector2f pointfloat(mousePos);
+    sf::FloatRect test = playRect.getGlobalBounds();
+    if(test.contains(pointfloat)){
+        
+    }
 }
 

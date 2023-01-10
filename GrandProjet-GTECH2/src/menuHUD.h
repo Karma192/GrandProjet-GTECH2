@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
+#include "Button.hpp"
 
 class menuHUD
 {
@@ -21,9 +22,10 @@ private:
 	sf::Sprite menuBckSprite;
 	sf::RectangleShape selectionBck;
 	sf::Vector2u oldScreenSize;
-	sf::Font fontTitle;
+	sf::Font heartless;
 	sf::Text title;
 	sf::Text credit;
 	sf::Text names;
+	sf::RectangleShape playRect;
 };
 
