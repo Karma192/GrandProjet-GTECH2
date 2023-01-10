@@ -17,4 +17,5 @@ void Menu::MenuRender(sf::RenderWindow* window)
 	menu.menuRender(window);
 	menu.menuSelection(window);
 	menu.menuTitle(window);
+	menu.menuTxt(window);	
 }

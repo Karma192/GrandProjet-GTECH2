@@ -2,7 +2,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
-#include "Button.hpp"
 
 class menuHUD
 {
@@ -12,7 +11,7 @@ public:
 	void menuRender(sf::RenderWindow* win);
 	void menuSelection(sf::RenderWindow* win);
 	void menuTitle(sf::RenderWindow* win);
-	void menuTxt();
+	void menuTxt(sf::RenderWindow* win);
 
 private:
 	float screenSizeX;

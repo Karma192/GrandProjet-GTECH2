@@ -46,15 +46,17 @@ void menuHUD::menuTitle(sf::RenderWindow* win)
     win->draw(title);
 }
 
-void menuHUD::menuTxt()
-{
+void menuHUD::menuTxt(sf::RenderWindow* win)
+{   
     playRect.setSize(sf::Vector2f(100.f, 100.f));
     playRect.setFillColor(sf::Color::Red);
+    win->draw(playRect);
+    
     sf::Vector2i mousePos = sf::Mouse::getPosition();
     sf::Vector2f pointfloat(mousePos);
     sf::FloatRect test = playRect.getGlobalBounds();
     if(test.contains(pointfloat)){
-        
+        std::cout << "test";
     }
 }
 
