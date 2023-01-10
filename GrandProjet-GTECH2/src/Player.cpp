@@ -15,6 +15,11 @@ void Player::PlayerLoop()
 
 }
 
+void Player::PlayerTest(sf::RenderWindow* win)
+{
+
+}
+
 void Player::PlayerRender(sf::RenderWindow* win)
 {
 

@@ -21,6 +21,8 @@ public:
 	void setPv(int pv) { m_pv = pv; }
 	int getPv() const { return m_pv; }
 
+	//void takeDamage(int damage) { m_pv -= damage; if (m_pv < 0) m_pv = 0; }
+
 	void setAttack(int attack) { m_attack = attack; }
 	int getAttack() const { return m_attack; }
 
@@ -32,6 +34,12 @@ public:
 
 	void setGold(int gold) { m_gold = gold; }
 	int getGold() const { return m_gold; }
+
+	void setKeys(int keys) { m_keys = keys; }
+	int getKeys() const { return m_keys; }
+
+	void setLuck(int luck) { m_luck = luck; }
+	int getLuck() const { return m_luck; }
 	
 	
 	
@@ -41,9 +49,12 @@ public:
 
 private:
 	sf::Clock clock;
+
 	int m_pv;
 	int m_attack;
 	int m_speed;
 	int m_attackspeed;
 	int m_gold;
+	int m_keys;
+	int m_luck;
 };
