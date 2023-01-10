@@ -18,10 +18,32 @@ public:
 	void PlayerRender(sf::RenderWindow* window);
 	int frame = 0;
 
+	void setPv(int pv) { m_pv = pv; }
+	int getPv() const { return m_pv; }
+
+	void setAttack(int attack) { m_attack = attack; }
+	int getAttack() const { return m_attack; }
+
+	void setSpeed(int speed) { m_speed = speed; }
+	int getSpeed() const { return m_speed; }
+
+	void setAttackSpeed(int attackspeed) { m_attackspeed = attackspeed; }
+	int getAttackSpeed() const { return m_attackspeed; }
+
+	void setGold(int gold) { m_gold = gold; }
+	int getGold() const { return m_gold; }
+	
+	
+	
+	
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
 
 private:
 	sf::Clock clock;
-
+	int m_pv;
+	int m_attack;
+	int m_speed;
+	int m_attackspeed;
+	int m_gold;
 };
