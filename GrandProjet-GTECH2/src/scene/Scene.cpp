@@ -9,19 +9,24 @@ Scene::~Scene() {
 }
 
 void Scene::Update(sf::Event* event, sf::RenderWindow* window) {
-	Loop(event);
-	Render(window);
+	/*this->Loop(event);
+	this->Render(window);*/
+
+	for (auto i = *std::end(this->layers); i >= *std::begin(this->layers); i--) {
+		if (i->objects.empty() == false) {
+			std::for_each(i->objects.begin(), i->objects.end(), [event, window](GameObject* obj) {
+				obj->Update(event, window);
+			});
+		}
+	}
 }
 
 void Scene::Render(sf::RenderWindow* window) {
-	for (int i = (sizeof(this->layers) / sizeof(Layer*)); i > 0; i--) {
-		if (this->layers[i] != nullptr) {
-			for (int j = 0; j < (sizeof(this->layers[i]->objects) / sizeof(GameObject*)); j++) {
-				if (this->layers[i]->objects[j] == nullptr) {
-					std::cout << "Pas d'objets sur ce layer !" << std::endl;
-				}
-				else {
-					this->layers[i]->objects[j]->Render(window);
+	for (auto i = *std::prev(std::end(this->layers)); i >= *std::begin(this->layers); i--) {
+		if (i->objects.empty() == false) {
+			for (int j = 0; j < (i->objects.size() - 1); j++) {
+				if (i->objects[j] != NULL) {
+					//i->objects[j]->Render(window);
 				}
 			}
 		}
@@ -29,14 +34,11 @@ void Scene::Render(sf::RenderWindow* window) {
 }
 
 void Scene::Loop(sf::Event* event) {
-	for (int i = (sizeof(this->layers) / sizeof(int)); i > 0; i--) {
-		if (this->layers[i] != nullptr) {
-			for (int j = 0; j < (sizeof(this->layers[i]->objects) / sizeof(GameObject*)); j++) {
-				if (this->layers[i]->objects[j] == nullptr) {
-					std::cout << "Pas d'objets sur ce layer !" << std::endl;
-				}
-				else {
-					this->layers[i]->objects[j]->Loop(event);
+	for (auto i = *std::prev(std::end(this->layers)); i >= *std::begin(this->layers); i--) {
+		if (i->objects.empty() == false) {
+			for (int j = 0; j < (i->objects.size() - 1); j++) {
+				if (i->objects[j] != NULL) {
+					//i->objects[j]->Loop(event);
 				}
 			}
 		}

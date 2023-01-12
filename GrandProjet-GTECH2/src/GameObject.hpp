@@ -13,6 +13,9 @@ public :
 
 	// Boucle du game object
 	void Update(sf::Event*, sf::RenderWindow*);
+
+private:
+
 	// Processus en back du game object
 	virtual void Loop(sf::Event*);
 	// Rendu du game object

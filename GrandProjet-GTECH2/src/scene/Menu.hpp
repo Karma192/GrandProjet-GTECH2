@@ -13,10 +13,10 @@ public:
 	//Collision collision;
 
 	//virtual void Loop(sf::Event*)override;
-	//virtual void Render(sf::RenderWindow*)override;
+	virtual void Render(sf::RenderWindow*)override;
 
 private:
-	//Player* player;
+	Player* player;
 	menuHUD menu;
-	//Enemies* enemies;
+	Enemies* enemies;
 };

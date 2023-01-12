@@ -9,7 +9,9 @@ class menuHUD : public GameObject
 public:
 	menuHUD();
 	virtual ~menuHUD();
-	virtual void Render(sf::RenderWindow*);
+
+	virtual void Render(sf::RenderWindow*)override;
+
 	void menuSelection(sf::RenderWindow* win);
 	void menuTitle(sf::RenderWindow* win);
 	void menuTxt();

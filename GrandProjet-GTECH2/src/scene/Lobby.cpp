@@ -8,10 +8,6 @@ Lobby::~Lobby() {
 
 }
 
-void Lobby::LobbyLoop(sf::Event* event) {
-
-}
-
-void Lobby::LobbyRender(sf::RenderWindow* window) {
+void Lobby::Render(sf::RenderWindow* window) {
 
 }
