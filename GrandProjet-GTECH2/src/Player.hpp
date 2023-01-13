@@ -16,6 +16,16 @@ public:
 	void PlayerLoop();
 	void PlayerTest(sf::RenderWindow* window);
 	void PlayerRender(sf::RenderWindow* window);
+
+	//Player HUD 
+
+	void playerEndurance();
+	void playerRegenEndurance();
+	void playerEnduranceUI();
+	sf::RectangleShape enduranceBar;
+	sf::RectangleShape enduranceBarBack;
+
+
 	int frame = 0;
 
 	void setPv(int pv) { m_pv = pv; }
@@ -41,9 +51,18 @@ public:
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
 
+protected:
+	size_t endurancePlayer = 10000;
+	float cd_Endurance = endurance.getElapsedTime().asSeconds();
+	
+
 private:
+<<<<<<< HEAD
 	sf::Clock clock;
 	int m_pv;
 	int m_attack;
+=======
+	sf::Clock endurance;
+>>>>>>> 5c7304da4689cca04b93c10c0572565394050fbd
 
 };
