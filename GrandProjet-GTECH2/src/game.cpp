@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-sf::RenderWindow window(sf::VideoMode(1920, 1080), "Crusade Of The Abyss");
+sf::RenderWindow window(sf::VideoMode(1920, 1080), "Crusade Of The Abyss"/*, sf::Style::Fullscreen*/);
 sf::Event event;
 //sf::Image icon;
 
@@ -18,7 +18,7 @@ void Game() {
 
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
                 window.close();
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {

@@ -18,6 +18,6 @@ public:
 
 private:
 	Player* player;
-	menuHUD menu;
+	menuHUD menuhud;
 	Enemies* enemies;
 };

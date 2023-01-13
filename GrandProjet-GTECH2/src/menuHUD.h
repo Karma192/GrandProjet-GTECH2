@@ -14,8 +14,8 @@ public:
 	void menuTxt(sf::RenderWindow* win);
 
 private:
-	float screenSizeX;
-	float screenSizeY;
+	float screenSizeX = 0;
+	float screenSizeY = 0;
 
 	sf::Texture menuBackground;
 	sf::Sprite menuBckSprite;
@@ -25,6 +25,8 @@ private:
 	sf::Text title;
 	sf::Text credit;
 	sf::Text names;
+	sf::FloatRect titleBounds;
+	sf::FloatRect playBounds;
 	sf::RectangleShape playRect;
 };
 
