@@ -11,6 +11,7 @@ void Game() {
     //window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
     sm.SetSM(&window, &event);
+    window.setFramerateLimit(60);
 
     while (window.isOpen())
     {

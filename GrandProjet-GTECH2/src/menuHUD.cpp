@@ -32,6 +32,7 @@ void menuHUD::menuSelection(sf::RenderWindow* win)
     selectionBck.setOrigin(sf::Vector2f((selectionBck.getSize()) / 2.0f));
     screenSizeX = float(oldScreenSize.x);
     screenSizeY = float(oldScreenSize.y);
+
     selectionBck.setPosition(screenSizeX / 2.0f, screenSizeY / 2.0f);
     win->draw(selectionBck);
 }
@@ -55,16 +56,20 @@ void menuHUD::menuTitle(sf::RenderWindow* win)
 void menuHUD::menuTxt(sf::RenderWindow* win)
 {
     playBounds = playRect.getGlobalBounds();
-    float x = playBounds.left + playBounds.width / 2;
-    float y = playBounds.top + playBounds.height / 2;
-    playRect.setOrigin(x,y);
+    float x = playBounds.width / 2;
+    float y = playBounds.height / 2;
+    playRect.setOrigin(x, y);
     playRect.setPosition(screenSizeX / 2.0f, selectionBck.getPosition().y / 3);
+
     sf::Vector2i mousePos = sf::Mouse::getPosition(*win);
     sf::Vector2f pointfloat(mousePos);
-    std::cout << "playRect: " << playRect.getPosition().x << playRect.getPosition().y << std::endl;
-    std::cout << "mousePos: " << pointfloat.x << pointfloat.y << std::endl;
+
+    std::cout << "playRect: " << playRect.getPosition().x << " " << playRect.getPosition().y << std::endl;
+    std::cout << "mousePos: " << pointfloat.x << " " << pointfloat.y << std::endl;
+
     if(playBounds.contains(pointfloat)){
         std::cout << "collision detected" << std::endl;
     }
+
     win->draw(playRect);
 }
