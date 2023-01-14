@@ -45,10 +45,8 @@ void menuHUD::menuTitle(sf::RenderWindow* win)
     }
 
     titleBounds = title.getLocalBounds();
-    /*std::cout << titleBounds.left << titleBounds.top << std::endl;*/
-    float x = titleBounds.left + titleBounds.width / 2;
-    float y = titleBounds.top + titleBounds.height / 2;
-    title.setOrigin(x, y);
+    title.setOrigin(titleBounds.width / 2, titleBounds.height / 2);
+
     title.setPosition(screenSizeX / 2.0f, 100);
     win->draw(title);
 }
@@ -64,12 +62,25 @@ void menuHUD::menuTxt(sf::RenderWindow* win)
     sf::Vector2i mousePos = sf::Mouse::getPosition(*win);
     sf::Vector2f pointfloat(mousePos);
 
-    std::cout << "playRect: " << playRect.getPosition().x << " " << playRect.getPosition().y << std::endl;
-    std::cout << "mousePos: " << pointfloat.x << " " << pointfloat.y << std::endl;
+    //std::cout << "playRect: " << playRect.getPosition().x << " " << playRect.getPosition().y << std::endl;
+    //std::cout << "mousePos: " << pointfloat.x << " " << pointfloat.y << std::endl;
 
     if(playBounds.contains(pointfloat)){
         std::cout << "collision detected" << std::endl;
+        if (detectedClick() == 1) {
+            sm.SetActiveScene(1);
+        }
     }
 
     win->draw(playRect);
+}
+
+int menuHUD::detectedClick() {
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        return 1;
+    }
+    else {
+        return 0;
+    }
 }
