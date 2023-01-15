@@ -26,7 +26,6 @@ menuHUD::menuHUD()
 
 menuHUD::~menuHUD()
 {
-    std::cout << "merde";
 }
 
 //Background menu
@@ -110,6 +109,7 @@ void menuHUD::menuTxt(sf::RenderWindow* win)
                     break;
                 case 2:
                     std::cout << "quit" << std::endl;
+                    win->close();
                     break;
                 default:
                     break;
