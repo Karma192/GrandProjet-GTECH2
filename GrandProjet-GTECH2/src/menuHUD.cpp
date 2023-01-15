@@ -1,5 +1,6 @@
 #include "menuHUD.h"
 
+//Initialisation of all elements
 menuHUD::menuHUD()
 {
     selectionBck.setFillColor(sf::Color(153, 89, 7, 200));
@@ -11,21 +12,30 @@ menuHUD::menuHUD()
     title.setFont(heartless);
     title.setString("Crusade of the Abyss");
     title.setCharacterSize(200);
-    title.setFillColor(sf::Color(255, 255, 255, 255));    
+    title.setFillColor(sf::Color(255, 255, 255, 255));   
 
-    playRect.setSize(sf::Vector2f(200.f, 50.f));
+    if (!font.loadFromFile("ressources/fonts/arial.ttf"));
+    playtest.setFont(font);
+    playtest.setCharacterSize(150);
+    playtest.setFillColor(sf::Color(255, 255, 255, 255));
+
+    playRect.setOutlineThickness(10);
+    playRect.setOutlineColor(sf::Color::Red);
     playRect.setFillColor(sf::Color::Red);
 }
 
 menuHUD::~menuHUD()
 {
+    std::cout << "merde";
 }
 
+//Background menu
 void menuHUD::menuRender(sf::RenderWindow* win) {
 
     win->draw(menuBckSprite);
 }
 
+//Background for Option
 void menuHUD::menuSelection(sf::RenderWindow* win)
 {
     oldScreenSize = win->getSize();
@@ -37,6 +47,7 @@ void menuHUD::menuSelection(sf::RenderWindow* win)
     win->draw(selectionBck);
 }
 
+//Title of the game
 void menuHUD::menuTitle(sf::RenderWindow* win)
 {
     if (!this->heartless.loadFromFile("ressources/fonts/Heartless.ttf"))
@@ -51,36 +62,67 @@ void menuHUD::menuTitle(sf::RenderWindow* win)
     win->draw(title);
 }
 
+//Text different Option
 void menuHUD::menuTxt(sf::RenderWindow* win)
 {
-    playBounds = playRect.getGlobalBounds();
-    float x = playBounds.width / 2;
-    float y = playBounds.height / 2;
-    playRect.setOrigin(x, y);
-    playRect.setPosition(screenSizeX / 2.0f, selectionBck.getPosition().y / 3);
+    play.begin();
+    play.push_back(playtest);
+    std::vector <sf::String> string;
+    string = { "Play", "Option", "Quit" };
+    for (i = 0; i < 3; i++)
+    {       
+        //Option text
+        play[i].setString(string[i]);
+        sf::FloatRect playbuttonBounds = play[i].getLocalBounds();
+        play[i].setOrigin(playbuttonBounds.left + playbuttonBounds.width / 2, playbuttonBounds.top + playbuttonBounds.height / 2);
+        play[i].setPosition(screenSizeX / 2.0f, (selectionBck.getPosition().y / 1.5) + i * 200);
 
-    sf::Vector2i mousePos = sf::Mouse::getPosition(*win);
-    sf::Vector2f pointfloat(mousePos);
+        //Background rect
+        playRect.setSize(sf::Vector2f(play[i].getGlobalBounds().width, play[i].getGlobalBounds().height));
+        playBounds = play[i].getGlobalBounds();
+        float x = playBounds.width / 2;
+        float y = playBounds.height / 2;
+        playRect.setOrigin(x, y);
+        playRect.setPosition(play[i].getPosition());
 
-    //std::cout << "playRect: " << playRect.getPosition().x << " " << playRect.getPosition().y << std::endl;
-    //std::cout << "mousePos: " << pointfloat.x << " " << pointfloat.y << std::endl;
+        win->draw(playRect);
+        win->draw(play[i]);
 
-    if(playBounds.contains(pointfloat)){
-        std::cout << "collision detected" << std::endl;
-        if (detectedClick() == 1) {
-            sm.SetActiveScene(1);
+        play.push_back(playtest);
+
+
+        sf::Vector2i mousePos = sf::Mouse::getPosition(*win);
+        sf::Vector2f pointfloat(mousePos);
+
+        //Detection selection + contain cursor mouse
+        if (playBounds.contains(pointfloat)) {
+            std::cout << "collision detected" << std::endl;
+            if (detectedClick()) {
+                std::cout << "clicked";
+                switch (i)
+                {
+                case 0:
+                    std::cout << "play" << std::endl;
+                    /* sm.SetActiveScene(1);*/
+                    break;
+                case 1:
+                    std::cout << "option" << std::endl;
+                    break;
+                case 2:
+                    std::cout << "quit" << std::endl;
+                    break;
+                default:
+                    break;
+                }              
+            }
         }
     }
-
-    win->draw(playRect);
 }
 
-int menuHUD::detectedClick() {
+//Detection for Click
+bool menuHUD::detectedClick() {
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
-        return 1;
-    }
-    else {
-        return 0;
+        return true;
     }
 }

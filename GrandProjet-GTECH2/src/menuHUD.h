@@ -2,12 +2,13 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
-#include "scene/SceneManager.hpp"
+#include <vector>
+//#include "scene/SceneManager.hpp"
 
 class menuHUD
 {
 public:
-	SceneManager sm;
+	//SceneManager sm;
 
 	menuHUD();
 	virtual ~menuHUD();
@@ -15,12 +16,13 @@ public:
 	void menuSelection(sf::RenderWindow* win);
 	void menuTitle(sf::RenderWindow* win);
 	void menuTxt(sf::RenderWindow* win);
-	int detectedClick();
+	bool detectedClick();
 
 private:
 	float screenSizeX = 0;
 	float screenSizeY = 0;
 	bool once = true;
+	int i = 0;
 
 	sf::Texture menuBackground;
 	sf::Sprite menuBckSprite;
@@ -28,10 +30,13 @@ private:
 	sf::Vector2u oldScreenSize;
 	sf::Font heartless;
 	sf::Text title;
-	sf::Text credit;
-	sf::Text names;
+	sf::Text playtest;
+	sf::Text options;
 	sf::FloatRect titleBounds;
 	sf::FloatRect playBounds;
 	sf::RectangleShape playRect;
+	sf::RectangleShape test;
+	sf::Font font;
+	std::vector <sf::Text> play;
 };
 
