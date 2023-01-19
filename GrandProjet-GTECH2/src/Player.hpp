@@ -24,6 +24,8 @@ public:
 	void playerEnduranceUI();
 	sf::RectangleShape enduranceBar;
 	sf::RectangleShape enduranceBarBack;
+	sf::Event keyboardHandler;
+
 
 
 	int frame = 0;
@@ -52,17 +54,17 @@ public:
 	sf::Sprite playerSprite;
 
 protected:
-	size_t endurancePlayer = 10000;
+	float endurancePlayer = 100;
 	float cd_Endurance = endurance.getElapsedTime().asSeconds();
 	
 
 private:
-<<<<<<< HEAD
+
 	sf::Clock clock;
 	int m_pv;
 	int m_attack;
-=======
+
 	sf::Clock endurance;
->>>>>>> 5c7304da4689cca04b93c10c0572565394050fbd
+
 
 };

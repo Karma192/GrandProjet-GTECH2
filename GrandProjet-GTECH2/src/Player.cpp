@@ -14,54 +14,58 @@ void Player::PlayerLoop()
 {
     playerEndurance();
     playerRegenEndurance();
+    
 }
 
 void Player::PlayerRender(sf::RenderWindow* win)
 {
     playerEnduranceUI();
-    win->draw(enduranceBar);
     win->draw(enduranceBarBack);
-  
+    win->draw(enduranceBar);
+
+    
 }
 
 void Player::playerEndurance()
 {
-    //std::cout << "TEST" << std::endl;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cd_Endurance >= 2 && endurancePlayer > 0)
     {
-        endurancePlayer -= 1;
+        endurancePlayer -= 0.1;
         std::cout << "Il te reste " << endurancePlayer << "de point d'endurance" << std::endl; 
+        enduranceBar.setScale(endurancePlayer / 100, 1); 
     }
-    if(endurancePlayer == 0 && sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+    if(endurancePlayer <= 0 && sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
         std::cout << "Tu peux plus courir" << std::endl;
     }
 
-    float endurancePercent = static_cast<float>(endurancePlayer / 10000);
-    enduranceBar.setSize(sf::Vector2f(enduranceBar.getPosition().x * endurancePercent, enduranceBar.getPosition().y));
+    
 }
 
 void Player::playerRegenEndurance()
 {
-    if (endurancePlayer == 0)
+    
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && endurancePlayer <= 100)
     {
-        if (cd_Endurance >= 5 && sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        {
-            endurancePlayer += 5;
-            std::cout << "REGEN ENDURANCE : " << endurancePlayer << std::endl;
-        }
+        endurancePlayer += 0.1;
+        enduranceBar.setScale(endurancePlayer / 100, 1);
+        std::cout << "REGEN ENDURANCE : " << endurancePlayer << std::endl;
     }
+
 }
 
 void Player::playerEnduranceUI()
 {
     enduranceBar.setSize(sf::Vector2f(300.f, 25.f));
-    enduranceBar.setFillColor(sf::Color::Green);
-    enduranceBar.setPosition(960, 540);
+    enduranceBar.setFillColor(sf::Color::Blue);
+    enduranceBar.setPosition(2, 2);
+ 
+    enduranceBarBack.setSize(sf::Vector2f(300.f, 25.f));
+    enduranceBarBack.setFillColor(sf::Color::Black);
+    enduranceBarBack.setPosition(2, 2);
 
-    enduranceBar = enduranceBarBack;
-    enduranceBarBack.setFillColor(sf::Color(25, 25, 25, 200)); 
+    
 }
 
 
