@@ -19,11 +19,15 @@ void Player::PlayerLoop()
 
 void Player::PlayerRender(sf::RenderWindow* win)
 {
-    playerEnduranceUI();
-    win->draw(enduranceBarBack);
+    playerUI();
+    //win->draw(enduranceBarBack);
     win->draw(enduranceBar);
+    win->draw(lifeBar);
+    win->draw(playerUltiUI);
+    win->draw(playerFirstSpell);
+    win->draw(playerSecondSpell);
+    win->draw(playerThirdSpell);
 
-    
 }
 
 void Player::playerEndurance()
@@ -55,17 +59,45 @@ void Player::playerRegenEndurance()
 
 }
 
-void Player::playerEnduranceUI()
+void Player::playerUI()
 {
     enduranceBar.setSize(sf::Vector2f(300.f, 25.f));
     enduranceBar.setFillColor(sf::Color::Blue);
-    enduranceBar.setPosition(2, 2);
- 
-    enduranceBarBack.setSize(sf::Vector2f(300.f, 25.f));
-    enduranceBarBack.setFillColor(sf::Color::Black);
-    enduranceBarBack.setPosition(2, 2);
+    enduranceBar.setPosition(2, 830);
 
-    
+    /*enduranceBarBack.setSize(sf::Vector2f(300.f, 25.f));
+    enduranceBarBack.setFillColor(sf::Color::Black);
+    enduranceBarBack.setPosition(2, 2);*/
+
+    lifeBar.setSize(sf::Vector2f(300.f, 25.f));
+    lifeBar.setFillColor(sf::Color::Green);
+    lifeBar.setPosition(2, 800);
+
+    playerUltiUI.setRadius(40);
+    playerUltiUI.setFillColor(sf::Color::Transparent);
+    playerUltiUI.setOutlineThickness(5);
+    playerUltiUI.setOutlineColor(sf::Color::Yellow);
+    playerUltiUI.setPosition(30, 880);
+
+    playerFirstSpell.setRadius(20);
+    playerFirstSpell.setFillColor(sf::Color::Transparent);
+    playerFirstSpell.setOutlineThickness(5);
+    playerFirstSpell.setOutlineColor(sf::Color::Green);
+    playerFirstSpell.setPosition(140, 920);
+
+    playerSecondSpell.setRadius(20);
+    playerSecondSpell.setFillColor(sf::Color::Transparent);
+    playerSecondSpell.setOutlineThickness(5);
+    playerSecondSpell.setOutlineColor(sf::Color::Green);
+    playerSecondSpell.setPosition(200, 920);
+
+    playerThirdSpell.setRadius(20);
+    playerThirdSpell.setFillColor(sf::Color::Transparent);
+    playerThirdSpell.setOutlineThickness(5);
+    playerThirdSpell.setOutlineColor(sf::Color::Green);
+    playerThirdSpell.setPosition(260, 920);
+ 
+
 }
 
 

@@ -21,10 +21,18 @@ public:
 
 	void playerEndurance();
 	void playerRegenEndurance();
-	void playerEnduranceUI();
+	void playerUI();
+
+	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;
 	sf::RectangleShape enduranceBarBack;
-	sf::Event keyboardHandler;
+	sf::RectangleShape lifeBar;
+
+	//cercle pour ulti + spell
+	sf::CircleShape playerUltiUI;
+	sf::CircleShape playerFirstSpell;
+	sf::CircleShape playerSecondSpell;
+	sf::CircleShape playerThirdSpell;
 
 
 
