@@ -22,6 +22,9 @@ menuHUD::menuHUD()
     playRect.setOutlineThickness(10);
     playRect.setOutlineColor(sf::Color::Red);
     playRect.setFillColor(sf::Color::Red);
+
+    play.begin();
+    play.push_back(playtest);
 }
 
 menuHUD::~menuHUD()
@@ -64,14 +67,12 @@ void menuHUD::menuTitle(sf::RenderWindow* win)
 //Text different Option
 void menuHUD::menuTxt(sf::RenderWindow* win)
 {
-    play.begin();
-    play.push_back(playtest);
     std::vector <sf::String> string;
     string = { "Play", "Option", "Quit" };
     for (i = 0; i < 3; i++)
-    {       
-        //Option text
+    {      
         play[i].setString(string[i]);
+        //Option text       
         sf::FloatRect playbuttonBounds = play[i].getLocalBounds();
         play[i].setOrigin(playbuttonBounds.left + playbuttonBounds.width / 2, playbuttonBounds.top + playbuttonBounds.height / 2);
         play[i].setPosition(screenSizeX / 2.0f, (selectionBck.getPosition().y / 1.5) + i * 200);
@@ -106,6 +107,7 @@ void menuHUD::menuTxt(sf::RenderWindow* win)
                     break;
                 case 1:
                     std::cout << "option" << std::endl;
+                    once = false;
                     break;
                 case 2:
                     std::cout << "quit" << std::endl;

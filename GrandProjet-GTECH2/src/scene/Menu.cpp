@@ -17,5 +17,10 @@ void Menu::MenuRender(sf::RenderWindow* window)
 	menuhud.menuRender(window);
 	menuhud.menuSelection(window);
 	menuhud.menuTitle(window);
-	menuhud.menuTxt(window);
+	if (menuhud.once == true) {
+		menuhud.menuTxt(window);
+	}
+	else {
+		std::cout << "test";
+	}
 }

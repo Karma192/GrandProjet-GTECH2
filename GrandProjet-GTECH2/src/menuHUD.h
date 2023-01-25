@@ -17,11 +17,11 @@ public:
 	void menuTitle(sf::RenderWindow* win);
 	void menuTxt(sf::RenderWindow* win);
 	bool detectedClick();
+	bool once = true;
 
 private:
 	float screenSizeX = 0;
 	float screenSizeY = 0;
-	bool once = true;
 	int i = 0;
 
 	sf::Texture menuBackground;
