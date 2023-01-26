@@ -13,14 +13,19 @@ public:
 	void textWriting(std::list<sf::String> text, int size);
 	void dialogueFinished();
 
+	void dialogueChoiceStart(sf::RenderWindow* win, int characterSize);
+
 
 
 private:
 	sf::Texture dialogueBoxTexture;
 	sf::Sprite dialogueBox;
+
+	sf::Texture dialogueChoiceBoxTexture;
+	sf::Sprite dialogueChoiceBox;
 	
-	sf::Font policeTexte;
-	sf::Text texteEcrit;
+	sf::Font policeDialogue;
+	sf::Text dialogue;
 
 };
 
