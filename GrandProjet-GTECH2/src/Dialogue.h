@@ -11,7 +11,7 @@ public:
 
 	void dialogueStart(sf::RenderWindow* win);
 	void textWriting(std::list<sf::String> text, int size);
-	void dialogueFinished();
+	void dialogueFinished(sf::RenderWindow* win);
 
 	void dialogueChoiceStart(sf::RenderWindow* win, int characterSize);
 
@@ -25,7 +25,7 @@ private:
 	sf::Sprite dialogueChoiceBox;
 	
 	sf::Font policeDialogue;
-	sf::Text dialogue;
+	sf::Text dialogueEcrit;
 
 };
 

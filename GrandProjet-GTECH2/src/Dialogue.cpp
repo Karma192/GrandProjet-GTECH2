@@ -29,20 +29,20 @@ void Dialogue::dialogueStart(sf::RenderWindow* win)
 // (make use of a list of sf::String)
 void Dialogue::textWriting(std::list<sf::String> textList, int size)
 {
-	dialogue.setFont(policeDialogue);
-	dialogue.setCharacterSize(size);
-	dialogue.setColor(sf::Color::White);
+	dialogueEcrit.setFont(policeDialogue);
+	dialogueEcrit.setCharacterSize(size);
+	//dialogueEcrit.setColor(sf::Color::White);
 
-	dialogue.setPosition(dialogueBox.getPosition());
+	dialogueEcrit.setPosition(dialogueBox.getPosition());
 
 	for (int i = 0; i < textList.size(); i++) 
 	{
-		dialogue.setString("textList[i]");
+		dialogueEcrit.setString("textList[i]");
 	}
 
 }
 
-void Dialogue::dialogueFinished()
+void Dialogue::dialogueFinished(sf::RenderWindow* win)
 {
 	if (!dialogueChoiceBoxTexture.loadFromFile("dialogue_layout.jpg"))
 	{
@@ -51,6 +51,20 @@ void Dialogue::dialogueFinished()
 
 	dialogueChoiceBox.setTexture(dialogueChoiceBoxTexture);
 	dialogueChoiceBox.setPosition(sf::Vector2f(100, 250));
+	dialogueChoiceBox.setScale(sf::Vector2f(0.25f, 1.f));
+	win->draw(dialogueChoiceBox);
+}
+
+void Dialogue::dialogueChoiceStart(sf::RenderWindow* win, int characterSize)
+{
+	if (!dialogueChoiceBoxTexture.loadFromFile("dialogue_layout.jpg"))
+	{
+		std::cout << "Error while loading dialogue_layout.jpg";
+	}
+
+
+	dialogueChoiceBox.setTexture(dialogueChoiceBoxTexture);
+	dialogueChoiceBox.setPosition(sf::Vector2f(75, 250));
 	dialogueChoiceBox.setScale(sf::Vector2f(0.25f, 1.f));
 	win->draw(dialogueChoiceBox);
 }
