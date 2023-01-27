@@ -32,8 +32,6 @@ void Player::PlayerTest(sf::RenderWindow* win)
     win->draw(cube);
 }
 
-void Player::PlayerRender(sf::RenderWindow* win)
-{
 
     //sf::Texture texture;
 
@@ -148,7 +146,7 @@ void Player::ControllerMove()
 }
 
 void Player::MovePlayer() {
-    cube.move(1,1);
+    cube.move(1, 1);
 }
 
 //Je test des trucs sur le Player, celà sera supprimé (Etienne)
