@@ -23,8 +23,11 @@ void Game() {
             if (event.type == sf::Event::Closed)
                 window.close();
 
+
+
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                 sm.SetActiveScene(1);
+
             }
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
             {
