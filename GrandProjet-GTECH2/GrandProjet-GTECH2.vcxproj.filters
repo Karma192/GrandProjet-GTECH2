@@ -116,6 +116,7 @@
     <ClInclude Include="src\GameObject.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="example.hpp">
     <ClInclude Include="src\Dialogue.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
