@@ -4,8 +4,11 @@
 
 class InGame : public Scene {
 public:
-	InGame();
-	virtual ~InGame();
+    InGame();
+    virtual ~InGame();
+
+    void InGameLoop(sf::Event*);
+    void InGameRender(sf::RenderWindow*);
 
 private:
 

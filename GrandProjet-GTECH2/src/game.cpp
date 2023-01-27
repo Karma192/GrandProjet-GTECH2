@@ -18,20 +18,29 @@ void Game() {
 
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed) {
+            if (event.type == sf::Event::Closed)
                 window.close();
-            }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                 sm.SetActiveScene(1);
             }
         }
+
+        GameRender();
     }
 }
 
 // Game's Loop
 void GameLoop() {
+    sm.SceneManagerLoop();
+}
+
+// All Things to Render
+void GameRender() {
     window.clear();
-    sm.Update();
+    sm.SceneManagerRender();
+
+
+    // things to display
     window.display();
 }

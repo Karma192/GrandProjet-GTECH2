@@ -4,7 +4,7 @@
 #include "GameMaster.hpp"
 
 class Button {
-public :
+public:
 	Button();
 	Button(float x, float y, int w, int h, sf::RenderWindow* win);
 	Button(float x, float y, int w, int h, float angle, sf::RenderWindow* win);
@@ -16,7 +16,7 @@ public :
 	void ButtonLoop();
 	void ButtonRender();
 
-private :
+private:
 	sf::RenderWindow* b_window;
 	sf::Color b_color;
 	sf::CircleShape b_sphere;

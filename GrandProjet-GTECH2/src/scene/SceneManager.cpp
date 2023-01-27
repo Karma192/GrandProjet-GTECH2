@@ -17,13 +17,13 @@ void SceneManager::SetSM(sf::RenderWindow* win, sf::Event* e) {
 // Function to call for change active scene
 void SceneManager::SetActiveScene(int scene) {
 	switch (scene) {
-	case MENU :
+	case MENU:
 		index = MENU;
 		break;
-	case LOBBY :
+	case LOBBY:
 		index = LOBBY;
 		break;
-	case INGAME :
+	case INGAME:
 		index = INGAME;
 		break;
 	default:
@@ -33,28 +33,48 @@ void SceneManager::SetActiveScene(int scene) {
 }
 
 // Switch between scene's Loop
-void SceneManager::Update() {
-	SwitchScene();
+void SceneManager::SceneManagerLoop() {
+	SwitchScene(LOOP);
 }
 
-// Function for switch between all scenes
-void SceneManager::SwitchScene() {
+// Switch between scene's Render
+void SceneManager::SceneManagerRender() {
+	SwitchScene(RENDER);
+}
+
+// Function for switch between all scenes loop/render
+void SceneManager::SwitchScene(int x) {
 	switch (index) {
-	case MENU :
-		menu.Update(event, window);
-		std::cout << "C'est le menu !" << std::endl;
+	case MENU:
+		if (x == LOOP) {
+			menu.MenuLoop(event);
+			//std::cout << "C'est le menu loop !" << std::endl;
+		}
+		else if (x == RENDER) {
+			menu.MenuRender(window);
+			//std::cout << "C'est le menu render !" << std::endl;
+		}
 		break;
-
-	case LOBBY :
-		lobby.Update(event, window);
-		std::cout << "C'est le lobby !" << std::endl;
+	case LOBBY:
+		if (x == LOOP) {
+			lobby.LobbyLoop(event);
+			std::cout << "C'est le lobby loop !" << std::endl;
+		}
+		else if (x == RENDER) {
+			lobby.LobbyRender(window);
+			std::cout << "C'est le lobby render !" << std::endl;
+		}
 		break;
-
-	case INGAME :
-		ingame.Update(event, window);
-		std::cout << "C'est le ingame !" << std::endl;
+	case INGAME:
+		if (x == LOOP) {
+			ingame.InGameLoop(event);
+			std::cout << "C'est le jeu loop !" << std::endl;
+		}
+		else if (x == RENDER) {
+			ingame.InGameRender(window);
+			std::cout << "C'est le jeu render !" << std::endl;
+		}
 		break;
-
 	default:
 		break;
 	}

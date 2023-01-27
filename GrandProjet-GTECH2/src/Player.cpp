@@ -1,63 +1,23 @@
-#include "Player.hpp"
+ï»¿#include "Player.hpp"
 
 Player::Player()
 {
     playerSprite.setPosition(0, 0);
 }
 
-Player::~Player() 
+Player::~Player()
 {
 
 }
 
-void Player::PlayerLoop() 
+void Player::PlayerLoop()
 {
-<<<<<<< HEAD
-    playerEndurance();
-    playerRegenEndurance();
-    ControllerMove();
-    
+
 }
 
 void Player::PlayerRender(sf::RenderWindow* win)
 {
-    playerUI();
-    //win->draw(enduranceBarBack);
-    win->draw(enduranceBar);
-    win->draw(lifeBar);
-    win->draw(playerUltiUI);
-    win->draw(playerFirstSpell);
-    win->draw(playerSecondSpell);
-    win->draw(playerThirdSpell);
-    win->draw(cube);
-}
 
-void Player::playerEndurance()
-=======
-
-}
-
-void Player::Render(sf::RenderWindow* win)
->>>>>>> parent of 205799a (Merge branch 'master' into Karma)
-{
-
-}
-
-
-//Je test des trucs sur le Player, celà sera supprimé (Etienne)
-//void Player::PlayerTest(sf::RenderWindow* win)
-//{
-//    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
-//    if (!playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png"))
-//    {
-//        std::cout << "y'a pas d'image" << std::endl;
-//    }
-//    playerSprite.setTexture(playerTexture);
-//    win->draw(playerSprite);
-//    std::cout << "player:" << playerSprite.getGlobalBounds().width << std::endl;
-//}
-
-void Player::AnimPlayer(sf::RenderWindow* win) {
     //sf::Texture texture;
 
     //if (!texture.loadFromFile("ressources/sprites/player/idle.png"))
@@ -91,5 +51,19 @@ void Player::AnimPlayer(sf::RenderWindow* win) {
 
     // w = 900 h = 1200           900x1200
     // un drag 300 400
-    // sprite.setTexture(texture);	
+    // sprite.setTexture(texture);
 }
+
+
+//Je test des trucs sur le Player, celï¿½ sera supprimï¿½ (Etienne)
+//void Player::PlayerTest(sf::RenderWindow* win)
+//{
+//    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
+//    if (!playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png"))
+//    {
+//        std::cout << "y'a pas d'image" << std::endl;
+//    }
+//    playerSprite.setTexture(playerTexture);
+//    win->draw(playerSprite);
+//    std::cout << "player:" << playerSprite.getGlobalBounds().width << std::endl;
+//} 

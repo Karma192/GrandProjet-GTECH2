@@ -7,15 +7,12 @@ menuHUD::menuHUD()
 
 menuHUD::~menuHUD()
 {
-
 }
 
-void menuHUD::Render(sf::RenderWindow* window) {
+void menuHUD::menuRender(sf::RenderWindow* win) {
     menuBackground.loadFromFile("ressources/background.jpg");
     menuBckSprite.setTexture(menuBackground);
-    window->draw(menuBckSprite);
-    menuSelection(window);
-    menuTitle(window);
+    win->draw(menuBckSprite);
 }
 
 void menuHUD::menuSelection(sf::RenderWindow* win)
@@ -23,10 +20,10 @@ void menuHUD::menuSelection(sf::RenderWindow* win)
     oldScreenSize = win->getSize();
     selectionBck.setFillColor(sf::Color(153, 89, 7, 200));
     selectionBck.setSize(sf::Vector2f(600, 600));
-    selectionBck.setOrigin(sf::Vector2f((selectionBck.getSize())/2.0f));
+    selectionBck.setOrigin(sf::Vector2f((selectionBck.getSize()) / 2.0f));
     screenSizeX = float(oldScreenSize.x);
     screenSizeY = float(oldScreenSize.y);
-    selectionBck.setPosition(screenSizeX/2.0f, screenSizeY/2.0f);
+    selectionBck.setPosition(screenSizeX / 2.0f, screenSizeY / 2.0f);
     win->draw(selectionBck);
 }
 
@@ -51,6 +48,4 @@ void menuHUD::menuTitle(sf::RenderWindow* win)
 
 void menuHUD::menuTxt()
 {
-
 }
-

@@ -10,10 +10,11 @@ public:
 	Menu();
 	virtual ~Menu();
 
-	//Collision collision;
+	Collision collision;
 
-	//virtual void Loop(sf::Event*)override;
-	virtual void Render(sf::RenderWindow*)override;
+	void MenuLoop(sf::Event*);
+	void MenuRender(sf::RenderWindow*);
+
 
 private:
 	Player* player;

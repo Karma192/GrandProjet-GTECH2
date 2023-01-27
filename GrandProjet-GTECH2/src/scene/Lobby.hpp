@@ -6,7 +6,8 @@ public:
 	Lobby();
 	virtual ~Lobby();
 
-	virtual void Render(sf::RenderWindow*)override;
+	void LobbyLoop(sf::Event*);
+	void LobbyRender(sf::RenderWindow*);
 
 private:
 
