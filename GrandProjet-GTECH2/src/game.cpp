@@ -22,8 +22,9 @@ void Game() {
 
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed) {
                 window.close();
+            }
 
 
 
@@ -36,22 +37,12 @@ void Game() {
                 spell.cast();
             }
         }
-
-        GameRender();
     }
 }
 
 // Game's Loop
 void GameLoop() {
-    sm.SceneManagerLoop();
-}
-
-// All Things to Render
-void GameRender() {
     window.clear();
-    sm.SceneManagerRender();
-
-
-    // things to display
+    sm.Update();
     window.display();
 }

@@ -7,9 +7,6 @@ public:
 	InGame();
 	virtual ~InGame();
 
-	void InGameLoop(sf::Event*);
-	void InGameRender(sf::RenderWindow*);
-
 private:
 
 };

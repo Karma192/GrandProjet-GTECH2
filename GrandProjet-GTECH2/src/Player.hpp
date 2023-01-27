@@ -3,12 +3,13 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
 #include <vector>
+#include "GameObject.hpp"
 
 #define PLAYER_TEXTURE "ressources/sprites/player/idle.png"
 #define PLAYER_IDLE {sf::IntRect(0, 0, 54, 52), sf::IntRect(69, 0, 54, 52),sf::IntRect(130, 0, 54, 52), sf::IntRect(195, 0, 54, 52) }
 
 
-class Player {
+class Player : public GameObject {
 public:
 	Player();
 	virtual ~Player();
@@ -43,7 +44,6 @@ public:
 	//test
 	sf::RectangleShape cube;
 	sf::Vector2f moveSpeed;
-
 	int frame = 0;
 
 	void setPv(int pv) { m_pv = pv; }

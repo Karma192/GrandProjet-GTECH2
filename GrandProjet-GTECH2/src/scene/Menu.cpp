@@ -2,25 +2,25 @@
 
 Menu::Menu() {
 	player = new Player;
-	enemies = new Enemies();
+	enemies = new Enemies;
+	AddToScene(menu, 0);
 }
 
 Menu::~Menu() {
 
 }
 
-void Menu::MenuLoop(sf::Event* event) {
-	
-}
+//void Menu::Loop(sf::Event* event) {
+//	
+//}
 
-void Menu::MenuRender(sf::RenderWindow* window) 
+void Menu::Render(sf::RenderWindow* window) 
 {
-
 	menu.menuRender(window);
 	menu.menuSelection(window);
 	menu.menuTitle(window);
 	//player->PlayerRender(window);
 	//player->PlayerTest(window);
 	//enemies->EnemiesTest(window);
-	//collision.GetBounds();
+	/*collision.GetBounds();*/
 }
