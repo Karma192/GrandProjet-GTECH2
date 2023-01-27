@@ -5,6 +5,7 @@
 #include "../Enemies.hpp"
 #include "../menuHUD.h"
 
+
 class Menu : public Scene {
 public:
 	Menu();
@@ -14,6 +15,7 @@ public:
 
 	void MenuLoop(sf::Event*);
 	void MenuRender(sf::RenderWindow*);
+
 
 
 private:

@@ -3,6 +3,7 @@
 Player::Player()
 {
     playerSprite.setPosition(0, 0);
+    ControllerInput();
 }
 
 Player::~Player()
@@ -16,7 +17,7 @@ void Player::PlayerLoop()
     playerRegenEndurance();
     ControllerMove();
 
-    
+
 }
 
 void Player::PlayerTest(sf::RenderWindow* win)
@@ -51,7 +52,7 @@ void Player::playerEndurance()
 
 void Player::playerRegenEndurance()
 {
-    
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && endurancePlayer <= 100)
     {
         endurancePlayer += 0.1;
@@ -87,47 +88,59 @@ void Player::playerUI()
     playerFirstSpell.setOutlineColor(sf::Color::Green);
     playerFirstSpell.setPosition(140, 920);
 
+    playerSecondSpell.setRadius(20);
+    playerSecondSpell.setFillColor(sf::Color::Transparent);
+    playerSecondSpell.setOutlineThickness(5);
+    playerSecondSpell.setOutlineColor(sf::Color::Green);
+    playerSecondSpell.setPosition(200, 920);
+
+    playerThirdSpell.setRadius(20);
+    playerThirdSpell.setFillColor(sf::Color::Transparent);
+    playerThirdSpell.setOutlineThickness(5);
+    playerThirdSpell.setOutlineColor(sf::Color::Green);
+    playerThirdSpell.setPosition(260, 920);
+
+
 }
 
-void Player::PlayerRender(sf::RenderWindow* win)
+void  Player::ControllerInput()
 {
-
-    //sf::Texture texture;
-
-    //if (!texture.loadFromFile("ressources/sprites/player/idle.png"))
-    //{
-    //    std::cout << "y'a pas d'image" << std::endl;
-    //}
-    //
-    ////left, top, w, h
-    //sf::IntRect rectSourceSprite(0, 0, 64, 64);
-    //sf::Sprite sprite(texture,rectSourceSprite);
-    //sprite.scale(10.0f, 10.0f);
-    //
-    //float elapsed1 = clock.getElapsedTime().asSeconds();
-
-    //if (elapsed1 >= 1)
-    //{
-    //    if (rectSourceSprite.left == 256)
-    //    {
-    //        rectSourceSprite.left = 0;
-    //    }
-    //    else
-    //    {
-    //        rectSourceSprite.left += 64;
-    //    }s
-
-    //    sprite.setTextureRect(rectSourceSprite);
-    //    clock.restart();
-    //}
-
-    //win->draw(sprite);
-
-    // w = 900 h = 1200           900x1200
-    // un drag 300 400
-    // sprite.setTexture(texture);
+    cube.setSize(sf::Vector2f(30.f, 30.f));
+    cube.setFillColor(sf::Color::Red);
+    cube.setPosition(sf::Vector2f(200, 200));
 }
 
+void Player::ControllerMove()
+{
+    float deadZone = 20.f;
+    moveSpeed.x = (sf::Joystick::getAxisPosition(0, sf::Joystick::X));
+    moveSpeed.y = (sf::Joystick::getAxisPosition(0, sf::Joystick::Y));
+
+    if (moveSpeed.x < -deadZone)
+    {
+        sf::Joystick::update();
+        MovePlayer();
+    }
+    else if (moveSpeed.x > deadZone)
+    {
+        sf::Joystick::update();
+        MovePlayer();
+    }
+    else if (moveSpeed.y < -deadZone)
+    {
+        sf::Joystick::update();
+        MovePlayer();
+    }
+    else if (moveSpeed.x > deadZone)
+    {
+        sf::Joystick::update();
+        MovePlayer();
+    }
+}
+
+void Player::MovePlayer() {
+    cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
+}
 
 //Je test des trucs sur le Player, cel� sera supprim� (Etienne)
 //void Player::PlayerTest(sf::RenderWindow* win)
@@ -140,4 +153,4 @@ void Player::PlayerRender(sf::RenderWindow* win)
 //    playerSprite.setTexture(playerTexture);
 //    win->draw(playerSprite);
 //    std::cout << "player:" << playerSprite.getGlobalBounds().width << std::endl;
-//} 
+//}

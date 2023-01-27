@@ -10,39 +10,75 @@
 
 class Player {
 public:
-    Player();
-    virtual ~Player();
+	Player();
+	virtual ~Player();
 
-    void PlayerLoop();
-    void PlayerTest(sf::RenderWindow* window);
-    void PlayerRender(sf::RenderWindow* window);
-    int frame = 0;
+	void PlayerLoop();
+	void PlayerTest(sf::RenderWindow* window);
+	void PlayerRender(sf::RenderWindow* window);
 
-    void setPv(int pv) { m_pv = pv; }
-    int getPv() const { return m_pv; }
-    void setAttack(int attack) { m_attack = attack; }
-    int getAttack() const { return m_attack; }
+	//Player HUD 
 
-    ///Exemples d'applications des fonctions des PV/Attaque au dessus (Pandouille) ///
+	void playerEndurance();
+	void playerRegenEndurance();
+	void playerUI();
 
-    /*player.setPv(100);
-    player.setAttack(20);
-    int pv = player.getPv();
-    int attack = player.getAttack();
-    void takeDamage(int damage)
-    {
-        m_pv -= damage;
-        if (m_pv < 0) m_pv = 0;
-    }
+	void ControllerInput();
 
-    */
+	void ControllerMove();
 
-    sf::Texture playerTexture;
-    sf::Sprite playerSprite;
+	void MovePlayer();
+
+	//rectangle pour endurance + vie
+	sf::RectangleShape enduranceBar;
+	sf::RectangleShape enduranceBarBack;
+	sf::RectangleShape lifeBar;
+
+	//cercle pour ulti + spell
+	sf::CircleShape playerUltiUI;
+	sf::CircleShape playerFirstSpell;
+	sf::CircleShape playerSecondSpell;
+	sf::CircleShape playerThirdSpell;
+
+	//test
+	sf::RectangleShape cube;
+	sf::Vector2f moveSpeed;
+
+	int frame = 0;
+
+	void setPv(int pv) { m_pv = pv; }
+	int getPv() const { return m_pv; }
+	void setAttack(int attack) { m_attack = attack; }
+	int getAttack() const { return m_attack; }
+
+	///Exemples d'applications des fonctions des PV/Attaque au dessus (Pandouille) ///
+
+	/*player.setPv(100);
+	player.setAttack(20);
+
+	int pv = player.getPv();
+	int attack = player.getAttack();
+
+	void takeDamage(int damage)
+	{
+		m_pv -= damage;
+		if (m_pv < 0) m_pv = 0;
+	}
+	*/
+
+	sf::Texture playerTexture;
+	sf::Sprite playerSprite;
+
+protected:
+	float endurancePlayer = 100;
+	float cd_Endurance = endurance.getElapsedTime().asSeconds();
+
 
 private:
-    sf::Clock clock;
-    int m_pv;
-    int m_attack;
 
+	sf::Clock clock;
+	int m_pv;
+	int m_attack;
+	int playerSpeed = 120;
+	sf::Clock endurance;
 };
