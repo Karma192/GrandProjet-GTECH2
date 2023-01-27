@@ -23,6 +23,12 @@ public:
 	void playerRegenEndurance();
 	void playerUI();
 
+	void ControllerInput();
+
+	void ControllerMove();
+
+	void MovePlayer();
+
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;
 	sf::RectangleShape enduranceBarBack;
@@ -34,7 +40,9 @@ public:
 	sf::CircleShape playerSecondSpell;
 	sf::CircleShape playerThirdSpell;
 
-
+	//test
+	sf::RectangleShape cube;
+	sf::Vector2f moveSpeed;
 
 	int frame = 0;
 
