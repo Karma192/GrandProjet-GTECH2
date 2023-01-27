@@ -4,9 +4,6 @@
 #include "../Collision.h"
 #include "../Enemies.hpp"
 #include "../menuHUD.h"
-#include "../Dialogue.h"
-
-
 
 class Menu : public Scene {
 public:
@@ -19,10 +16,8 @@ public:
 	void MenuRender(sf::RenderWindow*);
 
 
-
 private:
 	Player* player;
 	menuHUD menu;
 	Enemies* enemies;
-	Dialogue* dialogue;
 };

@@ -70,13 +70,13 @@ void Button::ButtonLoop() {
 
 void Button::ButtonRender() {
 	switch (button) {
-	case RECT :
+	case RECT:
 		DrawRectButton();
 		break;
-	case CIRCLE :
+	case CIRCLE:
 		DrawCircleButton();
 		break;
-	case OTHER :
+	case OTHER:
 		DrawOtherButton();
 		break;
 	default:
@@ -86,7 +86,7 @@ void Button::ButtonRender() {
 
 // Function for detect on hover
 bool Button::OnHover() {
-	if (sf::Mouse::getPosition(*b_window).x < b_posx && sf::Mouse::getPosition(*b_window).x > (b_posx + b_width)) {
+	if (sf::Mouse::getPosition(*b_window).x < b_posx && sf::Mouse::getPosition(*b_window).x >(b_posx + b_width)) {
 		if (sf::Mouse::getPosition(*b_window).y < b_posx && sf::Mouse::getPosition(*b_window).y >(b_posx + b_width)) {
 			std::cout << "on hover !" << std::endl;
 			return true;
@@ -129,21 +129,21 @@ void Button::DrawCircleButton() {
 // Draw Other types of Button
 void Button::DrawOtherButton() {
 	switch (b_choice) {
-	case DIAMOND :
+	case DIAMOND:
 		b_sphere.setPointCount(DIAMOND);
 		b_sphere.setPosition(b_posx, b_posy);
 		b_sphere.setRadius(b_radius);
 		b_sphere.setFillColor(b_color);
 		b_window->draw(b_sphere);
 		break;
-	case TRIANGLE :
+	case TRIANGLE:
 		b_sphere.setPointCount(TRIANGLE);
 		b_sphere.setPosition(b_posx, b_posy);
 		b_sphere.setRadius(b_radius);
 		b_sphere.setFillColor(b_color);
 		b_window->draw(b_sphere);
 		break;
-	case HEXAGON :
+	case HEXAGON:
 		b_sphere.setPointCount(HEXAGON);
 		b_sphere.setPosition(b_posx, b_posy);
 		b_sphere.setRadius(b_radius);

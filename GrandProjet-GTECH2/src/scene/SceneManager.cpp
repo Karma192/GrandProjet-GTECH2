@@ -17,13 +17,13 @@ void SceneManager::SetSM(sf::RenderWindow* win, sf::Event* e) {
 // Function to call for change active scene
 void SceneManager::SetActiveScene(int scene) {
 	switch (scene) {
-	case MENU :
+	case MENU:
 		index = MENU;
 		break;
-	case LOBBY :
+	case LOBBY:
 		index = LOBBY;
 		break;
-	case INGAME :
+	case INGAME:
 		index = INGAME;
 		break;
 	default:
@@ -45,7 +45,7 @@ void SceneManager::SceneManagerRender() {
 // Function for switch between all scenes loop/render
 void SceneManager::SwitchScene(int x) {
 	switch (index) {
-	case MENU :
+	case MENU:
 		if (x == LOOP) {
 			menu.MenuLoop(event);
 			//std::cout << "C'est le menu loop !" << std::endl;
@@ -55,7 +55,7 @@ void SceneManager::SwitchScene(int x) {
 			//std::cout << "C'est le menu render !" << std::endl;
 		}
 		break;
-	case LOBBY :
+	case LOBBY:
 		if (x == LOOP) {
 			lobby.LobbyLoop(event);
 			std::cout << "C'est le lobby loop !" << std::endl;
@@ -65,7 +65,7 @@ void SceneManager::SwitchScene(int x) {
 			std::cout << "C'est le lobby render !" << std::endl;
 		}
 		break;
-	case INGAME :
+	case INGAME:
 		if (x == LOOP) {
 			ingame.InGameLoop(event);
 			std::cout << "C'est le jeu loop !" << std::endl;

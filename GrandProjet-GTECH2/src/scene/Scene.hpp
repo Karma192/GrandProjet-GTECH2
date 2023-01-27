@@ -4,20 +4,20 @@
 #include "../GameObject.hpp"
 
 class Layer {
-public :
+public:
 	std::vector <GameObject*> objects;
 };
 
 
 class Scene {
-public :
+public:
 	int x;
 
 	std::vector<Layer*> layers;
 
 	Scene();
 	virtual ~Scene();
-	
+
 	void AddLayer(Layer*);
 	void Draw();
 };

@@ -4,7 +4,7 @@
 #include <time.h>
 
 class GameObject {
-public :
+public:
 	int id;
 
 	GameObject();

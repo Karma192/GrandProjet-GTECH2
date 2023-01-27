@@ -6,24 +6,23 @@
 class menuHUD
 {
 public:
-	menuHUD();
-	virtual ~menuHUD();
-	void menuRender(sf::RenderWindow* win);
-	void menuSelection(sf::RenderWindow* win);
-	void menuTitle(sf::RenderWindow* win);
-	void menuTxt();
+    menuHUD();
+    virtual ~menuHUD();
+    void menuRender(sf::RenderWindow* win);
+    void menuSelection(sf::RenderWindow* win);
+    void menuTitle(sf::RenderWindow* win);
+    void menuTxt();
 
 private:
-	float screenSizeX;
-	float screenSizeY;
+    float screenSizeX;
+    float screenSizeY;
 
-	sf::Texture menuBackground;
-	sf::Sprite menuBckSprite;
-	sf::RectangleShape selectionBck;
-	sf::Vector2u oldScreenSize;
-	sf::Font fontTitle;
-	sf::Text title;
-	sf::Text credit;
-	sf::Text names;
+    sf::Texture menuBackground;
+    sf::Sprite menuBckSprite;
+    sf::RectangleShape selectionBck;
+    sf::Vector2u oldScreenSize;
+    sf::Font fontTitle;
+    sf::Text title;
+    sf::Text credit;
+    sf::Text names;
 };
-
