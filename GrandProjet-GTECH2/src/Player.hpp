@@ -23,6 +23,12 @@ public:
 	void playerRegenEndurance();
 	void playerUI();
 
+	void ControllerInput();
+
+	void ControllerMove();
+
+	void MovePlayer();
+
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;
 	sf::RectangleShape enduranceBarBack;
@@ -34,7 +40,9 @@ public:
 	sf::CircleShape playerSecondSpell;
 	sf::CircleShape playerThirdSpell;
 
-
+	//test
+	sf::RectangleShape cube;
+	sf::Vector2f moveSpeed;
 
 	int frame = 0;
 
@@ -50,12 +58,12 @@ public:
 
 	int pv = player.getPv();
 	int attack = player.getAttack();
-	void takeDamage(int damage) 
+  
+	void takeDamage(int damage)
 	{
 		m_pv -= damage;
 		if (m_pv < 0) m_pv = 0;
 	}
-	
 	*/
 
 	sf::Texture playerTexture;
@@ -64,15 +72,12 @@ public:
 protected:
 	float endurancePlayer = 100;
 	float cd_Endurance = endurance.getElapsedTime().asSeconds();
-	
 
 private:
 
 	sf::Clock clock;
 	int m_pv;
 	int m_attack;
-
+	int playerSpeed = 120;
 	sf::Clock endurance;
-
-
 };
