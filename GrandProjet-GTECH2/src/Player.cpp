@@ -16,6 +16,7 @@ void Player::PlayerLoop()
     playerEndurance();
     playerRegenEndurance();
     ControllerMove();
+
     
 }
 
