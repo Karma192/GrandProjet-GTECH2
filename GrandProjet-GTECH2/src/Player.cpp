@@ -19,7 +19,7 @@ void Player::PlayerLoop()
     
 }
 
-void Player::PlayerTest(sf::RenderWindow* win)
+void Player::PlayerRender(sf::RenderWindow* win)
 {
     playerUI();
     //win->draw(enduranceBarBack);
@@ -30,19 +30,6 @@ void Player::PlayerTest(sf::RenderWindow* win)
     win->draw(playerSecondSpell);
     win->draw(playerThirdSpell);
     win->draw(cube);
-}
-
-void Player::playerEndurance()
-{
-    playerUI();
-    //win->draw(enduranceBarBack);
-    win->draw(enduranceBar);
-    win->draw(lifeBar);
-    win->draw(playerUltiUI);
-    win->draw(playerFirstSpell);
-    win->draw(playerSecondSpell);
-    win->draw(playerThirdSpell);
-
 }
 
 void Player::playerEndurance()

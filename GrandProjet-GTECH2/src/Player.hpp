@@ -14,7 +14,6 @@ public:
 	virtual ~Player();
 
 	void PlayerLoop();
-	void PlayerTest(sf::RenderWindow* window);
 	void PlayerRender(sf::RenderWindow* window);
 
 	//Player HUD 
