@@ -6,6 +6,7 @@ sf::Event event;
 //sf::Image icon;
 
 SceneManager sm;
+Player p;
 
 void Game() {
     //icon.loadFromFile("ICON.png");
@@ -17,6 +18,7 @@ void Game() {
     while (window.isOpen())
     {
         GameLoop();
+        
 
         while (window.pollEvent(event))
         {

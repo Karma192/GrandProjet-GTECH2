@@ -9,6 +9,7 @@ public:
 
 	void LobbyLoop(sf::Event*);
 	void LobbyRender(sf::RenderWindow*);
+	
 
 private:
 	Player p;

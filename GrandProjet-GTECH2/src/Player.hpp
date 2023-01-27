@@ -73,7 +73,6 @@ protected:
 	float endurancePlayer = 100;
 	float cd_Endurance = endurance.getElapsedTime().asSeconds();
 
-
 private:
 
 	sf::Clock clock;

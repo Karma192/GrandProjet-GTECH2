@@ -34,6 +34,19 @@ void Player::PlayerTest(sf::RenderWindow* win)
 
 void Player::playerEndurance()
 {
+    playerUI();
+    //win->draw(enduranceBarBack);
+    win->draw(enduranceBar);
+    win->draw(lifeBar);
+    win->draw(playerUltiUI);
+    win->draw(playerFirstSpell);
+    win->draw(playerSecondSpell);
+    win->draw(playerThirdSpell);
+
+}
+
+void Player::playerEndurance()
+{
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cd_Endurance >= 2 && endurancePlayer > 0)
     {
@@ -45,8 +58,6 @@ void Player::playerEndurance()
     {
         std::cout << "Tu peux plus courir" << std::endl;
     }
-
-
 }
 
 void Player::playerRegenEndurance()
@@ -141,7 +152,7 @@ void Player::MovePlayer() {
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
 }
 
-//Je test des trucs sur le Player, celà sera supprimé (Etienne)
+//Je test des trucs sur le Player, celÃ  sera supprimÃ© (Etienne)
 //void Player::PlayerTest(sf::RenderWindow* win)
 //{
 //    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
@@ -153,3 +164,4 @@ void Player::MovePlayer() {
 //    win->draw(playerSprite);
 //    std::cout << "player:" << playerSprite.getGlobalBounds().width << std::endl;
 //}
+
