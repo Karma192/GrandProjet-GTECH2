@@ -29,6 +29,12 @@ public:
 
 	void MovePlayer();
 
+	//cercle pour ulti + spell
+	sf::CircleShape playerUltiUI;
+	sf::CircleShape playerFirstSpell;
+	sf::CircleShape playerSecondSpell;
+	sf::CircleShape playerThirdSpell;
+
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;
 	sf::RectangleShape enduranceBarBack;
