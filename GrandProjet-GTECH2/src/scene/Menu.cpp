@@ -16,10 +16,11 @@ Menu::~Menu() {
 
 void Menu::Render(sf::RenderWindow* window) 
 {
-	//menu.Render(window);
-
-	/*player->Render(window);
-	player->PlayerTest(window);*/
+	menu.menuRender(window);
+	menu.menuSelection(window);
+	menu.menuTitle(window);
+	//player->PlayerRender(window);
+	//player->PlayerTest(window);
 	//enemies->EnemiesTest(window);
 	/*collision.GetBounds();*/
 }

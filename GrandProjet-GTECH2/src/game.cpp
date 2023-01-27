@@ -1,20 +1,24 @@
 #include "Game.hpp"
+#include "Spell.hpp"
 
 sf::RenderWindow window(sf::VideoMode(1920, 1080), "Crusade Of The Abyss");
 sf::Event event;
 //sf::Image icon;
 
 SceneManager sm;
+Player p;
 
 void Game() {
     //icon.loadFromFile("ICON.png");
     //window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
     sm.SetSM(&window, &event);
+    Spell spell;
 
     while (window.isOpen())
     {
         GameLoop();
+        
 
         while (window.pollEvent(event))
         {
@@ -22,8 +26,15 @@ void Game() {
                 window.close();
             }
 
+
+
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                 sm.SetActiveScene(1);
+
+            }
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
+            {
+                spell.cast();
             }
         }
     }

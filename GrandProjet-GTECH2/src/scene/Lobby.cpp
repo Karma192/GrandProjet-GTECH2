@@ -8,6 +8,10 @@ Lobby::~Lobby() {
 
 }
 
-void Lobby::Render(sf::RenderWindow* window) {
+void Lobby::LobbyLoop(sf::Event* event) {
+	p.PlayerLoop();
+}
 
+void Lobby::LobbyRender(sf::RenderWindow* window) {
+	p.PlayerTest(window);
 }

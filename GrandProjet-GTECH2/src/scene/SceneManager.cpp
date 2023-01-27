@@ -46,8 +46,14 @@ void SceneManager::SwitchScene() {
 		break;
 
 	case LOBBY :
-		lobby.Update(event, window);
-		std::cout << "C'est le lobby !" << std::endl;
+		if (x == LOOP) {
+			lobby.LobbyLoop(event);
+			//std::cout << "C'est le lobby loop !" << std::endl;
+		}
+		else if (x == RENDER) {
+			lobby.LobbyRender(window);
+			//std::cout << "C'est le lobby render !" << std::endl;
+		}
 		break;
 
 	case INGAME :
