@@ -58,12 +58,12 @@ public:
 
 	int pv = player.getPv();
 	int attack = player.getAttack();
+  
 	void takeDamage(int damage)
 	{
 		m_pv -= damage;
 		if (m_pv < 0) m_pv = 0;
 	}
-
 	*/
 
 	sf::Texture playerTexture;
@@ -81,6 +81,4 @@ private:
 	int m_attack;
 	int playerSpeed = 120;
 	sf::Clock endurance;
-
-
 };
