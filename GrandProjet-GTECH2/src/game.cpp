@@ -41,7 +41,6 @@ void GameRender() {
     window.clear();
     sm.SceneManagerRender();
 
-
     // things to display
     window.display();
 }
