@@ -14,20 +14,21 @@ public:
 	virtual ~Player();
 
 	void PlayerLoop();
-	void PlayerTest(sf::RenderWindow* window);
 	void PlayerRender(sf::RenderWindow* window);
 
 	//Player HUD 
 
 	void playerEndurance();
 	void playerRegenEndurance();
-	void playerUI();
+	void playerUI(sf::RenderWindow* win);
 
 	void ControllerInput();
 
 	void ControllerMove();
 
 	void MovePlayer();
+
+	void setCamera(sf::RenderWindow* win);
 
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;
@@ -43,6 +44,7 @@ public:
 	//test
 	sf::RectangleShape cube;
 	sf::Vector2f moveSpeed;
+	sf::View view;
 
 	int frame = 0;
 
