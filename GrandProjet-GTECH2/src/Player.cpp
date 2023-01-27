@@ -11,7 +11,7 @@ Player::~Player()
 
 }
 
-void Player::Loop(sf::Event* event) 
+void Player::PlayerLoop() 
 {
     playerEndurance();
     playerRegenEndurance();
