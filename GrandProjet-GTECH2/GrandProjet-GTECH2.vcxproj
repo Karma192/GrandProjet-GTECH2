@@ -70,6 +70,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\Users\agouveia\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\agouveia\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -111,7 +115,12 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\agrandpaul\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>C:\dev\GrandProjet-GTECH2\SFML-2.5.1\include;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\theob\source\repos\SFML-2.5.1-windows-vc15-64-bit\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\SFML-2.5.1\include;C:\dev\GrandProjet-GTECH2\SFML-2.5.1\include;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\agouveia\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dev\GrandProjet-GTECH2\SFML-2.5.1\include;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\agouveia\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\SFML-2.5.1\include;C:\dev\GrandProjet-GTECH2\SFML-2.5.1\include;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\agouveia\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dev\GrandProjet-GTECH2\SFML-2.5.1\include;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\SFML-2.5.1\include;C:\dev\GrandProjet-GTECH2\SFML-2.5.1\include;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\agouveia\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\SFML-2.5.1\include;C:\dev\GrandProjet-GTECH2\SFML-2.5.1\include;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\agouveia\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
