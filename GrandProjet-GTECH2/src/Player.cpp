@@ -32,31 +32,22 @@ void Player::PlayerTest(sf::RenderWindow* win)
     win->draw(cube);
 }
 
+void Player::playerEndurance()
+{
 
-    //sf::Texture texture;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cd_Endurance >= 2 && endurancePlayer > 0)
+    {
+        endurancePlayer -= 0.1;
+        std::cout << "Il te reste " << endurancePlayer << "de point d'endurance" << std::endl;
+        enduranceBar.setScale(endurancePlayer / 100, 1);
+    }
+    if (endurancePlayer <= 0 && sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+    {
+        std::cout << "Tu peux plus courir" << std::endl;
+    }
 
-    //if (!texture.loadFromFile("ressources/sprites/player/idle.png"))
-    //{
-    //    std::cout << "y'a pas d'image" << std::endl;
-    //}
-    //
-    ////left, top, w, h
-    //sf::IntRect rectSourceSprite(0, 0, 64, 64);
-    //sf::Sprite sprite(texture,rectSourceSprite);
-    //sprite.scale(10.0f, 10.0f);
-    //
-    //float elapsed1 = clock.getElapsedTime().asSeconds();
 
-    //if (elapsed1 >= 1)
-    //{
-    //    if (rectSourceSprite.left == 256)
-    //    {
-    //        rectSourceSprite.left = 0;
-    //    }
-    //    else
-    //    {
-    //        rectSourceSprite.left += 64;
-    //    }s
+}
 
 void Player::playerRegenEndurance()
 {
@@ -123,6 +114,7 @@ void Player::ControllerMove()
     float deadZone = 20.f;
     moveSpeed.x = (sf::Joystick::getAxisPosition(0, sf::Joystick::X));
     moveSpeed.y = (sf::Joystick::getAxisPosition(0, sf::Joystick::Y));
+
     if (moveSpeed.x < -deadZone)
     {
         sf::Joystick::update();
@@ -138,7 +130,7 @@ void Player::ControllerMove()
         sf::Joystick::update();
         MovePlayer();
     }
-    else if (moveSpeed.y > deadZone)
+    else if (moveSpeed.x > deadZone)
     {
         sf::Joystick::update();
         MovePlayer();
@@ -146,7 +138,7 @@ void Player::ControllerMove()
 }
 
 void Player::MovePlayer() {
-    cube.move(1, 1);
+    cube.move(moveSpeed.x / 100, moveSpeed.y / 100);
 }
 
 //Je test des trucs sur le Player, celà sera supprimé (Etienne)

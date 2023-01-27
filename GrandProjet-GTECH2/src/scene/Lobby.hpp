@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.hpp"
+#include "../Player.hpp"
 
 class Lobby : public Scene {
 public:
@@ -10,5 +11,5 @@ public:
 	void LobbyRender(sf::RenderWindow*);
 
 private:
-
+	Player p;
 };
