@@ -8,10 +8,12 @@ Lobby::~Lobby() {
 
 }
 
-void Lobby::LobbyLoop(sf::Event* event) {
-	p.PlayerLoop();
-}
+void Lobby::Render(sf::RenderWindow* window) {
 
+<<<<<<< HEAD
 void Lobby::LobbyRender(sf::RenderWindow* window) {
 	p.PlayerRender(window);
 }
+=======
+}
+>>>>>>> parent of 205799a (Merge branch 'master' into Karma)

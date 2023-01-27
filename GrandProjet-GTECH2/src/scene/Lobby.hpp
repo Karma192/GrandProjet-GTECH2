@@ -1,15 +1,13 @@
 #pragma once
 #include "Scene.hpp"
-#include "../Player.hpp"
 
 class Lobby : public Scene {
 public:
 	Lobby();
 	virtual ~Lobby();
 
-	void LobbyLoop(sf::Event*);
-	void LobbyRender(sf::RenderWindow*);
+	virtual void Render(sf::RenderWindow*)override;
 
 private:
-	Player p;
+
 };
