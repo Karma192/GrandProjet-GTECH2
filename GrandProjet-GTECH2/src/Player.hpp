@@ -23,12 +23,25 @@ public:
 
 	//void takeDamage(int damage) { m_pv -= damage; if (m_pv < 0) m_pv = 0; }
 
+	void ControllerInput();
+
+	void ControllerMove();
+
+	void MovePlayer();
+
+	//rectangle pour endurance + vie
+	sf::RectangleShape enduranceBar;
+	sf::RectangleShape enduranceBarBack;
+	sf::RectangleShape lifeBar;
 	void setAttack(int attack) { m_attack = attack; }
 	int getAttack() const { return m_attack; }
 
 	void setSpeed(int speed) { m_speed = speed; }
 	int getSpeed() const { return m_speed; }
 
+	//test
+	sf::RectangleShape cube;
+	sf::Vector2f moveSpeed;
 	void setAttackSpeed(int attackspeed) { m_attackspeed = attackspeed; }
 	int getAttackSpeed() const { return m_attackspeed; }
 
