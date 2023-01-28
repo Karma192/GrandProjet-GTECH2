@@ -159,7 +159,7 @@ void menuHUD::GoBack(sf::RenderWindow* win) {
 
 void menuHUD::ChangeResolution(sf::RenderWindow* win) {
 
-    screenTxt.setString("Resolution :");
+    screenTxt.setString("1600*900 :");
     screenTxt.setCharacterSize(40);
     screenTxt.setFont(font);
     screenTxt.setPosition(volume.getPosition().x, volume.getPosition().y + 50);
