@@ -17,6 +17,9 @@ public:
 	void menuTitle(sf::RenderWindow* win);
 	void menuTxt(sf::RenderWindow* win);
 	bool detectedClick();
+	void Volume(sf::RenderWindow* win);
+	void GoBack(sf::RenderWindow* win);
+	void ChangeResolution(sf::RenderWindow* win);
 	bool once = true;
 
 private:
@@ -30,13 +33,19 @@ private:
 	sf::Vector2u oldScreenSize;
 	sf::Font heartless;
 	sf::Text title;
-	sf::Text playtest;
+	sf::Text screenTxt;
+	sf::Text playFirstChoice;
 	sf::Text options;
 	sf::FloatRect titleBounds;
 	sf::FloatRect playBounds;
+	sf::FloatRect returnGlobalPos;
+	sf::FloatRect buttonChangeRect;
 	sf::RectangleShape playRect;
-	sf::RectangleShape test;
+	sf::RectangleShape returnbutton;
+	sf::RectangleShape screenResLow;
 	sf::Font font;
 	std::vector <sf::Text> play;
+	sf::RectangleShape volume;
+	sf::Vector2i mousePos;
 };
 

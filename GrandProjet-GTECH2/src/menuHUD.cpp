@@ -4,27 +4,36 @@
 menuHUD::menuHUD()
 {
     selectionBck.setFillColor(sf::Color(153, 89, 7, 200));
-    selectionBck.setSize(sf::Vector2f(600, 600));
 
     menuBackground.loadFromFile("ressources/background.jpg");
     menuBckSprite.setTexture(menuBackground);
 
     title.setFont(heartless);
     title.setString("Crusade of the Abyss");
+    title.setCharacterSize((screenSizeX * 80)/100);
     title.setCharacterSize(200);
     title.setFillColor(sf::Color(255, 255, 255, 255));   
 
     if (!font.loadFromFile("ressources/fonts/arial.ttf"));
-    playtest.setFont(font);
-    playtest.setCharacterSize(150);
-    playtest.setFillColor(sf::Color(255, 255, 255, 255));
+    playFirstChoice.setFont(font);
+    playFirstChoice.setCharacterSize(150);
+    playFirstChoice.setFillColor(sf::Color(255, 255, 255, 255));
 
     playRect.setOutlineThickness(10);
     playRect.setOutlineColor(sf::Color::Red);
     playRect.setFillColor(sf::Color::Red);
 
+    volume.setSize(sf::Vector2f(300.f, 25.f));
+    volume.setFillColor(sf::Color::Blue);
+
+    returnbutton.setSize(sf::Vector2f(50, 50));
+    returnbutton.setFillColor(sf::Color::Red);
+
+    screenResLow.setSize(sf::Vector2f(50, 50));
+    screenResLow.setFillColor(sf::Color::Red);
+
     play.begin();
-    play.push_back(playtest);
+    play.push_back(playFirstChoice);
 }
 
 menuHUD::~menuHUD()
@@ -41,10 +50,17 @@ void menuHUD::menuRender(sf::RenderWindow* win) {
 void menuHUD::menuSelection(sf::RenderWindow* win)
 {
     oldScreenSize = win->getSize();
-    selectionBck.setOrigin(sf::Vector2f((selectionBck.getSize()) / 2.0f));
     screenSizeX = float(oldScreenSize.x);
     screenSizeY = float(oldScreenSize.y);
 
+    if (once) {
+        selectionBck.setSize(sf::Vector2f((40 * screenSizeX) / 100, 600));
+    }
+    else if (!once) {
+        selectionBck.setSize(sf::Vector2f((30 * screenSizeX) / 100, 400));
+    }
+
+    selectionBck.setOrigin(sf::Vector2f((selectionBck.getSize()) / 2.0f));
     selectionBck.setPosition(screenSizeX / 2.0f, screenSizeY / 2.0f);
     win->draw(selectionBck);
 }
@@ -58,9 +74,8 @@ void menuHUD::menuTitle(sf::RenderWindow* win)
     }
 
     titleBounds = title.getLocalBounds();
-    title.setOrigin(titleBounds.width / 2, titleBounds.height / 2);
 
-    title.setPosition(screenSizeX / 2.0f, 100);
+    title.setPosition(screenSizeX / 2.0f - titleBounds.width / 2, 10);
     win->draw(title);
 }
 
@@ -88,29 +103,23 @@ void menuHUD::menuTxt(sf::RenderWindow* win)
         win->draw(playRect);
         win->draw(play[i]);
 
-        play.push_back(playtest);
+        play.push_back(playFirstChoice);
 
 
-        sf::Vector2i mousePos = sf::Mouse::getPosition(*win);
-        sf::Vector2f pointfloat(mousePos);
+        mousePos = sf::Mouse::getPosition(*win);
 
         //Detection selection + contain cursor mouse
-        if (playBounds.contains(pointfloat)) {
-            std::cout << "collision detected" << std::endl;
+        if (playBounds.contains(sf::Vector2f(mousePos.x , mousePos.y))) {
             if (detectedClick()) {
-                std::cout << "clicked";
                 switch (i)
                 {
                 case 0:
-                    std::cout << "play" << std::endl;
                     /* sm.SetActiveScene(1);*/
                     break;
                 case 1:
-                    std::cout << "option" << std::endl;
                     once = false;
                     break;
                 case 2:
-                    std::cout << "quit" << std::endl;
                     win->close();
                     break;
                 default:
@@ -127,4 +136,42 @@ bool menuHUD::detectedClick() {
     {
         return true;
     }
+}
+
+//The bar for the volume
+void menuHUD::Volume(sf::RenderWindow* win) {
+    volume.setPosition(screenSizeX / 2.0f - volume.getSize().x / 2, (selectionBck.getPosition().y / 1.5));
+    win->draw(volume);
+}
+
+//Quit the option
+void menuHUD::GoBack(sf::RenderWindow* win) {
+    mousePos = sf::Mouse::getPosition(*win);
+    returnbutton.setPosition(selectionBck.getPosition().x - selectionBck.getSize().x / 2, selectionBck.getPosition().y - selectionBck.getSize().y / 2);
+    returnGlobalPos = returnbutton.getGlobalBounds();
+    if (returnGlobalPos.contains(sf::Vector2f(mousePos.x, mousePos.y))) {
+        if (detectedClick()) {
+            once = true;
+        }
+    }
+    win->draw(returnbutton);
+}
+
+void menuHUD::ChangeResolution(sf::RenderWindow* win) {
+
+    screenTxt.setString("Resolution :");
+    screenTxt.setCharacterSize(40);
+    screenTxt.setFont(font);
+    screenTxt.setPosition(volume.getPosition().x, volume.getPosition().y + 50);
+    win->draw(screenTxt);
+
+    screenResLow.setPosition(volume.getPosition().x + volume.getSize().x - screenResLow.getSize().x, volume.getPosition().y +50);
+    buttonChangeRect = screenResLow.getGlobalBounds();
+    if (buttonChangeRect.contains(sf::Vector2f(mousePos.x, mousePos.y))) {
+        if (detectedClick()) {
+            win->create(sf::VideoMode(1600, 900), "Crusade Of The Abyss", sf::Style::Fullscreen);
+            screenResLow.setFillColor(sf::Color::Blue);
+        }
+    }
+    win->draw(screenResLow);
 }

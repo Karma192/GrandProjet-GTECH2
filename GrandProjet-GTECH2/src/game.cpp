@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-sf::RenderWindow window(sf::VideoMode(1920, 1080), "Crusade Of The Abyss"/*, sf::Style::Fullscreen*/);
+sf::RenderWindow window(sf::VideoMode(1920, 1080), "Crusade Of The Abyss", sf::Style::Fullscreen);
 sf::Event event;
 //sf::Image icon;
 

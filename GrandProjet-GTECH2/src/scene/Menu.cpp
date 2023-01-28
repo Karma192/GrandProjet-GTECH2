@@ -21,6 +21,8 @@ void Menu::MenuRender(sf::RenderWindow* window)
 		menuhud.menuTxt(window);
 	}
 	else {
-		std::cout << "test";
+		menuhud.Volume(window);
+		menuhud.GoBack(window);
+		menuhud.ChangeResolution(window);
 	}
 }
