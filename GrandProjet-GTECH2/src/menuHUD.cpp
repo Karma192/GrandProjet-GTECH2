@@ -32,6 +32,10 @@ menuHUD::menuHUD()
     screenResLow.setSize(sf::Vector2f(50, 50));
     screenResLow.setFillColor(sf::Color::Red);
 
+    screenTxt.setString("1600*900 :");
+    screenTxt.setCharacterSize(40);
+    screenTxt.setFont(font);
+
     play.begin();
     play.push_back(playFirstChoice);
 }
@@ -141,6 +145,13 @@ bool menuHUD::detectedClick() {
 //The bar for the volume
 void menuHUD::Volume(sf::RenderWindow* win) {
     volume.setPosition(screenSizeX / 2.0f - volume.getSize().x / 2, (selectionBck.getPosition().y / 1.5));
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
+        float newVol = volume.getSize().x;
+        newVol -= 0.1;
+        volume.setSize(sf::Vector2f(newVol, volume.getSize().y));
+    }
+    
     win->draw(volume);
 }
 
@@ -158,10 +169,6 @@ void menuHUD::GoBack(sf::RenderWindow* win) {
 }
 
 void menuHUD::ChangeResolution(sf::RenderWindow* win) {
-
-    screenTxt.setString("1600*900 :");
-    screenTxt.setCharacterSize(40);
-    screenTxt.setFont(font);
     screenTxt.setPosition(volume.getPosition().x, volume.getPosition().y + 50);
     win->draw(screenTxt);
 
