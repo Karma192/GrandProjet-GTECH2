@@ -20,6 +20,7 @@ public:
 	void Volume(sf::RenderWindow* win);
 	void GoBack(sf::RenderWindow* win);
 	void ChangeResolution(sf::RenderWindow* win);
+	void Language(sf::RenderWindow* win);
 	bool once = true;
 
 private:
@@ -36,8 +37,13 @@ private:
 	sf::Text title;
 	sf::Text screenTxt;
 	sf::Text volumeTxt;
+	sf::Text volumeTxtValue;
 	sf::Text playFirstChoice;
 	sf::Text options;
+	sf::Text languageTxt;
+
+	sf::RectangleShape languageOptionEN;
+	sf::RectangleShape languageOptionFR;
 	sf::FloatRect titleBounds;
 	sf::FloatRect playBounds;
 	sf::FloatRect returnGlobalPos;

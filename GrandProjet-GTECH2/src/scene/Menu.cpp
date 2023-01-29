@@ -24,5 +24,6 @@ void Menu::MenuRender(sf::RenderWindow* window)
 		menuhud.Volume(window);
 		menuhud.GoBack(window);
 		menuhud.ChangeResolution(window);
+		menuhud.Language(window);
 	}
 }

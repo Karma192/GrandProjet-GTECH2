@@ -23,7 +23,7 @@ menuHUD::menuHUD()
     playRect.setOutlineColor(sf::Color::Red);
     playRect.setFillColor(sf::Color::Red);
 
-    volume.setSize(sf::Vector2f(300.f, 25.f));
+    volume.setSize(sf::Vector2f(300, 25.f));
     volume.setFillColor(sf::Color::Blue);
 
     returnbutton.setSize(sf::Vector2f(50, 50));
@@ -36,7 +36,7 @@ menuHUD::menuHUD()
     screenTxt.setCharacterSize(40);
     screenTxt.setFont(font);
 
-    volumeTxt.setCharacterSize(40);
+    volumeTxtValue.setCharacterSize(40);
 
     play.begin();
     play.push_back(playFirstChoice);
@@ -146,7 +146,14 @@ bool menuHUD::detectedClick() {
 
 //The bar for the volume
 void menuHUD::Volume(sf::RenderWindow* win) {
-    volume.setPosition(screenSizeX / 2.0f - volume.getSize().x / 2, (selectionBck.getPosition().y / 1.5));
+
+    volumeTxt.setString("Volume :");
+    volumeTxt.setFont(font);
+    volumeTxt.setOrigin(volumeTxt.getGlobalBounds().width / 2, volumeTxt.getGlobalBounds().height / 2);
+    volumeTxt.setCharacterSize(40);
+    volumeTxt.setPosition(screenSizeX / 2.0f, (selectionBck.getPosition().y / 1.5));
+
+    volume.setPosition(screenSizeX / 2.0f - volume.getSize().x / 2, (selectionBck.getPosition().y - 130));
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && newVol >= 1) {
         newVol -= 1;
@@ -157,9 +164,10 @@ void menuHUD::Volume(sf::RenderWindow* win) {
     scaleFactor *= 100.0f;
     std::string scaleFactorTxt = std::to_string(scaleFactor);
     scaleFactorTxt.erase(3, 9);
-    volumeTxt.setString(scaleFactorTxt);
-    volumeTxt.setPosition(volume.getPosition().x + volume.getSize().x, volume.getPosition().y - volume.getSize().y /2);
-    volumeTxt.setFont(font);
+    volumeTxtValue.setString(scaleFactorTxt);
+    volumeTxtValue.setPosition(volume.getPosition().x + volume.getSize().x, volume.getPosition().y - volume.getSize().y /2);
+    volumeTxtValue.setFont(font);
+    win->draw(volumeTxtValue);
     win->draw(volumeTxt);
     win->draw(volume);
 }
@@ -190,4 +198,24 @@ void menuHUD::ChangeResolution(sf::RenderWindow* win) {
         }
     }
     win->draw(screenResLow);
+}
+
+void menuHUD::Language(sf::RenderWindow* win) {
+    languageTxt.setString("Langage :");
+    languageTxt.setCharacterSize(40);
+    languageTxt.setFont(font);
+
+    languageOptionEN.setSize(sf::Vector2f(50,50));
+    languageOptionEN.setFillColor(sf::Color::Red);
+    languageOptionEN.setPosition(volume.getPosition().x + volume.getSize().x - languageOptionEN.getSize().x, volume.getPosition().y + 125);
+
+    languageOptionFR.setSize(sf::Vector2f(50, 50));
+    languageOptionFR.setFillColor(sf::Color::Red);
+    languageOptionFR.setPosition(volume.getPosition().x + volume.getSize().x - languageOptionEN.getSize().x * 2 - 10, volume.getPosition().y + 125);
+
+    languageTxt.setPosition(volume.getPosition().x, volume.getPosition().y + 125);
+
+    win->draw(languageTxt);
+    win->draw(languageOptionEN);
+    win->draw(languageOptionFR);
 }
