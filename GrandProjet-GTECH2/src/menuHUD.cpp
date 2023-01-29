@@ -52,7 +52,7 @@ menuHUD::menuHUD()
     languageOptionFR.setFillColor(sf::Color::Red);
 
     play.begin();
-    play.push_back(playFirstChoice);
+    play.push_back(playFirstChoice); 
 }
 
 menuHUD::~menuHUD()
