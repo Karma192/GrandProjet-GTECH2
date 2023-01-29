@@ -63,6 +63,9 @@
     <ClCompile Include="src\menuHUD.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameObject.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\game.hpp">
@@ -104,19 +107,30 @@
     <ClInclude Include="src\menuHUD.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="ressources\sprites\player\1.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
-    <Image Include="icon.ico">
-      <Filter>Fichiers de ressources</Filter>
-    </Image>
-    <Image Include="icon.png">
-      <Filter>Fichiers de ressources</Filter>
-    </Image>
     <Image Include="ressources\sprites\player\idle.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
+    <Image Include="ressources\ICON.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GrandProjet-GTECH2.rc">
+      <Filter>Fichiers de ressources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
