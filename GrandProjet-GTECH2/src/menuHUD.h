@@ -34,6 +34,7 @@ private:
 	sf::RectangleShape selectionBck;
 	sf::Vector2u oldScreenSize;
 	sf::Font heartless;
+	sf::Font Antique;
 	sf::Text title;
 	sf::Text screenTxt;
 	sf::Text volumeTxt;

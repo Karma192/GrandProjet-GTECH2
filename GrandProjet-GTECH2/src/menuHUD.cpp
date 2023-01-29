@@ -3,25 +3,24 @@
 //Initialisation of all elements
 menuHUD::menuHUD()
 {
-    selectionBck.setFillColor(sf::Color(153, 89, 7, 200));
+    selectionBck.setFillColor(sf::Color(144, 144, 144, 200));
 
     menuBackground.loadFromFile("ressources/background.jpg");
     menuBckSprite.setTexture(menuBackground);
 
-    title.setFont(heartless);
+    if (!Antique.loadFromFile("ressources/fonts/Antique.ttf"));
+    title.setFont(Antique);
     title.setString("Crusade of the Abyss");
-    title.setCharacterSize((screenSizeX * 80)/100);
-    title.setCharacterSize(200);
-    title.setFillColor(sf::Color(255, 255, 255, 255));   
+    title.setCharacterSize(130);
 
     if (!font.loadFromFile("ressources/fonts/arial.ttf"));
     playFirstChoice.setFont(font);
     playFirstChoice.setCharacterSize(150);
     playFirstChoice.setFillColor(sf::Color(255, 255, 255, 255));
 
-    playRect.setOutlineThickness(10);
-    playRect.setOutlineColor(sf::Color::Red);
-    playRect.setFillColor(sf::Color::Red);
+    playRect.setOutlineThickness(3);
+    playRect.setOutlineColor(sf::Color::Black);
+    playRect.setFillColor(sf::Color(130, 130, 130, 255));
 
     volume.setSize(sf::Vector2f(300, 25.f));
     volume.setFillColor(sf::Color::Blue);
@@ -110,10 +109,11 @@ void menuHUD::menuTxt(sf::RenderWindow* win)
         //Option text       
         sf::FloatRect playbuttonBounds = play[i].getLocalBounds();
         play[i].setOrigin(playbuttonBounds.left + playbuttonBounds.width / 2, playbuttonBounds.top + playbuttonBounds.height / 2);
-        play[i].setPosition(screenSizeX / 2.0f, (selectionBck.getPosition().y / 1.5) + i * 200);
+        play[i].setPosition(screenSizeX / 2.0f, (selectionBck.getPosition().y / 1.5) + i * 190);
 
         //Background rect
         playRect.setSize(sf::Vector2f(play[i].getGlobalBounds().width, play[i].getGlobalBounds().height));
+        playRect.setScale(1.10, 1.10);
         playBounds = play[i].getGlobalBounds();
         float x = playBounds.width / 2;
         float y = playBounds.height / 2;
