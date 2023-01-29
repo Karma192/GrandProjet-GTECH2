@@ -23,16 +23,10 @@ public:
 
 	void SetSM(sf::RenderWindow*, sf::Event*);
 	void SetActiveScene(int);
-	void SceneManagerLoop();
-	void SceneManagerRender();
+	void Update();
 
 private:
 	int index;
 
-	enum {
-		LOOP = 0,
-		RENDER = 1,
-	};
-
-	void SwitchScene(int);
+	void SwitchScene();
 };

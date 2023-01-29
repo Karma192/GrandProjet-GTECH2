@@ -1,17 +1,17 @@
 #include "Lobby.hpp"
 
 Lobby::Lobby() {
-
+    AddToScene(p, 0);
 }
 
 Lobby::~Lobby() {
 
 }
 
-void Lobby::LobbyLoop(sf::Event* event) {
+void Lobby::Loop(sf::Event* event) {
     p.PlayerLoop();
 }
 
-void Lobby::LobbyRender(sf::RenderWindow* window) {
+void Lobby::Render(sf::RenderWindow* window) {
     p.PlayerTest(window);
 }
