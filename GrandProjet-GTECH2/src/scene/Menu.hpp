@@ -1,8 +1,5 @@
 #pragma once
 #include "Scene.hpp"
-#include "../Player.hpp"
-#include "../Collision.h"
-#include "../Enemies.hpp"
 #include "../menuHUD.h"
 
 class Menu : public Scene {
@@ -10,14 +7,11 @@ public:
 	Menu();
 	virtual ~Menu();
 
-	Collision collision;
+	menuHUD menuhud;
 
 	void MenuLoop(sf::Event*);
 	void MenuRender(sf::RenderWindow*);
 
 
 private:
-	Player* player;
-	menuHUD menuhud;
-	Enemies* enemies;
 };
