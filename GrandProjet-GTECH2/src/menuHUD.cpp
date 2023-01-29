@@ -38,6 +38,20 @@ menuHUD::menuHUD()
 
     volumeTxtValue.setCharacterSize(40);
 
+    volumeTxt.setString("Volume :");
+    volumeTxt.setFont(font);
+    volumeTxt.setCharacterSize(40);
+
+    languageTxt.setString("Langage :");
+    languageTxt.setCharacterSize(40);
+    languageTxt.setFont(font);
+
+    languageOptionEN.setSize(sf::Vector2f(50, 50));
+    languageOptionEN.setFillColor(sf::Color::Red);
+
+    languageOptionFR.setSize(sf::Vector2f(50, 50));
+    languageOptionFR.setFillColor(sf::Color::Red);
+
     play.begin();
     play.push_back(playFirstChoice);
 }
@@ -146,14 +160,10 @@ bool menuHUD::detectedClick() {
 
 //The bar for the volume
 void menuHUD::Volume(sf::RenderWindow* win) {
-
-    volumeTxt.setString("Volume :");
-    volumeTxt.setFont(font);
     volumeTxt.setOrigin(volumeTxt.getGlobalBounds().width / 2, volumeTxt.getGlobalBounds().height / 2);
-    volumeTxt.setCharacterSize(40);
     volumeTxt.setPosition(screenSizeX / 2.0f, (selectionBck.getPosition().y / 1.5));
 
-    volume.setPosition(screenSizeX / 2.0f - volume.getSize().x / 2, (selectionBck.getPosition().y - 130));
+    volume.setPosition(volumeTxt.getPosition().x - volume.getSize().x / 2, volumeTxt.getPosition().y + 40);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && newVol >= 1) {
         newVol -= 1;
@@ -185,6 +195,8 @@ void menuHUD::GoBack(sf::RenderWindow* win) {
     win->draw(returnbutton);
 }
 
+
+//Swap the screen resolution
 void menuHUD::ChangeResolution(sf::RenderWindow* win) {
     screenTxt.setPosition(volume.getPosition().x, volume.getPosition().y + 50);
     win->draw(screenTxt);
@@ -192,25 +204,21 @@ void menuHUD::ChangeResolution(sf::RenderWindow* win) {
     screenResLow.setPosition(volume.getPosition().x + volume.getSize().x - screenResLow.getSize().x, volume.getPosition().y +50);
     buttonChangeRect = screenResLow.getGlobalBounds();
     if (buttonChangeRect.contains(sf::Vector2f(mousePos.x, mousePos.y))) {
-        if (detectedClick()) {
+        if (detectedClick() && screenResLow.getFillColor() == sf::Color::Red) {
             win->create(sf::VideoMode(1600, 900), "Crusade Of The Abyss", sf::Style::Fullscreen);
             screenResLow.setFillColor(sf::Color::Blue);
+        }
+        else if (detectedClick() && screenResLow.getFillColor() == sf::Color::Blue) {
+            win->create(sf::VideoMode(1920, 1080), "Crusade Of The Abyss", sf::Style::Fullscreen);
         }
     }
     win->draw(screenResLow);
 }
 
+//Change the language
 void menuHUD::Language(sf::RenderWindow* win) {
-    languageTxt.setString("Langage :");
-    languageTxt.setCharacterSize(40);
-    languageTxt.setFont(font);
-
-    languageOptionEN.setSize(sf::Vector2f(50,50));
-    languageOptionEN.setFillColor(sf::Color::Red);
     languageOptionEN.setPosition(volume.getPosition().x + volume.getSize().x - languageOptionEN.getSize().x, volume.getPosition().y + 125);
 
-    languageOptionFR.setSize(sf::Vector2f(50, 50));
-    languageOptionFR.setFillColor(sf::Color::Red);
     languageOptionFR.setPosition(volume.getPosition().x + volume.getSize().x - languageOptionEN.getSize().x * 2 - 10, volume.getPosition().y + 125);
 
     languageTxt.setPosition(volume.getPosition().x, volume.getPosition().y + 125);
