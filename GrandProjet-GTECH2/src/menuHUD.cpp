@@ -36,6 +36,8 @@ menuHUD::menuHUD()
     screenTxt.setCharacterSize(40);
     screenTxt.setFont(font);
 
+    volumeTxt.setCharacterSize(40);
+
     play.begin();
     play.push_back(playFirstChoice);
 }
@@ -146,12 +148,19 @@ bool menuHUD::detectedClick() {
 void menuHUD::Volume(sf::RenderWindow* win) {
     volume.setPosition(screenSizeX / 2.0f - volume.getSize().x / 2, (selectionBck.getPosition().y / 1.5));
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q)) {
-        float newVol = volume.getSize().x;
-        newVol -= 0.1;
-        volume.setSize(sf::Vector2f(newVol, volume.getSize().y));
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && newVol >= 1) {
+        newVol -= 1;
+        volume.setScale(newVol /100, 1);
     }
-    
+
+    float scaleFactor = volume.getScale().x;
+    scaleFactor *= 100.0f;
+    std::string scaleFactorTxt = std::to_string(scaleFactor);
+    scaleFactorTxt.erase(3, 9);
+    volumeTxt.setString(scaleFactorTxt);
+    volumeTxt.setPosition(volume.getPosition().x + volume.getSize().x, volume.getPosition().y - volume.getSize().y /2);
+    volumeTxt.setFont(font);
+    win->draw(volumeTxt);
     win->draw(volume);
 }
 

@@ -26,6 +26,7 @@ private:
 	float screenSizeX = 0;
 	float screenSizeY = 0;
 	int i = 0;
+	float newVol = 100;
 
 	sf::Texture menuBackground;
 	sf::Sprite menuBckSprite;
@@ -34,6 +35,7 @@ private:
 	sf::Font heartless;
 	sf::Text title;
 	sf::Text screenTxt;
+	sf::Text volumeTxt;
 	sf::Text playFirstChoice;
 	sf::Text options;
 	sf::FloatRect titleBounds;
