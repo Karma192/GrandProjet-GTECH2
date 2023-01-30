@@ -22,25 +22,15 @@ void Game() {
                 window.close();
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-                sm.SetActiveScene(1);
+                SetActiveScene(1);
             }
         }
-
-        GameRender();
     }
 }
 
 // Game's Loop
 void GameLoop() {
-    sm.SceneManagerLoop();
-}
-
-// All Things to Render
-void GameRender() {
     window.clear();
-    sm.SceneManagerRender();
-
-
-    // things to display
+    sm.Update();
     window.display();
 }

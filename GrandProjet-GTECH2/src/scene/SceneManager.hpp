@@ -22,11 +22,8 @@ public:
 	virtual ~SceneManager();
 
 	void SetSM(sf::RenderWindow*, sf::Event*);
-	void SetActiveScene(int);
 	void Update();
 
 private:
-	int index;
-
 	void SwitchScene();
 };

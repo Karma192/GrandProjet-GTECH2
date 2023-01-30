@@ -11,7 +11,7 @@ Player::~Player()
 
 }
 
-void Player::PlayerLoop()
+void Player::Loop(sf::Event* event)
 {
     playerEndurance();
     playerRegenEndurance();
@@ -20,7 +20,7 @@ void Player::PlayerLoop()
 
 }
 
-void Player::PlayerTest(sf::RenderWindow* win)
+void Player::Render(sf::RenderWindow* win)
 {
     playerUI();
     //win->draw(enduranceBarBack);

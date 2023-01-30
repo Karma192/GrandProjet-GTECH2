@@ -2,7 +2,7 @@
 #include "Scene.hpp"
 #include "../Player.hpp"
 
-class Lobby : public Scene {
+class Lobby : public GameScene {
 public:
     Lobby();
     virtual ~Lobby();

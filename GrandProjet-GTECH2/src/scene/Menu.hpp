@@ -6,15 +6,15 @@
 #include "../menuHUD.h"
 
 
-class Menu : public Scene {
+class Menu : public GameScene {
 public:
 	Menu();
 	virtual ~Menu();
 
 	Collision collision;
 
-	void MenuLoop(sf::Event*);
-	void MenuRender(sf::RenderWindow*);
+	virtual void Loop(sf::Event*)override;
+	virtual void Render(sf::RenderWindow*)override;
 
 
 

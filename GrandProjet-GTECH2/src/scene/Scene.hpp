@@ -12,21 +12,20 @@ public:
 };
 
 
-class Scene {
+class GameScene {
 public:
-	int x;
-
-	Scene();
-	virtual ~Scene();
+	GameScene();
+	virtual ~GameScene();
 
 	// Boucle de la scene
 	void Update(sf::Event*, sf::RenderWindow*);
-	// Rendu graphique de la sc�ne
-	virtual void Render(sf::RenderWindow*);
 	// Processus en back de la sc�ne
 	virtual void Loop(sf::Event*);
-	// Permet d'ajouter un game object � la sc�ne � un certain layer (0 �tant le plus profond)
+	// Rendu graphique de la sc�ne
+	virtual void Render(sf::RenderWindow*);
+	// Permet d'ajouter un game object à la sc�ne à un certain layer (0 étant le plus profond)
 	void AddToScene(GameObject&, int);
+	// Creer un layer dans la sc�ne (max 10/scene)
 
 private:
 	//SceneManager* sm;
@@ -35,6 +34,5 @@ private:
 
 	Layer* layers[10] = { nullptr };
 
-	// Creer un layer dans la sc�ne (max 10/scene)
 	void SetLayer();
 };

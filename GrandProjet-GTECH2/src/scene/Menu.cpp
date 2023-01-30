@@ -9,11 +9,11 @@ Menu::~Menu() {
 
 }
 
-void Menu::MenuLoop(sf::Event* event) {
+void Menu::Loop(sf::Event* event) {
 
 }
 
-void Menu::MenuRender(sf::RenderWindow* window)
+void Menu::Render(sf::RenderWindow* window)
 {
 
 	menu.menuRender(window);

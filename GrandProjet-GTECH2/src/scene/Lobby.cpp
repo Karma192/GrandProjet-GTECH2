@@ -9,9 +9,9 @@ Lobby::~Lobby() {
 }
 
 void Lobby::Loop(sf::Event* event) {
-    p.PlayerLoop();
+    p.Loop(event);
 }
 
 void Lobby::Render(sf::RenderWindow* window) {
-    p.PlayerTest(window);
+    p.Render(window);
 }

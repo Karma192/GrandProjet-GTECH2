@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 
 struct player {
@@ -11,8 +12,7 @@ enum {
 	INGAME = 2,
 };
 
-enum {
-	TRIANGLE = 3,
-	DIAMOND = 4,
-	HEXAGON = 6,
-};
+extern int indexScene;
+
+// Function to call for change active scene
+void SetActiveScene(int);

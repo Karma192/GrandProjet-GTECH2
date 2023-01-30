@@ -1,7 +1,9 @@
 #include "SceneManager.hpp"
 
 SceneManager::SceneManager() {
-	index = 0;
+	indexScene = 0;
+	this->event = nullptr;
+	this->window = nullptr;
 }
 
 SceneManager::~SceneManager() {
@@ -14,24 +16,6 @@ void SceneManager::SetSM(sf::RenderWindow* win, sf::Event* e) {
 	this->event = e;
 }
 
-// Function to call for change active scene
-void SceneManager::SetActiveScene(int scene) {
-	switch (scene) {
-	case MENU:
-		index = MENU;
-		break;
-	case LOBBY:
-		index = LOBBY;
-		break;
-	case INGAME:
-		index = INGAME;
-		break;
-	default:
-		index = MENU;
-		break;
-	}
-}
-
 // Switch between scene's Loop
 void SceneManager::Update() {
 	SwitchScene();
@@ -39,20 +23,20 @@ void SceneManager::Update() {
 
 // Function for switch between all scenes
 void SceneManager::SwitchScene() {
-	switch (index) {
+	switch (indexScene) {
 	case MENU:
 		menu.Update(event, window);
-		std::cout << "C'est le menu !" << std::endl;
+		//std::cout << "C'est le menu !" << std::endl;
 		break;
 
 	case LOBBY:
 		lobby.Update(event, window);
-		std::cout << "C'est le lobby !" << std::endl;
+		//std::cout << "C'est le lobby !" << std::endl;
 		break;
 
 	case INGAME:
 		ingame.Update(event, window);
-		std::cout << "C'est le ingame !" << std::endl;
+		//std::cout << "C'est le ingame !" << std::endl;
 		break;
 
 	default:
