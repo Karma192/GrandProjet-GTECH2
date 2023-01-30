@@ -1,7 +1,6 @@
 #include "SceneManager.hpp"
 
 SceneManager::SceneManager() {
-	indexScene = 0;
 	this->event = nullptr;
 	this->window = nullptr;
 }
@@ -23,7 +22,7 @@ void SceneManager::Update() {
 
 // Function for switch between all scenes
 void SceneManager::SwitchScene() {
-	switch (indexScene) {
+	switch (smData.indexScene) {
 	case MENU:
 		menu.Update(event, window);
 		//std::cout << "C'est le menu !" << std::endl;

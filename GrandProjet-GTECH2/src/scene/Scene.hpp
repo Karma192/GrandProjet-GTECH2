@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "SceneManager.hpp"
 #include "../GameObject.hpp"
 
 class Layer {
@@ -10,7 +9,6 @@ public:
 
 	std::vector <GameObject*> objects;
 };
-
 
 class GameScene {
 public:
@@ -28,7 +26,6 @@ public:
 	// Creer un layer dans la sc�ne (max 10/scene)
 
 private:
-	//SceneManager* sm;
 	sf::Event* event;
 	sf::RenderWindow* window;
 

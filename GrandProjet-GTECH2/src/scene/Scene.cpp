@@ -13,9 +13,9 @@ GameScene::~GameScene() {
 }
 
 void GameScene::Update(sf::Event* event, sf::RenderWindow* window) {
-	/*this->Loop(event);
-	this->Render(window);*/
-	if (layers != nullptr) {
+	this->Loop(event);
+	this->Render(window);
+	/*if (layers != nullptr) {
 		for (int i = 9; i > 0; i--) {
 			if (layers[i] != nullptr) {
 				for (int j = 0; j < layers[i]->objects.size(); j++) {
@@ -25,7 +25,7 @@ void GameScene::Update(sf::Event* event, sf::RenderWindow* window) {
 				}
 			}
 		}
-	}
+	}*/
 }
 
 void GameScene::Loop(sf::Event* event) {

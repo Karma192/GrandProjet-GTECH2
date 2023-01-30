@@ -6,10 +6,8 @@ sf::Event event;
 
 SceneManager sm;
 
-void Game() {
-    //icon.loadFromFile("ICON.png");
-    //window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
-
+void Game() 
+{
     sm.SetSM(&window, &event);
 
     while (window.isOpen())
@@ -22,14 +20,16 @@ void Game() {
                 window.close();
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-                SetActiveScene(1);
+                sm.smData = GetGameData();
+               SetActiveScene(1);
             }
         }
     }
 }
 
 // Game's Loop
-void GameLoop() {
+void GameLoop() 
+{
     window.clear();
     sm.Update();
     window.display();

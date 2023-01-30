@@ -8,6 +8,7 @@
 #include "InGame.hpp"
 
 
+
 class SceneManager {
 public:
 	sf::RenderWindow* window;
@@ -17,6 +18,7 @@ public:
 	Lobby lobby;
 	InGame ingame;
 
+	GameData smData;
 
 	SceneManager();
 	virtual ~SceneManager();

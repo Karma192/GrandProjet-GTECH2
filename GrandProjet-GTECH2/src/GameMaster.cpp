@@ -1,18 +1,24 @@
 #include "GameMaster.hpp"
 
-void SetActiveScene(int index) {
-	switch (index) {
+GameData GetGameData() 
+{
+	return data;
+}
+
+void SetActiveScene(int value) 
+{
+	switch (value) {
 	case MENU:
-		indexScene = MENU;
+		data.indexScene = MENU;
 		break;
 	case LOBBY:
-		indexScene = LOBBY;
+		data.indexScene = LOBBY;
 		break;
 	case INGAME:
-		indexScene = INGAME;
+		data.indexScene = INGAME;
 		break;
 	default:
-		indexScene = MENU;
+		data.indexScene = MENU;
 		break;
 	}
 }

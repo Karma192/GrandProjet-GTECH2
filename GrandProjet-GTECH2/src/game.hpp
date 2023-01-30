@@ -3,4 +3,3 @@
 
 void Game();
 void GameLoop();
-void GameRender();

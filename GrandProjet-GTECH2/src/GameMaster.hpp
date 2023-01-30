@@ -6,13 +6,18 @@ struct player {
 	float hp, resources, speed, baseSpeed, baseDmg, attackSpeed, speedProjectile, luck;
 };
 
+struct GameData {
+	int indexScene;
+};
+
+static GameData data;
+
 enum {
 	MENU = 0,
 	LOBBY = 1,
 	INGAME = 2,
 };
 
-extern int indexScene;
-
+GameData GetGameData();
 // Function to call for change active scene
 void SetActiveScene(int);
