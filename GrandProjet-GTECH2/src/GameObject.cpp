@@ -1,6 +1,11 @@
 #pragma once
 #include "GameObject.hpp"
 
+GameObject::GameObject() {
+	srand(time(0));
+	id = rand();
+}
+
 GameObject::~GameObject() {
 
 }
@@ -26,6 +31,4 @@ void GameObject::Render() {
 void GameObject::InitGameData() 
 {
 	gameData = GetGameData();
-	srand(time(0));
-	id = rand();
 }
