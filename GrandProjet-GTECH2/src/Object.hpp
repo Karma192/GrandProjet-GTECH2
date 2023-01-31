@@ -2,8 +2,9 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
-#include<cstdlib>
+#include <cstdlib>
 #include "GameObject.hpp"
+#include "Player.hpp"
 
 class Object : public GameObject
 {
@@ -12,14 +13,12 @@ public:
 	~Object();
 
 	void RandomObject(sf::RenderWindow* win);
+	sf::RectangleShape randomPosObject;
 
-private:
-	int windowWidth;
-	int windowHeight;
 	int randomX;
 	int randomY;
-	bool once;
-	sf::RectangleShape randomPosObject;
+
+private:
 	sf::RenderWindow* win;
 };
 

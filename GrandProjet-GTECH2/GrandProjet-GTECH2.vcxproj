@@ -169,7 +169,7 @@
     <ClInclude Include="src\menuHUD.h" />
     <ClInclude Include="src\Object.hpp" />
     <ClInclude Include="src\Player.hpp" />
-    <ClInclude Include="src\Collision.h" />
+    <ClInclude Include="src\Collision.hpp" />
     <ClInclude Include="src\scene\InGame.hpp" />
     <ClInclude Include="src\scene\Lobby.hpp" />
     <ClInclude Include="src\scene\Menu.hpp" />

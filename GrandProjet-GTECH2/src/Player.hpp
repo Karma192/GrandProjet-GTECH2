@@ -20,6 +20,7 @@ public:
 	//Player HUD 
 
 	void playerEndurance();
+	void KeyboardMove();
 	void playerRegenEndurance();
 	void playerUI();
 

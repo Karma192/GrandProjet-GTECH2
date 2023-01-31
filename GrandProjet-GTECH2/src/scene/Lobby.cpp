@@ -1,7 +1,7 @@
 #include "Lobby.hpp"
 
 Lobby::Lobby() {
-    AddToScene(p, 0);
+    AddToScene(player, 0);
 }
 
 Lobby::~Lobby() {
@@ -9,10 +9,11 @@ Lobby::~Lobby() {
 }
 
 void Lobby::Loop(sf::Event* event) {
-    p.Loop(event);
+    player.Loop(event);
+    collision.GetBounds();
 }
 
 void Lobby::Render(sf::RenderWindow* window) {
-    p.Render(window);
     object.RandomObject(window);
+    player.Render(window);
 }

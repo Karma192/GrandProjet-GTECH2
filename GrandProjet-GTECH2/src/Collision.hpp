@@ -2,13 +2,12 @@
 #include <SFML/Graphics.hpp>
 #include "Player.hpp"
 #include "Enemies.hpp"
+#include "Object.hpp"
+#include "GameObject.hpp"
 
-class Collision
+class Collision : public GameObject
 {
 public:
-	Player* player;
-	Enemies* enemies;
-
 	Collision();
 	~Collision();
 
@@ -17,6 +16,11 @@ public:
 
 private:
 
+	Player* player;
+	Enemies* enemies;
+	Object* object;
+
 	sf::FloatRect playerBox;
+	sf::FloatRect objectBox;
 	sf::FloatRect enemiesBox;
 };

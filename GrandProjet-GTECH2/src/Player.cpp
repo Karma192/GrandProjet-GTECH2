@@ -16,8 +16,7 @@ void Player::Loop(sf::Event* event)
     playerEndurance();
     playerRegenEndurance();
     ControllerMove();
-
-
+    KeyboardMove();
 }
 
 void Player::Render(sf::RenderWindow* win)
@@ -46,8 +45,26 @@ void Player::playerEndurance()
     {
         std::cout << "Tu peux plus courir" << std::endl;
     }
+}
 
-
+void Player::KeyboardMove()
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        cube.move(sf::Vector2f(0.f, -1));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        cube.move(sf::Vector2f(0.f, 1));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        cube.move(sf::Vector2f(-1, 0.f));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        cube.move(sf::Vector2f(1, 0.f));
+    }
 }
 
 void Player::playerRegenEndurance()

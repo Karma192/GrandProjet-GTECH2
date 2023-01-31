@@ -2,6 +2,7 @@
 #include "Scene.hpp"
 #include "../Player.hpp"
 #include "../Object.hpp"
+#include "../Collision.hpp"
 
 class Lobby : public GameScene {
 public:
@@ -12,6 +13,7 @@ public:
     virtual void Render(sf::RenderWindow*)override;
 
 private:
-    Player p;
+    Player player;
+    Collision collision;
     Object object;
 };
