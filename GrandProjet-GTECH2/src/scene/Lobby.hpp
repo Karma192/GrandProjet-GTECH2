@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.hpp"
 #include "../Player.hpp"
+#include "../Object.hpp"
 
 class Lobby : public GameScene {
 public:
@@ -12,4 +13,5 @@ public:
 
 private:
     Player p;
+    Object object;
 };

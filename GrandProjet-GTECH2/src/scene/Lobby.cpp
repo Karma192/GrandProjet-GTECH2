@@ -14,4 +14,5 @@ void Lobby::Loop(sf::Event* event) {
 
 void Lobby::Render(sf::RenderWindow* window) {
     p.Render(window);
+    object.RandomObject(window);
 }
