@@ -111,13 +111,13 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\agrandpaul\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>C:\dev\GrandProjet-GTECH2\SFML-2.5.1\include;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dev\GrandProjet-GTECH2\SFML-2.5.1\include;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\ebertrand\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\agrandpaul\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalLibraryDirectories>C:\dev\GrandProjet-GTECH2\SFML-2.5.1\lib;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\dev\GrandProjet-GTECH2\SFML-2.5.1\lib;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;C:\Users\ebertrand\source\repos\GrandProjet-GTECH2\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
