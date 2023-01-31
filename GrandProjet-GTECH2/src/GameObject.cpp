@@ -1,34 +1,30 @@
 #pragma once
 #include "GameObject.hpp"
 
-GameObject::GameObject() {
+GameObject::GameObject() 
+{
 	srand(time(0));
 	id = rand();
+	gameData = GetGameData();
 }
 
-GameObject::~GameObject() {
+GameObject::~GameObject() 
+{
 
 }
 
-void GameObject::Init() {
-
-}
-
-void GameObject::Update() {
+void GameObject::Update() 
+{
 	this->Loop();
 	this->Render();
 }
 
-void GameObject::Loop() {
-
-}
-
-void GameObject::Render() {
-
-}
-
-
-void GameObject::InitGameData() 
+void GameObject::Loop() 
 {
-	gameData = GetGameData();
+
+}
+
+void GameObject::Render() 
+{
+
 }

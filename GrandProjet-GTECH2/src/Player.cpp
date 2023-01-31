@@ -11,11 +11,6 @@ Player::~Player()
 
 }
 
-void Player::Init() 
-{
-
-}
-
 void Player::Loop()
 {
     playerEndurance();
@@ -48,13 +43,10 @@ void Player::playerEndurance()
     {
         std::cout << "Tu peux plus courir" << std::endl;
     }
-
-
 }
 
 void Player::playerRegenEndurance()
 {
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && endurancePlayer <= 100)
     {
         endurancePlayer += 0.1;
@@ -101,8 +93,6 @@ void Player::playerUI()
     playerThirdSpell.setOutlineThickness(5);
     playerThirdSpell.setOutlineColor(sf::Color::Green);
     playerThirdSpell.setPosition(260, 920);
-
-
 }
 
 void  Player::ControllerInput()
@@ -140,11 +130,12 @@ void Player::ControllerMove()
     }
 }
 
-void Player::MovePlayer() {
-    cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
+void Player::MovePlayer() 
+{
+    cube.move(moveSpeed.x * playerSpeed, moveSpeed.y * playerSpeed);
 }
 
-//Je test des trucs sur le Player, cel� sera supprim� (Etienne)
+//Je test des trucs sur le Player, cela sera supprimé (Etienne)
 //void Player::PlayerTest(sf::RenderWindow* win)
 //{
 //    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");

@@ -5,24 +5,29 @@ SceneManager::SceneManager() {
 	this->window = nullptr;
 }
 
-SceneManager::~SceneManager() {
+SceneManager::~SceneManager() 
+{
 
 }
 
 // Set the pointer to give to all scenes
-void SceneManager::SetSM(sf::RenderWindow* win, sf::Event* e) {
+void SceneManager::SetSM(sf::RenderWindow* win, sf::Event* e) 
+{
 	this->window = win;
 	this->event = e;
 }
 
 // Switch between scene's Loop
-void SceneManager::Update() {
+void SceneManager::Update() 
+{
 	SwitchScene();
 }
 
 // Function for switch between all scenes
-void SceneManager::SwitchScene() {
-	switch (smData.indexScene) {
+void SceneManager::SwitchScene() 
+{
+	switch (smData.indexScene) 
+	{
 	case MENU:
 		menu.Update();
 		//std::cout << "C'est le menu !" << std::endl;
