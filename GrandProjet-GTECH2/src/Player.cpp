@@ -132,7 +132,7 @@ void Player::ControllerMove()
 
 void Player::MovePlayer() 
 {
-    cube.move(moveSpeed.x * playerSpeed, moveSpeed.y * playerSpeed);
+    cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
 }
 
 //Je test des trucs sur le Player, cela sera supprimé (Etienne)
