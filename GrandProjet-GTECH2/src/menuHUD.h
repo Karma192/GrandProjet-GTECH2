@@ -2,17 +2,20 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
+#include "GameObject.hpp"
 
-class menuHUD
+class menuHUD : public GameObject
 {
 public:
     menuHUD();
     virtual ~menuHUD();
-    void menuRender(sf::RenderWindow* win);
-    void menuSelection(sf::RenderWindow* win);
-    void menuTitle(sf::RenderWindow* win);
-    void menuTxt();
 
+    virtual void Loop()override;
+    virtual void Render()override;
+
+    void menuSelection();
+    void menuTitle();
+    void menuTxt();
 private:
     float screenSizeX;
     float screenSizeY;
@@ -25,4 +28,5 @@ private:
     sf::Text title;
     sf::Text credit;
     sf::Text names;
+
 };

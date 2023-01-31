@@ -11,7 +11,7 @@ Player::~Player()
 
 }
 
-void Player::Loop(sf::Event* event)
+void Player::Loop()
 {
     playerEndurance();
     playerRegenEndurance();
@@ -20,22 +20,21 @@ void Player::Loop(sf::Event* event)
 
 }
 
-void Player::Render(sf::RenderWindow* win)
+void Player::Render()
 {
     playerUI();
     //win->draw(enduranceBarBack);
-    win->draw(enduranceBar);
-    win->draw(lifeBar);
-    win->draw(playerUltiUI);
-    win->draw(playerFirstSpell);
-    win->draw(playerSecondSpell);
-    win->draw(playerThirdSpell);
-    win->draw(cube);
+    gameData.window->draw(enduranceBar);
+    gameData.window->draw(lifeBar);
+    gameData.window->draw(playerUltiUI);
+    gameData.window->draw(playerFirstSpell);
+    gameData.window->draw(playerSecondSpell);
+    gameData.window->draw(playerThirdSpell);
+    gameData.window->draw(cube);
 }
 
 void Player::playerEndurance()
 {
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cd_Endurance >= 2 && endurancePlayer > 0)
     {
         endurancePlayer -= 0.1;

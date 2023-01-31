@@ -8,10 +8,10 @@ InGame::~InGame() {
 
 }
 
-void InGame::Loop(sf::Event* event) {
+void InGame::Loop() {
 
 }
 
-void InGame::Render(sf::RenderWindow* window) {
+void InGame::Render() {
 
 }

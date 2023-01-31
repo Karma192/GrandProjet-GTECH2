@@ -2,17 +2,17 @@
 
 sf::RenderWindow window(sf::VideoMode(1920, 1080), "Crusade Of The Abyss");
 sf::Event event;
-//sf::Image icon;
 
-SceneManager sm;
 
 void Game() 
 {
+    SetWindow(&window, &event);
+    SceneManager sm;
     sm.SetSM(&window, &event);
 
     while (window.isOpen())
     {
-        GameLoop();
+        GameLoop(sm);
 
         while (window.pollEvent(event))
         {
@@ -20,7 +20,7 @@ void Game()
                 window.close();
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-                sm.smData = GetGameData();
+               sm.smData = GetGameData();
                SetActiveScene(1);
             }
         }
@@ -28,7 +28,7 @@ void Game()
 }
 
 // Game's Loop
-void GameLoop() 
+void GameLoop(SceneManager sm)
 {
     window.clear();
     sm.Update();

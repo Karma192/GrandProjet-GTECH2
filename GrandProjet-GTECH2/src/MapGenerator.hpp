@@ -3,8 +3,10 @@
 #include <time.h> 
 #include <vector>
 #include <string>
+#include "GameObject.hpp"
 
-class MapGenerator {
+class MapGenerator : public GameObject
+{
 public:
     int H_MAX = 10;
     int W_MAX = 10;
@@ -20,6 +22,10 @@ public:
     MapGenerator();
     ~MapGenerator();
 
+    virtual void Loop()override;
+    virtual void Render()override;
+
+private:
     void attributePlace();
     void lastRoom();
     void maps();
@@ -27,6 +33,7 @@ public:
     void mapInit();
     void drawMap();
     void genMap();
+
     void genFirstRoom();
     void genStandarRoom();
     void genChestAndMarchandRoom();
@@ -38,8 +45,5 @@ public:
     void genDefiRoom();
     void genEnigmeRoom();
     void genSacrificeRoom();
-
-
-private:
 
 };

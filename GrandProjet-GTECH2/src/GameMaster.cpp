@@ -22,3 +22,8 @@ void SetActiveScene(int value)
 		break;
 	}
 }
+
+void SetWindow(RenderWindow* win, Event* e) {
+	data.window = win;
+	data.event = e;
+}

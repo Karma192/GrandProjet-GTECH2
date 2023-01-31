@@ -14,8 +14,8 @@ public:
 	Player();
 	virtual ~Player();
 
-	virtual void Loop(sf::Event*)override;
-	virtual void Render(sf::RenderWindow* window)override;
+	virtual void Loop()override;
+	virtual void Render()override;
 
 	//Player HUD 
 

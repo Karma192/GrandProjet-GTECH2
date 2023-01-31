@@ -7,8 +7,8 @@ public:
 	InGame();
 	virtual ~InGame();
 
-	virtual void Loop(sf::Event*)override;
-	virtual void Render(sf::RenderWindow*)override;
+	virtual void Loop()override;
+	virtual void Render()override;
 
 private:
 

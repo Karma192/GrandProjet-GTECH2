@@ -8,15 +8,15 @@ Enemies::~Enemies() {
 
 }
 
-void Enemies::EnemiesLoop() {
+void Enemies::Loop() {
 
 }
 
-void Enemies::EnemiesRender() {
+void Enemies::Render() {
 
 }
 
-//Je test des trucs sur le Enemies, celà sera supprimé (Etienne)
+//Je test des trucs sur le Enemies, cela sera supprimé (Etienne)
 //void Enemies::EnemiesTest(sf::RenderWindow* win)
 //{
 //    enemiesTexture.loadFromFile("C:/Users/etien/Pictures/imposter.png");

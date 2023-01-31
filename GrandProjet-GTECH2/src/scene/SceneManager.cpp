@@ -24,17 +24,17 @@ void SceneManager::Update() {
 void SceneManager::SwitchScene() {
 	switch (smData.indexScene) {
 	case MENU:
-		menu.Update(event, window);
+		menu.Update();
 		//std::cout << "C'est le menu !" << std::endl;
 		break;
 
 	case LOBBY:
-		lobby.Update(event, window);
+		lobby.Update();
 		//std::cout << "C'est le lobby !" << std::endl;
 		break;
 
 	case INGAME:
-		ingame.Update(event, window);
+		ingame.Update();
 		//std::cout << "C'est le ingame !" << std::endl;
 		break;
 

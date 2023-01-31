@@ -12,9 +12,9 @@ GameScene::~GameScene() {
 
 }
 
-void GameScene::Update(sf::Event* event, sf::RenderWindow* window) {
-	this->Loop(event);
-	this->Render(window);
+void GameScene::Update() {
+	this->Loop();
+	this->Render();
 	/*if (layers != nullptr) {
 		for (int i = 9; i > 0; i--) {
 			if (layers[i] != nullptr) {
@@ -28,24 +28,24 @@ void GameScene::Update(sf::Event* event, sf::RenderWindow* window) {
 	}*/
 }
 
-void GameScene::Loop(sf::Event* event) {
+void GameScene::Loop() {
 	for (auto i = *std::prev(std::end(this->layers)); i >= *std::begin(this->layers); i--) {
 		if (i->objects.empty() == false) {
 			for (int j = 0; j < (i->objects.size() - 1); j++) {
 				if (i->objects[j] != NULL) {
-					i->objects[j]->Loop(event);
+					i->objects[j]->Loop();
 				}
 			}
 		}
 	}
 }
 
-void GameScene::Render(sf::RenderWindow* window) {
+void GameScene::Render() {
 	for (auto i = *std::prev(std::end(this->layers)); i >= *std::begin(this->layers); i--) {
 		if (i->objects.empty() == false) {
 			for (int j = 0; j < (i->objects.size() - 1); j++) {
 				if (i->objects[j] != NULL) {
-					i->objects[j]->Render(window);
+					i->objects[j]->Render();
 				}
 			}
 		}

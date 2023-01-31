@@ -12,12 +12,18 @@ public:
 	GameObject();
 	~GameObject();
 
+	GameData gameData;
+
+	// For initialize all game data
+	void InitGameData();
+	// Function Init() for construct after prepocessing
+	virtual void Init();
 	// Boucle du game object
-	void Update(sf::Event*, sf::RenderWindow*);
+	void Update();
 	// Processus en back du game object
-	virtual void Loop(sf::Event*);
+	virtual void Loop();
 	// Rendu du game object
-	virtual void Render(sf::RenderWindow*);
+	virtual void Render();
 
 private:
 
