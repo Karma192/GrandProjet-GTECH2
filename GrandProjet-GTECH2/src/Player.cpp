@@ -11,13 +11,16 @@ Player::~Player()
 
 }
 
+void Player::Init() 
+{
+
+}
+
 void Player::Loop()
 {
     playerEndurance();
     playerRegenEndurance();
     ControllerMove();
-
-
 }
 
 void Player::Render()

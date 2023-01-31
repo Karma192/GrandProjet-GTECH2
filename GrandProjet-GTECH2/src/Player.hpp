@@ -14,6 +14,7 @@ public:
 	Player();
 	virtual ~Player();
 
+	virtual void Init()override;
 	virtual void Loop()override;
 	virtual void Render()override;
 

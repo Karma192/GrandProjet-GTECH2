@@ -9,13 +9,11 @@ class GameObject {
 public:
 	int id;
 
-	GameObject();
+	GameObject() { InitGameData(); Init(); }
 	~GameObject();
 
-	GameData gameData;
+	static GameData gameData;
 
-	// For initialize all game data
-	void InitGameData();
 	// Function Init() for construct after prepocessing
 	virtual void Init();
 	// Boucle du game object
@@ -26,5 +24,7 @@ public:
 	virtual void Render();
 
 private:
+	// Set game data
+	void InitGameData();
 
 };
