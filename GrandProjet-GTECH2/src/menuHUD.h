@@ -13,26 +13,14 @@ public:
 
 	menuHUD();
 	virtual ~menuHUD();
-  
-	void menuRender(sf::RenderWindow* win);
-	void menuSelection(sf::RenderWindow* win);
-	void menuTitle(sf::RenderWindow* win);
-	void menuTxt(sf::RenderWindow* win);
-	bool detectedClick();
-	void Volume(sf::RenderWindow* win);
-	void GoBack(sf::RenderWindow* win);
-	void ChangeResolution(sf::RenderWindow* win);
-	void Language(sf::RenderWindow* win);
+
+	virtual void Loop()override;
+	virtual void Render()override;
+
+
+private:
 	bool once = true;
 
-  virtual void Loop()override;
-  virtual void Render()override;
-
-  void menuSelection();
-  void menuTitle();
-  void menuTxt();
-  
-private:
 	float screenSizeX = 0;
 	float screenSizeY = 0;
 	int i = 0;
@@ -65,4 +53,14 @@ private:
 	std::vector <sf::Text> play;
 	sf::RectangleShape volume;
 	sf::Vector2i mousePos;
+
+	void menuSelection();
+	void menuTitle();
+	void menuTxt();
+	bool detectedClick();
+	void Volume();
+	void GoBack();
+	void ChangeResolution();
+	void Language();
+
 };

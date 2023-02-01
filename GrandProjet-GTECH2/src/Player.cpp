@@ -139,7 +139,7 @@ void Player::MovePlayer()
 }
 
 //Je test des trucs sur le Player, cel� sera supprim� (Etienne)
-void Player::PlayerTest(sf::RenderWindow* win)
-{
-    win->draw(playerSprite);
-}
+//void Player::PlayerTest(sf::RenderWindow* win)
+//{
+//    win->draw(playerSprite);
+//}

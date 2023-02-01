@@ -1,7 +1,7 @@
 #include "Menu.hpp"
 
 Menu::Menu() {
-	AddToScene(menu, 0);
+	AddToScene(menuhud, 0);
 }
 
 Menu::~Menu() {
@@ -27,7 +27,7 @@ void Menu::Render()
 		menuhud.Language(window);
 	}*/
   
-	menu.Render();
+	menuhud.Render();
 	//player->PlayerTest();
 	//enemies->EnemiesTest();
 	//collision.GetBounds();

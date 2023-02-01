@@ -67,12 +67,19 @@ void menuHUD::Loop()
 
 void menuHUD::Render() 
 {
-    win->draw(menuBckSprite);
+    gameData.window->draw(menuBckSprite);
+    menuSelection();
+    menuTitle();
+    menuTxt();
+    /*Volume();
+    GoBack();
+    ChangeResolution();
+    Language();*/
 }
 
 void menuHUD::menuSelection()
 {
-    oldScreenSize = win->getSize();
+    oldScreenSize = gameData.window->getSize();
     screenSizeX = float(oldScreenSize.x);
     screenSizeY = float(oldScreenSize.y);
 
@@ -85,7 +92,7 @@ void menuHUD::menuSelection()
 
     selectionBck.setOrigin(sf::Vector2f((selectionBck.getSize()) / 2.0f));
     selectionBck.setPosition(screenSizeX / 2.0f, screenSizeY / 2.0f);
-    win->draw(selectionBck);
+    gameData.window->draw(selectionBck);
 }
 
 void menuHUD::menuTitle()
@@ -98,11 +105,11 @@ void menuHUD::menuTitle()
     titleBounds = title.getLocalBounds();
 
     title.setPosition(screenSizeX / 2.0f - titleBounds.width / 2, 10);
-    win->draw(title);
+    gameData.window->draw(title);
 }
 
 //Text different Option
-void menuHUD::menuTxt(sf::RenderWindow* win)
+void menuHUD::menuTxt()
 {
     std::vector <sf::String> string;
     string = { "Play", "Option", "Quit" };
@@ -123,13 +130,13 @@ void menuHUD::menuTxt(sf::RenderWindow* win)
         playRect.setOrigin(x, y);
         playRect.setPosition(play[i].getPosition());
 
-        win->draw(playRect);
-        win->draw(play[i]);
+        gameData.window->draw(playRect);
+        gameData.window->draw(play[i]);
 
         play.push_back(playFirstChoice);
 
 
-        mousePos = sf::Mouse::getPosition(*win);
+        mousePos = sf::Mouse::getPosition(*gameData.window);
 
         //Detection selection + contain cursor mouse
         if (playBounds.contains(sf::Vector2f(mousePos.x , mousePos.y))) {
@@ -137,13 +144,13 @@ void menuHUD::menuTxt(sf::RenderWindow* win)
                 switch (i)
                 {
                 case 0:
-                    /* sm.SetActiveScene(1);*/
+                    SetActiveScene(1);
                     break;
                 case 1:
                     once = false;
                     break;
                 case 2:
-                    win->close();
+                    gameData.window->close();
                     break;
                 default:
                     break;
@@ -162,7 +169,7 @@ bool menuHUD::detectedClick() {
 }
 
 //The bar for the volume
-void menuHUD::Volume(sf::RenderWindow* win) {
+void menuHUD::Volume() {
     volumeTxt.setOrigin(volumeTxt.getGlobalBounds().width / 2, volumeTxt.getGlobalBounds().height / 2);
     volumeTxt.setPosition(screenSizeX / 2.0f, (selectionBck.getPosition().y / 1.5));
 
@@ -180,14 +187,14 @@ void menuHUD::Volume(sf::RenderWindow* win) {
     volumeTxtValue.setString(scaleFactorTxt);
     volumeTxtValue.setPosition(volume.getPosition().x + volume.getSize().x, volume.getPosition().y - volume.getSize().y /2);
     volumeTxtValue.setFont(font);
-    win->draw(volumeTxtValue);
-    win->draw(volumeTxt);
-    win->draw(volume);
+    gameData.window->draw(volumeTxtValue);
+    gameData.window->draw(volumeTxt);
+    gameData.window->draw(volume);
 }
 
 //Quit the option
-void menuHUD::GoBack(sf::RenderWindow* win) {
-    mousePos = sf::Mouse::getPosition(*win);
+void menuHUD::GoBack() {
+    mousePos = sf::Mouse::getPosition(*gameData.window);
     returnbutton.setPosition(selectionBck.getPosition().x - selectionBck.getSize().x / 2, selectionBck.getPosition().y - selectionBck.getSize().y / 2);
     returnGlobalPos = returnbutton.getGlobalBounds();
     if (returnGlobalPos.contains(sf::Vector2f(mousePos.x, mousePos.y))) {
@@ -195,38 +202,38 @@ void menuHUD::GoBack(sf::RenderWindow* win) {
             once = true;
         }
     }
-    win->draw(returnbutton);
+    gameData.window->draw(returnbutton);
 }
 
 
 //Swap the screen resolution
-void menuHUD::ChangeResolution(sf::RenderWindow* win) {
+void menuHUD::ChangeResolution() {
     screenTxt.setPosition(volume.getPosition().x, volume.getPosition().y + 50);
-    win->draw(screenTxt);
+    gameData.window->draw(screenTxt);
 
     screenResLow.setPosition(volume.getPosition().x + volume.getSize().x - screenResLow.getSize().x, volume.getPosition().y +50);
     buttonChangeRect = screenResLow.getGlobalBounds();
     if (buttonChangeRect.contains(sf::Vector2f(mousePos.x, mousePos.y))) {
         if (detectedClick() && screenResLow.getFillColor() == sf::Color::Red) {
-            win->create(sf::VideoMode(1600, 900), "Crusade Of The Abyss", sf::Style::Fullscreen);
+            gameData.window->create(sf::VideoMode(1600, 900), "Crusade Of The Abyss", sf::Style::Fullscreen);
             screenResLow.setFillColor(sf::Color::Blue);
         }
         else if (detectedClick() && screenResLow.getFillColor() == sf::Color::Blue) {
-            win->create(sf::VideoMode(1920, 1080), "Crusade Of The Abyss", sf::Style::Fullscreen);
+            gameData.window->create(sf::VideoMode(1920, 1080), "Crusade Of The Abyss", sf::Style::Fullscreen);
         }
     }
-    win->draw(screenResLow);
+    gameData.window->draw(screenResLow);
 }
 
 //Change the language
-void menuHUD::Language(sf::RenderWindow* win) {
+void menuHUD::Language() {
     languageOptionEN.setPosition(volume.getPosition().x + volume.getSize().x - languageOptionEN.getSize().x, volume.getPosition().y + 125);
 
     languageOptionFR.setPosition(volume.getPosition().x + volume.getSize().x - languageOptionEN.getSize().x * 2 - 10, volume.getPosition().y + 125);
 
     languageTxt.setPosition(volume.getPosition().x, volume.getPosition().y + 125);
 
-    win->draw(languageTxt);
-    win->draw(languageOptionEN);
-    win->draw(languageOptionFR);
+    gameData.window->draw(languageTxt);
+    gameData.window->draw(languageOptionEN);
+    gameData.window->draw(languageOptionFR);
 }

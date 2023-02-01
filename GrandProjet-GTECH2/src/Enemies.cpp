@@ -19,7 +19,7 @@ void Enemies::Render() {
 }
 
 //Je test des trucs sur le Enemies, celà sera supprimé (Etienne)
-void Enemies::EnemiesTest(sf::RenderWindow* win)
-{
-    win->draw(enemiesSprite);
-}
+//void Enemies::EnemiesTest(sf::RenderWindow* win)
+//{
+//    win->draw(enemiesSprite);
+//}
