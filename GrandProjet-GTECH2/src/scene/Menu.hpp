@@ -1,8 +1,5 @@
 #pragma once
 #include "Scene.hpp"
-#include "../Player.hpp"
-#include "../Collision.h"
-#include "../Enemies.hpp"
 #include "../menuHUD.h"
 
 
@@ -11,13 +8,10 @@ public:
 	Menu();
 	virtual ~Menu();
 
-	Collision collision;
+	menuHUD menuhud;
 
 	virtual void Loop()override;
 	virtual void Render()override;
 
 private:
-	Player* player;
-	menuHUD menu;
-	Enemies* enemies;
 };

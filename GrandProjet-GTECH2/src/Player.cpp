@@ -3,6 +3,9 @@
 Player::Player()
 {
     playerSprite.setPosition(0, 0);
+    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
+    playerSprite.setTexture(playerTexture);
+
     ControllerInput();
 }
 
@@ -135,15 +138,8 @@ void Player::MovePlayer()
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
 }
 
-//Je test des trucs sur le Player, cela sera supprimé (Etienne)
-//void Player::PlayerTest(sf::RenderWindow* win)
-//{
-//    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
-//    if (!playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png"))
-//    {
-//        std::cout << "y'a pas d'image" << std::endl;
-//    }
-//    playerSprite.setTexture(playerTexture);
-//    win->draw(playerSprite);
-//    std::cout << "player:" << playerSprite.getGlobalBounds().width << std::endl;
-//}
+//Je test des trucs sur le Player, cel� sera supprim� (Etienne)
+void Player::PlayerTest(sf::RenderWindow* win)
+{
+    win->draw(playerSprite);
+}
