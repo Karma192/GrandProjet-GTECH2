@@ -10,15 +10,15 @@ Enemies::~Enemies() {
 
 }
 
-void Enemies::EnemiesLoop() {
+void Enemies::Loop() {
 
 }
 
-void Enemies::EnemiesRender() {
+void Enemies::Render() {
 
 }
 
-//Je test des trucs sur le Enemies, celà sera supprimé (Etienne)
+//Je test des trucs sur le Enemies, celÃ  sera supprimÃ© (Etienne)
 void Enemies::EnemiesTest(sf::RenderWindow* win)
 {
     win->draw(enemiesSprite);

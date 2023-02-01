@@ -1,20 +1,20 @@
 #include "Menu.hpp"
 
 Menu::Menu() {
-
+	AddToScene(menu, 0);
 }
 
 Menu::~Menu() {
 
 }
 
-void Menu::MenuLoop(sf::Event* event) {
-	
+void Menu::Loop() {
+
 }
 
-void Menu::MenuRender(sf::RenderWindow* window) 
+void Menu::Render()
 {
-	menuhud.menuRender(window);
+	/*menuhud.menuRender(window);
 	menuhud.menuSelection(window);
 	menuhud.menuTitle(window);
 	if (menuhud.once == true) {
@@ -25,5 +25,10 @@ void Menu::MenuRender(sf::RenderWindow* window)
 		menuhud.GoBack(window);
 		menuhud.ChangeResolution(window);
 		menuhud.Language(window);
-	}
+	}*/
+  
+	menu.Render();
+	//player->PlayerTest();
+	//enemies->EnemiesTest();
+	//collision.GetBounds();
 }

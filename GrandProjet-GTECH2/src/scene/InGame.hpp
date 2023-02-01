@@ -2,13 +2,13 @@
 #include <iostream>
 #include "Scene.hpp"
 
-class InGame : public Scene {
+class InGame : public GameScene {
 public:
 	InGame();
 	virtual ~InGame();
 
-	void InGameLoop(sf::Event*);
-	void InGameRender(sf::RenderWindow*);
+	virtual void Loop()override;
+	virtual void Render()override;
 
 private:
 

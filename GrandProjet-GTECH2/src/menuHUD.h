@@ -4,14 +4,16 @@
 #include <SFML/Config.hpp>
 #include <vector>
 //#include "scene/SceneManager.hpp"
+#include "GameObject.hpp"
 
-class menuHUD
+class menuHUD : public GameObject
 {
 public:
 	//SceneManager sm;
 
 	menuHUD();
 	virtual ~menuHUD();
+  
 	void menuRender(sf::RenderWindow* win);
 	void menuSelection(sf::RenderWindow* win);
 	void menuTitle(sf::RenderWindow* win);
@@ -23,6 +25,13 @@ public:
 	void Language(sf::RenderWindow* win);
 	bool once = true;
 
+  virtual void Loop()override;
+  virtual void Render()override;
+
+  void menuSelection();
+  void menuTitle();
+  void menuTxt();
+  
 private:
 	float screenSizeX = 0;
 	float screenSizeY = 0;
@@ -57,4 +66,3 @@ private:
 	sf::RectangleShape volume;
 	sf::Vector2i mousePos;
 };
-

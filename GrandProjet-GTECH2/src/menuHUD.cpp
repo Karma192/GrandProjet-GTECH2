@@ -57,16 +57,20 @@ menuHUD::menuHUD()
 
 menuHUD::~menuHUD()
 {
+
 }
 
-//Background menu
-void menuHUD::menuRender(sf::RenderWindow* win) {
+void menuHUD::Loop() 
+{
 
+}
+
+void menuHUD::Render() 
+{
     win->draw(menuBckSprite);
 }
 
-//Background for Option
-void menuHUD::menuSelection(sf::RenderWindow* win)
+void menuHUD::menuSelection()
 {
     oldScreenSize = win->getSize();
     screenSizeX = float(oldScreenSize.x);
@@ -84,8 +88,7 @@ void menuHUD::menuSelection(sf::RenderWindow* win)
     win->draw(selectionBck);
 }
 
-//Title of the game
-void menuHUD::menuTitle(sf::RenderWindow* win)
+void menuHUD::menuTitle()
 {
     if (!this->heartless.loadFromFile("ressources/fonts/Heartless.ttf"))
     {

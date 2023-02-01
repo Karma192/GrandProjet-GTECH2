@@ -2,16 +2,16 @@
 #include "Scene.hpp"
 #include "../menuHUD.h"
 
-class Menu : public Scene {
+
+class Menu : public GameScene {
 public:
 	Menu();
 	virtual ~Menu();
 
 	menuHUD menuhud;
 
-	void MenuLoop(sf::Event*);
-	void MenuRender(sf::RenderWindow*);
-
+	virtual void Loop()override;
+	virtual void Render()override;
 
 private:
 };

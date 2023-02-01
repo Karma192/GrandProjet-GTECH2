@@ -1,9 +1,21 @@
+#pragma once
 #include <iostream>
+#include <SFML/Graphics.hpp>
+
+using namespace sf;
 
 struct player {
 	int gold, key;
 	float hp, resources, speed, baseSpeed, baseDmg, attackSpeed, speedProjectile, luck;
 };
+
+struct GameData {
+	int indexScene;
+	RenderWindow* window;
+	Event* event;
+};
+
+static GameData data;
 
 enum {
 	MENU = 0,
@@ -11,8 +23,9 @@ enum {
 	INGAME = 2,
 };
 
-enum {
-	TRIANGLE = 3,
-	DIAMOND = 4,
-	HEXAGON = 6,
-};
+// Function for get game's global data
+GameData GetGameData();
+// Function to call for change active scene
+void SetActiveScene(int);
+// Function for set the window and event
+void SetWindow(RenderWindow*, Event*);
