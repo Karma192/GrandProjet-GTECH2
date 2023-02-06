@@ -51,25 +51,33 @@ public:
 	int frame = 0;
 >>>>>>> Stashed changes
 
+	//Player HUD 
+	void playerEndurance();
+	void playerRegenEndurance();
+	void playerUI();
+
+
+	//Player controller
+	void ControllerInput();
+	void ControllerMove();
+	void MovePlayer();
+	void KeyboardMove();
+	void setCamera();
+
 	void setPv(int pv) { m_pv = pv; }
 	int getPv() const { return m_pv; }
 	void setAttack(int attack) { m_attack = attack; }
 	int getAttack() const { return m_attack; }
 
-	///Exemples d'applications des fonctions des PV/Attaque au dessus (Pandouille) ///
+	//Player attributes
+	int GetPlayerXPos();
+	int GetPlayerYPos();
 
-	/*player.setPv(100);
-	player.setAttack(20);
+	//Player attack
+	void PlayerAttack();
+	void PlayerBasicAttack();
 
-	int pv = player.getPv();
-	int attack = player.getAttack();
-
-	void takeDamage(int damage)
-	{
-		m_pv -= damage;
-		if (m_pv < 0) m_pv = 0;
-	}
-	*/
+	
 
 
 protected:
@@ -81,18 +89,10 @@ private:
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
 
-	//Player HUD 
-	void playerEndurance();
-	void playerRegenEndurance();
-	void playerUI();
-
-	void ControllerInput();
-
-	void ControllerMove();
-
-	void MovePlayer();
-
-	void setCamera();
+	//Test player attack 
+	sf::RectangleShape hitboxTest;
+	bool isActtk;
+	sf::Clock test;
 
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;

@@ -2,11 +2,8 @@
 
 Player::Player()
 {
-    playerSprite.setPosition(0, 0);
-    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
-    playerSprite.setTexture(playerTexture);
-
     ControllerInput();
+    
 }
 
 Player::~Player()
@@ -20,17 +17,23 @@ void Player::Loop()
     playerRegenEndurance();
     ControllerMove();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     setCamera();
 =======
     KeyboardMove();
 
+>>>>>>> Stashed changes
+=======
+    KeyboardMove();
+    setCamera();
+    PlayerAttack();
 >>>>>>> Stashed changes
 }
 
 void Player::Render()
 {
     playerUI();
-    //gameData.window->draw(enduranceBarBack);
+    gameData = GetGameData();
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);
     gameData.window->draw(playerUltiUI);
@@ -38,19 +41,20 @@ void Player::Render()
     gameData.window->draw(playerSecondSpell);
     gameData.window->draw(playerThirdSpell);
     gameData.window->draw(cube);
+    if (isActtk) gameData.window->draw(hitboxTest);
+    
 }
 
 void Player::playerEndurance()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cd_Endurance >= 2 && endurancePlayer > 0)
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
         endurancePlayer -= 0.1;
-        std::cout << "Il te reste " << endurancePlayer << "de point d'endurance" << std::endl;
         enduranceBar.setScale(endurancePlayer / 100, 1);
     }
     if (endurancePlayer <= 0 && sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
-        std::cout << "Tu peux plus courir" << std::endl;
+        //Ici le joueur ne peut plus courir 
     }
 }
 
@@ -60,7 +64,6 @@ void Player::playerRegenEndurance()
     {
         endurancePlayer += 0.1;
         enduranceBar.setScale(endurancePlayer / 100, 1);
-        std::cout << "REGEN ENDURANCE : " << endurancePlayer << std::endl;
     }
 
 }
@@ -71,10 +74,6 @@ void Player::playerUI()
     enduranceBar.setFillColor(sf::Color::Blue);
     sf::Vector2f enduranceBarV = gameData.window->mapPixelToCoords(sf::Vector2i(2, 830));
     enduranceBar.setPosition(enduranceBarV);
-
-    /*enduranceBarBack.setSize(sf::Vector2f(300.f, 25.f));
-    enduranceBarBack.setFillColor(sf::Color::Black);
-    enduranceBarBack.setPosition(2, 2);*/
 
     lifeBar.setSize(sf::Vector2f(300.f, 25.f));
     lifeBar.setFillColor(sf::Color::Green);
@@ -146,6 +145,29 @@ void Player::ControllerMove()
 }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+void Player::KeyboardMove()
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        cube.move(sf::Vector2f(0.f, -5));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        cube.move(sf::Vector2f(0.f, 5));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        cube.move(sf::Vector2f(-5, 0.f));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        cube.move(sf::Vector2f(5, 0.f));
+    }
+}
+
+>>>>>>> Stashed changes
 void Player::MovePlayer() 
 {
 =======
@@ -174,8 +196,49 @@ void Player::MovePlayer() {
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
 }
 
+<<<<<<< Updated upstream
 void Player::setCamera() {
+=======
+void Player::setCamera() 
+{
+    gameData = GetGameData();
+>>>>>>> Stashed changes
     /*view = gameData.window->getDefaultView();
     view.setCenter(cube.getPosition());
     gameData.window->setView(view);*/
+}
+
+int Player::GetPlayerXPos()
+{
+    return cube.getPosition().x;
+}
+
+int Player::GetPlayerYPos()
+{
+    return cube.getPosition().y;
+}
+
+
+
+void Player::PlayerAttack()
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    {
+        PlayerBasicAttack();
+    }
+
+}
+
+void Player::PlayerBasicAttack()
+{
+    isActtk = true;
+    hitboxTest.setSize(sf::Vector2f(30.f, 40.f));
+    hitboxTest.setFillColor(sf::Color::Blue);
+    hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos() - 5);
+    if (test.getElapsedTime().asSeconds() >= 2.f)
+    {
+        isActtk = false;
+    }
+ 
+    
 }
