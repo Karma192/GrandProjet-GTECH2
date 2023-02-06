@@ -35,4 +35,4 @@ void GameLoop(SceneManager sm)
     window.clear();
     sm.Update();
     window.display();
-}
+ }
