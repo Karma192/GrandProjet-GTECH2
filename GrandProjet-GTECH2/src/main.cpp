@@ -3,5 +3,7 @@
 
 int main()
 {
+    MapGenerator map;
+    map.genMap();
     Game();
 }
