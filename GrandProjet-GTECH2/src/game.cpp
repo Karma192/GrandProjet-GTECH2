@@ -15,7 +15,7 @@ void Game::GameLoop()
 {
     SetWindow(window, event);
     sm->SetSM(window, event);
-    window->setFramerateLimit(60);
+    window->setFramerateLimit(120);
 
     while (window->isOpen())
     {
@@ -37,10 +37,3 @@ void Game::GameLoop()
     }
 }
 
-// Game's Loop
-void GameLoop(SceneManager sm)
-{
-    window.clear();
-    sm.Update();
-    window.display();
- }
