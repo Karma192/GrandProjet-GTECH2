@@ -3,9 +3,6 @@
 Player::Player()
 {
     playerSprite.setPosition(0, 0);
-    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
-    playerSprite.setTexture(playerTexture);
-
     ControllerInput();
 }
 
@@ -25,6 +22,7 @@ void Player::Loop()
 void Player::Render()
 {
     playerUI();
+    animation.SpriteAnimation(64, 64, 4, gameData.window, "ressources/sprites/player/idle.png", playerSprite);
     //gameData.window->draw(enduranceBarBack);
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);
@@ -32,7 +30,6 @@ void Player::Render()
     gameData.window->draw(playerFirstSpell);
     gameData.window->draw(playerSecondSpell);
     gameData.window->draw(playerThirdSpell);
-    gameData.window->draw(cube);
 }
 
 void Player::playerEndurance()
@@ -107,9 +104,6 @@ void Player::playerUI()
 
 void  Player::ControllerInput()
 {
-    cube.setSize(sf::Vector2f(30.f, 30.f));
-    cube.setFillColor(sf::Color::Red);
-    cube.setPosition(sf::Vector2f(200, 200));
 }
 
 void Player::ControllerMove()
