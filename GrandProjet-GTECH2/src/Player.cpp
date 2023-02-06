@@ -15,7 +15,7 @@ void Player::Loop()
     playerEndurance();
     playerRegenEndurance();
     ControllerMove();
-    //KeyboardMove();
+    KeyboardMove();
 }
 
 void Player::Render()
