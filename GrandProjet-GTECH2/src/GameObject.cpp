@@ -3,9 +3,7 @@
 
 GameObject::GameObject() 
 {
-	srand(time(0));
-	id = rand();
-	gameData = GetGameData();
+	SetData();
 }
 
 GameObject::~GameObject() 
@@ -15,6 +13,7 @@ GameObject::~GameObject()
 
 void GameObject::Update() 
 {
+	gameData = GetGameData();
 	this->Loop();
 	this->Render();
 }
@@ -27,4 +26,11 @@ void GameObject::Loop()
 void GameObject::Render() 
 {
 
+}
+
+void GameObject::SetData()
+{
+	srand(time(0));
+	id = rand();
+	gameData = GetGameData();
 }

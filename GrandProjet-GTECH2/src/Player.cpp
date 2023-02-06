@@ -16,12 +16,14 @@ void Player::Loop()
     playerRegenEndurance();
     ControllerMove();
     KeyboardMove();
+    //setCamera();
 }
 
 void Player::Render()
 {
+    gameData = GetGameData();
     playerUI();
-    //win->draw(enduranceBarBack);
+    //gameData.window->draw(enduranceBarBack);
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);
     gameData.window->draw(playerUltiUI);
@@ -114,6 +116,7 @@ void Player::playerUI()
     playerThirdSpell.setOutlineThickness(5);
     playerThirdSpell.setOutlineColor(sf::Color::Green);
     playerThirdSpell.setPosition(260, 920);
+
 }
 
 void Player::ControllerInput()
@@ -154,4 +157,11 @@ void Player::ControllerMove()
 void Player::MovePlayer() 
 {
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
+}
+
+void Player::setCamera() {
+    gameData = GetGameData();
+    view = gameData.window->getDefaultView();
+    view.setCenter(cube.getPosition());
+    gameData.window->setView(view);
 }

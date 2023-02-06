@@ -67,14 +67,21 @@ void menuHUD::Loop()
 
 void menuHUD::Render() 
 {
+    gameData = GetGameData();
     gameData.window->draw(menuBckSprite);
     menuSelection();
     menuTitle();
-    menuTxt();
-    /*Volume();
-    GoBack();
-    ChangeResolution();
-    Language();*/
+    if (optionOn)
+    {
+        menuTxt();
+    }
+    else 
+    {
+        Volume();
+        GoBack();
+        ChangeResolution();
+        Language();
+    }
 }
 
 void menuHUD::menuSelection()
@@ -83,10 +90,10 @@ void menuHUD::menuSelection()
     screenSizeX = float(oldScreenSize.x);
     screenSizeY = float(oldScreenSize.y);
 
-    if (once) {
+    if (optionOn) {
         selectionBck.setSize(sf::Vector2f((40 * screenSizeX) / 100, 600));
     }
-    else if (!once) {
+    else if (!optionOn) {
         selectionBck.setSize(sf::Vector2f((30 * screenSizeX) / 100, 400));
     }
 
@@ -144,10 +151,10 @@ void menuHUD::menuTxt()
                 switch (i)
                 {
                 case 0:
-                    SetActiveScene(1);
+                    SetActiveScene(LOBBY);
                     break;
                 case 1:
-                    once = false;
+                    optionOn = false;
                     break;
                 case 2:
                     gameData.window->close();
@@ -199,7 +206,7 @@ void menuHUD::GoBack() {
     returnGlobalPos = returnbutton.getGlobalBounds();
     if (returnGlobalPos.contains(sf::Vector2f(mousePos.x, mousePos.y))) {
         if (detectedClick()) {
-            once = true;
+            optionOn = true;
         }
     }
     gameData.window->draw(returnbutton);

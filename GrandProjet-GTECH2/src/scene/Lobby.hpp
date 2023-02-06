@@ -16,4 +16,8 @@ private:
     Player p;
     Object object;
     PhysicsObject po;
+
+    void Background();
+    sf::Texture menuBackground;
+    sf::Sprite menuBckSprite;
 };

@@ -20,5 +20,6 @@ void Object::Loop()
 
 void Object::Render()
 {
+	gameData = GetGameData();
 	gameData.window->draw(randomPosObject);
 }

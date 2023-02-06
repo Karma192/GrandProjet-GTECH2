@@ -19,9 +19,14 @@ void PhysicsObject::Render()
 {
 }
 
+void PhysicsObject::SetPtr(sf::RectangleShape* rect)
+{
+	cubePtr = rect;
+}
+
 void PhysicsObject::SetPlayerBounds()
 {
-	Object1HurtBox = cube.getGlobalBounds();
+	Object1HurtBox = cubePtr->getGlobalBounds();
 }
 
 void PhysicsObject::SetObjectBounds()
@@ -31,9 +36,6 @@ void PhysicsObject::SetObjectBounds()
 
 void PhysicsObject::SetBoundingBox()
 {
-	std::cout << "1: " << Object1HurtBox.left << std::endl;
-	std::cout << "2: " << Object2HurtBox.left << std::endl;
-
 	if (Object1HurtBox.intersects(Object2HurtBox)) {
 		std::cout << "test";
 	}

@@ -19,5 +19,7 @@ public:
 	sf::RectangleShape randomPosObject;
 
 private:
+
+
 };
 

@@ -6,7 +6,7 @@
 #include "Object.hpp"
 #include "GameObject.hpp"
 
-class PhysicsObject : public Player, public Object, public GameObject
+class PhysicsObject : public Object, public GameObject
 {
 public:
 	PhysicsObject();
@@ -15,8 +15,10 @@ public:
 	virtual void Loop()override;
 	virtual void Render()override;
 	void SetBoundingBox();
+	void SetPtr(sf::RectangleShape*);
 
 private:
+	sf::RectangleShape* cubePtr;
 	sf::FloatRect Object1HurtBox;
 	sf::FloatRect Object2HurtBox;
 	void SetPlayerBounds();
