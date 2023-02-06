@@ -19,7 +19,7 @@ public:
 
 
 private:
-	bool once = true;
+	bool optionOn = true;
 
 	float screenSizeX = 0;
 	float screenSizeY = 0;

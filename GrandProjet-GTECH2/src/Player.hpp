@@ -50,7 +50,7 @@ private:
 	//Player HUD 
 	void playerEndurance();
 	void playerRegenEndurance();
-	void playerUI(sf::RenderWindow* win);
+	void playerUI();
 
 	void ControllerInput();
 
@@ -58,7 +58,7 @@ private:
 
 	void MovePlayer();
 
-	void setCamera(sf::RenderWindow* win);
+	void setCamera();
 
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;
