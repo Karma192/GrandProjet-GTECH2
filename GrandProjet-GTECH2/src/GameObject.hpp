@@ -22,5 +22,6 @@ public:
 	virtual void Render();
 
 private:
+	void SetData();
 
 };
