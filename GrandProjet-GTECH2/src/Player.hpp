@@ -18,6 +18,7 @@ public:
 	virtual void Render()override;
 
 	void setPv(int pv) { m_pv = pv; }
+	sf::RectangleShape cube;
 	int getPv() const { return m_pv; }
 	void setAttack(int attack) { m_attack = attack; }
 	int getAttack() const { return m_attack; }
@@ -49,6 +50,7 @@ private:
 
 	//Player HUD 
 	void playerEndurance();
+	void KeyboardMove();
 	void playerRegenEndurance();
 	void playerUI();
 
@@ -70,7 +72,7 @@ private:
 	sf::CircleShape playerThirdSpell;
 
 	//test
-	sf::RectangleShape cube;
+
 	sf::Vector2f moveSpeed;
 
 	int frame = 0;

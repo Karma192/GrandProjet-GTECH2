@@ -4,9 +4,8 @@
 #include <time.h>
 #include <SFML/Graphics.hpp>
 #include "GameMaster.hpp"
-#include "PhysicsObject.hpp"
 
-class GameObject : PhysicsObject {
+class GameObject {
 public:
 	int id;
 

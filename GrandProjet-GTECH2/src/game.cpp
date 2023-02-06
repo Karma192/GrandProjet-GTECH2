@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-sf::RenderWindow window(sf::VideoMode(1920, 1080), "Crusade Of The Abyss", sf::Style::Titlebar);
+sf::RenderWindow window(sf::VideoMode(1920, 1080), "Crusade Of The Abyss", sf::Style::Default);
 sf::Event event;
 
 

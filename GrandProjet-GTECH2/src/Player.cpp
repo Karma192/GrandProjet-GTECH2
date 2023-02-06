@@ -2,10 +2,6 @@
 
 Player::Player()
 {
-    playerSprite.setPosition(0, 0);
-    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
-    playerSprite.setTexture(playerTexture);
-
     ControllerInput();
 }
 
@@ -19,6 +15,7 @@ void Player::Loop()
     playerEndurance();
     playerRegenEndurance();
     ControllerMove();
+    //KeyboardMove();
 }
 
 void Player::Render()
@@ -46,6 +43,27 @@ void Player::playerEndurance()
     {
         std::cout << "Tu peux plus courir" << std::endl;
     }
+}
+
+void Player::KeyboardMove()
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        cube.move(sf::Vector2f(0.f, -1));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        cube.move(sf::Vector2f(0.f, 1));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        cube.move(sf::Vector2f(-1, 0.f));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        cube.move(sf::Vector2f(1, 0.f));
+    }
+    cube.getPosition().x;
 }
 
 void Player::playerRegenEndurance()
@@ -98,7 +116,7 @@ void Player::playerUI()
     playerThirdSpell.setPosition(260, 920);
 }
 
-void  Player::ControllerInput()
+void Player::ControllerInput()
 {
     cube.setSize(sf::Vector2f(30.f, 30.f));
     cube.setFillColor(sf::Color::Red);
@@ -137,9 +155,3 @@ void Player::MovePlayer()
 {
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
 }
-
-//Je test des trucs sur le Player, cel� sera supprim� (Etienne)
-//void Player::PlayerTest(sf::RenderWindow* win)
-//{
-//    win->draw(playerSprite);
-//}

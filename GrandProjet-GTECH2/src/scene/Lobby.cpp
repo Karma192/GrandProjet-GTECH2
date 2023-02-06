@@ -10,8 +10,11 @@ Lobby::~Lobby() {
 
 void Lobby::Loop() {
     p.Loop();
+    object.Loop();
+    po.Loop();
 }
 
 void Lobby::Render() {
     p.Render();
+    object.Render();
 }
