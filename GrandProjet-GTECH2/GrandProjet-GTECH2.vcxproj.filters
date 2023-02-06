@@ -51,9 +51,6 @@
     <ClCompile Include="src\scene\Scene.cpp">
       <Filter>Fichiers sources\scene</Filter>
     </ClCompile>
-    <ClCompile Include="src\Button.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="src\scene\SceneManager.cpp">
       <Filter>Fichiers sources\scene</Filter>
     </ClCompile>
@@ -95,9 +92,6 @@
     <ClInclude Include="src\scene\Scene.hpp">
       <Filter>Fichiers d%27en-tête\scene</Filter>
     </ClInclude>
-    <ClInclude Include="src\Button.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="src\scene\SceneManager.hpp">
       <Filter>Fichiers d%27en-tête\scene</Filter>
     </ClInclude>
@@ -111,9 +105,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\GameObject.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="example.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

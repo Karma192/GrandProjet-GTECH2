@@ -42,12 +42,12 @@ void Player::playerEndurance()
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cd_Endurance >= 2 && endurancePlayer > 0)
 	{
 		endurancePlayer -= 0.1;
-		std::cout << "Il te reste " << endurancePlayer << "de point d'endurance" << std::endl;
+		//std::cout << "Il te reste " << endurancePlayer << "de point d'endurance" << std::endl;
 		enduranceBar.setScale(endurancePlayer / 100, 1);
 	}
 	if (endurancePlayer <= 0 && sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 	{
-		std::cout << "Tu peux plus courir" << std::endl;
+		//std::cout << "Tu peux plus courir" << std::endl;
 	}
 }
 
@@ -57,7 +57,7 @@ void Player::playerRegenEndurance()
 	{
 		endurancePlayer += 0.1;
 		enduranceBar.setScale(endurancePlayer / 100, 1);
-		std::cout << "REGEN ENDURANCE : " << endurancePlayer << std::endl;
+		//std::cout << "REGEN ENDURANCE : " << endurancePlayer << std::endl;
 	}
 
 }
@@ -117,40 +117,36 @@ void  Player::ControllerInput()
 
 void Player::ControllerMove()
 {
-	float deadZone = 20.f;
+	float deadZone = 5.f;
 	moveSpeed.x = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
 	moveSpeed.y = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
+	
 
-
-	if (moveSpeed.x < -deadZone)
+	if (moveSpeed.x > deadZone || moveSpeed.y > deadZone || moveSpeed.x < -deadZone || moveSpeed.y < -deadZone)
 	{
-		sf::Joystick::update();
 		MovePlayer();
 	}
-	else if (moveSpeed.x > deadZone)
-	{
-		sf::Joystick::update();
-		MovePlayer();
-	}
-	else if (moveSpeed.y < -deadZone)
-	{
-		sf::Joystick::update();
-		MovePlayer();
-	}
-	else if (moveSpeed.x > deadZone)
-	{
-		sf::Joystick::update();
-		MovePlayer();
-	}
+	//else if (moveSpeed.x > deadZone)
+	//{
+	//	sf::Joystick::update();
+	//	MovePlayer();
+	//}
+	//else if (moveSpeed.y < -deadZone)
+	//{
+	//	sf::Joystick::update();
+	//	MovePlayer();
+	//}
+	//else if (moveSpeed.x > deadZone)
+	//{
+	//	sf::Joystick::update();
+	//	MovePlayer();
+	//}
 }
 
 void Player::MovePlayer()
 
 {
-	printf("%f : %f\n", cube.getPosition().x, cube.getPosition().y);
-	cube.move(moveSpeed.x, moveSpeed.y);
-	printf("%f : %f\n", cube.getPosition().x, cube.getPosition().y);
-	cube.setPosition(cube.getPosition().x, cube.getPosition().y);
+	cube.move(moveSpeed.x /4, moveSpeed.y/4);
 
 }
 
@@ -165,18 +161,18 @@ void Player::KeyboardMove()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		cube.move(sf::Vector2f(0.f, -10));
+		cube.move(sf::Vector2f(0.f, -50));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		cube.move(sf::Vector2f(0.f, 10));
+		cube.move(sf::Vector2f(0.f, 50));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		cube.move(sf::Vector2f(-10, 0.f));
+		cube.move(sf::Vector2f(-50, 0.f));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		cube.move(sf::Vector2f(10, 0.f));
+		cube.move(sf::Vector2f(50, 0.f));
 	}
 }
