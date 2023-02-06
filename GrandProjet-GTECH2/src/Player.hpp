@@ -14,8 +14,42 @@ public:
 	Player();
 	virtual ~Player();
 
+<<<<<<< Updated upstream
 	virtual void Loop()override;
 	virtual void Render()override;
+=======
+	virtual void Loop(sf::Event*)override;
+	virtual void Render(sf::RenderWindow* window)override;
+
+	//Player HUD 
+
+	void playerEndurance();
+	void playerRegenEndurance();
+	void playerUI();
+
+	void ControllerInput();
+	void KeyboardMove();
+	void ControllerMove();
+
+	void MovePlayer();
+
+	//rectangle pour endurance + vie
+	sf::RectangleShape enduranceBar;
+	sf::RectangleShape enduranceBarBack;
+	sf::RectangleShape lifeBar;
+
+	//cercle pour ulti + spell
+	sf::CircleShape playerUltiUI;
+	sf::CircleShape playerFirstSpell;
+	sf::CircleShape playerSecondSpell;
+	sf::CircleShape playerThirdSpell;
+
+	//test
+	sf::RectangleShape cube;
+	sf::Vector2f moveSpeed;
+
+	int frame = 0;
+>>>>>>> Stashed changes
 
 	void setPv(int pv) { m_pv = pv; }
 	int getPv() const { return m_pv; }

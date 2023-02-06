@@ -19,7 +19,12 @@ void Player::Loop()
     playerEndurance();
     playerRegenEndurance();
     ControllerMove();
+<<<<<<< Updated upstream
     setCamera();
+=======
+    KeyboardMove();
+
+>>>>>>> Stashed changes
 }
 
 void Player::Render()
@@ -140,8 +145,32 @@ void Player::ControllerMove()
     }
 }
 
+<<<<<<< Updated upstream
 void Player::MovePlayer() 
 {
+=======
+void Player::KeyboardMove()
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        cube.move(sf::Vector2f(0.f, -1));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        cube.move(sf::Vector2f(0.f, 1));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        cube.move(sf::Vector2f(-1, 0.f));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        cube.move(sf::Vector2f(1, 0.f));
+    }
+}
+
+void Player::MovePlayer() {
+>>>>>>> Stashed changes
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
 }
 
