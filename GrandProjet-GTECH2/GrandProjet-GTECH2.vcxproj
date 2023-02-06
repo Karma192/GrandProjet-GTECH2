@@ -113,7 +113,7 @@
       <AdditionalIncludeDirectories>C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\agrandpaul\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>C:\dev\GrandProjet-GTECH2\SFML-2.5.1\include;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories>F:\SFML-2.5.1\include;C:\dev\GrandProjet-GTECH2\SFML-2.5.1\include;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\agouveia\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalIncludeDirectories>F:\SFML-2.5.1\include;C:\dev\GrandProjet-GTECH2\SFML-2.5.1\include;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\agouveia\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\ebertrand\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>F:\SFML-2.5.1\include;C:\dev\GrandProjet-GTECH2\SFML-2.5.1\include;D:\projet commun\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\etien\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\Le Karma\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\agouveia\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\ebertrand\source\repos\GrandProjet-GTECH2\SFML-2.5.1\include;C:\Users\agrandpaul\Documents\GitHub\GrandProjet-GTECH2\tmxlite-master\tmxlite\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -149,6 +149,7 @@
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MapGenerator.cpp" />
+    <ClCompile Include="src\MapTest.cpp" />
     <ClCompile Include="src\menuHUD.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Collision.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="src\GameMaster.hpp" />
     <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\MapGenerator.hpp" />
+    <ClInclude Include="src\MapTest.hpp" />
     <ClInclude Include="src\menuHUD.h" />
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\Collision.h" />
@@ -173,6 +175,7 @@
     <ClInclude Include="src\scene\Menu.hpp" />
     <ClInclude Include="src\scene\Scene.hpp" />
     <ClInclude Include="src\scene\SceneManager.hpp" />
+    <ClInclude Include="src\SFMLOrthogonalLayer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ressources\ICON.png" />
@@ -184,6 +187,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ressources\map\village\village.tmx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
