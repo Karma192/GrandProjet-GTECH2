@@ -155,9 +155,10 @@ void Player::MovePlayer()
 }
 
 void Player::setCamera() {
-	/*view = gameData.window->getDefaultView();
-	view.setCenter(cube.getPosition());
-	gameData.window->setView(view);*/
+    gameData = GetGameData();
+    view = gameData.window->getDefaultView();
+    view.setCenter(cube.getPosition());
+    gameData.window->setView(view);
 }
 
 void Player::KeyboardMove()

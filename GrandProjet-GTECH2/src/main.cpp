@@ -1,7 +1,9 @@
 #include "scene/Scene.hpp"
 #include "Game.hpp"
 
+Game* game = new Game;
+
 int main()
 {
-    Game();
+    game->GameLoop();
 }
