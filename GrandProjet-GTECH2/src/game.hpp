@@ -2,4 +2,4 @@
 #include "scene/SceneManager.hpp"
 
 void Game();
-void GameLoop(SceneManager sm);
+void GameLoop(SceneManager);

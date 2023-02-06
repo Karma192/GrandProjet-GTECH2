@@ -26,7 +26,8 @@ void SceneManager::Update()
 // Function for switch between all scenes
 void SceneManager::SwitchScene() 
 {
-	switch (smData.indexScene) 
+	smData = GetGameData();
+	switch (smData.indexScene)
 	{
 	case MENU:
 		menu.Update();

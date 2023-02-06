@@ -15,6 +15,7 @@ GameObject::~GameObject()
 
 void GameObject::Update() 
 {
+	gameData = GetGameData();
 	this->Loop();
 	this->Render();
 }

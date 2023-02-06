@@ -58,6 +58,8 @@ private:
 
 	void MovePlayer();
 
+	void setCamera();
+
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;
 	sf::RectangleShape enduranceBarBack;
@@ -72,6 +74,7 @@ private:
 	//test
 	sf::RectangleShape cube;
 	sf::Vector2f moveSpeed;
+	sf::View view;
 
 	int frame = 0;
 

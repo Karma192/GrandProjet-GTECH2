@@ -12,4 +12,8 @@ public:
 
 private:
     Player p;
+
+    void Background();
+    sf::Texture menuBackground;
+    sf::Sprite menuBckSprite;
 };

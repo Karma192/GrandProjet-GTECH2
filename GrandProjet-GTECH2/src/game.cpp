@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-sf::RenderWindow window(sf::VideoMode(1920, 1080), "Crusade Of The Abyss", sf::Style::Fullscreen);
+sf::RenderWindow window(sf::VideoMode(1920, 1080), "Crusade Of The Abyss", sf::Style::Titlebar);
 sf::Event event;
 
 
@@ -17,8 +17,9 @@ void Game()
 
         while (window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+            if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) {
                 window.close();
+            }
 
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
                sm.smData = GetGameData();
