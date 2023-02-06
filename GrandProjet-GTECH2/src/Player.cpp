@@ -19,12 +19,13 @@ void Player::Loop()
     playerEndurance();
     playerRegenEndurance();
     ControllerMove();
+    setCamera(gameData.window);
 }
 
 void Player::Render()
 {
-    playerUI();
-    //win->draw(enduranceBarBack);
+    playerUI(win);
+    //gameData.window->draw(enduranceBarBack);
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);
     gameData.window->draw(playerUltiUI);
@@ -59,11 +60,12 @@ void Player::playerRegenEndurance()
 
 }
 
-void Player::playerUI()
+void Player::playerUI(sf::RenderWindow* win)
 {
     enduranceBar.setSize(sf::Vector2f(300.f, 25.f));
     enduranceBar.setFillColor(sf::Color::Blue);
-    enduranceBar.setPosition(2, 830);
+    sf::Vector2f enduranceBarV = win->mapPixelToCoords(sf::Vector2i(2, 830));
+    enduranceBar.setPosition(enduranceBarV);
 
     /*enduranceBarBack.setSize(sf::Vector2f(300.f, 25.f));
     enduranceBarBack.setFillColor(sf::Color::Black);
@@ -71,31 +73,36 @@ void Player::playerUI()
 
     lifeBar.setSize(sf::Vector2f(300.f, 25.f));
     lifeBar.setFillColor(sf::Color::Green);
-    lifeBar.setPosition(2, 800);
+    sf::Vector2f lifeBarV = win->mapPixelToCoords(sf::Vector2i(2, 800));
+    lifeBar.setPosition(lifeBarV);
 
     playerUltiUI.setRadius(40);
     playerUltiUI.setFillColor(sf::Color::Transparent);
     playerUltiUI.setOutlineThickness(5);
     playerUltiUI.setOutlineColor(sf::Color::Yellow);
-    playerUltiUI.setPosition(30, 880);
+    sf::Vector2f playerUltiUIV = win->mapPixelToCoords(sf::Vector2i(30,880));
+    playerUltiUI.setPosition(playerUltiUIV);
 
     playerFirstSpell.setRadius(20);
     playerFirstSpell.setFillColor(sf::Color::Transparent);
     playerFirstSpell.setOutlineThickness(5);
     playerFirstSpell.setOutlineColor(sf::Color::Green);
-    playerFirstSpell.setPosition(140, 920);
+    sf::Vector2f PlayerFirstSpellV = win->mapPixelToCoords(sf::Vector2i(140, 920));
+    playerFirstSpell.setPosition(PlayerFirstSpellV);
 
     playerSecondSpell.setRadius(20);
     playerSecondSpell.setFillColor(sf::Color::Transparent);
     playerSecondSpell.setOutlineThickness(5);
     playerSecondSpell.setOutlineColor(sf::Color::Green);
-    playerSecondSpell.setPosition(200, 920);
+    sf::Vector2f playerSecondSpellV = win->mapPixelToCoords(sf::Vector2i(200, 920));
+    playerSecondSpell.setPosition(playerSecondSpellV);
 
     playerThirdSpell.setRadius(20);
     playerThirdSpell.setFillColor(sf::Color::Transparent);
     playerThirdSpell.setOutlineThickness(5);
     playerThirdSpell.setOutlineColor(sf::Color::Green);
-    playerThirdSpell.setPosition(260, 920);
+    sf::Vector2f playerThirdSpellV = win->mapPixelToCoords(sf::Vector2i(260, 920));
+    playerThirdSpell.setPosition(playerThirdSpellV);
 }
 
 void  Player::ControllerInput()
@@ -138,8 +145,8 @@ void Player::MovePlayer()
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
 }
 
-//Je test des trucs sur le Player, cel� sera supprim� (Etienne)
-//void Player::PlayerTest(sf::RenderWindow* win)
-//{
-//    win->draw(playerSprite);
-//}
+void Player::setCamera(sf::RenderWindow* win) {
+    view = win->getDefaultView();
+    view.setCenter(cube.getPosition());
+    win->setView(view);
+}
