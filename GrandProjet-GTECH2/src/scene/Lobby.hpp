@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.hpp"
 #include "../Player.hpp"
+#include "../Enemies.hpp"
 
 class Lobby : public GameScene {
 public:
@@ -12,6 +13,7 @@ public:
 
 private:
     Player p;
+    Enemies e;
 
     void Background();
     sf::Texture menuBackground;

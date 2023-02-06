@@ -10,10 +10,12 @@ Lobby::~Lobby() {
 
 void Lobby::Loop() {
     p.Loop();
+    e.Loop();
 }
 
 void Lobby::Render() {
-    Background();
+    //Background();
+    p.Render();
     p.Render();
 }
 

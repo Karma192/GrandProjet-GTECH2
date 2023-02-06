@@ -37,6 +37,10 @@ public:
 	}
 	*/
 
+	//test
+	sf::RectangleShape cube;
+	sf::Vector2f moveSpeed;
+	sf::View view;
 
 protected:
 	float endurancePlayer = 100;
@@ -58,6 +62,8 @@ private:
 
 	void MovePlayer();
 
+	void KeyboardMove();
+
 	void setCamera();
 
 	//rectangle pour endurance + vie
@@ -71,10 +77,7 @@ private:
 	sf::CircleShape playerSecondSpell;
 	sf::CircleShape playerThirdSpell;
 
-	//test
-	sf::RectangleShape cube;
-	sf::Vector2f moveSpeed;
-	sf::View view;
+	
 
 	int frame = 0;
 

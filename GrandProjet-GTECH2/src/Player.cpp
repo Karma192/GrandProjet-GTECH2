@@ -2,9 +2,9 @@
 
 Player::Player()
 {
-    playerSprite.setPosition(0, 0);
-    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
-    playerSprite.setTexture(playerTexture);
+    //playerSprite.setPosition(0, 0);
+    //playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
+    //playerSprite.setTexture(playerTexture);
 
     ControllerInput();
 }
@@ -20,6 +20,7 @@ void Player::Loop()
     playerRegenEndurance();
     ControllerMove();
     setCamera();
+    KeyboardMove();
 }
 
 void Player::Render()
@@ -143,6 +144,26 @@ void Player::ControllerMove()
 void Player::MovePlayer() 
 {
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
+}
+
+void Player::KeyboardMove()
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        cube.move(sf::Vector2f(0.f, -1));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        cube.move(sf::Vector2f(0.f, 1));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        cube.move(sf::Vector2f(-1, 0.f));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        cube.move(sf::Vector2f(1, 0.f));
+    }
 }
 
 void Player::setCamera() {
