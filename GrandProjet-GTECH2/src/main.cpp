@@ -1,5 +1,5 @@
+#include "scene/Scene.hpp"
 #include "Game.hpp"
-#include "MapGenerator.hpp"
 
 int main()
 {

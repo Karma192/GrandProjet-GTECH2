@@ -8,7 +8,13 @@ MapGenerator::~MapGenerator() {
 
 }
 
+void MapGenerator::Loop() {
+	genMap();
+}
 
+void MapGenerator::Render() {
+
+}
 
 void MapGenerator::attributePlace() {
 	//int Posx, Posy;

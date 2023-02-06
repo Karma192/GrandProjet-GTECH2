@@ -1,25 +1,34 @@
 #include "Menu.hpp"
 
 Menu::Menu() {
-	player = new Player;
-	enemies = new Enemies();
+	AddToScene(menuhud, 0);
 }
 
 Menu::~Menu() {
 
 }
 
-void Menu::MenuLoop(sf::Event* event) {
+void Menu::Loop() {
 
 }
 
-void Menu::MenuRender(sf::RenderWindow* window)
+void Menu::Render()
 {
-	menu.menuRender(window);
-	menu.menuSelection(window);
-	menu.menuTitle(window);
-	player->PlayerRender(window);
-	//player->PlayerTest(window);
-	//enemies->EnemiesTest(window);
+	/*menuhud.menuRender(window);
+	menuhud.menuSelection(window);
+	menuhud.menuTitle(window);
+	if (menuhud.once == true) {
+		menuhud.menuTxt(window);
+	}
+	else {
+		menuhud.Volume(window);
+		menuhud.GoBack(window);
+		menuhud.ChangeResolution(window);
+		menuhud.Language(window);
+	}*/
+  
+	menuhud.Render();
+	//player->PlayerTest();
+	//enemies->EnemiesTest();
 	//collision.GetBounds();
 }
