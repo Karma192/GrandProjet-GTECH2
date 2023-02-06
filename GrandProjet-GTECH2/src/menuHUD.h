@@ -2,28 +2,65 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
+#include <vector>
+//#include "scene/SceneManager.hpp"
+#include "GameObject.hpp"
 
-class menuHUD
+class menuHUD : public GameObject
 {
 public:
+	//SceneManager sm;
+
 	menuHUD();
 	virtual ~menuHUD();
-	void menuRender(sf::RenderWindow* win);
-	void menuSelection(sf::RenderWindow* win);
-	void menuTitle(sf::RenderWindow* win);
-	void menuTxt();
+
+	virtual void Loop()override;
+	virtual void Render()override;
+
 
 private:
-	float screenSizeX;
-	float screenSizeY;
+	bool once = true;
+
+	float screenSizeX = 0;
+	float screenSizeY = 0;
+	int i = 0;
+	float newVol = 100;
 
 	sf::Texture menuBackground;
 	sf::Sprite menuBckSprite;
 	sf::RectangleShape selectionBck;
 	sf::Vector2u oldScreenSize;
-	sf::Font fontTitle;
+	sf::Font heartless;
+	sf::Font Antique;
 	sf::Text title;
-	sf::Text credit;
-	sf::Text names;
-};
+	sf::Text screenTxt;
+	sf::Text volumeTxt;
+	sf::Text volumeTxtValue;
+	sf::Text playFirstChoice;
+	sf::Text options;
+	sf::Text languageTxt;
 
+	sf::RectangleShape languageOptionEN;
+	sf::RectangleShape languageOptionFR;
+	sf::FloatRect titleBounds;
+	sf::FloatRect playBounds;
+	sf::FloatRect returnGlobalPos;
+	sf::FloatRect buttonChangeRect;
+	sf::RectangleShape playRect;
+	sf::RectangleShape returnbutton;
+	sf::RectangleShape screenResLow;
+	sf::Font font;
+	std::vector <sf::Text> play;
+	sf::RectangleShape volume;
+	sf::Vector2i mousePos;
+
+	void menuSelection();
+	void menuTitle();
+	void menuTxt();
+	bool detectedClick();
+	void Volume();
+	void GoBack();
+	void ChangeResolution();
+	void Language();
+
+};

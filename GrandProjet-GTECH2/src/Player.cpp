@@ -1,40 +1,42 @@
-#include "Player.hpp"
+ï»¿#include "Player.hpp"
 
 Player::Player()
 {
     playerSprite.setPosition(0, 0);
+    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
+    playerSprite.setTexture(playerTexture);
+
     ControllerInput();
 }
 
-Player::~Player() 
+Player::~Player()
 {
 
 }
 
-void Player::PlayerLoop() 
+void Player::Loop()
 {
     playerEndurance();
     playerRegenEndurance();
     ControllerMove();
+    setCamera(gameData.window);
 }
 
-void Player::PlayerRender(sf::RenderWindow* win)
+void Player::Render()
 {
     playerUI(win);
-    //win->draw(enduranceBarBack);
-    win->draw(enduranceBar);
-    win->draw(lifeBar);
-    win->draw(playerUltiUI);
-    win->draw(playerFirstSpell);
-    win->draw(playerSecondSpell);
-    win->draw(playerThirdSpell);
-    win->draw(cube);
-    setCamera(win);
+    //gameData.window->draw(enduranceBarBack);
+    gameData.window->draw(enduranceBar);
+    gameData.window->draw(lifeBar);
+    gameData.window->draw(playerUltiUI);
+    gameData.window->draw(playerFirstSpell);
+    gameData.window->draw(playerSecondSpell);
+    gameData.window->draw(playerThirdSpell);
+    gameData.window->draw(cube);
 }
 
 void Player::playerEndurance()
 {
-
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cd_Endurance >= 2 && endurancePlayer > 0)
     {
         endurancePlayer -= 0.1;
@@ -45,13 +47,10 @@ void Player::playerEndurance()
     {
         std::cout << "Tu peux plus courir" << std::endl;
     }
-
-
 }
 
 void Player::playerRegenEndurance()
 {
-    
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && endurancePlayer <= 100)
     {
         endurancePlayer += 0.1;
@@ -141,7 +140,8 @@ void Player::ControllerMove()
     }
 }
 
-void Player::MovePlayer() {
+void Player::MovePlayer() 
+{
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
 }
 
@@ -150,16 +150,3 @@ void Player::setCamera(sf::RenderWindow* win) {
     view.setCenter(cube.getPosition());
     win->setView(view);
 }
-
-//Je test des trucs sur le Player, celà sera supprimé (Etienne)
-//void Player::PlayerTest(sf::RenderWindow* win)
-//{
-//    playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
-//    if (!playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png"))
-//    {
-//        std::cout << "y'a pas d'image" << std::endl;
-//    }
-//    playerSprite.setTexture(playerTexture);
-//    win->draw(playerSprite);
-//    std::cout << "player:" << playerSprite.getGlobalBounds().width << std::endl;
-//}

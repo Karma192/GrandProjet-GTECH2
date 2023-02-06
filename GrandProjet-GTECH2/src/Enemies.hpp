@@ -1,18 +1,20 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "GameObject.hpp"
 
-class Enemies {
+class Enemies : public GameObject
+{
 public:
 	Enemies();
 	~Enemies();
-	void EnemiesLoop();
-	void EnemiesRender();
-	void EnemiesTest(sf::RenderWindow* window);
+	virtual void Loop()override;
+	virtual void Render()override;
+
+private:
+	void EnemiesTest();
 
 	sf::Texture enemiesTexture;
 	sf::Sprite enemiesSprite;
-
-private:
 
 };

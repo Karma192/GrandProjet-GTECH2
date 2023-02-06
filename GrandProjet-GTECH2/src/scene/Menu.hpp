@@ -1,23 +1,17 @@
 #pragma once
 #include "Scene.hpp"
-#include "../Player.hpp"
-#include "../Collision.h"
-#include "../Enemies.hpp"
 #include "../menuHUD.h"
 
-class Menu : public Scene {
+
+class Menu : public GameScene {
 public:
 	Menu();
 	virtual ~Menu();
 
-	Collision collision;
+	menuHUD menuhud;
 
-	void MenuLoop(sf::Event*);
-	void MenuRender(sf::RenderWindow*);
-
+	virtual void Loop()override;
+	virtual void Render()override;
 
 private:
-	Player* player;
-	menuHUD menu;
-	Enemies* enemies;
 };

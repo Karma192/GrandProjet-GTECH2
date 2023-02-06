@@ -2,14 +2,14 @@
 #include "Scene.hpp"
 #include "../Player.hpp"
 
-class Lobby : public Scene {
+class Lobby : public GameScene {
 public:
-	Lobby();
-	virtual ~Lobby();
+    Lobby();
+    virtual ~Lobby();
 
-	void LobbyLoop(sf::Event*);
-	void LobbyRender(sf::RenderWindow*);
+    virtual void Loop()override;
+    virtual void Render()override;
 
 private:
-	Player p;
+    Player p;
 };
