@@ -2,9 +2,9 @@
 
 Lobby::Lobby() {
     p = new Player();
-    AddToScene(*p, 0);
+    AddToScene(p, 0);
     e = new Enemies(p);
-    AddToScene(*e, 0);
+    AddToScene(e, 0);
 }
 
 Lobby::~Lobby() 
