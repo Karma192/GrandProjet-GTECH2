@@ -5,8 +5,10 @@
 class Animation
 {
 public:
-	sf::Sprite SpriteAnimation(int nbFramesAnim, int nbFramesX, int startFrameColumn, int startFrameLine, int endFrameColumn, int endFrameLine, int xImage, int yImage, sf::String texturePath, sf::Sprite sprite, sf::Vector2f moveSpeed);
-	void AnimationInit(int xImage, int yImage, sf::String texturePath, sf::Sprite sprite);
+	void AnimationInit(sf::String texturePath, sf::Sprite sprite, int startFrameColumn, int xImage, int yImage);
+	sf::Sprite SpriteAnimation(int nbFramesAnim, int nbTotalFramesX,
+		int startFrameLine, int endFrameColumn, int endFrameLine);
+	void flipSprite(sf::Sprite sprite, sf::Vector2f moveSpeed);
 
 
 private:
@@ -14,5 +16,12 @@ private:
 	sf::Texture texture;
 	int counter = 0;
 	int flip = 1;
+
+	int aStartFrameColumn;
+	int aXImage;
+	int aYImage;
+	sf::Sprite aSprite;
+	sf::String aTexturePath;
+	sf::IntRect aRectSourceSprite;
 };
 

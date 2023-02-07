@@ -5,7 +5,7 @@ Player::Player()
     playerSprite.setPosition(0, 0);
     playerSprite.setOrigin(32, 32);
     ControllerInput();
-    animation.AnimationInit(64, 64, "ressources/sprites/player/idle.png", playerSprite);
+    animation.AnimationInit("ressources/sprites/player/idle.png", playerSprite, 1, 64, 64);
 }
 
 Player::~Player()
@@ -25,7 +25,7 @@ void Player::Loop()
 void Player::Render()
 {
     playerUI();
-    gameData.window->draw(animation.SpriteAnimation(4, 4, 1, 1, 4, 1, 64, 64, "ressources/sprites/player/idle.png", playerSprite, moveSpeed));
+    gameData.window->draw(animation.SpriteAnimation(4, 4, 1, 4, 4));
     //gameData.window->draw(enduranceBarBack);
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);

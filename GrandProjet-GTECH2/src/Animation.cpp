@@ -1,51 +1,64 @@
 #include "Animation.h"
 
-sf::Sprite Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX, int startFrameColumn, int startFrameLine, int endFrameColumn, int endFrameLine, int xImage, int yImage, sf::String texturePath, sf::Sprite sprite, sf::Vector2f moveSpeed)
+void Animation::AnimationInit(sf::String texturePath, sf::Sprite sprite, int startFrameColumn, int xImage, int yImage)
 {
-	sf::IntRect rectSourceSprite(counter * xImage, 0, xImage, yImage);
+	aTexturePath = texturePath;
+	aSprite = sprite;
+	aStartFrameColumn = startFrameColumn;
+	aXImage = xImage;
+	aYImage = yImage;
+
 	texture.loadFromFile(texturePath);
 	sprite.setTexture(texture);
-	sprite.setTextureRect(rectSourceSprite);
+	sf::IntRect rectSourceSprite(startFrameColumn * xImage, 0, xImage, yImage);
+	aRectSourceSprite = rectSourceSprite;
+}
 
-	if (moveSpeed.x > 0.01f) 
-	{
-		flip = false;
-	}
-	else if (moveSpeed.x < -0.01f) 
-	{
-		flip = true;
-	}
 
-	sprite.scale(flip * 3.0f, 3.0f);
+sf::Sprite Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX, 
+	int startFrameLine, int endFrameColumn, int endFrameLine)
+{
 	if (clock.getElapsedTime().asMilliseconds() >= 100) {
-		// If the rect is at the right border of the spritesheet, and it isn't the end of the animation, we put the rect on the next line on the first frame on the left
-		if (rectSourceSprite.left >= (nbTotalFramesX - 1) * xImage + ((startFrameColumn-1) * xImage) && counter < nbFramesAnim-1)
+		// If the rect is at the right border of the spritesheet, and it isn't the end of the animation, 
+		// we put the rect on the next line on the first frame on the left
+		if (aRectSourceSprite.left >= (nbTotalFramesX - 1) * aXImage + ((aStartFrameColumn-1) * aXImage) && counter < nbFramesAnim-1)
 		{
-			rectSourceSprite.left = 0;
-			rectSourceSprite.top += yImage;
+			aRectSourceSprite.left = 0;
+			aRectSourceSprite.top += aYImage;
 			counter += 1;
 		}
 		// If the rect comes at the last frame of the animation, it goes back to the starting frame and reset the counter
 		else if (counter >= nbFramesAnim-1)
 		{
-			rectSourceSprite.left = (startFrameColumn-1) * xImage;
-			rectSourceSprite.top = (startFrameLine-1) * yImage;
+			aRectSourceSprite.left = (aStartFrameColumn-1) * aXImage;
+			aRectSourceSprite.top = (startFrameLine-1) * aYImage;
 			counter = 0;
 		}
 		// The rect goes to the next frame on the right
 		else 
 		{
-			rectSourceSprite.left += xImage;
+			aRectSourceSprite.left += aXImage;
 			counter += 1;
 		}
-		sprite.setTextureRect(rectSourceSprite);
+		aSprite.setTextureRect(aRectSourceSprite);
 		clock.restart();
 	}
 	
-	return sprite;
+	return aSprite;
 }
 
-void Animation::AnimationInit(int xImage, int yImage, sf::String texturePath, sf::Sprite sprite)
+void Animation::flipSprite(sf::Sprite sprite, sf::Vector2f moveSpeed)
 {
+	if (moveSpeed.x > 0.01f)
+	{
+		flip = 1;
+	}
+	else if (moveSpeed.x < -0.01f)
+	{
+		flip = -1;
+	}
+
+	sprite.scale(flip * 3.0f, 3.0f);
 }
+
 
