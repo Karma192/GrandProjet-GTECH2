@@ -3,7 +3,6 @@
 Player::Player()
 {
     ControllerInput();
-    
 }
 
 Player::~Player()
@@ -16,24 +15,15 @@ void Player::Loop()
     playerEndurance();
     playerRegenEndurance();
     ControllerMove();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    setCamera();
-=======
     KeyboardMove();
-
->>>>>>> Stashed changes
-=======
-    KeyboardMove();
-    setCamera();
     PlayerAttack();
->>>>>>> Stashed changes
+    //setCamera();
 }
 
 void Player::Render()
 {
-    playerUI();
     gameData = GetGameData();
+    playerUI();
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);
     gameData.window->draw(playerUltiUI);
@@ -41,20 +31,33 @@ void Player::Render()
     gameData.window->draw(playerSecondSpell);
     gameData.window->draw(playerThirdSpell);
     gameData.window->draw(cube);
-    if (isActtk) gameData.window->draw(hitboxTest);
-    
+    if (isActtk == true && asAttacked == true) 
+    { 
+        gameData.window->draw(hitboxTest);
+    }
+    if (cdBasicAttack.getElapsedTime().asSeconds() >= 0.1f)
+    {
+        isActtk = false;
+        asAttacked = false;
+        cdBasicAttack.restart();
+    }
+    else
+    {
+        isActtk = true;
+    }
 }
 
 void Player::playerEndurance()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cd_Endurance >= 2 && endurancePlayer > 0)
     {
         endurancePlayer -= 0.1;
+        std::cout << "Il te reste " << endurancePlayer << "de point d'endurance" << std::endl;
         enduranceBar.setScale(endurancePlayer / 100, 1);
     }
     if (endurancePlayer <= 0 && sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
-        //Ici le joueur ne peut plus courir 
+        std::cout << "Tu peux plus courir" << std::endl;
     }
 }
 
@@ -64,8 +67,8 @@ void Player::playerRegenEndurance()
     {
         endurancePlayer += 0.1;
         enduranceBar.setScale(endurancePlayer / 100, 1);
+        std::cout << "REGEN ENDURANCE : " << endurancePlayer << std::endl;
     }
-
 }
 
 void Player::playerUI()
@@ -144,69 +147,40 @@ void Player::ControllerMove()
     }
 }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
+void Player::MovePlayer() 
+{
+    cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
+}
+
+void Player::setCamera() {
+    gameData = GetGameData();
+    view = gameData.window->getDefaultView();
+    view.setCenter(cube.getPosition());
+    gameData.window->setView(view);
+}
+
 void Player::KeyboardMove()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
         cube.move(sf::Vector2f(0.f, -5));
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
         cube.move(sf::Vector2f(0.f, 5));
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
         cube.move(sf::Vector2f(-5, 0.f));
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
         cube.move(sf::Vector2f(5, 0.f));
     }
 }
 
->>>>>>> Stashed changes
-void Player::MovePlayer() 
-{
-=======
-void Player::KeyboardMove()
-{
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    {
-        cube.move(sf::Vector2f(0.f, -1));
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    {
-        cube.move(sf::Vector2f(0.f, 1));
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    {
-        cube.move(sf::Vector2f(-1, 0.f));
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    {
-        cube.move(sf::Vector2f(1, 0.f));
-    }
-}
 
-void Player::MovePlayer() {
->>>>>>> Stashed changes
-    cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
-}
 
-<<<<<<< Updated upstream
-void Player::setCamera() {
-=======
-void Player::setCamera() 
-{
-    gameData = GetGameData();
->>>>>>> Stashed changes
-    /*view = gameData.window->getDefaultView();
-    view.setCenter(cube.getPosition());
-    gameData.window->setView(view);*/
-}
 
 int Player::GetPlayerXPos()
 {
@@ -225,20 +199,14 @@ void Player::PlayerAttack()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
         PlayerBasicAttack();
+        asAttacked = true;
     }
 
 }
 
 void Player::PlayerBasicAttack()
-{
-    isActtk = true;
+{  
     hitboxTest.setSize(sf::Vector2f(30.f, 40.f));
     hitboxTest.setFillColor(sf::Color::Blue);
     hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos() - 5);
-    if (test.getElapsedTime().asSeconds() >= 2.f)
-    {
-        isActtk = false;
-    }
- 
-    
 }

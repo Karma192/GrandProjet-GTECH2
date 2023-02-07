@@ -14,42 +14,9 @@ public:
 	Player();
 	virtual ~Player();
 
-<<<<<<< Updated upstream
+
 	virtual void Loop()override;
 	virtual void Render()override;
-=======
-	virtual void Loop(sf::Event*)override;
-	virtual void Render(sf::RenderWindow* window)override;
-
-	//Player HUD 
-
-	void playerEndurance();
-	void playerRegenEndurance();
-	void playerUI();
-
-	void ControllerInput();
-	void KeyboardMove();
-	void ControllerMove();
-
-	void MovePlayer();
-
-	//rectangle pour endurance + vie
-	sf::RectangleShape enduranceBar;
-	sf::RectangleShape enduranceBarBack;
-	sf::RectangleShape lifeBar;
-
-	//cercle pour ulti + spell
-	sf::CircleShape playerUltiUI;
-	sf::CircleShape playerFirstSpell;
-	sf::CircleShape playerSecondSpell;
-	sf::CircleShape playerThirdSpell;
-
-	//test
-	sf::RectangleShape cube;
-	sf::Vector2f moveSpeed;
-
-	int frame = 0;
->>>>>>> Stashed changes
 
 	//Player HUD 
 	void playerEndurance();
@@ -76,10 +43,14 @@ public:
 	//Player attack
 	void PlayerAttack();
 	void PlayerBasicAttack();
+	sf::Clock cdBasicAttack;
+
+	//test
+	sf::RectangleShape cube;
+	sf::Vector2f moveSpeed;
+	sf::View view;
 
 	
-
-
 protected:
 	float endurancePlayer = 100;
 	float cd_Endurance = endurance.getElapsedTime().asSeconds();
@@ -89,10 +60,11 @@ private:
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
 
-	//Test player attack 
+
+	//Player attack basic
 	sf::RectangleShape hitboxTest;
-	bool isActtk;
-	sf::Clock test;
+	bool isActtk = true;
+	bool asAttacked = false;
 
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;
@@ -105,12 +77,6 @@ private:
 	sf::CircleShape playerSecondSpell;
 	sf::CircleShape playerThirdSpell;
 
-	//test
-	sf::RectangleShape cube;
-	sf::Vector2f moveSpeed;
-	sf::View view;
-
-	int frame = 0;
 
 	sf::Clock clock;
 	int m_pv;
