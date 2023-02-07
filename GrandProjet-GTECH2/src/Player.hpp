@@ -58,6 +58,8 @@ private:
 
 	void ControllerMove();
 
+	void KeyboardMove();
+
 	void MovePlayer();
 
 	void setCamera();
@@ -87,4 +89,6 @@ private:
 	sf::Clock endurance;
 
 	Animation animation;
+
+	bool lookingLeft = false;
 };

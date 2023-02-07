@@ -3,6 +3,7 @@
 Player::Player()
 {
     playerSprite.setPosition(0, 0);
+    playerSprite.setOrigin(32, 32);
     ControllerInput();
 }
 
@@ -16,13 +17,15 @@ void Player::Loop()
     playerEndurance();
     playerRegenEndurance();
     ControllerMove();
+    KeyboardMove();
     setCamera();
 }
 
 void Player::Render()
 {
     playerUI();
-    animation.SpriteAnimation(64, 64, 4, gameData.window, "ressources/sprites/player/idle.png", playerSprite);
+    std::cout << lookingLeft;
+    animation.SpriteAnimation(64, 64, 4, gameData.window, "ressources/sprites/player/idle.png", playerSprite, lookingLeft);
     //gameData.window->draw(enduranceBarBack);
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);
@@ -116,21 +119,45 @@ void Player::ControllerMove()
     {
         sf::Joystick::update();
         MovePlayer();
+        lookingLeft = true;
     }
     else if (moveSpeed.x > deadZone)
     {
         sf::Joystick::update();
         MovePlayer();
+        lookingLeft = false;
     }
     else if (moveSpeed.y < -deadZone)
     {
         sf::Joystick::update();
         MovePlayer();
     }
-    else if (moveSpeed.x > deadZone)
+    else if (moveSpeed.y > deadZone)
     {
         sf::Joystick::update();
         MovePlayer();
+    }
+}
+
+void Player::KeyboardMove()
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        playerSprite.move(sf::Vector2f(0.f, -10));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        playerSprite.move(sf::Vector2f(0.f, 10));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        playerSprite.move(sf::Vector2f(-10, 0.f));
+        lookingLeft = true;
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        playerSprite.move(sf::Vector2f(10, 0.f));
+        lookingLeft = false;
     }
 }
 
