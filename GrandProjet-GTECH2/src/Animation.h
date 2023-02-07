@@ -11,5 +11,6 @@ private:
 	sf::Clock clock;
 	sf::Event event;
 	sf::Texture texture;
+	int compteur = 0;
 };
 
