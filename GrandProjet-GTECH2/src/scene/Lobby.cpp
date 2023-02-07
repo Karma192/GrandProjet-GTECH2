@@ -1,7 +1,8 @@
 #include "Lobby.hpp"
 
 Lobby::Lobby() {
-    AddToScene(p, 0);
+    AddToScene(map, 0);
+    AddToScene(p, 1);
 }
 
 Lobby::~Lobby() {
@@ -18,7 +19,8 @@ void Lobby::Render() {
 }
 
 void Lobby::Background() {
-    menuBackground.loadFromFile("ressources/map.jpg");
+    /*menuBackground.loadFromFile("ressources/background.jpg");
     menuBckSprite.setTexture(menuBackground);
-    gameData.window->draw(menuBckSprite);
+    gameData.window->draw(menuBckSprite);*/
+    map.Render();
 }
