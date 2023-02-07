@@ -13,8 +13,9 @@ void Lobby::Loop() {
 }
 
 void Lobby::Render() {
-    Background();
+    //Background();
     p.Render();
+    e.Render();
 }
 
 void Lobby::Background() {

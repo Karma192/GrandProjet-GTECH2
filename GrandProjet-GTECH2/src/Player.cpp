@@ -5,6 +5,7 @@ Player::Player()
     playerSprite.setPosition(0, 0);
     playerSprite.setOrigin(32, 32);
     ControllerInput();
+    animation.AnimationInit(64, 64, "ressources/sprites/player/idle.png", playerSprite);
 }
 
 Player::~Player()
@@ -24,8 +25,7 @@ void Player::Loop()
 void Player::Render()
 {
     playerUI();
-    std::cout << lookingLeft;
-    animation.SpriteAnimation(64, 64, 4, gameData.window, "ressources/sprites/player/idle.png", playerSprite, lookingLeft);
+    gameData.window->draw(animation.SpriteAnimation(4, 4, 1, 1, 4, 1, 64, 64, "ressources/sprites/player/idle.png", playerSprite, moveSpeed));
     //gameData.window->draw(enduranceBarBack);
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);
@@ -119,13 +119,11 @@ void Player::ControllerMove()
     {
         sf::Joystick::update();
         MovePlayer();
-        lookingLeft = true;
     }
     else if (moveSpeed.x > deadZone)
     {
         sf::Joystick::update();
         MovePlayer();
-        lookingLeft = false;
     }
     else if (moveSpeed.y < -deadZone)
     {
@@ -152,18 +150,16 @@ void Player::KeyboardMove()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
         playerSprite.move(sf::Vector2f(-10, 0.f));
-        lookingLeft = true;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
         playerSprite.move(sf::Vector2f(10, 0.f));
-        lookingLeft = false;
     }
 }
 
 void Player::MovePlayer() 
 {
-    cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
+    playerSprite.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
 }
 
 void Player::setCamera() {

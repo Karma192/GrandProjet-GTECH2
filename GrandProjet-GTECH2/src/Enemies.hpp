@@ -14,6 +14,7 @@ public:
 private:
 	void EnemiesTest();
 
+
 	sf::Texture enemiesTexture;
 	sf::Sprite enemiesSprite;
 

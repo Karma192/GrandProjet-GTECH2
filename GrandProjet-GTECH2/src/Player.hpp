@@ -45,6 +45,7 @@ protected:
 
 
 private:
+	Animation animation;
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
 
@@ -87,8 +88,6 @@ private:
 	int m_attack;
 	int playerSpeed = 120;
 	sf::Clock endurance;
-
-	Animation animation;
 
 	bool lookingLeft = false;
 };

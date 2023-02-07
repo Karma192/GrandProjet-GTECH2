@@ -1,9 +1,8 @@
 #include "Enemies.hpp"
 
 Enemies::Enemies() {
-    enemiesSprite.setPosition(100, 0);
-    enemiesTexture.loadFromFile("C:/Users/etien/Pictures/imposter.png");
-    enemiesSprite.setTexture(enemiesTexture);
+    enemiesSprite.setPosition(10, 0);
+    enemiesSprite.setOrigin(36, 36);
 }
 
 Enemies::~Enemies() {

@@ -5,13 +5,14 @@
 class Animation
 {
 public:
-	void SpriteAnimation(int xImage, int yImage, int nbFrames, sf::RenderWindow* window, sf::String texturePath, sf::Sprite sprite, bool flippedX);
+	sf::Sprite SpriteAnimation(int nbFramesAnim, int nbFramesX, int startFrameColumn, int startFrameLine, int endFrameColumn, int endFrameLine, int xImage, int yImage, sf::String texturePath, sf::Sprite sprite, sf::Vector2f moveSpeed);
+	void AnimationInit(int xImage, int yImage, sf::String texturePath, sf::Sprite sprite);
+
 
 private:
 	sf::Clock clock;
-	sf::Event event;
 	sf::Texture texture;
-	int compteur = 0;
-	int i = 1;
+	int counter = 0;
+	int flip = 1;
 };
 
