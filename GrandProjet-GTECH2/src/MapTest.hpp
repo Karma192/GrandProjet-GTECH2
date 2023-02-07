@@ -12,6 +12,7 @@ public:
 
 private:
 	tmx::Map village;
+
 	MapLayer* layerZero;
 	MapLayer* layerOne;
 	MapLayer* layerTwo;
