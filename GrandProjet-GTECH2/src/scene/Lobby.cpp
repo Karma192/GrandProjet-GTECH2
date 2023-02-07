@@ -13,12 +13,12 @@ void Lobby::Loop() {
 }
 
 void Lobby::Render() {
-    Background();
+    //Background();
     p.Render();
 }
 
 void Lobby::Background() {
-    menuBackground.loadFromFile("ressources/background.jpg");
+    menuBackground.loadFromFile("ressources/map.jpg");
     menuBckSprite.setTexture(menuBackground);
     gameData.window->draw(menuBckSprite);
 }
