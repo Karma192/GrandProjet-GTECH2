@@ -57,6 +57,7 @@ private:
 	void ControllerMove();
 
 	void MovePlayer();
+	void KeyboardMove();
 
 	void setCamera();
 
