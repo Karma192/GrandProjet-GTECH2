@@ -12,7 +12,6 @@ public:
 	virtual void Render()override;
 
 private:
-	std::vector <MapLayer>
 	std::string path = "ressources/map/";
 	tmx::Map village;
 
