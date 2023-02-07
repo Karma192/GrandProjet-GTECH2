@@ -16,7 +16,6 @@ Map::~Map()
 void Map::Render()
 {
     gameData = GetGameData();
-    for (int i = 0; i < layersMap.)
     gameData.window->draw(*layerZero);
     gameData.window->draw(*layerOne);
     gameData.window->draw(*layerTwo);
