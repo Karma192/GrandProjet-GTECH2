@@ -12,8 +12,8 @@ public:
     virtual void Render()override;
 
 private:
-    Player p;
-    Enemies e;
+    Player* p;
+    Enemies* e;
 
     void Background();
     sf::Texture menuBackground;

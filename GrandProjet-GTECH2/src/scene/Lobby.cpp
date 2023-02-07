@@ -1,22 +1,26 @@
 #include "Lobby.hpp"
 
 Lobby::Lobby() {
-    AddToScene(p, 0);
+    p = new Player();
+    AddToScene(*p, 0);
+    e = new Enemies(p);
+    AddToScene(*e, 0);
 }
 
-Lobby::~Lobby() {
-
+Lobby::~Lobby() 
+{
+    delete p, e;
 }
 
 void Lobby::Loop() {
-    p.Loop();
-    e.Loop();
+    p->Loop();
+    e->Loop();
 }
 
 void Lobby::Render() {
     //Background();
-    p.Render();
-    p.Render();
+    p->Render();
+    e->Render();
 }
 
 void Lobby::Background() {

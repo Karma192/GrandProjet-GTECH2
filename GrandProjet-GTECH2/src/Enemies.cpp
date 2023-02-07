@@ -1,22 +1,28 @@
 #include "Enemies.hpp"
 
-Enemies::Enemies() {
+Enemies::Enemies(Player* p) 
+{
     //enemiesSprite.setPosition(100, 0);
     //enemiesTexture.loadFromFile("C:/Users/etien/Pictures/imposter.png");
     //enemiesSprite.setTexture(enemiesTexture);
 
+    contextPlayer = p;
+
     Cube2Test();
 }
 
-Enemies::~Enemies() {
-
+Enemies::~Enemies() 
+{
+    delete contextPlayer;
 }
 
-void Enemies::Loop() {
-    FollowTarget();
+void Enemies::Loop() 
+{
+    if (contextPlayer) FollowTarget(follow);
 }
 
-void Enemies::Render() {
+void Enemies::Render() 
+{
     gameData = GetGameData();
     gameData.window->draw(cube2);
 }
@@ -25,35 +31,43 @@ void Enemies::Cube2Test()
 {
     cube2.setSize(sf::Vector2f(30.f, 30.f));
     cube2.setFillColor(sf::Color::Blue);
-    cube2.setPosition(sf::Vector2f(400, 400));
+    cube2.setPosition(sf::Vector2f(800, 400));
 }
 
-void Enemies::FollowTarget()
+void Enemies::FollowTarget(bool)
 {
-
-    Player play;
     //Radius for Aggro
-    float followRadius = 10.f;
+    float followRadius = 1.f;
     //interval for aggro
-
     sf::Clock clock;
-    float interval = 0.1f;
+    float interval = 0.001f;
+    sf::Vector2f TargetPos = contextPlayer->cube.getPosition();
+    sf::Vector2f FollowPos = cube2.getPosition();
+    sf::Vector2f RelatPos = TargetPos - FollowPos;
+    float deltaLength = std::sqrt(RelatPos.x * RelatPos.x + RelatPos.y * RelatPos.x);
+    if (deltaLength > followRadius) {
+        cube2.setPosition(FollowPos + .05f * RelatPos);
+    }
+    clock.restart();
 
-    if (clock.getElapsedTime().asSeconds() > interval)
+    if (clock.getElapsedTime().asMilliseconds() > interval)
     {
-        sf::Vector2f TargetPos = play.cube.getPosition();
-        sf::Vector2f FollowPos = cube2.getPosition();
-        sf::Vector2f RelatPos = TargetPos - FollowPos;
-        float deltaLength = std::sqrt(RelatPos.x * RelatPos.x + RelatPos.y * RelatPos.x);
-        if (deltaLength > followRadius) {
-            cube2.setPosition(FollowPos + 0.5f * RelatPos);
-        }
-        clock.restart();
+        
     }
 }
 
-//Je test des trucs sur le Enemies, celà sera supprimé (Etienne)
-//void Enemies::EnemiesTest(sf::RenderWindow* win)
-//{
-//    win->draw(enemiesSprite);
-//}
+void Enemies::EnemyMove() 
+{
+    if (!IsFixed) 
+    {
+        if (follow) 
+        {
+            FollowTarget(follow);
+        }
+        else
+        {
+            //MoveBase();
+        }
+    }
+
+}

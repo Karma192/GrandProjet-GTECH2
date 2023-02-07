@@ -6,7 +6,7 @@ Player::Player()
     //playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
     //playerSprite.setTexture(playerTexture);
 
-    ControllerInput();
+    CubeTest();
 }
 
 Player::~Player()
@@ -18,13 +18,14 @@ void Player::Loop()
 {
     playerEndurance();
     playerRegenEndurance();
-    ControllerMove();
+    //ControllerMove();
     setCamera();
     KeyboardMove();
 }
 
 void Player::Render()
 {
+    gameData = GetGameData();
     playerUI();
     //gameData.window->draw(enduranceBarBack);
     gameData.window->draw(enduranceBar);
@@ -106,7 +107,7 @@ void Player::playerUI()
     playerThirdSpell.setPosition(playerThirdSpellV);
 }
 
-void  Player::ControllerInput()
+void  Player::CubeTest()
 {
     cube.setSize(sf::Vector2f(30.f, 30.f));
     cube.setFillColor(sf::Color::Red);
@@ -150,19 +151,19 @@ void Player::KeyboardMove()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
-        cube.move(sf::Vector2f(0.f, -1));
+        cube.move(sf::Vector2f(0.f, -15));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
-        cube.move(sf::Vector2f(0.f, 1));
+        cube.move(sf::Vector2f(0.f, 15));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
-        cube.move(sf::Vector2f(-1, 0.f));
+        cube.move(sf::Vector2f(-15, 0.f));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-        cube.move(sf::Vector2f(1, 0.f));
+        cube.move(sf::Vector2f(15, 0.f));
     }
 }
 

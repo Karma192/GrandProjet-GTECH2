@@ -22,21 +22,6 @@ public:
 	void setAttack(int attack) { m_attack = attack; }
 	int getAttack() const { return m_attack; }
 
-	///Exemples d'applications des fonctions des PV/Attaque au dessus (Pandouille) ///
-
-	/*player.setPv(100);
-	player.setAttack(20);
-
-	int pv = player.getPv();
-	int attack = player.getAttack();
-
-	void takeDamage(int damage)
-	{
-		m_pv -= damage;
-		if (m_pv < 0) m_pv = 0;
-	}
-	*/
-
 	//test
 	sf::RectangleShape cube;
 	sf::Vector2f moveSpeed;
@@ -56,7 +41,7 @@ private:
 	void playerRegenEndurance();
 	void playerUI();
 
-	void ControllerInput();
+	void CubeTest();
 
 	void ControllerMove();
 
