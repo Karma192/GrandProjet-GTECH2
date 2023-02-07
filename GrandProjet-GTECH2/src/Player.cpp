@@ -161,18 +161,18 @@ void Player::KeyboardMove()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
-		cube.move(sf::Vector2f(0.f, -50));
+		cube.move(sf::Vector2f(0.f, -5));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
-		cube.move(sf::Vector2f(0.f, 50));
+		cube.move(sf::Vector2f(0.f, 5));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
-		cube.move(sf::Vector2f(-50, 0.f));
+		cube.move(sf::Vector2f(-5, 0.f));
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
-		cube.move(sf::Vector2f(50, 0.f));
+		cube.move(sf::Vector2f(5, 0.f));
 	}
 }

@@ -14,7 +14,7 @@ void Lobby::Loop() {
 }
 
 void Lobby::Render() {
-    //Background();
+    Background();
     p.Render();
 }
 

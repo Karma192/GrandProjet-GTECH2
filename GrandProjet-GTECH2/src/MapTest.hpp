@@ -1,4 +1,5 @@
 #include <tmxlite/Map.hpp>
+#include <tmxlite/Layer.hpp>
 #include "GameObject.hpp"
 #include "../../SFMLExample/src/SFMLOrthogonalLayer.hpp"
 
@@ -11,6 +12,8 @@ public:
 	virtual void Render()override;
 
 private:
+	std::vector <MapLayer>
+	std::string path = "ressources/map/";
 	tmx::Map village;
 
 	MapLayer* layerZero;
