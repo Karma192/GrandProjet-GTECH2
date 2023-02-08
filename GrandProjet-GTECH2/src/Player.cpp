@@ -34,6 +34,7 @@ void Player::Render()
     gameData.window->draw(cube);
     if (isActtk == true && asAttacked == true) 
     { 
+        IsAttacking = true;
         gameData.window->draw(hitboxTest);
     }
     if (cdBasicAttack.getElapsedTime().asSeconds() >= 0.1f)
@@ -44,6 +45,7 @@ void Player::Render()
     }
     else
     {
+        IsAttacking = false;
         isActtk = true;
     }
 }
@@ -179,9 +181,6 @@ void Player::KeyboardMove()
         cube.move(sf::Vector2f(5, 0.f));
     }
 }
-
-
-
 
 int Player::GetPlayerXPos()
 {

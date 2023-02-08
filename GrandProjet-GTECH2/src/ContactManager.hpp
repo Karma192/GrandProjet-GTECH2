@@ -9,6 +9,7 @@ public:
 	virtual ~ContactManager();
 
 	void Collide(sf::FloatRect rect, sf::FloatRect rect2);
+	bool IsDamaged(sf::FloatRect rect, sf::FloatRect rect2);
 
 private:
 };

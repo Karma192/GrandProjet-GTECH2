@@ -11,7 +11,14 @@ ContactManager::~ContactManager()
 void ContactManager::Collide(sf::FloatRect rect, sf::FloatRect rect2)
 {
 	if (rect.intersects(rect2)) {
-		std::cout << "test";
 	}
 }
 
+bool ContactManager::IsDamaged(sf::FloatRect rect, sf::FloatRect rect2)
+{
+	if (rect.intersects(rect2)) {
+		std::cout << "Damage";
+		return true;
+	}
+	return false;
+}

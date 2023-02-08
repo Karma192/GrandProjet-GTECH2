@@ -50,11 +50,13 @@ public:
 	sf::Vector2f moveSpeed;
 	sf::View view;
 
+	bool IsAttacking = false;
+
+	sf::RectangleShape hitboxTest;
 	
 protected:
 	float endurancePlayer = 100;
 	float cd_Endurance = endurance.getElapsedTime().asSeconds();
-
 
 private:
 	sf::Texture playerTexture;
@@ -62,7 +64,6 @@ private:
 
 
 	//Player attack basic
-	sf::RectangleShape hitboxTest;
 	bool isActtk = true;
 	bool asAttacked = false;
 
