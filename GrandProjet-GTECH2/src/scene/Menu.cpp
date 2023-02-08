@@ -1,7 +1,7 @@
 #include "Menu.hpp"
 
 Menu::Menu() {
-	AddToScene(menuhud, 0);
+	AddToScene(&menuhud, 0);
 }
 
 Menu::~Menu() {

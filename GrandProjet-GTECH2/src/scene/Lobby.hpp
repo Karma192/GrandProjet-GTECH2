@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.hpp"
 #include "../Player.hpp"
+#include "../Enemies.hpp"
 #include "../Object.hpp"
 #include "../PhysicsObject.hpp"
 
@@ -16,6 +17,7 @@ private:
     Player p;
     Object object;
     PhysicsObject po;
+    Enemies* e;
 
     void Background();
     sf::Texture menuBackground;

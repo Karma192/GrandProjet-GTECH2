@@ -25,7 +25,7 @@ public:
 
 
 	//Player controller
-	void ControllerInput();
+	void CubeTest();
 	void ControllerMove();
 	void MovePlayer();
 	void KeyboardMove();

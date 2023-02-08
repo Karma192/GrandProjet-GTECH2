@@ -2,7 +2,7 @@
 
 Game::Game() {
     sm = new SceneManager;
-    window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Crusade Of The Abyss", sf::Style::Titlebar);
+    window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Crusade Of The Abyss", sf::Style::Default);
     event = new sf::Event;
 }
 

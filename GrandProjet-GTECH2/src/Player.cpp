@@ -2,7 +2,8 @@
 
 Player::Player()
 {
-    ControllerInput();
+
+    CubeTest();
 }
 
 Player::~Player()
@@ -112,7 +113,7 @@ void Player::playerUI()
     playerThirdSpell.setPosition(playerThirdSpellV);
 }
 
-void  Player::ControllerInput()
+void  Player::CubeTest()
 {
     cube.setSize(sf::Vector2f(30.f, 30.f));
     cube.setFillColor(sf::Color::Red);
