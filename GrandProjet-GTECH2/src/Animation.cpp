@@ -49,11 +49,11 @@ void Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX,
 
 void Animation::flipSprite(sf::Sprite sprite, sf::Vector2f moveSpeed)
 {
-	if (moveSpeed.x > 0.01f)
+	if (moveSpeed.x > 0)
 	{
 		flip = 1;
 	}
-	else if (moveSpeed.x < -0.01f)
+	else if (moveSpeed.x < 0)
 	{
 		flip = -1;
 	}
