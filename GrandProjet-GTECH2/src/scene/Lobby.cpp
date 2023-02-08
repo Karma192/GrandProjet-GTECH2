@@ -5,7 +5,7 @@ Lobby::Lobby() {
     AddToScene(p, 1);
     e = new Enemies(p);
     AddToScene(e, 0);
-    AddToScene(map, 0);
+    //AddToScene(map, 0);
 }
 
 Lobby::~Lobby() 
