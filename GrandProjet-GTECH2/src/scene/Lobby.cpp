@@ -5,6 +5,7 @@ Lobby::Lobby() {
     AddToScene(p, 1);
     e = new Enemies(p);
     AddToScene(e, 0);
+    AddToScene(map, 0);
 }
 
 Lobby::~Lobby() 
@@ -24,7 +25,8 @@ void Lobby::Render() {
 }
 
 void Lobby::Background() {
-    menuBackground.loadFromFile("ressources/background.jpg");
+    /*menuBackground.loadFromFile("ressources/background.jpg");
     menuBckSprite.setTexture(menuBackground);
-    gameData.window->draw(menuBckSprite);
+    gameData.window->draw(menuBckSprite);*/
+    map.Render();
 }
