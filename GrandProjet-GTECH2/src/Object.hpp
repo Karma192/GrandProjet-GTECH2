@@ -17,6 +17,7 @@ public:
 	int randomX;
 	int randomY;
 	sf::RectangleShape randomPosObject;
+	sf::RectangleShape randomPosObject2;
 
 private:
 

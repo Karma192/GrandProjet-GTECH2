@@ -14,14 +14,17 @@ public:
 
 	virtual void Loop()override;
 	virtual void Render()override;
-	void SetBoundingBox();
+	void ObjectObtain();
+	void ObjectCollide();
 	void SetPtr(sf::RectangleShape*);
 
 private:
 	sf::RectangleShape* cubePtr;
-	sf::FloatRect Object1HurtBox;
-	sf::FloatRect Object2HurtBox;
+	sf::FloatRect PlayerHurtbox;
+	sf::FloatRect ObjectCollideRect;
 	void SetPlayerBounds();
 	void SetObjectBounds();
+	void SetPlayerDamaged();
+	void SetPlayerCollide();
 };
 

@@ -12,7 +12,6 @@ void PhysicsObject::Loop()
 {
 	SetPlayerBounds();
 	SetObjectBounds();
-	SetBoundingBox();
 }
 
 void PhysicsObject::Render()
@@ -26,17 +25,32 @@ void PhysicsObject::SetPtr(sf::RectangleShape* rect)
 
 void PhysicsObject::SetPlayerBounds()
 {
-	Object1HurtBox = cubePtr->getGlobalBounds();
+	PlayerHurtbox = cubePtr->getGlobalBounds();
 }
 
 void PhysicsObject::SetObjectBounds()
 {
-	Object2HurtBox = randomPosObject.getGlobalBounds();
+	ObjectCollideRect = randomPosObject.getGlobalBounds();
+	ObjectObtain();
+	ObjectCollideRect = randomPosObject2.getGlobalBounds();
+	ObjectObtain();
 }
 
-void PhysicsObject::SetBoundingBox()
+void PhysicsObject::SetPlayerDamaged() {
+
+}
+
+void PhysicsObject::SetPlayerCollide() {
+
+}
+
+void PhysicsObject::ObjectObtain()
 {
-	if (Object1HurtBox.intersects(Object2HurtBox)) {
+	if (PlayerHurtbox.intersects(ObjectCollideRect)) {
 		std::cout << "test";
 	}
+}
+
+void PhysicsObject::ObjectCollide() {
+
 }
