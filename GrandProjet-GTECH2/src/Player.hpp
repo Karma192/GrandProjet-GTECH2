@@ -14,19 +14,43 @@ public:
 	Player();
 	virtual ~Player();
 
+
 	virtual void Loop()override;
 	virtual void Render()override;
+
+	//Player HUD 
+	void playerEndurance();
+	void playerRegenEndurance();
+	void playerUI();
+
+
+	//Player controller
+	void CubeTest();
+	void ControllerMove();
+	void MovePlayer();
+	void KeyboardMove();
+	void setCamera();
 
 	void setPv(int pv) { m_pv = pv; }
 	int getPv() const { return m_pv; }
 	void setAttack(int attack) { m_attack = attack; }
 	int getAttack() const { return m_attack; }
 
+	//Player attributes
+	int GetPlayerXPos();
+	int GetPlayerYPos();
+
+	//Player attack
+	void PlayerAttack();
+	void PlayerBasicAttack();
+	sf::Clock cdBasicAttack;
+
 	//test
 	sf::RectangleShape cube;
 	sf::Vector2f moveSpeed;
 	sf::View view;
 
+	
 protected:
 	float endurancePlayer = 100;
 	float cd_Endurance = endurance.getElapsedTime().asSeconds();
@@ -36,19 +60,11 @@ private:
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
 
-	//Player HUD 
-	void playerEndurance();
-	void KeyboardMove();
-	void playerRegenEndurance();
-	void playerUI();
 
-	void CubeTest();
-
-	void ControllerMove();
-
-	void MovePlayer();
-
-	void setCamera();
+	//Player attack basic
+	sf::RectangleShape hitboxTest;
+	bool isActtk = true;
+	bool asAttacked = false;
 
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;
@@ -61,7 +77,6 @@ private:
 	sf::CircleShape playerSecondSpell;
 	sf::CircleShape playerThirdSpell;
 
-	int frame = 0;
 
 	sf::Clock clock;
 	int m_pv;
