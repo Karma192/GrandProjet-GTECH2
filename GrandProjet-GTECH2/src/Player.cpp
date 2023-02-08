@@ -122,10 +122,12 @@ void Player::ControllerMove()
 	moveSpeed.y = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
 	
 
-	if (moveSpeed.x > deadZone || moveSpeed.y > deadZone || moveSpeed.x < -deadZone || moveSpeed.y < -deadZone)
+	if (moveSpeed.x > deadZone || moveSpeed.y > deadZone || 
+		moveSpeed.x < -deadZone || moveSpeed.y < -deadZone)
 	{
 		MovePlayer();
 	}
+
 	//else if (moveSpeed.x > deadZone)
 	//{
 	//	sf::Joystick::update();
@@ -144,13 +146,13 @@ void Player::ControllerMove()
 }
 
 void Player::MovePlayer()
-
 {
 	cube.move(moveSpeed.x /4, moveSpeed.y/4);
 
 }
 
-void Player::setCamera() {
+void Player::setCamera() 
+{
     gameData = GetGameData();
     view = gameData.window->getDefaultView();
     view.setCenter(cube.getPosition());
