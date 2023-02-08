@@ -15,7 +15,7 @@ public:
 private:
     Player* p;
     Enemies* e;
-    Map map;
+    Map* map;
 
     void Background();
     sf::Texture menuBackground;
