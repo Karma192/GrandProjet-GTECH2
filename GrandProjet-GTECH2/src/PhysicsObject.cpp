@@ -46,13 +46,14 @@ void PhysicsObject::SetPlayerDamaged() {
 void PhysicsObject::SetPlayerCollide() {
 	if (PlayerHurtbox.intersects(EnemiesRect)) {
 		std::cout << "ouais";
+
 	}
 }
 
 void PhysicsObject::ObjectObtain()
 {
 	if (PlayerHurtbox.intersects(ObjectCollideRect)) {
-		
+		once = true;
 	}
 }
 
