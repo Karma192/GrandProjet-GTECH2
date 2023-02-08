@@ -51,7 +51,7 @@ void Player::playerEndurance()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cd_Endurance >= 2 && endurancePlayer > 0)
     {
-        endurancePlayer -= 0.1;
+        endurancePlayer -= 0.5;
         std::cout << "Il te reste " << endurancePlayer << "de point d'endurance" << std::endl;
         enduranceBar.setScale(endurancePlayer / 100, 1);
     }
