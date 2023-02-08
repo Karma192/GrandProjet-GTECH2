@@ -32,6 +32,7 @@ public:
 	void setCamera();
 
 	void setPv(int pv) { m_pv = pv; }
+	sf::RectangleShape cube;
 	int getPv() const { return m_pv; }
 	void setAttack(int attack) { m_attack = attack; }
 	int getAttack() const { return m_attack; }
@@ -77,6 +78,12 @@ private:
 	sf::CircleShape playerSecondSpell;
 	sf::CircleShape playerThirdSpell;
 
+	//test
+
+	sf::Vector2f moveSpeed;
+	sf::View view;
+
+	int frame = 0;
 
 	sf::Clock clock;
 	int m_pv;

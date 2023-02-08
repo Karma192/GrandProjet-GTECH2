@@ -67,6 +67,7 @@ void menuHUD::Loop()
 
 void menuHUD::Render() 
 {
+    gameData = GetGameData();
     gameData.window->draw(menuBckSprite);
     menuSelection();
     menuTitle();
