@@ -37,22 +37,14 @@ void Enemies::Cube2Test()
 void Enemies::FollowTarget(bool)
 {
     //Radius for Aggro
-    float followRadius = 1.f;
+    float followRadius = 0.1f;
     //interval for aggro
-    sf::Clock clock;
-    float interval = 0.001f;
     sf::Vector2f TargetPos = contextPlayer->cube.getPosition();
     sf::Vector2f FollowPos = cube2.getPosition();
     sf::Vector2f RelatPos = TargetPos - FollowPos;
-    float deltaLength = std::sqrt(RelatPos.x * RelatPos.x + RelatPos.y * RelatPos.x);
+    float deltaLength = std::sqrt(RelatPos.x * RelatPos.x + RelatPos.y * RelatPos.y);
     if (deltaLength > followRadius) {
-        cube2.setPosition(FollowPos + .05f * RelatPos);
-    }
-    clock.restart();
-
-    if (clock.getElapsedTime().asMilliseconds() > interval)
-    {
-        
+        cube2.setPosition(FollowPos + .005f * RelatPos);
     }
 }
 
