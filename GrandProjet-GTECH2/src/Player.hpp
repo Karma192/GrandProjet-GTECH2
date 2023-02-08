@@ -46,6 +46,7 @@ private:
 	void ControllerMove();
 
 	void MovePlayer();
+	void KeyboardMove();
 
 	void KeyboardMove();
 
@@ -69,6 +70,6 @@ private:
 	sf::Clock clock;
 	int m_pv;
 	int m_attack;
-	int playerSpeed = 120;
+	int playerSpeed = 60;
 	sf::Clock endurance;
 };
