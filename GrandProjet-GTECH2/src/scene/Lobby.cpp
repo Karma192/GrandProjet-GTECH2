@@ -18,12 +18,10 @@ void Lobby::Loop() {
     e->Loop();
 }
 
-void Lobby::Render() 
+void Lobby::Render()
 {
     p.Render();
-    if (!po.once) {
-        object.Render();
-    }
+    object.Render();
     //Background();
     e->Render();
 }

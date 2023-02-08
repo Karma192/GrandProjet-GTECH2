@@ -10,9 +10,9 @@ PhysicsObject::~PhysicsObject()
 
 void PhysicsObject::Loop()
 {
-	SetPlayerBounds();
-	SetObjectBounds();
-	SetPlayerDamaged();
+	SetDynamicObject();
+	SetStaticObject();
+	Collide(PlayerHurtbox, EnemiesRect);
 }
 
 void PhysicsObject::Render()
@@ -25,37 +25,14 @@ void PhysicsObject::SetPtr(sf::RectangleShape* rect, sf::RectangleShape* rect2)
 	cube2Ptr = rect2;
 }
 
-void PhysicsObject::SetPlayerBounds()
+void PhysicsObject::SetDynamicObject()
 {
 	PlayerHurtbox = cubePtr->getGlobalBounds();
-}
-
-void PhysicsObject::SetObjectBounds()
-{
-	ObjectCollideRect = randomPosObject.getGlobalBounds();
-	ObjectObtain();
-	ObjectCollideRect = randomPosObject2.getGlobalBounds();
-	ObjectObtain();
-}
-
-void PhysicsObject::SetPlayerDamaged() {
 	EnemiesRect = cube2Ptr->getGlobalBounds();
-	SetPlayerCollide();
 }
 
-void PhysicsObject::SetPlayerCollide() {
-	if (PlayerHurtbox.intersects(EnemiesRect)) {
-		std::cout << "ouais";
-	}
-}
-
-void PhysicsObject::ObjectObtain()
+void PhysicsObject::SetStaticObject()
 {
-	if (PlayerHurtbox.intersects(ObjectCollideRect)) {
-		
-	}
-}
-
-void PhysicsObject::ObjectCollide() {
-
+	ObjectCollideRect = object.randomPosObject.getGlobalBounds();
+	ObjectCollideRect = object.randomPosObject2.getGlobalBounds();
 }
