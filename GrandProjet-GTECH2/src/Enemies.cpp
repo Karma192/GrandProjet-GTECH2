@@ -36,8 +36,6 @@ void Enemies::Cube2Test()
 
 void Enemies::FollowTarget(bool)
 {
-    //Radius for Aggro
-    float followRadius = 0.1f;
     //interval for aggro
     sf::Vector2f TargetPos = contextPlayer->cube.getPosition();
     sf::Vector2f FollowPos = cube2.getPosition();
@@ -46,7 +44,6 @@ void Enemies::FollowTarget(bool)
     distance = std::sqrt((TargetPos.x - FollowPos.x) * (TargetPos.x - FollowPos.x) +
         (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));
 
-    float deltaLength = std::sqrt(RelatPos.x * RelatPos.x + RelatPos.y * RelatPos.y);
 
     if (distance >= 400) 
     {
