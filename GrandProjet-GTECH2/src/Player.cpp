@@ -2,7 +2,11 @@
 
 Player::Player()
 {
-    ControllerInput();
+    //playerSprite.setPosition(0, 0);
+    //playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
+    //playerSprite.setTexture(playerTexture);
+
+    CubeTest();
 }
 
 Player::~Player()
@@ -14,9 +18,9 @@ void Player::Loop()
 {
     playerEndurance();
     playerRegenEndurance();
-    ControllerMove();
-    KeyboardMove();
+    //ControllerMove();
     //setCamera();
+    KeyboardMove();
 }
 
 void Player::Render()
@@ -119,7 +123,7 @@ void Player::playerUI()
 
 }
 
-void Player::ControllerInput()
+void  Player::CubeTest()
 {
     cube.setSize(sf::Vector2f(30.f, 30.f));
     cube.setFillColor(sf::Color::Red);

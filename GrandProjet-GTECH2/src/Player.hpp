@@ -18,26 +18,14 @@ public:
 	virtual void Render()override;
 
 	void setPv(int pv) { m_pv = pv; }
-	sf::RectangleShape cube;
 	int getPv() const { return m_pv; }
 	void setAttack(int attack) { m_attack = attack; }
 	int getAttack() const { return m_attack; }
 
-	///Exemples d'applications des fonctions des PV/Attaque au dessus (Pandouille) ///
-
-	/*player.setPv(100);
-	player.setAttack(20);
-
-	int pv = player.getPv();
-	int attack = player.getAttack();
-
-	void takeDamage(int damage)
-	{
-		m_pv -= damage;
-		if (m_pv < 0) m_pv = 0;
-	}
-	*/
-
+	//test
+	sf::RectangleShape cube;
+	sf::Vector2f moveSpeed;
+	sf::View view;
 
 protected:
 	float endurancePlayer = 100;
@@ -54,7 +42,7 @@ private:
 	void playerRegenEndurance();
 	void playerUI();
 
-	void ControllerInput();
+	void CubeTest();
 
 	void ControllerMove();
 
@@ -72,11 +60,6 @@ private:
 	sf::CircleShape playerFirstSpell;
 	sf::CircleShape playerSecondSpell;
 	sf::CircleShape playerThirdSpell;
-
-	//test
-
-	sf::Vector2f moveSpeed;
-	sf::View view;
 
 	int frame = 0;
 
