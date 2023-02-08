@@ -51,27 +51,33 @@ private:
 
 };
 
-class RoomWallet : public GameObject 
+class RoomWallet
 {
 public:
+    RoomWallet();
+    virtual ~RoomWallet();
 
+    Room* GetRoom(int);
 private:
+    void LoadAll();
 
+    std::vector<Room*> wallet;
 };
 
 class Room : public GameObject
 {
 public:
     Room();
+    Room(std::string);
     virtual ~Room();
 
     virtual void Render()override;
 
 private:
     std::string path = "ressources/map/";
-    tmx::Map village;
+    tmx::Map map;
 
-    MapLayer* layerZero;
-    MapLayer* layerOne;
-    MapLayer* layerTwo;
+    MapLayer* background;
+    MapLayer* decoration;
+    MapLayer* collision;
 };
