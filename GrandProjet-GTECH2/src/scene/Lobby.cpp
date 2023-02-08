@@ -12,7 +12,7 @@ Lobby::~Lobby() {
 
 void Lobby::Loop() {
     p.Loop();
-    po.SetPtr(&p.cube,&e->cube2);
+    po.SetPtr(&p.hitboxTest,&e->cube2);
     object.Loop();
     po.Loop();
     e->Loop();

@@ -44,12 +44,13 @@ public:
 	void PlayerAttack();
 	void PlayerBasicAttack();
 	sf::Clock cdBasicAttack;
+	sf::RectangleShape hitboxTest;
 
-	//test
+
+	//Player draw
 	sf::RectangleShape cube;
 	sf::Vector2f moveSpeed;
 	sf::View view;
-
 	
 protected:
 	float endurancePlayer = 100;
@@ -62,7 +63,7 @@ private:
 
 
 	//Player attack basic
-	sf::RectangleShape hitboxTest;
+	
 	bool isActtk = true;
 	bool asAttacked = false;
 
