@@ -1,6 +1,6 @@
 #include "Animation.h"
 
-void Animation::AnimationInit(sf::String texturePath, sf::Sprite sprite, int startFrameColumn, int xImage, int yImage)
+void Animation::AnimationInit(sf::String texturePath, sf::Sprite* sprite, int startFrameColumn, int xImage, int yImage)
 {
 	aTexturePath = texturePath;
 	aSprite = sprite;
@@ -8,31 +8,32 @@ void Animation::AnimationInit(sf::String texturePath, sf::Sprite sprite, int sta
 	aXImage = xImage;
 	aYImage = yImage;
 
-	texture.loadFromFile(texturePath);
-	sprite.setTexture(texture);
-	sf::IntRect rectSourceSprite(startFrameColumn * xImage, 0, xImage, yImage);
+	texture.loadFromFile(aTexturePath);
+	aSprite->setTexture(texture);
+	aSprite->scale(3.0f, 3.0f);
+	sf::IntRect rectSourceSprite(aStartFrameColumn * aXImage, 0, aXImage, aYImage);
 	aRectSourceSprite = rectSourceSprite;
 }
 
 
-sf::Sprite Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX, 
+void Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX, 
 	int startFrameLine, int endFrameColumn, int endFrameLine)
 {
 	if (clock.getElapsedTime().asMilliseconds() >= 100) {
 		// If the rect is at the right border of the spritesheet, and it isn't the end of the animation, 
 		// we put the rect on the next line on the first frame on the left
-		if (aRectSourceSprite.left >= (nbTotalFramesX - 1) * aXImage + ((aStartFrameColumn-1) * aXImage) && counter < nbFramesAnim-1)
+		if (aRectSourceSprite.left >= (nbTotalFramesX - 1) * aXImage - ((aStartFrameColumn-1) * aXImage) && counter < nbFramesAnim)
 		{
 			aRectSourceSprite.left = 0;
 			aRectSourceSprite.top += aYImage;
 			counter += 1;
 		}
 		// If the rect comes at the last frame of the animation, it goes back to the starting frame and reset the counter
-		else if (counter >= nbFramesAnim-1)
+		else if (counter >= nbFramesAnim)
 		{
 			aRectSourceSprite.left = (aStartFrameColumn-1) * aXImage;
 			aRectSourceSprite.top = (startFrameLine-1) * aYImage;
-			counter = 0;
+			counter = 1;
 		}
 		// The rect goes to the next frame on the right
 		else 
@@ -40,11 +41,10 @@ sf::Sprite Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX,
 			aRectSourceSprite.left += aXImage;
 			counter += 1;
 		}
-		aSprite.setTextureRect(aRectSourceSprite);
+		aSprite->setTextureRect(aRectSourceSprite);
 		clock.restart();
 	}
 	
-	return aSprite;
 }
 
 void Animation::flipSprite(sf::Sprite sprite, sf::Vector2f moveSpeed)
