@@ -54,12 +54,6 @@ void MapGenerator::lastRoom()
 	//}
 }
 
-
-
-
-
-
-
 void MapGenerator::maps() {
 	//int firstPosx, firstPosy;
 	//srand(time(NULL));
@@ -119,6 +113,7 @@ void MapGenerator::drawMap()
 
 	}
 }
+
 void MapGenerator::genFirstRoom()
 {
 	int firstPosx = 10;
@@ -228,6 +223,7 @@ void MapGenerator::genStandarRoom()
 	}
 
 }
+
 void MapGenerator::genBossRoom()
 {
 
@@ -507,8 +503,6 @@ void MapGenerator::genSacrificeRoom()
 	}
 }
 
-
-
 void MapGenerator::genMap()
 {
 	mapInit();
@@ -525,3 +519,5 @@ void MapGenerator::genMap()
 	genSacrificeRoom();
 	drawMap();
 }
+
+// 

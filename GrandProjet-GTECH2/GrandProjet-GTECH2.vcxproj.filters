@@ -113,7 +113,7 @@
     <ClInclude Include="src\MapTest.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\SFMLOrthogonalLayer.hpp">
+    <ClInclude Include="src\SFMLLayer.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

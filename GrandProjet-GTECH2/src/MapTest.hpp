@@ -1,7 +1,7 @@
 #include <tmxlite/Map.hpp>
 #include <tmxlite/Layer.hpp>
-#include "GameObject.hpp"
 #include "../../SFMLExample/src/SFMLOrthogonalLayer.hpp"
+#include "GameObject.hpp"
 
 class Map : public GameObject 
 {

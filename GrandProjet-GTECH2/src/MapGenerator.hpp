@@ -3,6 +3,9 @@
 #include <time.h> 
 #include <vector>
 #include <string>
+#include <tmxlite/Map.hpp>
+#include <tmxlite/Layer.hpp>
+#include "SFMLLayer.hpp"
 #include "GameObject.hpp"
 
 class MapGenerator : public GameObject
@@ -46,4 +49,29 @@ private:
     void genEnigmeRoom();
     void genSacrificeRoom();
 
+};
+
+class RoomWallet : public GameObject 
+{
+public:
+
+private:
+
+};
+
+class Room : public GameObject
+{
+public:
+    Room();
+    virtual ~Room();
+
+    virtual void Render()override;
+
+private:
+    std::string path = "ressources/map/";
+    tmx::Map village;
+
+    MapLayer* layerZero;
+    MapLayer* layerOne;
+    MapLayer* layerTwo;
 };
