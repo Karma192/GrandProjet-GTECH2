@@ -26,7 +26,7 @@ void Player::Loop()
 void Player::Render()
 {
     gameData = GetGameData();
-    playerUI();
+    gameData.window->draw(cube);
     //gameData.window->draw(enduranceBarBack);
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);
@@ -34,7 +34,7 @@ void Player::Render()
     gameData.window->draw(playerFirstSpell);
     gameData.window->draw(playerSecondSpell);
     gameData.window->draw(playerThirdSpell);
-    gameData.window->draw(cube);
+    playerUI();
 }
 
 void Player::playerEndurance()
@@ -151,19 +151,19 @@ void Player::KeyboardMove()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
-        cube.move(sf::Vector2f(0.f, -5));
+        cube.move(sf::Vector2f(0.f, -25));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
-        cube.move(sf::Vector2f(0.f, 5));
+        cube.move(sf::Vector2f(0.f, 25));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
-        cube.move(sf::Vector2f(-5, 0.f));
+        cube.move(sf::Vector2f(-25, 0.f));
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-        cube.move(sf::Vector2f(5, 0.f));
+        cube.move(sf::Vector2f(25, 0.f));
     }
 }
 
