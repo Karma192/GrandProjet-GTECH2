@@ -19,6 +19,7 @@ Enemies::~Enemies()
 void Enemies::Loop() 
 {
     if (contextPlayer) FollowTarget(follow);
+    MoveBase(follow);
 }
 
 void Enemies::Render() 
@@ -45,20 +46,34 @@ void Enemies::FollowTarget(bool)
         (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));
 
 
-    if (distance >= 400) 
+    if (distance >= 600) 
     {
         cube2.setFillColor(sf::Color::Green);
         follow = false;
+        MoveBase(false);
     }
-    else if (distance < 400) 
+    else if (distance < 600) 
     {
         cube2.setFillColor(sf::Color::Blue);
-        follow = true;
-        cube2.setPosition(FollowPos + .005f * RelatPos);
+        cube2.setPosition(FollowPos + .02f * RelatPos);
     }
 }
 
-void Enemies::MoveBase()
+void Enemies::MoveBase(bool)
 {
-    
+    if (follow)
+    {
+        FollowTarget(follow);
+    }
+    else if (!follow)
+    {
+        srand((unsigned)time(NULL));
+
+
+            sf::Vector2f FollowPos = cube2.getPosition();
+            unsigned int randomPosX = ((double)rand() / FollowPos.y + 5) * );
+            unsigned int randomPosY = rand() % int(FollowPos.y+5) + int(FollowPos.y-5);
+            cube2.setPosition(randomPosX, randomPosY);
+            follow = true;
+    }
 }

@@ -17,9 +17,7 @@ public:
 
 	void FollowTarget(bool);
 
-	void MoveBase();
-
-	void EnemyMove();
+	void MoveBase(bool);
 
 	sf::RectangleShape cube2;
 
@@ -28,7 +26,7 @@ public:
 	GameObject* target;
 
 	bool follow = false;
-	bool IsFixed = true;
+	//bool IsFixed = true;
 
 	int distance;
 
