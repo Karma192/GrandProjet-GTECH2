@@ -5,7 +5,7 @@
 #include "Object.hpp"
 #include "GameObject.hpp"
 
-class PhysicsObject : public Object, public GameObject
+class PhysicsObject : public GameObject
 {
 public:
 	PhysicsObject();
@@ -13,10 +13,8 @@ public:
 
 	virtual void Loop()override;
 	virtual void Render()override;
-	void ObjectObtain();
-	void ObjectCollide();
+
 	void SetPtr(sf::RectangleShape*, sf::RectangleShape*);
-	bool once = false;
 
 private:
 	sf::RectangleShape* cubePtr;
@@ -24,9 +22,8 @@ private:
 	sf::FloatRect PlayerHurtbox;
 	sf::FloatRect ObjectCollideRect;
 	sf::FloatRect EnemiesRect;
-	void SetPlayerBounds();
-	void SetObjectBounds();
-	void SetPlayerDamaged();
-	void SetPlayerCollide();
+	void SetDynamicObject();
+	void SetStaticObject();
+	Object object;
 };
 
