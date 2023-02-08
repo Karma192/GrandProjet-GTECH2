@@ -2,6 +2,7 @@
 #include "Scene.hpp"
 #include "../MapTest.hpp"
 #include "../Player.hpp"
+#include "../Enemies.hpp"
 
 class Lobby : public GameScene {
 public:
@@ -12,7 +13,8 @@ public:
     virtual void Render()override;
 
 private:
-    Player p;
+    Player* p;
+    Enemies* e;
     Map map;
 
     void Background();

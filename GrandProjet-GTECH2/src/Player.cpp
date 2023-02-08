@@ -3,11 +3,11 @@
 
 Player::Player()
 {
-	//playerSprite.setPosition(0, 0);
-	playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
-	playerSprite.setTexture(playerTexture);
+    //playerSprite.setPosition(0, 0);
+    //playerTexture.loadFromFile("C:/Users/etien/Pictures/amongus.png");
+    //playerSprite.setTexture(playerTexture);
 
-	ControllerInput();
+    CubeTest();
 }
 
 Player::~Player()
@@ -17,24 +17,25 @@ Player::~Player()
 
 void Player::Loop()
 {
-	KeyboardMove();
-	playerEndurance();
-	playerRegenEndurance();
-	ControllerMove();
-	setCamera();
+    playerEndurance();
+    playerRegenEndurance();
+    //ControllerMove();
+    //setCamera();
+    KeyboardMove();
 }
 
 void Player::Render()
 {
-	playerUI();
-	//gameData.window->draw(enduranceBarBack);
-	gameData.window->draw(enduranceBar);
-	gameData.window->draw(lifeBar);
-	gameData.window->draw(playerUltiUI);
-	gameData.window->draw(playerFirstSpell);
-	gameData.window->draw(playerSecondSpell);
-	gameData.window->draw(playerThirdSpell);
-	gameData.window->draw(cube);
+    gameData = GetGameData();
+    gameData.window->draw(cube);
+    //gameData.window->draw(enduranceBarBack);
+    gameData.window->draw(enduranceBar);
+    gameData.window->draw(lifeBar);
+    gameData.window->draw(playerUltiUI);
+    gameData.window->draw(playerFirstSpell);
+    gameData.window->draw(playerSecondSpell);
+    gameData.window->draw(playerThirdSpell);
+    playerUI();
 }
 
 void Player::playerEndurance()
@@ -107,7 +108,7 @@ void Player::playerUI()
 	playerThirdSpell.setPosition(playerThirdSpellV);
 }
 
-void  Player::ControllerInput()
+void  Player::CubeTest()
 {
 	cube.setSize(sf::Vector2f(30.f, 30.f));
 	cube.setFillColor(sf::Color::Red);
@@ -151,30 +152,29 @@ void Player::MovePlayer()
 
 }
 
-void Player::setCamera() 
+void Player::KeyboardMove()
 {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        cube.move(sf::Vector2f(0.f, -25));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        cube.move(sf::Vector2f(0.f, 25));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        cube.move(sf::Vector2f(-25, 0.f));
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        cube.move(sf::Vector2f(25, 0.f));
+    }
+}
+
+void Player::setCamera() {
     gameData = GetGameData();
     view = gameData.window->getDefaultView();
     view.setCenter(cube.getPosition());
     gameData.window->setView(view);
-}
-
-void Player::KeyboardMove()
-{
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-	{
-		cube.move(sf::Vector2f(0.f, -5));
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-	{
-		cube.move(sf::Vector2f(0.f, 5));
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-	{
-		cube.move(sf::Vector2f(-5, 0.f));
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-	{
-		cube.move(sf::Vector2f(5, 0.f));
-	}
 }
