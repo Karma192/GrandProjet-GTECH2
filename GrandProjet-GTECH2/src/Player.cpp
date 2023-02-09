@@ -3,10 +3,8 @@
 
 Player::Player()
 {
-    playerSprite.setPosition(0, 0);
-    playerSprite.setOrigin(32, 32);
-    ControllerInput();
-    animation.AnimationInit("ressources/sprites/player/idle.png", &playerSprite, 1, 64, 64);
+    //playerSprite.setPosition(0, 0);
+    //playerSprite.setOrigin(32, 32);
 
     CubeTest();
 }
@@ -29,7 +27,7 @@ void Player::Loop()
 void Player::Render()
 {
     gameData = GetGameData();
-    animation.SpriteAnimation(4, 4, 1, 4, 4);
+    //animation.SpriteAnimation(4, 4, 1, 4, 4);
     gameData.window->draw(playerSprite);
     //gameData.window->draw(enduranceBarBack);
     gameData.window->draw(enduranceBar);

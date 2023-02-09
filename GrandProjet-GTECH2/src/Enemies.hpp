@@ -4,6 +4,8 @@
 #include "GameObject.hpp"
 #include "Player.hpp"
 
+#define ENEMY_TEXTURE "ressources/sprites/Centipede/Centipede_idle.png"
+
 class Enemies : public GameObject
 {
 public:
@@ -13,21 +15,16 @@ public:
 	virtual void Loop()override;
 	virtual void Render()override;
 
+	//Init Eney
 	void Cube2Test();
+	sf::Sprite Enemy;
+	sf::Texture texture;
+	sf::IntRect image;
 
 	void FollowTarget(bool);
 
-<<<<<<< Updated upstream
-	void MoveBase();
-
-	void EnemyMove();
-
-	void GetStunned();
-
-=======
->>>>>>> Stashed changes
 	sf::RectangleShape cube2;
-	sf::Clock clock2;
+	sf::IntRect enemy;
 
 	Player* contextPlayer;
 
@@ -50,7 +47,6 @@ public:
 
 private:
 	//void EnemyTest();
-	float followRadius = 1.f;
 	sf::Texture enemiesTexture;
 	sf::Sprite enemiesSprite;
 
