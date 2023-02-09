@@ -16,13 +16,12 @@ public:
     virtual void Render()override;
 
 private:
-    Player p;
-    Object object;
-    PhysicsObject po;
+    Player* p;
+    Object* object;
+    PhysicsObject* po;
     Enemies* e;
     MapGenerator* map;
     Doors* exit;
-    
     sf::Texture menuBackground;
     sf::Sprite menuBckSprite;
 };
