@@ -148,16 +148,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\ContactManager.cpp" />
     <ClCompile Include="src\Enemies.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameMaster.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MapGenerator.cpp" />
-    <ClCompile Include="src\MapTest.cpp" />
     <ClCompile Include="src\menuHUD.cpp" />
+    <ClCompile Include="src\Object.cpp" />
+    <ClCompile Include="src\PhysicsObject.cpp" />
     <ClCompile Include="src\Player.cpp" />
-    <ClCompile Include="src\Collision.cpp" />
     <ClCompile Include="src\scene\InGame.cpp" />
     <ClCompile Include="src\scene\Lobby.cpp" />
     <ClCompile Include="src\scene\Menu.cpp" />
@@ -166,21 +167,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="src\ContactManager.hpp" />
     <ClInclude Include="src\Enemies.hpp" />
     <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\GameMaster.hpp" />
     <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\MapGenerator.hpp" />
-    <ClInclude Include="src\MapTest.hpp" />
     <ClInclude Include="src\menuHUD.h" />
+    <ClInclude Include="src\Object.hpp" />
+    <ClInclude Include="src\PhysicsObject.hpp" />
     <ClInclude Include="src\Player.hpp" />
-    <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\scene\InGame.hpp" />
     <ClInclude Include="src\scene\Lobby.hpp" />
     <ClInclude Include="src\scene\Menu.hpp" />
     <ClInclude Include="src\scene\Scene.hpp" />
     <ClInclude Include="src\scene\SceneManager.hpp" />
-    <ClInclude Include="src\SFMLOrthogonalLayer.hpp" />
+    <ClInclude Include="src\SFMLLayer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ressources\ICON.png" />
