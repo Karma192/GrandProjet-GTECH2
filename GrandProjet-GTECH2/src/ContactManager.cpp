@@ -18,15 +18,15 @@ void ContactManager::Collide(sf::RectangleShape* rect, sf::RectangleShape* rect2
         {
             rect->move(sf::Vector2f(0.f, 5));
         }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
             rect->move(sf::Vector2f(0.f, -5));
         }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
             rect->move(sf::Vector2f(5, 0.f));
         }
-        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
             rect->move(sf::Vector2f(-5, 0.f));
         }
