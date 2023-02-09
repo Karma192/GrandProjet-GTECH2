@@ -28,9 +28,6 @@ void Player::Loop()
 void Player::Render()
 {
     gameData = GetGameData();
-    animation.SpriteAnimation(4, 4, 1, 4, 4);
-    gameData.window->draw(playerSprite);
-    //gameData.window->draw(enduranceBarBack);
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);
     gameData.window->draw(playerUltiUI);
@@ -143,21 +140,6 @@ void Player::ControllerMove()
 		MovePlayer();
 	}
 
-	//else if (moveSpeed.x > deadZone)
-	//{
-	//	sf::Joystick::update();
-	//	MovePlayer();
-	//}
-	//else if (moveSpeed.y < -deadZone)
-	//{
-	//	sf::Joystick::update();
-	//	MovePlayer();
-	//}
-	//else if (moveSpeed.x > deadZone)
-	//{
-	//	sf::Joystick::update();
-	//	MovePlayer();
-	//}
 }
 
 void Player::MovePlayer()
@@ -207,12 +189,8 @@ int Player::GetPlayerYPos()
 
 void Player::PlayerAttack()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-    {
-        PlayerBasicAttack();
-        asAttacked = true;
-    }
-
+    PlayerBasicAttack();
+    asAttacked = true;
 }
 
 void Player::PlayerBasicAttack()
