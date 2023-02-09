@@ -2,6 +2,7 @@
 #include "Scene.hpp"
 #include "../Player.hpp"
 #include "../Enemies.hpp"
+#include "../MapGenerator.hpp"
 
 class Lobby : public GameScene {
 public:
@@ -14,6 +15,8 @@ public:
 private:
     Player* p;
     Enemies* e;
+    MapGenerator* map;
+    
 
     void Background();
     sf::Texture menuBackground;
