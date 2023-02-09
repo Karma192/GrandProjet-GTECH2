@@ -1,5 +1,6 @@
 ﻿#include "Player.hpp"
 
+
 Player::Player()
 {
 
@@ -24,7 +25,8 @@ void Player::Loop()
 void Player::Render()
 {
     gameData = GetGameData();
-    playerUI();
+    gameData.window->draw(cube);
+    //gameData.window->draw(enduranceBarBack);
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);
     gameData.window->draw(playerUltiUI);
@@ -48,6 +50,7 @@ void Player::Render()
         IsAttacking = false;
         isActtk = true;
     }
+    playerUI();
 }
 
 void Player::playerEndurance()
@@ -117,42 +120,46 @@ void Player::playerUI()
 
 void  Player::CubeTest()
 {
-    cube.setSize(sf::Vector2f(30.f, 30.f));
-    cube.setFillColor(sf::Color::Red);
-    cube.setPosition(sf::Vector2f(200, 200));
+	cube.setSize(sf::Vector2f(30.f, 30.f));
+	cube.setFillColor(sf::Color::Red);
+	cube.setPosition(sf::Vector2f(200, 200));
+
 }
 
 void Player::ControllerMove()
 {
-    float deadZone = 20.f;
-    moveSpeed.x = (sf::Joystick::getAxisPosition(0, sf::Joystick::X));
-    moveSpeed.y = (sf::Joystick::getAxisPosition(0, sf::Joystick::Y));
+	float deadZone = 5.f;
+	moveSpeed.x = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
+	moveSpeed.y = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
+	
 
-    if (moveSpeed.x < -deadZone)
-    {
-        sf::Joystick::update();
-        MovePlayer();
-    }
-    else if (moveSpeed.x > deadZone)
-    {
-        sf::Joystick::update();
-        MovePlayer();
-    }
-    else if (moveSpeed.y < -deadZone)
-    {
-        sf::Joystick::update();
-        MovePlayer();
-    }
-    else if (moveSpeed.x > deadZone)
-    {
-        sf::Joystick::update();
-        MovePlayer();
-    }
+	if (moveSpeed.x > deadZone || moveSpeed.y > deadZone || 
+		moveSpeed.x < -deadZone || moveSpeed.y < -deadZone)
+	{
+		MovePlayer();
+	}
+
+	//else if (moveSpeed.x > deadZone)
+	//{
+	//	sf::Joystick::update();
+	//	MovePlayer();
+	//}
+	//else if (moveSpeed.y < -deadZone)
+	//{
+	//	sf::Joystick::update();
+	//	MovePlayer();
+	//}
+	//else if (moveSpeed.x > deadZone)
+	//{
+	//	sf::Joystick::update();
+	//	MovePlayer();
+	//}
 }
 
-void Player::MovePlayer() 
+void Player::MovePlayer()
 {
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
+
 }
 
 void Player::setCamera() {
@@ -195,8 +202,6 @@ int Player::GetPlayerYPos()
 {
     return cube.getPosition().y;
 }
-
-
 
 void Player::PlayerAttack()
 {

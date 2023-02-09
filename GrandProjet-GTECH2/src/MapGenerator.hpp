@@ -3,7 +3,46 @@
 #include <time.h> 
 #include <vector>
 #include <string>
+#include <tmxlite/Map.hpp>
+#include <tmxlite/TileLayer.hpp>
+#include <tmxlite/ObjectGroup.hpp>
+#include "SFMLLayer.hpp"
+#include "Player.hpp"
 #include "GameObject.hpp"
+
+class Room : public GameObject
+{
+public:
+    Room() = default;
+    Room(Player* p);
+    Room(std::string);
+    virtual ~Room();
+
+    virtual void Loop()override;
+    virtual void Render()override;
+
+private:
+    std::string path = "ressources/map/";
+    tmx::Map map;
+    Player* player;
+    MapLayer* background;
+    MapLayer* decoration;
+    MapLayer* collision;
+    sf::RectangleShape* rectCube;
+};
+
+class RoomWallet
+{
+public:
+    RoomWallet();
+    virtual ~RoomWallet();
+
+    Room* GetRoom(int);
+private:
+    void LoadAll();
+
+    std::vector<Room*> wallet;
+};
 
 class MapGenerator : public GameObject
 {
@@ -17,6 +56,7 @@ public:
     std::string x;
     int place = 2;
     char map[10][10];
+    RoomWallet wallet;
 
 
     MapGenerator();
@@ -26,10 +66,7 @@ public:
     virtual void Render()override;
 
 private:
-    void attributePlace();
-    void lastRoom();
-    void maps();
-    void resetAll();
+
     void mapInit();
     void drawMap();
     void genMap();

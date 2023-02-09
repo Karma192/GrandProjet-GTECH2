@@ -82,6 +82,6 @@ private:
 	sf::Clock clock;
 	int m_pv;
 	int m_attack;
-	int playerSpeed = 10;
+	int playerSpeed = 20;
 	sf::Clock endurance;
 };

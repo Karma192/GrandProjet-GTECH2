@@ -17,6 +17,8 @@ public:
 
 	void FollowTarget(bool);
 
+	void MoveBase();
+
 	void EnemyMove();
 
 	void GetStunned();
@@ -28,8 +30,10 @@ public:
 
 	GameObject* target;
 
-	bool follow = false;
+	bool follow = true;
 	bool IsFixed = true;
+
+	int distance;
 
 private:
 	//void EnemyTest();

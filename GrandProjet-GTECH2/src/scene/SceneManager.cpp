@@ -5,26 +5,26 @@ SceneManager::SceneManager() {
 	this->window = nullptr;
 }
 
-SceneManager::~SceneManager() 
+SceneManager::~SceneManager()
 {
 
 }
 
 // Set the pointer to give to all scenes
-void SceneManager::SetSM(sf::RenderWindow* win, sf::Event* e) 
+void SceneManager::SetSM(sf::RenderWindow* win, sf::Event* e)
 {
 	this->window = win;
 	this->event = e;
 }
 
 // Switch between scene's Loop
-void SceneManager::Update() 
+void SceneManager::Update()
 {
 	SwitchScene();
 }
 
 // Function for switch between all scenes
-void SceneManager::SwitchScene() 
+void SceneManager::SwitchScene()
 {
 	smData = GetGameData();
 	switch (smData.indexScene)

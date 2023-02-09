@@ -12,7 +12,6 @@ public:
 	bool IsDamaged(sf::FloatRect rect, sf::FloatRect rect2);
 
 	bool damaged;
-
 private:
 
 };
