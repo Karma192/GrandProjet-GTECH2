@@ -14,22 +14,7 @@ void ContactManager::Collide(sf::RectangleShape* rect, sf::RectangleShape* rect2
 	sf::FloatRect rect3 = rect2->getGlobalBounds();
 
 	if (rect1.intersects(rect3)) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-        {
-            rect->move(sf::Vector2f(0.f, 5));
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        {
-            rect->move(sf::Vector2f(0.f, -5));
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        {
-            rect->move(sf::Vector2f(5, 0.f));
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        {
-            rect->move(sf::Vector2f(-5, 0.f));
-        }
+		rect->setPosition(rect->getPosition() - sf::Vector2f(-5, -5));
 	}
 }
 

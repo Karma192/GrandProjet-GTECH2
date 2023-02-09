@@ -41,7 +41,7 @@ void Enemies::FollowTarget(bool)
     sf::Vector2f RelatPos = TargetPos - FollowPos;
     float deltaLength = std::sqrt(RelatPos.x * RelatPos.x + RelatPos.y * RelatPos.y);
     if (deltaLength > followRadius) {
-        cube2.setPosition(FollowPos + .005f * RelatPos);
+        cube2.move(.005f * RelatPos);
     }
     clock.restart();
 

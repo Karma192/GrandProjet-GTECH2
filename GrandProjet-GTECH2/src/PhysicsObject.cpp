@@ -14,6 +14,7 @@ void PhysicsObject::Loop()
 	SetDynamicObject();
 	SetStaticObject();
 	Collide(cubePtr, &object.randomPosObject);
+	Collide(cube2Ptr, &object.randomPosObject);
 	if (player->IsAttacking) {
 		IsDamaged(HitboxRect, EnemiesRect);
 	}
@@ -32,6 +33,7 @@ void PhysicsObject::SetPtr(sf::RectangleShape* rect, sf::RectangleShape* rect2, 
 
 void PhysicsObject::SetDynamicObject()
 {
+
 	HitboxRect = HitBoxPtr->getGlobalBounds();
 	PlayerHurtbox = cubePtr->getGlobalBounds();
 	EnemiesRect = cube2Ptr->getGlobalBounds();

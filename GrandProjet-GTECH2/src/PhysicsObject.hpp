@@ -21,11 +21,15 @@ public:
 private:
 	sf::RectangleShape* cubePtr;
 	sf::RectangleShape* cube2Ptr;
+	sf::RectangleShape* HitBoxPtr;
+
 	sf::FloatRect PlayerHurtbox;
 	sf::FloatRect ObjectCollideRect;
 	sf::FloatRect EnemiesRect;
 	sf::FloatRect HitboxRect;
-	sf::RectangleShape* HitBoxPtr;
+
+	sf::Vector2f PlayerMove;
+
 	void SetDynamicObject();
 	void SetStaticObject();
 	Object object;
