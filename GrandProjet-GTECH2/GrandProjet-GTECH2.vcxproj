@@ -71,10 +71,9 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\agouveia\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\agouveia\Documents\GitHub\GrandProjet-GTECH2\SFML-2.5.1\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\SFML-2.5.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\SFML-2.5.1\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
-
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -91,7 +90,16 @@
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;libtmxlite-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Link>
+      <AdditionalLibraryDirectories>..\SFML-2.5.1\lib;..\tmxlite-master\tmxlite\x64\bin\DebugStatic;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;libtmxlite-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\SFML-2.5.1\include;..\tmxlite-master\tmxlite\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\ContactManager.cpp" />
     <ClCompile Include="src\Enemies.cpp" />
