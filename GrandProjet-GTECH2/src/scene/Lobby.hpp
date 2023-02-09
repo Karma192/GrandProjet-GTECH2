@@ -3,6 +3,7 @@
 #include "../Player.hpp"
 #include "../Enemies.hpp"
 #include "../MapGenerator.hpp"
+#include "../../Doors.hpp"
 
 class Lobby : public GameScene {
 public:
@@ -16,9 +17,8 @@ private:
     Player* p;
     Enemies* e;
     MapGenerator* map;
+    Doors* exit;
     
-
-    void Background();
     sf::Texture menuBackground;
     sf::Sprite menuBckSprite;
 };
