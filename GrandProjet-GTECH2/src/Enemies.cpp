@@ -32,9 +32,7 @@ void Enemies::Cube2Test()
 
 void Enemies::FollowTarget(bool)
 {
-    sf::Vector2f TargetPos = contextPlayer->cube.getPosition();
-    sf::Vector2f FollowPos = cube2.getPosition();
-    sf::Vector2f RelatPos = TargetPos - FollowPos;
+
 
     distance = std::sqrt((TargetPos.x - FollowPos.x) * (TargetPos.x - FollowPos.x) +
         (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));

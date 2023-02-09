@@ -67,12 +67,7 @@ private:
 	bool isActtk = true;
 	bool asAttacked = false;
 
-	void ControllerMove();
 
-	void MovePlayer();
-	void KeyboardMove();
-
-	void setCamera();
 
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;

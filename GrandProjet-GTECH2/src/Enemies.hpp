@@ -19,6 +19,7 @@ public:
 
 	void MoveBase(bool);
 
+
 	sf::RectangleShape cube2;
 
 	Player* contextPlayer;
@@ -29,6 +30,11 @@ public:
 	//bool IsFixed = true;
 
 	int distance;
+
+	sf::Vector2f TargetPos = contextPlayer->cube.getPosition();
+	sf::Vector2f FollowPos = cube2.getPosition();
+	sf::Vector2f RelatPos = TargetPos - FollowPos;
+
 
 private:
 	//void EnemyTest();
