@@ -1,5 +1,58 @@
 #include "MapGenerator.hpp"
 
+// Room class
+
+Room::Room()
+{
+
+}
+
+Room::Room(std::string file)
+{
+	map.load(path + file);
+	background = new MapLayer(map, 0);
+	decoration = new MapLayer(map, 1);
+	collision = new MapLayer(map, 2);
+}
+
+Room::~Room()
+{
+
+}
+
+void Room::Render() 
+{
+	gameData = GetGameData();
+	gameData.window->draw(*background);
+	gameData.window->draw(*decoration);
+	gameData.window->draw(*collision);
+}
+
+// RoomWallet class
+
+RoomWallet::RoomWallet()
+{
+	LoadAll();
+}
+
+RoomWallet::~RoomWallet()
+{
+
+}
+
+Room* RoomWallet::GetRoom(int room)
+{
+	return wallet[room];
+}
+
+void RoomWallet::LoadAll()
+{
+	Room* village = new Room("village/village.tmx");
+	wallet.push_back(village);
+}
+
+// MapGenerator class
+
 MapGenerator::MapGenerator() {
 
 }
@@ -518,55 +571,4 @@ void MapGenerator::genMap()
 	genEnigmeRoom();
 	genSacrificeRoom();
 	drawMap();
-}
-
-// RoomWallet class
-
-RoomWallet::RoomWallet()
-{
-	LoadAll();
-}
-
-RoomWallet::~RoomWallet()
-{
-
-}
-
-Room* RoomWallet::GetRoom(int room)
-{
-	return wallet[room];
-}
-
-void RoomWallet::LoadAll()
-{
-	Room village = Room("village/village.tmx");
-	wallet.push_back(&village);
-}
-
-// Room class
-
-Room::Room()
-{
-
-}
-
-Room::Room(std::string file)
-{
-	map.load(path + file);
-	background = new MapLayer(map, 0);
-	decoration = new MapLayer(map, 1);
-	collision = new MapLayer(map, 2);
-}
-
-Room::~Room()
-{
-
-}
-
-void Room::Render() 
-{
-	gameData = GetGameData();
-	gameData.window->draw(*background);
-	gameData.window->draw(*decoration);
-	gameData.window->draw(*collision);
 }

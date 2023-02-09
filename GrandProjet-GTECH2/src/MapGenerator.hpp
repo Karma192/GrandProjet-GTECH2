@@ -8,6 +8,37 @@
 #include "SFMLLayer.hpp"
 #include "GameObject.hpp"
 
+class Room : public GameObject
+{
+public:
+    Room();
+    Room(std::string);
+    virtual ~Room();
+
+    virtual void Render()override;
+
+private:
+    std::string path = "ressources/map/";
+    tmx::Map map;
+
+    MapLayer* background;
+    MapLayer* decoration;
+    MapLayer* collision;
+};
+
+class RoomWallet
+{
+public:
+    RoomWallet();
+    virtual ~RoomWallet();
+
+    Room* GetRoom(int);
+private:
+    void LoadAll();
+
+    std::vector<Room*> wallet;
+};
+
 class MapGenerator : public GameObject
 {
 public:
@@ -49,35 +80,4 @@ private:
     void genEnigmeRoom();
     void genSacrificeRoom();
 
-};
-
-class RoomWallet
-{
-public:
-    RoomWallet();
-    virtual ~RoomWallet();
-
-    Room* GetRoom(int);
-private:
-    void LoadAll();
-
-    std::vector<Room*> wallet;
-};
-
-class Room : public GameObject
-{
-public:
-    Room();
-    Room(std::string);
-    virtual ~Room();
-
-    virtual void Render()override;
-
-private:
-    std::string path = "ressources/map/";
-    tmx::Map map;
-
-    MapLayer* background;
-    MapLayer* decoration;
-    MapLayer* collision;
 };

@@ -154,7 +154,6 @@
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MapGenerator.cpp" />
-    <ClCompile Include="src\MapTest.cpp" />
     <ClCompile Include="src\menuHUD.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\Collision.cpp" />
@@ -171,7 +170,6 @@
     <ClInclude Include="src\GameMaster.hpp" />
     <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\MapGenerator.hpp" />
-    <ClInclude Include="src\MapTest.hpp" />
     <ClInclude Include="src\menuHUD.h" />
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\Collision.h" />

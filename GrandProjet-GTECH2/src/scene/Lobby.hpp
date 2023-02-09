@@ -1,6 +1,5 @@
 #pragma once
 #include "Scene.hpp"
-#include "../MapTest.hpp"
 #include "../Player.hpp"
 #include "../Enemies.hpp"
 
@@ -15,7 +14,6 @@ public:
 private:
     Player* p;
     Enemies* e;
-    Map* map;
 
     void Background();
     sf::Texture menuBackground;
