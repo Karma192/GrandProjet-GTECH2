@@ -28,5 +28,5 @@ void Lobby::Background() {
     /*menuBackground.loadFromFile("ressources/background.jpg");
     menuBckSprite.setTexture(menuBackground);
     gameData.window->draw(menuBckSprite);*/
-    map.Render();
+    //map.Render();
 }

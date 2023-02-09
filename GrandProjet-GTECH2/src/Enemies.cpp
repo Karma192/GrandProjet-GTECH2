@@ -68,12 +68,11 @@ void Enemies::MoveBase(bool)
     else if (!follow)
     {
         srand((unsigned)time(NULL));
-
-
-            sf::Vector2f FollowPos = cube2.getPosition();
-            //unsigned int randomPosX = ((double)rand() / FollowPos.y + 5) * );
-            unsigned int randomPosY = rand() % int(FollowPos.y+5) + int(FollowPos.y-5);
-            //cube2.setPosition(randomPosX, randomPosY);
-            follow = true;
+        sf::Vector2f FollowPos = cube2.getPosition();
+        //unsigned int randomPosX = ((double)rand() / FollowPos.y + 5) * );
+        unsigned int randomPosY = rand() % int(FollowPos.y-5) + int(FollowPos.y+5);
+        std::cout << randomPosY;
+        //cube2.setPosition(randomPosX, randomPosY);
+        follow = true;
     }
 }

@@ -48,8 +48,6 @@ private:
 	void MovePlayer();
 	void KeyboardMove();
 
-	void KeyboardMove();
-
 	void setCamera();
 
 	//rectangle pour endurance + vie
