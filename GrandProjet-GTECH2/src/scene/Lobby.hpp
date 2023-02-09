@@ -5,7 +5,7 @@
 #include "../MapGenerator.hpp"
 #include "../Object.hpp"
 #include "../PhysicsObject.hpp"
-#include "../../Doors.hpp"
+#include "../Doors.hpp"
 
 class Lobby : public GameScene {
 public:

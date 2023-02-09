@@ -1,5 +1,5 @@
 #pragma once
-#include "src/GameObject.hpp"
+#include "GameObject.hpp"
 
 
 class Doors : public GameObject 

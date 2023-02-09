@@ -84,9 +84,19 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\tmxlite-master\tmxlite\include;..\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>..\tmxlite-master\tmxlite\x64\bin\DebugStatic;..\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;libtmxlite-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\ContactManager.cpp" />
+    <ClCompile Include="src\Doors.cpp" />
     <ClCompile Include="src\Enemies.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameMaster.cpp" />
@@ -95,7 +105,6 @@
     <ClCompile Include="src\MapGenerator.cpp" />
     <ClCompile Include="src\menuHUD.cpp" />
     <ClCompile Include="src\Player.cpp" />
-    <ClCompile Include="src\Collision.cpp" />
     <ClCompile Include="src\scene\InGame.cpp" />
     <ClCompile Include="src\scene\Lobby.cpp" />
     <ClCompile Include="src\scene\Menu.cpp" />
@@ -103,10 +112,10 @@
     <ClCompile Include="src\scene\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Doors.hpp" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="src\Animation.h" />
     <ClInclude Include="src\ContactManager.hpp" />
+    <ClInclude Include="src\Doors.hpp" />
     <ClInclude Include="src\Enemies.hpp" />
     <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\GameMaster.hpp" />
@@ -114,7 +123,6 @@
     <ClInclude Include="src\MapGenerator.hpp" />
     <ClInclude Include="src\menuHUD.h" />
     <ClInclude Include="src\Player.hpp" />
-    <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\scene\InGame.hpp" />
     <ClInclude Include="src\scene\Lobby.hpp" />
     <ClInclude Include="src\scene\Menu.hpp" />

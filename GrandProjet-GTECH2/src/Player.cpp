@@ -5,7 +5,6 @@ Player::Player()
 {
     playerSprite.setPosition(0, 0);
     playerSprite.setOrigin(32, 32);
-    ControllerInput();
     animation.AnimationInit("ressources/sprites/player/idle.png", &playerSprite, 1, 64, 64);
 
     CubeTest();
@@ -179,6 +178,7 @@ void Player::KeyboardMove()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
         cube.move(sf::Vector2f(0.f, -5));
+        //Destroy();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
