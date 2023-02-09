@@ -74,11 +74,9 @@ void Enemies::GetStunned()
     if (contextPlayer->IsAttacking) {
         if (IsDamaged(rect, rect2)) {
             followRadius = 1000000.f;
-            cube2.move(40, 0);
             clock2.restart();
         }
     }
-    std::cout << clock2.getElapsedTime().asSeconds();
     if (clock2.getElapsedTime().asSeconds() > 1.f) {
         followRadius = 1.f;
     }
