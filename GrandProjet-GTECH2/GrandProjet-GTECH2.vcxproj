@@ -74,7 +74,19 @@
     <IncludePath>..\SFML-2.5.1\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\SFML-2.5.1\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+<<<<<<< Updated upstream
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+=======
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\SFML-2.5.1\include;..\tmxlite-master\tmxlite\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+>>>>>>> Stashed changes
     <Link>
       <AdditionalLibraryDirectories>..\SFML-2.5.1\lib;..\tmxlite-master\tmxlite\x64\bin\DebugStatic;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;libtmxlite-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -132,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="ressources\map\village\village.tmx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

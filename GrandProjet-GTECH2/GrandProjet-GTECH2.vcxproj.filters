@@ -36,7 +36,10 @@
     <ClInclude Include="src\scene\Scene.hpp" />
     <ClInclude Include="src\scene\SceneManager.hpp" />
     <ClInclude Include="src\SFMLLayer.hpp" />
+<<<<<<< Updated upstream
     <ClInclude Include="src\Animation.h" />
+=======
+>>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GrandProjet-GTECH2.rc" />
@@ -49,5 +52,9 @@
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
     <None Include="ressources\map\village\village.tmx" />
+<<<<<<< Updated upstream
+=======
+    <None Include="ClassDiagram1.cd" />
+>>>>>>> Stashed changes
   </ItemGroup>
 </Project>

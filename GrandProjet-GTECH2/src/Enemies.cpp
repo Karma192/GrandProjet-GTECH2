@@ -30,8 +30,9 @@ void Enemies::Cube2Test()
     cube2.setPosition(sf::Vector2f(800, 400));
 }
 
-void Enemies::FollowTarget(bool)
+void Enemies::FollowTarget(bool follow)
 {
+<<<<<<< Updated upstream
     //Radius for Aggro
     //interval for aggro
     sf::Clock clock;
@@ -44,24 +45,52 @@ void Enemies::FollowTarget(bool)
         cube2.move(.005f * RelatPos);
     }
     clock.restart();
+=======
+    FollowPos = cube2.getPosition();
+    TargetPos = contextPlayer->cube.getPosition();
+    RelatPos = TargetPos - FollowPos;
+>>>>>>> Stashed changes
 
     distance = std::sqrt((TargetPos.x - FollowPos.x) * (TargetPos.x - FollowPos.x) +
         (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));
 
-
-    if (distance >= 600)
+    if (distance > 300)
     {
-        cube2.setFillColor(sf::Color::Green);
         follow = false;
-        //MoveBase(false);
+        randDir = std::rand() % 4 + 1;
+        cube2.setFillColor(sf::Color::Green);
+        if (ClockMove.getElapsedTime().asSeconds() > 1) {
+            if (randDir == 1)
+            {
+                cube2.move(0.f, -10);
+                ClockMove.restart();
+            }
+            if (randDir == 2)
+            {
+                cube2.move(0.f, 10);
+                ClockMove.restart();
+            }
+            if (randDir == 3)
+            {
+                cube2.move(10, 0.f);
+                ClockMove.restart();
+            }
+            if (randDir == 4)
+            {
+                cube2.move(-10, 0.f);
+                ClockMove.restart();
+            }
+        }
     }
-    else if (distance < 600)
+    if (distance < 300)
     {
+        follow = true;
         cube2.setFillColor(sf::Color::Blue);
-        cube2.setPosition(FollowPos + .02f * RelatPos);
+        cube2.move(0.01f * RelatPos);
     }
 }
 
+<<<<<<< Updated upstream
 void Enemies::GetStunned()
 {
     sf::FloatRect rect = contextPlayer->hitboxTest.getGlobalBounds();
@@ -76,3 +105,5 @@ void Enemies::GetStunned()
         followRadius = 1.f;
     }
 }
+=======
+>>>>>>> Stashed changes

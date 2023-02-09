@@ -17,12 +17,15 @@ public:
 
 	void FollowTarget(bool);
 
+<<<<<<< Updated upstream
 	void MoveBase();
 
 	void EnemyMove();
 
 	void GetStunned();
 
+=======
+>>>>>>> Stashed changes
 	sf::RectangleShape cube2;
 	sf::Clock clock2;
 
@@ -34,6 +37,16 @@ public:
 	bool IsFixed = true;
 
 	int distance;
+
+	//For Move
+	sf::Vector2f TargetPos;
+	sf::Vector2f RelatPos;
+	sf::Clock ClockMove;
+	sf::Time Frame;
+	sf::Vector2f FollowPos;
+
+	float interMove;
+	int randDir;
 
 private:
 	//void EnemyTest();

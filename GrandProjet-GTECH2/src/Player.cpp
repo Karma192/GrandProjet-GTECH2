@@ -143,22 +143,6 @@ void Player::ControllerMove()
 	{
 		MovePlayer();
 	}
-
-	//else if (moveSpeed.x > deadZone)
-	//{
-	//	sf::Joystick::update();
-	//	MovePlayer();
-	//}
-	//else if (moveSpeed.y < -deadZone)
-	//{
-	//	sf::Joystick::update();
-	//	MovePlayer();
-	//}
-	//else if (moveSpeed.x > deadZone)
-	//{
-	//	sf::Joystick::update();
-	//	MovePlayer();
-	//}
 }
 
 void Player::MovePlayer()
