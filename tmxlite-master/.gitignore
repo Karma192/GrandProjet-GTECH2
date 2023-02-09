@@ -1,0 +1,10 @@
+tmxlite.VC.db
+DebugShared
+ReleaseShared
+ReleaseStatic
+Debug
+Release
+
+*.swp
+/.vs/tmxlite
+/tmxlite/tmxlite.vcxproj.user

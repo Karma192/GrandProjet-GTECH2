@@ -2,6 +2,7 @@
 #include "Scene.hpp"
 #include "../Player.hpp"
 #include "../Enemies.hpp"
+#include "../MapGenerator.hpp"
 #include "../Object.hpp"
 #include "../PhysicsObject.hpp"
 
@@ -18,6 +19,8 @@ private:
     Object object;
     PhysicsObject po;
     Enemies* e;
+    MapGenerator* map;
+    
 
     void Background();
     sf::Texture menuBackground;

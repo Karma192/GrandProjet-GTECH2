@@ -26,7 +26,7 @@ void Enemies::Render()
 void Enemies::Cube2Test()
 {
     cube2.setSize(sf::Vector2f(30.f, 30.f));
-    cube2.setFillColor(sf::Color::Blue);
+    //cube2.setFillColor(sf::Color::Blue);
     cube2.setPosition(sf::Vector2f(800, 400));
 }
 
@@ -45,25 +45,22 @@ void Enemies::FollowTarget(bool)
     }
     clock.restart();
 
-    if (clock.getElapsedTime().asMilliseconds() > interval)
+    distance = std::sqrt((TargetPos.x - FollowPos.x) * (TargetPos.x - FollowPos.x) +
+        (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));
+
+
+    if (distance >= 600)
     {
-        
+        cube2.setFillColor(sf::Color::Green);
+        follow = false;
+        //MoveBase(false);
+    }
+    else if (distance < 600)
+    {
+        cube2.setFillColor(sf::Color::Blue);
+        cube2.setPosition(FollowPos + .02f * RelatPos);
     }
 }
-
-void Enemies::EnemyMove() 
-{
-    if (!IsFixed) 
-    {
-        if (follow) 
-        {
-            FollowTarget(follow);
-        }
-        else
-        {
-            //MoveBase();
-        }
-    }
 
 }
 

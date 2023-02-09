@@ -106,7 +106,7 @@ void menuHUD::menuTitle()
 {
     if (!this->heartless.loadFromFile("ressources/fonts/Heartless.ttf"))
     {
-        std::cout << "Error TTF Title Font" << std::endl;
+        //std::cout << "Error TTF Title Font" << std::endl;
     }
 
     titleBounds = title.getLocalBounds();
