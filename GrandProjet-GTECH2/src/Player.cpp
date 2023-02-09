@@ -3,11 +3,6 @@
 
 Player::Player()
 {
-    playerSprite.setPosition(0, 0);
-    playerSprite.setOrigin(32, 32);
-    ControllerInput();
-    animation.AnimationInit("ressources/sprites/player/idle.png", &playerSprite, 1, 64, 64);
-
     CubeTest();
 }
 
@@ -29,9 +24,6 @@ void Player::Loop()
 void Player::Render()
 {
     gameData = GetGameData();
-    animation.SpriteAnimation(4, 4, 1, 4, 4);
-    gameData.window->draw(playerSprite);
-    //gameData.window->draw(enduranceBarBack);
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);
     gameData.window->draw(playerUltiUI);
@@ -144,21 +136,6 @@ void Player::ControllerMove()
 		MovePlayer();
 	}
 
-	//else if (moveSpeed.x > deadZone)
-	//{
-	//	sf::Joystick::update();
-	//	MovePlayer();
-	//}
-	//else if (moveSpeed.y < -deadZone)
-	//{
-	//	sf::Joystick::update();
-	//	MovePlayer();
-	//}
-	//else if (moveSpeed.x > deadZone)
-	//{
-	//	sf::Joystick::update();
-	//	MovePlayer();
-	//}
 }
 
 void Player::MovePlayer()
@@ -178,7 +155,8 @@ void Player::KeyboardMove()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
-        cube.move(sf::Vector2f(0.f, -5));
+       cube.move(sf::Vector2f(0.f, -5));
+        
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
@@ -207,12 +185,8 @@ int Player::GetPlayerYPos()
 
 void Player::PlayerAttack()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-    {
-        PlayerBasicAttack();
-        asAttacked = true;
-    }
-
+    PlayerBasicAttack();
+    asAttacked = true;
 }
 
 void Player::PlayerBasicAttack()

@@ -22,7 +22,7 @@ void Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX,
 	if (clock.getElapsedTime().asMilliseconds() >= 100) {
 		// If the rect is at the right border of the spritesheet, and it isn't the end of the animation, 
 		// we put the rect on the next line on the first frame on the left
-		if (aRectSourceSprite.left >= (nbTotalFramesX - 1) * aXImage - ((aStartFrameColumn-1) * aXImage) && counter < nbFramesAnim)
+		if (aRectSourceSprite.left >= (nbTotalFramesX - 1) * aXImage && counter < nbFramesAnim)
 		{
 			aRectSourceSprite.left = 0;
 			aRectSourceSprite.top += aYImage;
