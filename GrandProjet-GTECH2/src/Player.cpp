@@ -3,6 +3,10 @@
 
 Player::Player()
 {
+    playerSprite.setPosition(0, 0);
+    playerSprite.setOrigin(32, 32);
+    ControllerInput();
+    animation.AnimationInit("ressources/sprites/player/idle.png", &playerSprite, 1, 64, 64);
 
     CubeTest();
 }
@@ -25,7 +29,8 @@ void Player::Loop()
 void Player::Render()
 {
     gameData = GetGameData();
-    gameData.window->draw(cube);
+    animation.SpriteAnimation(4, 4, 1, 4, 4);
+    gameData.window->draw(playerSprite);
     //gameData.window->draw(enduranceBarBack);
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);
@@ -124,7 +129,6 @@ void  Player::CubeTest()
 	cube.setSize(sf::Vector2f(30.f, 30.f));
 	cube.setFillColor(sf::Color::Red);
 	cube.setPosition(sf::Vector2f(200, 200));
-
 }
 
 void Player::ControllerMove()

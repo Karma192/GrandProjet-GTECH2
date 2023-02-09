@@ -20,7 +20,6 @@ private:
     PhysicsObject* po;
     Enemies* e;
     MapGenerator* map;
-    
 
     void Background();
     sf::Texture menuBackground;

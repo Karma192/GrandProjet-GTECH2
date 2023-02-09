@@ -36,6 +36,7 @@
     <ClInclude Include="src\scene\Scene.hpp" />
     <ClInclude Include="src\scene\SceneManager.hpp" />
     <ClInclude Include="src\SFMLLayer.hpp" />
+    <ClInclude Include="src\Animation.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GrandProjet-GTECH2.rc" />
