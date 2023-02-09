@@ -25,17 +25,13 @@ void Enemies::Render()
 void Enemies::Cube2Test()
 {
     cube2.setSize(sf::Vector2f(30.f, 30.f));
-    cube2.setFillColor(sf::Color::Blue);
+    //cube2.setFillColor(sf::Color::Blue);
     cube2.setPosition(sf::Vector2f(800, 400));
 }
 
 void Enemies::FollowTarget(bool)
 {
-    //Radius for Aggro
-    float followRadius = 1.f;
     //interval for aggro
-    sf::Clock clock;
-    float interval = 0.001f;
     sf::Vector2f TargetPos = contextPlayer->cube.getPosition();
     sf::Vector2f FollowPos = cube2.getPosition();
     sf::Vector2f RelatPos = TargetPos - FollowPos;
@@ -45,24 +41,24 @@ void Enemies::FollowTarget(bool)
     }
     clock.restart();
 
-    if (clock.getElapsedTime().asMilliseconds() > interval)
+    distance = std::sqrt((TargetPos.x - FollowPos.x) * (TargetPos.x - FollowPos.x) +
+        (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));
+
+
+    if (distance >= 400) 
     {
-        
+        cube2.setFillColor(sf::Color::Green);
+        follow = false;
+    }
+    else if (distance < 400) 
+    {
+        cube2.setFillColor(sf::Color::Blue);
+        follow = true;
+        cube2.setPosition(FollowPos + .005f * RelatPos);
     }
 }
 
-void Enemies::EnemyMove() 
+void Enemies::MoveBase()
 {
-    if (!IsFixed) 
-    {
-        if (follow) 
-        {
-            FollowTarget(follow);
-        }
-        else
-        {
-            //MoveBase();
-        }
-    }
-
+    
 }

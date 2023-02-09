@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\agrandpaul\Documents\GitHub\GrandProjet-GTECH2\tmxlite-master\tmxlite\build\CMakeFiles\3c142a287f85940dacec7de378cadc67\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{EF574A99-A117-32AE-8903-6044675D46D7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

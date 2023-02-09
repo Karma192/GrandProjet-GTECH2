@@ -29,7 +29,7 @@ void Lobby::Render()
 }
 
 void Lobby::Background() {
-    menuBackground.loadFromFile("ressources/background.jpg");
+    /*menuBackground.loadFromFile("ressources/background.jpg");
     menuBckSprite.setTexture(menuBackground);
-    gameData.window->draw(menuBckSprite);
+    gameData.window->draw(menuBckSprite);*/
 }
