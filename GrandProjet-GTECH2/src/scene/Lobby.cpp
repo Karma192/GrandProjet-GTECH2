@@ -7,11 +7,13 @@ Lobby::Lobby() {
 	AddToScene(e, 0);
 	map = new MapGenerator();
 	AddToScene(map, 0);
+	exit = new Doors();
+	AddToScene(exit, 0);
 }
 
 Lobby::~Lobby()
 {
-	delete p, e, map;
+	delete p, e, map, exit;
 }
 
 void Lobby::Loop() {
@@ -23,5 +25,6 @@ void Lobby::Render() {
 	map->Render();
 	p->Render();
 	e->Render();
+	exit->Render();
 }
 

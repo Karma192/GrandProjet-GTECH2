@@ -5,6 +5,7 @@
 #include "../MapGenerator.hpp"
 #include "../Object.hpp"
 #include "../PhysicsObject.hpp"
+#include "../Doors.hpp"
 
 class Lobby : public GameScene {
 public:
@@ -20,8 +21,7 @@ private:
     PhysicsObject* po;
     Enemies* e;
     MapGenerator* map;
-
-    void Background();
+    Doors* exit;
     sf::Texture menuBackground;
     sf::Sprite menuBckSprite;
 };
