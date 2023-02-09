@@ -33,7 +33,7 @@ void Player::Render()
     gameData.window->draw(playerFirstSpell);
     gameData.window->draw(playerSecondSpell);
     gameData.window->draw(playerThirdSpell);
-    gameData.window->draw(cube);
+    
     if (isActtk == true && asAttacked == true) 
     { 
         IsAttacking = true;
@@ -50,6 +50,7 @@ void Player::Render()
         IsAttacking = false;
         isActtk = true;
     }
+    gameData.window->draw(cube);
     playerUI();
 }
 
@@ -171,23 +172,24 @@ void Player::setCamera() {
 
 void Player::KeyboardMove()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
         cube.move(sf::Vector2f(0.f, -5));
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         cube.move(sf::Vector2f(0.f, 5));
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
         cube.move(sf::Vector2f(-5, 0.f));
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         cube.move(sf::Vector2f(5, 0.f));
     }
 }
+
 
 int Player::GetPlayerXPos()
 {
@@ -211,7 +213,24 @@ void Player::PlayerAttack()
 
 void Player::PlayerBasicAttack()
 {  
-    hitboxTest.setSize(sf::Vector2f(30.f, 40.f));
+    hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
     hitboxTest.setFillColor(sf::Color::Blue);
-    hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos() - 5);
+    hitboxTest.setPosition(cube.getPosition());
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - 30.f);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() + 30.f);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos());
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos());
+    }
 }
