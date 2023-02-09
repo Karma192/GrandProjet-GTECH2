@@ -13,7 +13,7 @@ void PhysicsObject::Loop()
 {
 	SetDynamicObject();
 	SetStaticObject();
-	Collide(PlayerHurtbox, EnemiesRect);
+	Collide(cubePtr, &object.randomPosObject);
 	if (player->IsAttacking) {
 		IsDamaged(HitboxRect, EnemiesRect);
 	}
