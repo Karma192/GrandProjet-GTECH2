@@ -2,12 +2,7 @@
 
 Enemies::Enemies(Player* p) 
 {
-    //enemiesSprite.setPosition(100, 0);
-    //enemiesTexture.loadFromFile("C:/Users/etien/Pictures/imposter.png");
-    //enemiesSprite.setTexture(enemiesTexture);
-
     contextPlayer = p;
-
     Cube2Test();
 }
 
@@ -36,7 +31,6 @@ void Enemies::Cube2Test()
 
 void Enemies::FollowTarget(bool)
 {
-    //interval for aggro
     sf::Vector2f TargetPos = contextPlayer->cube.getPosition();
     sf::Vector2f FollowPos = cube2.getPosition();
     sf::Vector2f RelatPos = TargetPos - FollowPos;
@@ -45,16 +39,16 @@ void Enemies::FollowTarget(bool)
         (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));
 
 
-    if (distance >= 400) 
+    if (distance >= 600)
     {
         cube2.setFillColor(sf::Color::Green);
         follow = false;
+        //MoveBase(false);
     }
-    else if (distance < 400) 
+    else if (distance < 600)
     {
         cube2.setFillColor(sf::Color::Blue);
-        follow = true;
-        cube2.setPosition(FollowPos + .005f * RelatPos);
+        cube2.setPosition(FollowPos + .02f * RelatPos);
     }
 }
 
