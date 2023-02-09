@@ -2,7 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
-#include <vector>
+#include <math.h>
 #include "GameObject.hpp"
 
 #define PLAYER_TEXTURE "ressources/sprites/player/idle.png"
@@ -43,16 +43,18 @@ public:
 	//Player attack
 	void PlayerAttack();
 	void PlayerBasicAttack();
-	sf::Clock cdBasicAttack;
 
-	//test
+	sf::Clock cdBasicAttack;
+	sf::RectangleShape hitboxTest;
+
+
+	//Player draw
 	sf::RectangleShape cube;
 	sf::Vector2f moveSpeed;
 	sf::View view;
 
 	bool IsAttacking = false;
 
-	sf::RectangleShape hitboxTest;
 	
 protected:
 	float endurancePlayer = 100;
@@ -79,7 +81,6 @@ private:
 	sf::CircleShape playerThirdSpell;
 
 
-	sf::Clock clock;
 	int m_pv;
 	int m_attack;
 	int playerSpeed = 60;
