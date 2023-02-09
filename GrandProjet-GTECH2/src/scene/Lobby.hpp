@@ -3,6 +3,8 @@
 #include "../Player.hpp"
 #include "../Enemies.hpp"
 #include "../MapGenerator.hpp"
+#include "../Object.hpp"
+#include "../PhysicsObject.hpp"
 #include "../../Doors.hpp"
 
 class Lobby : public GameScene {
@@ -14,7 +16,9 @@ public:
     virtual void Render()override;
 
 private:
-    Player* p;
+    Player p;
+    Object object;
+    PhysicsObject po;
     Enemies* e;
     MapGenerator* map;
     Doors* exit;
