@@ -2,7 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
-#include <vector>
+#include <math.h>
 #include "GameObject.hpp"
 
 #define PLAYER_TEXTURE "ressources/sprites/player/idle.png"
@@ -43,11 +43,7 @@ public:
 	//Player attack
 	void PlayerAttack();
 	void PlayerBasicAttack();
-	void AttackDirection();
-	bool North = false;
-	bool South = false;
-	bool East = false;
-	bool West = false;
+
 	sf::Clock cdBasicAttack;
 	sf::RectangleShape hitboxTest;
 

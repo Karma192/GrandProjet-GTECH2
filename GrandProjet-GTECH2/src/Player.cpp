@@ -31,7 +31,7 @@ void Player::Render()
     gameData.window->draw(playerFirstSpell);
     gameData.window->draw(playerSecondSpell);
     gameData.window->draw(playerThirdSpell);
-    gameData.window->draw(cube);
+    
     if (isActtk == true && asAttacked == true) 
     { 
         gameData.window->draw(hitboxTest);
@@ -46,6 +46,7 @@ void Player::Render()
     {
         isActtk = true;
     }
+    gameData.window->draw(cube);
 }
 
 void Player::playerEndurance()
@@ -118,7 +119,6 @@ void  Player::CubeTest()
     cube.setSize(sf::Vector2f(30.f, 30.f));
     cube.setFillColor(sf::Color::Red);
     cube.setPosition(sf::Vector2f(200, 200));
-    cube.setOrigin(cube.getSize().x / 2, cube.getSize().y / 2);
 }
 
 void Player::ControllerMove()
@@ -196,7 +196,6 @@ int Player::GetPlayerYPos()
 
 void Player::PlayerAttack()
 {
-    AttackDirection();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
         PlayerBasicAttack();
@@ -207,53 +206,24 @@ void Player::PlayerAttack()
 
 void Player::PlayerBasicAttack()
 {  
-    hitboxTest.setSize(sf::Vector2f(30.f, 40.f));
-    hitboxTest.setFillColor(sf::Color::Blue);   
-    hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - GetPlayerYPos());
-    /*if (North == true)
-    {
-        hitboxTest.setRotation(90.f);
-        hitboxTest.setPosition(GetPlayerXPos() + 35.f, GetPlayerYPos() - 30.f);
-        North = false;
-        hitboxTest.setRotation(-90.f);
-    }
-    if (South == true)
-    {
-        hitboxTest.setRotation(90.f);
-        hitboxTest.setPosition(GetPlayerXPos() + 35.f, GetPlayerYPos() + 30.f);
-        South = false;
-        hitboxTest.setRotation(-90.f);
-    }
-    if (West == true)
-    {
-        hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos() - 5);
-        West = false;
-    }    
-    if (East == true)
-    {
-        hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos() - 5);
-        East = false;
-    }*/
-    
-    
-}
+    hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
+    hitboxTest.setFillColor(sf::Color::Blue);
+    hitboxTest.setPosition(cube.getPosition());
 
-void Player::AttackDirection()
-{
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
-        North = true;
+        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - 30.f);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
-        South = true;
+        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() + 30.f);
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
-        West = true;
+        hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos());
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-        East = true;
+        hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos());
     }
 }
