@@ -62,8 +62,6 @@ void Enemies::FollowTarget(bool)
     }
 }
 
-}
-
 void Enemies::GetStunned()
 {
     sf::FloatRect rect = contextPlayer->hitboxTest.getGlobalBounds();
