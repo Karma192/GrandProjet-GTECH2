@@ -22,6 +22,7 @@ bool ContactManager::IsDamaged(sf::FloatRect rect, sf::FloatRect rect2)
 {
 	if (rect.intersects(rect2)) {
 		std::cout << "Damage";
+		damaged = true;
 		return true;
 	}
 	return false;

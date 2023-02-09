@@ -15,9 +15,6 @@ void PhysicsObject::Loop()
 	SetStaticObject();
 	Collide(cubePtr, &object.randomPosObject);
 	Collide(cube2Ptr, &object.randomPosObject);
-	if (player->IsAttacking) {
-		IsDamaged(HitboxRect, EnemiesRect);
-	}
 }
 
 void PhysicsObject::Render()

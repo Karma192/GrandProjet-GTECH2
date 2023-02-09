@@ -19,7 +19,10 @@ public:
 
 	void EnemyMove();
 
+	void GetStunned();
+
 	sf::RectangleShape cube2;
+	sf::Clock clock2;
 
 	Player* contextPlayer;
 
@@ -30,7 +33,7 @@ public:
 
 private:
 	//void EnemyTest();
-
+	float followRadius = 1.f;
 	sf::Texture enemiesTexture;
 	sf::Sprite enemiesSprite;
 

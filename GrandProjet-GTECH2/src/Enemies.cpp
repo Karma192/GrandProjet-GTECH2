@@ -14,6 +14,7 @@ Enemies::~Enemies()
 void Enemies::Loop() 
 {
     if (contextPlayer) FollowTarget(follow);
+    GetStunned();
 }
 
 void Enemies::Render() 
@@ -32,7 +33,6 @@ void Enemies::Cube2Test()
 void Enemies::FollowTarget(bool)
 {
     //Radius for Aggro
-    float followRadius = 1.f;
     //interval for aggro
     sf::Clock clock;
     float interval = 0.001f;
@@ -65,4 +65,21 @@ void Enemies::EnemyMove()
         }
     }
 
+}
+
+void Enemies::GetStunned()
+{
+    sf::FloatRect rect = contextPlayer->hitboxTest.getGlobalBounds();
+    sf::FloatRect rect2 = cube2.getGlobalBounds();
+    if (contextPlayer->IsAttacking) {
+        if (IsDamaged(rect, rect2)) {
+            followRadius = 1000000.f;
+            cube2.move(40, 0);
+            clock2.restart();
+        }
+    }
+    std::cout << clock2.getElapsedTime().asSeconds();
+    if (clock2.getElapsedTime().asSeconds() > 1.f) {
+        followRadius = 1.f;
+    }
 }
