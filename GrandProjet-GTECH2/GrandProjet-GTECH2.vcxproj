@@ -180,7 +180,7 @@
     <ClInclude Include="src\scene\Menu.hpp" />
     <ClInclude Include="src\scene\Scene.hpp" />
     <ClInclude Include="src\scene\SceneManager.hpp" />
-    <ClInclude Include="src\SFMLOrthogonalLayer.hpp" />
+    <ClInclude Include="src\SFMLLayer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ressources\ICON.png" />
