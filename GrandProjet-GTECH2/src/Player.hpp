@@ -52,11 +52,13 @@ public:
 	sf::RectangleShape cube;
 	sf::Vector2f moveSpeed;
 	sf::View view;
+
+	bool IsAttacking = false;
+
 	
 protected:
 	float endurancePlayer = 100;
 	float cd_Endurance = endurance.getElapsedTime().asSeconds();
-
 
 private:
 	sf::Texture playerTexture;
@@ -64,7 +66,6 @@ private:
 
 
 	//Player attack basic
-	
 	bool isActtk = true;
 	bool asAttacked = false;
 

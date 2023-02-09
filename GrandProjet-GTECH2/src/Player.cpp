@@ -34,6 +34,7 @@ void Player::Render()
     
     if (isActtk == true && asAttacked == true) 
     { 
+        IsAttacking = true;
         gameData.window->draw(hitboxTest);
     }
     if (cdBasicAttack.getElapsedTime().asSeconds() >= 0.1f)
@@ -44,6 +45,7 @@ void Player::Render()
     }
     else
     {
+        IsAttacking = false;
         isActtk = true;
     }
     gameData.window->draw(cube);
