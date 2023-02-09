@@ -53,8 +53,8 @@ void GameScene::Render() {
 	}
 }
 
-void GameScene::AddToScene(GameObject& gameObject, int layer) {
-	layers[layer]->objects.push_back(&gameObject);
+void GameScene::AddToScene(GameObject* gameObject, int layer) {
+	layers[layer]->objects.push_back(gameObject);
 }
 
 void GameScene::SetLayer() {

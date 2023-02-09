@@ -1,7 +1,61 @@
 #include "MapGenerator.hpp"
 
-MapGenerator::MapGenerator() {
+// Room class
 
+Room::Room()
+{
+
+}
+
+Room::Room(std::string file)
+{
+	map.load(path + file);
+	background = new MapLayer(map, 0);
+	decoration = new MapLayer(map, 1);
+	collision = new MapLayer(map, 2);
+}
+
+Room::~Room()
+{
+
+}
+
+void Room::Render() 
+{
+	gameData = GetGameData();
+	gameData.window->draw(*background);
+	gameData.window->draw(*decoration);
+	gameData.window->draw(*collision);
+}
+
+// RoomWallet class
+
+RoomWallet::RoomWallet()
+{
+	LoadAll();
+}
+
+RoomWallet::~RoomWallet()
+{
+
+}
+
+Room* RoomWallet::GetRoom(int room)
+{
+	return wallet[room];
+} 
+
+void RoomWallet::LoadAll()
+{
+	Room* inn = new Room("village/inside_tavern.tmx");
+	wallet.push_back(inn);
+}
+
+// MapGenerator class
+
+MapGenerator::MapGenerator() {
+	RoomWallet wallet;
+	
 }
 
 MapGenerator::~MapGenerator() {
@@ -9,90 +63,25 @@ MapGenerator::~MapGenerator() {
 }
 
 void MapGenerator::Loop() {
-	genMap();
 }
 
 void MapGenerator::Render() {
-
-}
-
-void MapGenerator::attributePlace() {
-	//int Posx, Posy;
-	//bool exit = false;
-
-	//while (!exit) {
-	//	Posx = rand() % H_MAX;
-	//	Posy = rand() % W_MAX;
-
-	//	if (map[Posx][Posy] == 0) {
-	//		if (map[Posx + 1][Posy] != 0 || map[Posx - 1][Posy] != 0 || map[Posx][Posy + 1] != 0 || map[Posx][Posy - 1] != 0) {
-	//			map[Posx][Posy] = place;
-	//			place++;
-	//			exit = true;
-	//		}
-	//	}
-	//}
-}
-
-void MapGenerator::lastRoom()
-{
-	//int Posx, Posy;
-	//bool exit = false;
-	//while (!exit)
+	wallet.GetRoom(0)->Render();
+	//switch (gameData.indexScene)
 	//{
-	//	Posx = rand() % H_MAX;
-	//	Posy = rand() % W_MAX;
-	//	if (map[Posx][Posy] == 0)
+	//case LOBBY : 
+	//	if (gameData.indexMap == 0)
 	//	{
-	//		if (map[Posx + 1][Posy] != 0 || map[Posx][Posy + 1] != 0 || map[Posx - 1][Posy] != 0 || map[Posx][Posy - 1] != 0) {
-	//			if (map[Posx + 1][Posy] != 1 && map[Posx][Posy + 1] != 1 && map[Posx - 1][Posy] != 1 && map[Posx][Posy - 1] != 1) {
-	//				map[Posx][Posy] = 5;
-	//				exit = true;
-	//			}
-	//		}
+
 	//	}
+
+	//	break;
+	//default:
+	//	break;
 	//}
+
 }
 
-
-
-
-
-
-
-void MapGenerator::maps() {
-	//int firstPosx, firstPosy;
-	//srand(time(NULL));
-
-	////Première room
-	//firstPosx = rand() % H_MAX;
-	//firstPosy = rand() % W_MAX;
-	//map[firstPosx][firstPosy] = 1;
-
-	////Créer les differents points
-	//for (int i = 0; i < NB_ROOMS; i++) {
-	//	attributePlace();
-	//}
-
-	//lastRoom();
-
-	////Afficher la matrice
-	//for (int i = 0; i < H_MAX; i++) {
-	//	for (int j = 0; j < W_MAX; j++) {
-	//		std::cout << map[i][j] << " ";
-	//	}
-	//	std::cout << std::endl;
-	//}
-}
-
-void MapGenerator::resetAll() {
-	//place = 2;
-	//for (int i = 0; i < 20; i++) {
-	//	for (int j = 0; j < 20; j++) {
-	//		map[i][j] = 0;
-	//	}
-	//}
-}
 
 void MapGenerator::mapInit()
 {
@@ -119,6 +108,7 @@ void MapGenerator::drawMap()
 
 	}
 }
+
 void MapGenerator::genFirstRoom()
 {
 	int firstPosx = 10;
@@ -228,6 +218,7 @@ void MapGenerator::genStandarRoom()
 	}
 
 }
+
 void MapGenerator::genBossRoom()
 {
 
@@ -506,8 +497,6 @@ void MapGenerator::genSacrificeRoom()
 		}
 	}
 }
-
-
 
 void MapGenerator::genMap()
 {

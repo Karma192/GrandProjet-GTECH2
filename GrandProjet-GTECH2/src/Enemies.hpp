@@ -2,19 +2,42 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "GameObject.hpp"
+#include "Player.hpp"
 
 class Enemies : public GameObject
 {
 public:
-	Enemies();
+	Enemies() = default;
+	Enemies(Player*);
 	~Enemies();
 	virtual void Loop()override;
 	virtual void Render()override;
 
+	void Cube2Test();
+
+	void FollowTarget(bool);
+
+	void MoveBase();
+
+	void EnemyMove();
+
+	void GetStunned();
+
+	sf::RectangleShape cube2;
+	sf::Clock clock2;
+
+	Player* contextPlayer;
+
+	GameObject* target;
+
+	bool follow = false;
+	bool IsFixed = true;
+
+	int distance;
+
 private:
-	void EnemiesTest();
-
-
+	//void EnemyTest();
+	float followRadius = 1.f;
 	sf::Texture enemiesTexture;
 	sf::Sprite enemiesSprite;
 

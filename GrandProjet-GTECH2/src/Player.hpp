@@ -2,7 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
-#include <vector>
+#include <math.h>
 #include "GameObject.hpp"
 #include "Animation.h"
 
@@ -15,55 +15,58 @@ public:
 	Player();
 	virtual ~Player();
 
+
 	virtual void Loop()override;
 	virtual void Render()override;
+
+	//Player HUD 
+	void playerEndurance();
+	void playerRegenEndurance();
+	void playerUI();
+
+
+	//Player controller
+	void CubeTest();
+	void ControllerMove();
+	void MovePlayer();
+	void KeyboardMove();
+	void setCamera();
 
 	void setPv(int pv) { m_pv = pv; }
 	int getPv() const { return m_pv; }
 	void setAttack(int attack) { m_attack = attack; }
 	int getAttack() const { return m_attack; }
 
-	///Exemples d'applications des fonctions des PV/Attaque au dessus (Pandouille) ///
+	//Player attributes
+	int GetPlayerXPos();
+	int GetPlayerYPos();
 
-	/*player.setPv(100);
-	player.setAttack(20);
+	//Player attack
+	void PlayerAttack();
+	void PlayerBasicAttack();
 
-	int pv = player.getPv();
-	int attack = player.getAttack();
+	sf::Clock cdBasicAttack;
+	sf::RectangleShape hitboxTest;
 
-	void takeDamage(int damage)
-	{
-		m_pv -= damage;
-		if (m_pv < 0) m_pv = 0;
-	}
-	*/
+	//Player draw
+	sf::RectangleShape cube;
+	sf::Vector2f moveSpeed;
+	sf::View view;
 
+	bool IsAttacking = false;
 
 protected:
 	float endurancePlayer = 100;
 	float cd_Endurance = endurance.getElapsedTime().asSeconds();
-
 
 private:
 	Animation animation;
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
 
-	//Player HUD 
-	void playerEndurance();
-	void playerRegenEndurance();
-	void playerUI();
-	void PlayerAnimation();
-
-	void ControllerInput();
-
-	void ControllerMove();
-
-	void KeyboardMove();
-
-	void MovePlayer();
-
-	void setCamera();
+	//Player attack basic
+	bool isActtk = true;
+	bool asAttacked = false;
 
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;
@@ -76,17 +79,10 @@ private:
 	sf::CircleShape playerSecondSpell;
 	sf::CircleShape playerThirdSpell;
 
-	//test
-	sf::RectangleShape cube;
-	sf::Vector2f moveSpeed;
-	sf::View view;
 
-	int frame = 0;
-
-	sf::Clock clock;
 	int m_pv;
 	int m_attack;
-	int playerSpeed = 120;
+	int playerSpeed = 60;
 	sf::Clock endurance;
 
 	bool lookingLeft = false;
