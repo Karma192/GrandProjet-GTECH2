@@ -3,10 +3,6 @@
 
 Player::Player()
 {
-    playerSprite.setPosition(0, 0);
-    playerSprite.setOrigin(32, 32);
-    animation.AnimationInit("ressources/sprites/player/idle.png", &playerSprite, 1, 64, 64);
-
     CubeTest();
 }
 
