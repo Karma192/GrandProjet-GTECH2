@@ -2,6 +2,8 @@
 #include "Scene.hpp"
 #include "../Player.hpp"
 #include "../Enemies.hpp"
+#include "../Object.hpp"
+#include "../PhysicsObject.hpp"
 
 class Lobby : public GameScene {
 public:
@@ -12,7 +14,9 @@ public:
     virtual void Render()override;
 
 private:
-    Player* p;
+    Player p;
+    Object object;
+    PhysicsObject po;
     Enemies* e;
 
     void Background();

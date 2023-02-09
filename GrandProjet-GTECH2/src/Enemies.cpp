@@ -2,12 +2,7 @@
 
 Enemies::Enemies(Player* p) 
 {
-    //enemiesSprite.setPosition(100, 0);
-    //enemiesTexture.loadFromFile("C:/Users/etien/Pictures/imposter.png");
-    //enemiesSprite.setTexture(enemiesTexture);
-
     contextPlayer = p;
-
     Cube2Test();
 }
 
@@ -40,6 +35,11 @@ void Enemies::FollowTarget(bool)
     sf::Vector2f TargetPos = contextPlayer->cube.getPosition();
     sf::Vector2f FollowPos = cube2.getPosition();
     sf::Vector2f RelatPos = TargetPos - FollowPos;
+    float deltaLength = std::sqrt(RelatPos.x * RelatPos.x + RelatPos.y * RelatPos.y);
+    if (deltaLength > followRadius) {
+        cube2.setPosition(FollowPos + .005f * RelatPos);
+    }
+    clock.restart();
 
     distance = std::sqrt((TargetPos.x - FollowPos.x) * (TargetPos.x - FollowPos.x) +
         (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));

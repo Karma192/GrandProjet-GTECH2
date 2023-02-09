@@ -1,25 +1,30 @@
 #include "Lobby.hpp"
 
 Lobby::Lobby() {
-    p = new Player();
-    AddToScene(p, 1);
-    e = new Enemies(p);
-    AddToScene(e, 0);
+    p = Player();
+    e = new Enemies(&p);
+    po = PhysicsObject(&p);
+    AddToScene(&p, 0);
+    AddToScene(e, 1);
 }
 
-Lobby::~Lobby() 
-{
-    delete p, e;
+Lobby::~Lobby() {
+    delete e;
 }
 
 void Lobby::Loop() {
-    p->Loop();
+    p.Loop();
+    po.SetPtr(&p.cube,&e->cube2,&p.hitboxTest);
+    object.Loop();
+    po.Loop();
     e->Loop();
 }
 
-void Lobby::Render() {
+void Lobby::Render()
+{
+    p.Render();
+    object.Render();
     //Background();
-    p->Render();
     e->Render();
 }
 

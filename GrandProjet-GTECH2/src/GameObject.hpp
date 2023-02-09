@@ -4,8 +4,9 @@
 #include <time.h>
 #include <SFML/Graphics.hpp>
 #include "GameMaster.hpp"
+#include "ContactManager.hpp"
 
-class GameObject {
+class GameObject : public ContactManager {
 public:
 	int id;
 
