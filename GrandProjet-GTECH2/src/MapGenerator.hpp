@@ -51,6 +51,7 @@ public:
     std::string x;
     int place = 2;
     char map[10][10];
+    RoomWallet wallet;
 
 
     MapGenerator();
@@ -60,10 +61,7 @@ public:
     virtual void Render()override;
 
 private:
-    void attributePlace();
-    void lastRoom();
-    void maps();
-    void resetAll();
+
     void mapInit();
     void drawMap();
     void genMap();

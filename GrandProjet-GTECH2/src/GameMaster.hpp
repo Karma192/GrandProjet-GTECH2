@@ -13,6 +13,7 @@ struct GameData {
 	int indexScene;
 	RenderWindow* window;
 	Event* event;
+	int indexMap = 0;
 };
 
 static GameData data;
