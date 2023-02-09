@@ -43,6 +43,11 @@ public:
 	//Player attack
 	void PlayerAttack();
 	void PlayerBasicAttack();
+	void AttackDirection();
+	bool North = false;
+	bool South = false;
+	bool East = false;
+	bool West = false;
 	sf::Clock cdBasicAttack;
 	sf::RectangleShape hitboxTest;
 

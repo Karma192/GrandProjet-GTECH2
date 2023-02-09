@@ -118,6 +118,7 @@ void  Player::CubeTest()
     cube.setSize(sf::Vector2f(30.f, 30.f));
     cube.setFillColor(sf::Color::Red);
     cube.setPosition(sf::Vector2f(200, 200));
+    cube.setOrigin(cube.getSize().x / 2, cube.getSize().y / 2);
 }
 
 void Player::ControllerMove()
@@ -162,19 +163,19 @@ void Player::setCamera() {
 
 void Player::KeyboardMove()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
         cube.move(sf::Vector2f(0.f, -5));
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         cube.move(sf::Vector2f(0.f, 5));
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
         cube.move(sf::Vector2f(-5, 0.f));
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         cube.move(sf::Vector2f(5, 0.f));
     }
@@ -195,6 +196,7 @@ int Player::GetPlayerYPos()
 
 void Player::PlayerAttack()
 {
+    AttackDirection();
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
         PlayerBasicAttack();
@@ -206,6 +208,52 @@ void Player::PlayerAttack()
 void Player::PlayerBasicAttack()
 {  
     hitboxTest.setSize(sf::Vector2f(30.f, 40.f));
-    hitboxTest.setFillColor(sf::Color::Blue);
-    hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos() - 5);
+    hitboxTest.setFillColor(sf::Color::Blue);   
+    hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - GetPlayerYPos());
+    /*if (North == true)
+    {
+        hitboxTest.setRotation(90.f);
+        hitboxTest.setPosition(GetPlayerXPos() + 35.f, GetPlayerYPos() - 30.f);
+        North = false;
+        hitboxTest.setRotation(-90.f);
+    }
+    if (South == true)
+    {
+        hitboxTest.setRotation(90.f);
+        hitboxTest.setPosition(GetPlayerXPos() + 35.f, GetPlayerYPos() + 30.f);
+        South = false;
+        hitboxTest.setRotation(-90.f);
+    }
+    if (West == true)
+    {
+        hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos() - 5);
+        West = false;
+    }    
+    if (East == true)
+    {
+        hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos() - 5);
+        East = false;
+    }*/
+    
+    
+}
+
+void Player::AttackDirection()
+{
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        North = true;
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        South = true;
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        West = true;
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        East = true;
+    }
 }
