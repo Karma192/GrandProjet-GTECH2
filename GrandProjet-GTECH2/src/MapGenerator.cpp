@@ -43,18 +43,18 @@ RoomWallet::~RoomWallet()
 Room* RoomWallet::GetRoom(int room)
 {
 	return wallet[room];
-}
+} 
 
 void RoomWallet::LoadAll()
 {
-	Room* village = new Room("village/village.tmx");
-	wallet.push_back(village);
+	Room* inn = new Room("village/inside_tavern.tmx");
+	wallet.push_back(inn);
 }
 
 // MapGenerator class
 
 MapGenerator::MapGenerator() {
-
+	RoomWallet wallet;
 	
 }
 
@@ -66,6 +66,19 @@ void MapGenerator::Loop() {
 }
 
 void MapGenerator::Render() {
+	wallet.GetRoom(0)->Render();
+	//switch (gameData.indexScene)
+	//{
+	//case LOBBY : 
+	//	if (gameData.indexMap == 0)
+	//	{
+
+	//	}
+
+	//	break;
+	//default:
+	//	break;
+	//}
 
 }
 

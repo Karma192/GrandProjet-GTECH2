@@ -51,6 +51,7 @@ public:
     std::string x;
     int place = 2;
     char map[10][10];
+    RoomWallet wallet;
 
 
     MapGenerator();
