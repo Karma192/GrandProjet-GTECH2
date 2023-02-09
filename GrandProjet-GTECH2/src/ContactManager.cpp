@@ -14,7 +14,7 @@ void ContactManager::Collide(sf::RectangleShape* rect, sf::RectangleShape* rect2
 	sf::FloatRect rect3 = rect2->getGlobalBounds();
 
 	if (rect1.intersects(rect3)) {
-		rect->setPosition(rect->getPosition() - sf::Vector2f(-5, -5));
+		
 	}
 }
 
