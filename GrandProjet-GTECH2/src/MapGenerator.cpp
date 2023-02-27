@@ -23,7 +23,9 @@ Room::~Room()
 void Room::Loop()
 {
 	std::cout << map.getLayers().size();
-	for (int x = 0; x < map.getTileCount().x; x++) {
+
+
+	/*for (int x = 0; x < map.getTileCount().x; x++) {
 		for (int y = 0; y < map.getTileCount().y; y++) {
 			if (collision->getTile(x, y).ID != 0) {
 				sf::FloatRect rect = collision->getGlobalBounds();
@@ -32,7 +34,7 @@ void Room::Loop()
 				};
 			}
 		}
-	}
+	}*/
 }
 
 void Room::Render()
