@@ -51,19 +51,22 @@
     <ClCompile Include="src\scene\Scene.cpp">
       <Filter>Fichiers sources\scene</Filter>
     </ClCompile>
-    <ClCompile Include="src\Button.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="src\scene\SceneManager.cpp">
       <Filter>Fichiers sources\scene</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Collision.cpp">
-      <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="src\menuHUD.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="src\GameObject.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ContactManager.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Object.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PhysicsObject.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,14 +98,8 @@
     <ClInclude Include="src\scene\Scene.hpp">
       <Filter>Fichiers d%27en-tête\scene</Filter>
     </ClInclude>
-    <ClInclude Include="src\Button.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="src\scene\SceneManager.hpp">
       <Filter>Fichiers d%27en-tête\scene</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Collision.h">
-      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\menuHUD.h">
       <Filter>Fichiers d%27en-tête</Filter>
@@ -113,7 +110,16 @@
     <ClInclude Include="src\GameObject.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="example.hpp">
+    <ClInclude Include="src\ContactManager.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Object.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PhysicsObject.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SFMLLayer.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -134,6 +140,8 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ressources\map\village\inside_tavern.tmx" />
+    <None Include="ressources\map\village\village.tmx" />
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
