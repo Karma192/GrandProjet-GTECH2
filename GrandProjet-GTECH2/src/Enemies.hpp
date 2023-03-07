@@ -7,11 +7,14 @@
 class Enemies : public GameObject
 {
 public:
-	Enemies() = default;
-	Enemies(Player*);
+	Enemies();
 	~Enemies();
+
 	virtual void Loop()override;
 	virtual void Render()override;
+
+	bool collidesWith(CollisionObject* other) override;
+	void handleCollision(CollisionObject* other) override;
 
 	void Cube2Test();
 
@@ -25,8 +28,6 @@ public:
 
 	sf::RectangleShape cube2;
 	sf::Clock clock2;
-
-	Player* contextPlayer;
 
 	GameObject* target;
 

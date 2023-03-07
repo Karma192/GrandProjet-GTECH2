@@ -22,9 +22,6 @@ Room::~Room()
 
 void Room::Loop()
 {
-	std::cout << map.getLayers().size();
-
-
 	/*for (int x = 0; x < map.getTileCount().x; x++) {
 		for (int y = 0; y < map.getTileCount().y; y++) {
 			if (collision->getTile(x, y).ID != 0) {
@@ -43,6 +40,15 @@ void Room::Render()
 	gameData.window->draw(*background);
 	gameData.window->draw(*decoration);
 	gameData.window->draw(*collision);
+}
+
+bool Room::collidesWith(CollisionObject* other)
+{
+	return false;
+}
+
+void Room::handleCollision(CollisionObject* other)
+{
 }
 
 // RoomWallet class
@@ -98,6 +104,15 @@ void MapGenerator::Render() {
 	//	break;
 	//}
 
+}
+
+bool MapGenerator::collidesWith(CollisionObject* other)
+{
+	return false;
+}
+
+void MapGenerator::handleCollision(CollisionObject* other)
+{
 }
 
 

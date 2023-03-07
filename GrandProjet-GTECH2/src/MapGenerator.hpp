@@ -21,6 +21,9 @@ public:
     virtual void Loop()override;
     virtual void Render()override;
 
+    bool collidesWith(CollisionObject* other) override;
+    void handleCollision(CollisionObject* other) override;
+
 private:
     std::string path = "ressources/map/";
     tmx::Map map;
@@ -64,6 +67,9 @@ public:
 
     virtual void Loop()override;
     virtual void Render()override;
+
+    bool collidesWith(CollisionObject* other) override;
+    void handleCollision(CollisionObject* other) override;
 
 private:
 

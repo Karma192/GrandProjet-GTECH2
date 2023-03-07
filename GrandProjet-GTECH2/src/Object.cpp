@@ -30,3 +30,12 @@ void Object::Render()
 	gameData.window->draw(randomPosObject);
 	gameData.window->draw(randomPosObject2);
 }
+
+bool Object::collidesWith(CollisionObject* other)
+{
+	return false;
+}
+
+void Object::handleCollision(CollisionObject* other)
+{
+}

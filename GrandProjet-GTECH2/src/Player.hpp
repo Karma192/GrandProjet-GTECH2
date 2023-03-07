@@ -4,6 +4,7 @@
 #include <SFML/Config.hpp>
 #include <vector>
 #include "GameObject.hpp"
+#include "Enemies.hpp"
 
 #define PLAYER_TEXTURE "ressources/sprites/player/idle.png"
 #define PLAYER_IDLE {sf::IntRect(0, 0, 54, 52), sf::IntRect(69, 0, 54, 52),sf::IntRect(130, 0, 54, 52), sf::IntRect(195, 0, 54, 52) }
@@ -17,6 +18,9 @@ public:
 
 	virtual void Loop()override;
 	virtual void Render()override;
+
+	bool collidesWith(CollisionObject* other) override;
+	void handleCollision(CollisionObject* other) override;
 
 	//Player HUD 
 	void playerEndurance();
@@ -61,7 +65,6 @@ protected:
 private:
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
-
 
 	//Player attack basic
 	bool isActtk = true;

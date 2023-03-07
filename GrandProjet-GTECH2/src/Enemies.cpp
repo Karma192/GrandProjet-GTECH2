@@ -1,20 +1,19 @@
 #include "Enemies.hpp"
 
-Enemies::Enemies(Player* p) 
+Enemies::Enemies()
 {
-    contextPlayer = p;
     Cube2Test();
 }
 
-Enemies::~Enemies() 
+Enemies::~Enemies()
 {
-    delete contextPlayer;
+
 }
 
 void Enemies::Loop() 
 {
-    GetStunned();
-    if (contextPlayer) FollowTarget(follow);
+    //GetStunned();
+    //if (contextPlayer) FollowTarget(follow);
 }
 
 void Enemies::Render() 
@@ -23,14 +22,29 @@ void Enemies::Render()
     gameData.window->draw(cube2);
 }
 
+bool Enemies::collidesWith(CollisionObject* other)
+{
+    if (Player* player = dynamic_cast<Player*>(other)) {
+        if (cube2.getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void Enemies::handleCollision(CollisionObject* other)
+{
+    std::cout << "dinguerie";
+}
+
 void Enemies::Cube2Test()
 {
     cube2.setSize(sf::Vector2f(30.f, 30.f));
-    //cube2.setFillColor(sf::Color::Blue);
+    cube2.setFillColor(sf::Color::Blue);
     cube2.setPosition(sf::Vector2f(800, 400));
 }
 
-void Enemies::FollowTarget(bool)
+/*void Enemies::FollowTarget(bool)
 {
     sf::Clock clock;
     float interval = 0.001f;
@@ -66,4 +80,4 @@ void Enemies::GetStunned()
     if (clock2.getElapsedTime().asSeconds() > 2.f) {
         follow = true;
     }
-}
+}*/

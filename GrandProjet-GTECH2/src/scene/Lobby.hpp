@@ -4,7 +4,7 @@
 #include "../Enemies.hpp"
 #include "../MapGenerator.hpp"
 #include "../Object.hpp"
-#include "../PhysicsObject.hpp"
+#include "../CollisionManager.h"
 
 class Lobby : public GameScene {
 public:
@@ -15,14 +15,13 @@ public:
     virtual void Render()override;
 
 private:
-    Player* p;
+    Player p;
     Object object;
-    PhysicsObject po;
-    Enemies* e;
-    MapGenerator* map;
+    Enemies e;
+    MapGenerator map;
     Room room;
+    CollisionManager collisionmanager;
     
-
     void Background();
     sf::Texture menuBackground;
     sf::Sprite menuBckSprite;

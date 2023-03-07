@@ -60,13 +60,13 @@
     <ClCompile Include="src\GameObject.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\ContactManager.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="src\Object.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\PhysicsObject.cpp">
+    <ClCompile Include="src\CollisionObject.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CollisionManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -110,16 +110,16 @@
     <ClInclude Include="src\GameObject.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\ContactManager.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="src\Object.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\PhysicsObject.hpp">
+    <ClInclude Include="src\SFMLLayer.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\SFMLLayer.hpp">
+    <ClInclude Include="src\CollisionObject.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CollisionManager.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -142,6 +142,6 @@
   <ItemGroup>
     <None Include="ressources\map\village\inside_tavern.tmx" />
     <None Include="ressources\map\village\village.tmx" />
-    <None Include="ClassDiagram.cd" />
+    <None Include="src\ClassDiagram.cd" />
   </ItemGroup>
 </Project>
