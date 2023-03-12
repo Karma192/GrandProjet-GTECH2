@@ -59,13 +59,23 @@ bool Player::collidesWith(CollisionObject* other) {
             return true;
         }
     }
+    if (Object* object = dynamic_cast<Object*>(other)) {
+        if (cube.getGlobalBounds().intersects(object->randomPosObject.getGlobalBounds())) {
+            return true;
+        }
+    }
     return false;
 }
 
 
 void Player::handleCollision(CollisionObject* other)
 {
-    std::cout << "EUREKA";
+    if (dynamic_cast<Enemies*>(other)) {
+        std::cout << "EUREKA";
+    }
+    if (dynamic_cast<Object*>(other)) {
+        std::cout << "test";
+    }
 }
 
 void Player::playerEndurance()

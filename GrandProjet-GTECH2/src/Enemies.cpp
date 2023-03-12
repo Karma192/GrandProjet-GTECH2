@@ -13,7 +13,7 @@ Enemies::~Enemies()
 void Enemies::Loop() 
 {
     //GetStunned();
-    //if (contextPlayer) FollowTarget(follow);
+    FollowTarget(follow);
 }
 
 void Enemies::Render() 
@@ -34,7 +34,9 @@ bool Enemies::collidesWith(CollisionObject* other)
 
 void Enemies::handleCollision(CollisionObject* other)
 {
-    std::cout << "dinguerie";
+    if (dynamic_cast<Player*>(other)) {
+        std::cout << "dinguerie";
+    }
 }
 
 void Enemies::Cube2Test()
@@ -44,11 +46,12 @@ void Enemies::Cube2Test()
     cube2.setPosition(sf::Vector2f(800, 400));
 }
 
-/*void Enemies::FollowTarget(bool)
+void Enemies::FollowTarget(bool)
 {
+    std::cout << "lest";
+    TargetPos = player->cube.getPosition();
     sf::Clock clock;
     float interval = 0.001f;
-    sf::Vector2f TargetPos = contextPlayer->cube.getPosition();
     sf::Vector2f FollowPos = cube2.getPosition();
     sf::Vector2f RelatPos = TargetPos - FollowPos;
     distance = std::sqrt((TargetPos.x - FollowPos.x) * (TargetPos.x - FollowPos.x) +
@@ -67,17 +70,18 @@ void Enemies::Cube2Test()
     }
 }
 
-void Enemies::GetStunned()
-{
-    sf::FloatRect rect = contextPlayer->hitboxTest.getGlobalBounds();
-    sf::FloatRect rect2 = cube2.getGlobalBounds();
-    if (contextPlayer->IsAttacking) {
-        if (IsDamaged(rect, rect2)) {
-            follow = false;
-            clock2.restart();
-        }
-    }
-    if (clock2.getElapsedTime().asSeconds() > 2.f) {
-        follow = true;
-    }
-}*/
+//void Enemies::GetStunned()
+//{
+//    Player* contextPlayer;
+//    sf::FloatRect rect = contextPlayer->hitboxTest.getGlobalBounds();
+//    sf::FloatRect rect2 = cube2.getGlobalBounds();
+//    if (contextPlayer->IsAttacking) {
+//        if (IsDamaged(rect, rect2)) {
+//            follow = false;
+//            clock2.restart();
+//        }
+//    }
+//    if (clock2.getElapsedTime().asSeconds() > 2.f) {
+//        follow = true;
+//    }
+//}

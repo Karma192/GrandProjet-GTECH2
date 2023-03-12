@@ -4,6 +4,7 @@
 #include <SFML/Config.hpp>
 #include <cstdlib>
 #include "GameObject.hpp"
+#include "Player.hpp"
 
 class Object : public GameObject
 {
@@ -23,6 +24,6 @@ public:
 	sf::RectangleShape randomPosObject2;
 
 private:
-
+	bool StopDraw = false;
 };
 

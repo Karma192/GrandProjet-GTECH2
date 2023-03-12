@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "GameObject.hpp"
 #include "Player.hpp"
+#include "Object.hpp"
 
 class Enemies : public GameObject
 {
@@ -17,13 +18,9 @@ public:
 	void handleCollision(CollisionObject* other) override;
 
 	void Cube2Test();
-
 	void FollowTarget(bool);
-
 	void MoveBase();
-
 	void EnemyMove();
-
 	void GetStunned();
 
 	sf::RectangleShape cube2;
@@ -41,5 +38,5 @@ private:
 	float followRadius = 1.f;
 	sf::Texture enemiesTexture;
 	sf::Sprite enemiesSprite;
-
+	sf::Vector2f TargetPos;
 };
