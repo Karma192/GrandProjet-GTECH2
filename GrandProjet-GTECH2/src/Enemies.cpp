@@ -48,10 +48,9 @@ void Enemies::Cube2Test()
 
 void Enemies::FollowTarget(bool)
 {
-    std::cout << "lest";
-    TargetPos = player->cube.getPosition();
     sf::Clock clock;
     float interval = 0.001f;
+    sf::Vector2f TargetPos = contextPlayer->cube.getPosition();
     sf::Vector2f FollowPos = cube2.getPosition();
     sf::Vector2f RelatPos = TargetPos - FollowPos;
     distance = std::sqrt((TargetPos.x - FollowPos.x) * (TargetPos.x - FollowPos.x) +
