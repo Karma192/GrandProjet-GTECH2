@@ -37,45 +37,34 @@ void Enemies::Cube2Test()
 void Enemies::FollowTarget(bool follow)
 {
 
-    FollowPos = Enemy.getPosition();
-    TargetPos = contextPlayer->cube.getPosition();
-    RelatPos = TargetPos - FollowPos;
-    
-    distance = std::sqrt((TargetPos.x - FollowPos.x) * (TargetPos.x - FollowPos.x) +
-        (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));
 
-    if (distance > 300)
-    {
-        follow = false;
-        randDir = std::rand() % 4 + 1;
-        //cube2.setFillColor(sf::Color::Green);
-        if (ClockMove.getElapsedTime().asSeconds() > 1) {
-            if (randDir == 1)
-            {
-                Enemy.move(0.f, -10);
-                ClockMove.restart();
-            }
-            if (randDir == 2)
-            {
-                Enemy.move(0.f, 10);
-                ClockMove.restart();
-            }
-            if (randDir == 3)
-            {
-                Enemy.move(10, 0.f);
-                ClockMove.restart();
-            }
-            if (randDir == 4)
-            {
-                Enemy.move(-10, 0.f);
-                ClockMove.restart();
-            }
-        }
-    }
-    if (distance < 300)
-    {
-        follow = true;
-        //cube2.setFillColor(sf::Color::Blue);
-        Enemy.move(0.01f * RelatPos);
-    }
+    //if (distance > 300)
+    //{
+    //    follow = false;
+    //    randDir = std::rand() % 4 + 1;
+    //    //cube2.setFillColor(sf::Color::Green);
+    //    if (ClockMove.getElapsedTime().asSeconds() > 1) {
+    //        if (randDir == 1)
+    //        {
+    //            Enemy.move(0.f, -10);
+    //            ClockMove.restart();
+    //        }
+    //        if (randDir == 2)
+    //        {
+    //            Enemy.move(0.f, 10);
+    //            ClockMove.restart();
+    //        }
+    //        if (randDir == 3)
+    //        {
+    //            Enemy.move(10, 0.f);
+    //            ClockMove.restart();
+    //        }
+    //        if (randDir == 4)
+    //        {
+    //            Enemy.move(-10, 0.f);
+    //            ClockMove.restart();
+    //        }
+    //    }
+    //}
+
 }

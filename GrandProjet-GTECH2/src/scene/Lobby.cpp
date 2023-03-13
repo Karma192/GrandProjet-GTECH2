@@ -17,6 +17,7 @@ Lobby::~Lobby()
 }
 
 void Lobby::Loop() {
+	ft.Loop();
 	p->Loop();
 	e->Loop();
 }

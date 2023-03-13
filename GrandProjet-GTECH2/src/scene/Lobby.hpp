@@ -6,6 +6,7 @@
 #include "../Object.hpp"
 #include "../PhysicsObject.hpp"
 #include "../Doors.hpp"
+#include "../FollowTarget.h"
 
 class Lobby : public GameScene {
 public:
@@ -20,6 +21,7 @@ private:
     Object* object;
     PhysicsObject* po;
     Enemies* e;
+    FollowTarget ft;
     MapGenerator* map;
     Doors* exit;
     sf::Texture menuBackground;

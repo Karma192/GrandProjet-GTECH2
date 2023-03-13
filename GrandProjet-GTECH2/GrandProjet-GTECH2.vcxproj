@@ -102,11 +102,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Doors.cpp" />
     <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\ContactManager.cpp" />
     <ClCompile Include="src\Doors.cpp" />
     <ClCompile Include="src\Enemies.cpp" />
+    <ClCompile Include="src\FollowTarget.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameMaster.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
@@ -128,6 +128,7 @@
     <ClInclude Include="src\ContactManager.hpp" />
     <ClInclude Include="src\Doors.hpp" />
     <ClInclude Include="src\Enemies.hpp" />
+    <ClInclude Include="src\FollowTarget.h" />
     <ClInclude Include="src\Game.hpp" />
     <ClInclude Include="src\GameMaster.hpp" />
     <ClInclude Include="src\GameObject.hpp" />

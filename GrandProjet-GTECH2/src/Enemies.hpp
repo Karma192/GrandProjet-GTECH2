@@ -15,7 +15,7 @@ public:
 	virtual void Loop()override;
 	virtual void Render()override;
 
-	//Init Eney
+	//Init Enemy
 	void Cube2Test();
 	sf::Sprite Enemy;
 	sf::Texture texture;
