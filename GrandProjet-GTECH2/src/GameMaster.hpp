@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
+//#include "GameObject.hpp"
 
 using namespace sf;
 
@@ -30,3 +31,6 @@ GameData GetGameData();
 void SetActiveScene(int);
 // Function for set the window and event
 void SetWindow(RenderWindow*, Event*);
+
+// Function for Destroy a GameObject
+//void Destroy(GameObject*);

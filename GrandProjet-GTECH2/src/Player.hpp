@@ -4,10 +4,7 @@
 #include <SFML/Config.hpp>
 #include <math.h>
 #include "GameObject.hpp"
-//#include "Animation.h"
 
-#define PLAYER_TEXTURE "ressources/sprites/player/idle.png"
-#define PLAYER_IDLE {sf::IntRect(0, 0, 54, 52), sf::IntRect(69, 0, 54, 52),sf::IntRect(130, 0, 54, 52), sf::IntRect(195, 0, 54, 52) }
 
 
 class Player : public GameObject {

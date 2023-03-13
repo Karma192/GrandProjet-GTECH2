@@ -3,9 +3,6 @@
 
 Player::Player()
 {
-    //playerSprite.setPosition(0, 0);
-    //playerSprite.setOrigin(32, 32);
-
     CubeTest();
 }
 
@@ -27,9 +24,6 @@ void Player::Loop()
 void Player::Render()
 {
     gameData = GetGameData();
-    //animation.SpriteAnimation(4, 4, 1, 4, 4);
-    gameData.window->draw(playerSprite);
-    //gameData.window->draw(enduranceBarBack);
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);
     gameData.window->draw(playerUltiUI);
@@ -161,6 +155,7 @@ void Player::KeyboardMove()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
         cube.move(sf::Vector2f(0.f, -5));
+        //Destroy();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
@@ -189,12 +184,8 @@ int Player::GetPlayerYPos()
 
 void Player::PlayerAttack()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-    {
-        PlayerBasicAttack();
-        asAttacked = true;
-    }
-
+    PlayerBasicAttack();
+    asAttacked = true;
 }
 
 void Player::PlayerBasicAttack()
