@@ -27,8 +27,3 @@ void SetWindow(RenderWindow* win, Event* e) {
 	data.window = win;
 	data.event = e;
 }
-
-//void Destroy(GameObject* obj) 
-//{
-//	delete& obj;
-//}

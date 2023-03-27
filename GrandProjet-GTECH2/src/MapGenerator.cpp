@@ -2,9 +2,9 @@
 
 // Room class
 
-Room::Room()
+Room::Room(Player* p)
 {
-
+	player = p;
 }
 
 Room::Room(std::string file)
@@ -20,12 +20,35 @@ Room::~Room()
 
 }
 
-void Room::Render() 
+void Room::Loop()
+{
+	/*for (int x = 0; x < map.getTileCount().x; x++) {
+		for (int y = 0; y < map.getTileCount().y; y++) {
+			if (collision->getTile(x, y).ID != 0) {
+				sf::FloatRect rect = collision->getGlobalBounds();
+				if (player->cube.getGlobalBounds().intersects(rect)) {
+					std::cout << "test";
+				};
+			}
+		}
+	}*/
+}
+
+void Room::Render()
 {
 	gameData = GetGameData();
 	gameData.window->draw(*background);
 	gameData.window->draw(*decoration);
 	gameData.window->draw(*collision);
+}
+
+bool Room::collidesWith(CollisionObject* other)
+{
+	return false;
+}
+
+void Room::handleCollision(CollisionObject* other)
+{
 }
 
 // RoomWallet class
@@ -63,6 +86,7 @@ MapGenerator::~MapGenerator() {
 }
 
 void MapGenerator::Loop() {
+
 }
 
 void MapGenerator::Render() {
@@ -80,6 +104,15 @@ void MapGenerator::Render() {
 	//	break;
 	//}
 
+}
+
+bool MapGenerator::collidesWith(CollisionObject* other)
+{
+	return false;
+}
+
+void MapGenerator::handleCollision(CollisionObject* other)
+{
 }
 
 
