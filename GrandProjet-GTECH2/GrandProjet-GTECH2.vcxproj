@@ -74,6 +74,10 @@
     <IncludePath>..\SFML-2.5.1\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\SFML-2.5.1\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>..\SFML-2.5.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\SFML-2.5.1\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Link>
       <AdditionalLibraryDirectories>..\SFML-2.5.1\lib;..\tmxlite-master\tmxlite\x64\bin\DebugStatic;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
