@@ -216,24 +216,7 @@ void Player::PlayerAttack()
 
 void Player::PlayerBasicAttack()
 {  
-    hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
-    hitboxTest.setFillColor(sf::Color::Blue);
-    hitboxTest.setPosition(cube.getPosition());
-
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    {
-        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - 30.f);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    {
-        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() + 30.f);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    {
-        hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos());
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    {
-        hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos());
-    }
+    BasicAttack ba;
+    ba.Attack(cube.getPosition().x,cube.getPosition().y);
+    ba.Render();
 }

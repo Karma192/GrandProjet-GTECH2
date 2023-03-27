@@ -89,8 +89,9 @@ void MapGenerator::Loop() {
 
 }
 
-void MapGenerator::Render() {
-	wallet.GetRoom(0)->Render();
+void MapGenerator::Render() 
+{
+	_wallet.GetRoom(0)->Render();
 	//switch (gameData.indexScene)
 	//{
 	//case LOBBY : 

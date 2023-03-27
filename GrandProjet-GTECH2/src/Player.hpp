@@ -5,6 +5,7 @@
 #include <math.h>
 #include "GameObject.hpp"
 #include "Enemies.hpp"
+#include "BasicAttack.hpp"
 
 
 
@@ -12,7 +13,6 @@ class Player : public GameObject {
 public:
 	Player();
 	virtual ~Player();
-
 
 	virtual void Loop()override;
 	virtual void Render()override;

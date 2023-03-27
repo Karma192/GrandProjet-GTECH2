@@ -23,14 +23,14 @@ public:
 
     bool collidesWith(CollisionObject* other) override;
     void handleCollision(CollisionObject* other) override;
-
-private:
-    std::string path = "ressources/map/";
     tmx::Map map;
-    Player* player;
+
     MapLayer* background;
     MapLayer* decoration;
     MapLayer* collision;
+private:
+    std::string path = "ressources/map/";
+    Player* player;
     sf::RectangleShape* rectCube;
 };
 
@@ -59,7 +59,7 @@ public:
     std::string x;
     int place = 2;
     char map[10][10];
-    RoomWallet wallet;
+    RoomWallet _wallet;
 
 
     MapGenerator();

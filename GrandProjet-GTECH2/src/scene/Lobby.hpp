@@ -5,6 +5,7 @@
 #include "../MapGenerator.hpp"
 #include "../Object.hpp"
 #include "../CollisionManager.h"
+#include "../BasicAttack.hpp"
 
 class Lobby : public GameScene {
 public:
@@ -18,7 +19,8 @@ private:
     Player p;
     Object object;
     Enemies e;
-    MapGenerator map;
+    BasicAttack ba;
+    MapGenerator _map;
     Room room;
     CollisionManager collisionmanager;
     
