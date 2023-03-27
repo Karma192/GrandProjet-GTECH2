@@ -5,6 +5,7 @@
 #include "../MapGenerator.hpp"
 #include "../Object.hpp"
 #include "../CollisionManager.h"
+#include "../ToNextScene.hpp"
 
 class Lobby : public GameScene {
 public:
@@ -20,6 +21,7 @@ private:
     Enemies e;
     MapGenerator map;
     Room room;
+    ToNextScene _door;
     CollisionManager collisionmanager;
     
     void Background();
