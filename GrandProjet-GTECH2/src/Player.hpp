@@ -60,6 +60,7 @@ protected:
 	float cd_Endurance = endurance.getElapsedTime().asSeconds();
 
 private:
+	Texture texturePlayer;
 	Animation animationPlayer;
 
 	//Player attack basic

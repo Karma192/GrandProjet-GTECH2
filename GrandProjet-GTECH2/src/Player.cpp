@@ -1,6 +1,5 @@
 ﻿#include "Player.hpp"
 
-
 Player::Player()
 {
     DisplayPLayer();
@@ -20,7 +19,10 @@ void Player::Loop()
     PlayerAttack();
     //setCamera();
 
-    animationPlayer.SpriteAnimation(4, 4, 1, 4, 1);
+    // DEBUG
+    //animationPlayer.SpriteAnimation(4, 4, 1, 4, 1);
+
+    animationPlayer.Animate(4, 0.2f, 0);
 }
 
 void Player::Render()
@@ -148,7 +150,9 @@ void Player::playerUI()
 void Player::DisplayPLayer()
 {
     cube.setPosition(sf::Vector2f(200, 200));
-    animationPlayer.AnimationInit("ressources/sprites/player/animations/idle/adventurer_idle.png", &cube, 0, 200, 37);
+    //animationPlayer.AnimationInit("ressources/sprites/player/animations/idle/adventurer_idle.png", &cube, 0, 200, 37);
+
+    animationPlayer.InitAnimation("ressources/sprites/player/animations/idle/adventurer_idle.png", &cube, 50, 37);
 }
 
 void Player::ControllerMove()

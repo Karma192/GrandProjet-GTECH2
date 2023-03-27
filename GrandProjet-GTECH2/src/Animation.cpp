@@ -42,3 +42,33 @@ void Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX, int startF
 		clock.restart();
 	}
 }
+
+void Animation::InitAnimation(sf::String texturePath, sf::Sprite* sprite, int frameWidth, int frameHeight)
+{
+	aSprite = sprite;
+	aTexturePath = texturePath;
+
+	texture.loadFromFile(aTexturePath);
+	aSprite->setTexture(texture);
+	aSprite->scale(3.0f, 3.0f);
+
+	aFrameWidth = frameWidth;
+	aFrameHeight = frameHeight;
+
+	frameRect = sf::IntRect(0, 0, aFrameWidth, aFrameHeight);
+	aSprite->setTextureRect(frameRect);
+}
+
+void Animation::Animate(int totalFrames, float animationSpeed,int currentFrame)
+{
+	if (animationClock.getElapsedTime().asSeconds() >= animationSpeed)
+	{
+		//DEBUG
+		std::cout << "total frame" + totalFrames << std::endl;
+
+		currentFrame = (currentFrame + 1) % totalFrames;
+		frameRect.left = currentFrame * aFrameWidth;
+		aSprite->setTextureRect(frameRect);
+		animationClock.restart();
+	}
+}
