@@ -28,6 +28,13 @@ void GameObject::Render()
 
 }
 
+void GameObject::Destroy() 
+{
+	std::vector<GameObject*> list;
+	list.push_back(this);
+	list.clear();
+}
+
 void GameObject::SetData()
 {
 	srand(time(0));
