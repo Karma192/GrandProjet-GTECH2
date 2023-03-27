@@ -3,7 +3,6 @@
 
 Player::Player()
 {
-
     CubeTest();
 }
 
@@ -25,15 +24,13 @@ void Player::Loop()
 void Player::Render()
 {
     gameData = GetGameData();
-    gameData.window->draw(cube);
-    //gameData.window->draw(enduranceBarBack);
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);
     gameData.window->draw(playerUltiUI);
     gameData.window->draw(playerFirstSpell);
     gameData.window->draw(playerSecondSpell);
     gameData.window->draw(playerThirdSpell);
-    gameData.window->draw(cube);
+    
     if (isActtk == true && asAttacked == true) 
     { 
         IsAttacking = true;
@@ -50,6 +47,7 @@ void Player::Render()
         IsAttacking = false;
         isActtk = true;
     }
+    gameData.window->draw(cube);
     playerUI();
 }
 
@@ -145,7 +143,6 @@ void  Player::CubeTest()
 	cube.setSize(sf::Vector2f(30.f, 30.f));
 	cube.setFillColor(sf::Color::Red);
 	cube.setPosition(sf::Vector2f(200, 200));
-
 }
 
 void Player::ControllerMove()
@@ -161,21 +158,6 @@ void Player::ControllerMove()
 		MovePlayer();
 	}
 
-	//else if (moveSpeed.x > deadZone)
-	//{
-	//	sf::Joystick::update();
-	//	MovePlayer();
-	//}
-	//else if (moveSpeed.y < -deadZone)
-	//{
-	//	sf::Joystick::update();
-	//	MovePlayer();
-	//}
-	//else if (moveSpeed.x > deadZone)
-	//{
-	//	sf::Joystick::update();
-	//	MovePlayer();
-	//}
 }
 
 void Player::MovePlayer()
@@ -193,27 +175,28 @@ void Player::setCamera() {
 
 void Player::KeyboardMove()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
-        moveSpeed = sf::Vector2f(0.f, -100.f);
-        MovePlayer();
+        cube.move(sf::Vector2f(0.f, -5));
+        //Destroy();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         moveSpeed = sf::Vector2f(0.f, 100.f);
         MovePlayer();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
         moveSpeed = sf::Vector2f(-100.f, 0.f);
         MovePlayer();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         moveSpeed = sf::Vector2f(100.f, 0.f);
         MovePlayer();
     }
 }
+
 
 int Player::GetPlayerXPos()
 {
@@ -227,17 +210,30 @@ int Player::GetPlayerYPos()
 
 void Player::PlayerAttack()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-    {
-        PlayerBasicAttack();
-        asAttacked = true;
-    }
-
+    PlayerBasicAttack();
+    asAttacked = true;
 }
 
 void Player::PlayerBasicAttack()
 {  
-    hitboxTest.setSize(sf::Vector2f(30.f, 40.f));
+    hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
     hitboxTest.setFillColor(sf::Color::Blue);
-    hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos() - 5);
+    hitboxTest.setPosition(cube.getPosition());
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    {
+        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - 30.f);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() + 30.f);
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+        hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos());
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    {
+        hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos());
+    }
 }
