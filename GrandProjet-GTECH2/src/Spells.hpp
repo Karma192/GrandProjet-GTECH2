@@ -15,7 +15,10 @@ public:
 	virtual void Loop()override;
 	virtual void Render()override;
 
-	void SetFireBall(Player& player);
+	bool collidesWith(CollisionObject* other) override;
+	void handleCollision(CollisionObject* other) override;
+
+	void SetFireBall();
 
 	void Update();
 	void Launch(Vector2f StartPos,Vector2f LaunchDir);
@@ -29,7 +32,11 @@ public:
 private:
 	sf::Vector2f position;
 	sf::Vector2f direction;
-	float speed;
-	bool launched;
+	sf::Vector2f PlayerPos;
+	sf::FloatRect PlayerBounds;
+	sf::Vector2f launchDirection;
+	float speed = 10;
+	float playerRotation;
+	bool launched = true;
 };
 

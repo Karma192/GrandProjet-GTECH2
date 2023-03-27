@@ -20,6 +20,7 @@ private:
     Player p;
     Object object;
     Enemies e;
+    Spells sp;
     MapGenerator map;
     Room room;
     CollisionManager collisionmanager;

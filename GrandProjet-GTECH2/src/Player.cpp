@@ -18,7 +18,9 @@ void Player::Loop()
     ControllerMove();
     KeyboardMove();
     PlayerAttack();
+    PlayerBasicAttack();
     //setCamera();
+
 }
 
 void Player::Render()
@@ -143,6 +145,8 @@ void  Player::CubeTest()
 	cube.setSize(sf::Vector2f(30.f, 30.f));
 	cube.setFillColor(sf::Color::Red);
 	cube.setPosition(sf::Vector2f(200, 200));
+    CubeBounds = cube.getLocalBounds();
+    cube.setOrigin(CubeBounds.width/2.0f,CubeBounds.height/2.0f);
 }
 
 void Player::ControllerMove()
@@ -163,7 +167,8 @@ void Player::ControllerMove()
 void Player::MovePlayer()
 {
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
-
+    rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / 3.14159265358979323846;
+    cube.setRotation(rotation);
 }
 
 void Player::setCamera() {
@@ -178,17 +183,20 @@ void Player::KeyboardMove()
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
         cube.move(sf::Vector2f(0.f, -5));
-        //Destroy();
+        MovePlayer();
+
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         moveSpeed = sf::Vector2f(0.f, 100.f);
         MovePlayer();
+
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
         moveSpeed = sf::Vector2f(-100.f, 0.f);
         MovePlayer();
+
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
@@ -219,6 +227,8 @@ void Player::PlayerBasicAttack()
     hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
     hitboxTest.setFillColor(sf::Color::Blue);
     hitboxTest.setPosition(cube.getPosition());
+    hitboxTest.setRotation(cube.getRotation());
+    hitboxTest.setOrigin(CubeBounds.width / 2.0f, CubeBounds.height / 2.0f);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
