@@ -13,8 +13,8 @@
 class Room : public GameObject
 {
 public:
-    Room() = default;
-    Room(Player* p);
+
+    Room();
     Room(std::string);
     virtual ~Room();
 
@@ -24,14 +24,20 @@ public:
     bool collidesWith(CollisionObject* other) override;
     void handleCollision(CollisionObject* other) override;
 
-private:
-    std::string path = "ressources/map/";
-    tmx::Map map;
-    Player* player;
+    void GetTilesBounds();
+
     MapLayer* background;
     MapLayer* decoration;
     MapLayer* collision;
-    sf::RectangleShape* rectCube;
+
+    std::vector<sf::RectangleShape> rect;
+private:
+    std::string path = "ressources/map/";
+    tmx::Map map;
+    sf::RectangleShape rectCube;
+    sf::FloatRect playerCube;
+    int i = 0;
+    bool collisionCheck = false;
 };
 
 class RoomWallet

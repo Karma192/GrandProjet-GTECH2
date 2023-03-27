@@ -52,28 +52,38 @@ void Player::Render()
 }
 
 bool Player::collidesWith(CollisionObject* other) {
-    if (Enemies* enemy = dynamic_cast<Enemies*>(other)){
-        if (cube.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) {
-            return true;
-        }
-    }
-    if (Object* object = dynamic_cast<Object*>(other)) {
-        if (cube.getGlobalBounds().intersects(object->randomPosObject.getGlobalBounds())) {
-            return true;
-        }
-    }
-    return false;
+	if (Enemies* enemy = dynamic_cast<Enemies*>(other)) {
+		if (cube.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) {
+			return true;
+		}
+	}
+	if (Object* object = dynamic_cast<Object*>(other)) {
+		if (cube.getGlobalBounds().intersects(object->randomPosObject.getGlobalBounds())) {
+			return true;
+		}
+	}
+	if (Room* room = dynamic_cast<Room*>(other)) {
+		for (int i = 0; i < room->rect.size(); i++) {
+			if (cube.getGlobalBounds().intersects(room->rect[i].getGlobalBounds())) {
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 
 void Player::handleCollision(CollisionObject* other)
 {
-    if (dynamic_cast<Enemies*>(other)) {
-        std::cout << "EUREKA";
-    }
-    if (dynamic_cast<Object*>(other)) {
-        std::cout << "test";
-    }
+	if (dynamic_cast<Enemies*>(other)) {
+
+	}
+	if (dynamic_cast<Object*>(other)) {
+		std::cout << "test";
+	}
+	if (dynamic_cast<Room*>(other)) {
+		std::cout << "map";
+	}
 }
 
 void Player::playerEndurance()

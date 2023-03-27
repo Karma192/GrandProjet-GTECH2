@@ -1,9 +1,11 @@
 #include "Lobby.hpp"
 
 Lobby::Lobby() {
+	collisionmanager.addObject(&room);
 	collisionmanager.addObject(&e);
 	collisionmanager.addObject(&p);
 	collisionmanager.addObject(&object);
+
 }
 
 Lobby::~Lobby()

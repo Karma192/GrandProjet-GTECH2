@@ -2,9 +2,8 @@
 
 // Room class
 
-Room::Room(Player* p)
+Room::Room()
 {
-	player = p;
 }
 
 Room::Room(std::string file)
@@ -22,33 +21,58 @@ Room::~Room()
 
 void Room::Loop()
 {
-	/*for (int x = 0; x < map.getTileCount().x; x++) {
-		for (int y = 0; y < map.getTileCount().y; y++) {
-			if (collision->getTile(x, y).ID != 0) {
-				sf::FloatRect rect = collision->getGlobalBounds();
-				if (player->cube.getGlobalBounds().intersects(rect)) {
-					std::cout << "test";
-				};
-			}
-		}
-	}*/
 }
 
 void Room::Render()
 {
+	rect.clear();
 	gameData = GetGameData();
 	gameData.window->draw(*background);
 	gameData.window->draw(*decoration);
 	gameData.window->draw(*collision);
+	GetTilesBounds();
+	for (int i = 0; i < rect.size(); i++) {
+		gameData.window->draw(rect[i]);
+	}
 }
 
 bool Room::collidesWith(CollisionObject* other)
 {
+	if (Player* player = dynamic_cast<Player*>(other)) {
+		playerCube = player->cube.getGlobalBounds();
+		if (collisionCheck) {
+			return true;
+		}
+		//std::cout << "collide : " << rect.size() << std::endl;
+	}
 	return false;
+}
+
+void Room::GetTilesBounds() {
+	for (int x = 0; x < 60; x++) {
+		for (int y = 0; y < 40; y++) {
+			if(collision->getTile(x,y).ID != 0){
+				i++;
+				rectCube.setSize(sf::Vector2f(16, 16));
+				rectCube.setFillColor(sf::Color::Red);
+				rectCube.setPosition(sf::Vector2f(16*x,16*y));
+				std::cout << "player : " << playerCube.left << std::endl;
+				std::cout << "rect : " << rectCube.getGlobalBounds().left << std::endl;
+				if (playerCube.intersects(rectCube.getGlobalBounds())) {
+					collisionCheck = true;
+				}
+				rect.push_back(rectCube);
+			}
+		}
+	}
+	//std::cout << "render : " << rect.size() << std::endl;
 }
 
 void Room::handleCollision(CollisionObject* other)
 {
+	if (dynamic_cast<Player*>(other)) {
+		std::cout << "player";
+	}
 }
 
 // RoomWallet class

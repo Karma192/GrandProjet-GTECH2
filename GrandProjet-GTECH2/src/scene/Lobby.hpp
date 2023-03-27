@@ -22,7 +22,6 @@ private:
     Room room;
     CollisionManager collisionmanager;
     
-    void Background();
     sf::Texture menuBackground;
     sf::Sprite menuBckSprite;
 };
