@@ -53,6 +53,9 @@ public:
 	sf::Vector2f moveSpeed;
 	sf::View view;
 
+	sf::IntRect frameRect;
+	sf::Clock animationClock;
+
 	bool IsAttacking = false;
 
 protected:
@@ -84,4 +87,11 @@ private:
 	sf::Clock endurance;
 
 	bool lookingLeft = false;
+
+	// TEST
+	int frameWidth;
+	int frameHeight;
+	int totalFrames;
+	int animationSpeed;
+	int currentFrame;
 };

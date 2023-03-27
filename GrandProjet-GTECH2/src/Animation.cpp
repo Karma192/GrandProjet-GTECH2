@@ -16,11 +16,12 @@ void Animation::AnimationInit(sf::String texturePath, sf::Sprite* sprite, int st
 
 void Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX, int startFrameLine, int endFrameColumn, int endFrameLine)
 {
-	if (clock.getElapsedTime().asMilliseconds() >= 100) {
+	if (clock.getElapsedTime().asMilliseconds() >= 500) {
 		// If the rect is at the right border of the spritesheet, and it isn't the end of the animation, 
 		// we put the rect on the next line on the first frame on the left
 		if (aRectSourceSprite.left >= (nbTotalFramesX - 1) * aXImage && counter < nbFramesAnim)
 		{
+			std::cout << "next line" << std::endl;
 			aRectSourceSprite.left = 0;
 			aRectSourceSprite.top += aYImage;
 			counter += 1;
@@ -28,6 +29,7 @@ void Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX, int startF
 		// If the rect comes at the last frame of the animation, it goes back to the starting frame and reset the counter
 		else if (counter >= nbFramesAnim)
 		{
+			std::cout << "starting frame" << std::endl;
 			aRectSourceSprite.left = (aStartFrameColumn-1) * aXImage;
 			aRectSourceSprite.top = (startFrameLine-1) * aYImage;
 			counter = 1;
@@ -35,6 +37,7 @@ void Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX, int startF
 		// The rect goes to the next frame on the right
 		else 
 		{
+			std::cout << "next frame" << std::endl;
 			aRectSourceSprite.left += aXImage;
 			counter += 1;
 		}
@@ -64,7 +67,7 @@ void Animation::Animate(int totalFrames, float animationSpeed,int currentFrame)
 	if (animationClock.getElapsedTime().asSeconds() >= animationSpeed)
 	{
 		//DEBUG
-		std::cout << "total frame" + totalFrames << std::endl;
+		std::cout << "curent frame" + currentFrame << std::endl;
 
 		currentFrame = (currentFrame + 1) % totalFrames;
 		frameRect.left = currentFrame * aFrameWidth;
