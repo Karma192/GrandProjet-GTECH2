@@ -4,9 +4,9 @@
 #include <time.h>
 #include <SFML/Graphics.hpp>
 #include "GameMaster.hpp"
-#include "ContactManager.hpp"
+#include "CollisionObject.h"
 
-class GameObject : public ContactManager {
+class GameObject : public CollisionObject {
 public:
 	int id;
 

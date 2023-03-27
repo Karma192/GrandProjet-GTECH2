@@ -4,6 +4,7 @@
 #include <SFML/Config.hpp>
 #include <math.h>
 #include "GameObject.hpp"
+#include "Enemies.hpp"
 
 
 
@@ -15,6 +16,9 @@ public:
 
 	virtual void Loop()override;
 	virtual void Render()override;
+
+	bool collidesWith(CollisionObject* other) override;
+	void handleCollision(CollisionObject* other) override;
 
 	//Player HUD 
 	void playerEndurance();
@@ -57,6 +61,8 @@ protected:
 	float cd_Endurance = endurance.getElapsedTime().asSeconds();
 
 private:
+	sf::Texture playerTexture;
+	sf::Sprite playerSprite;
 
 	//Player attack basic
 	bool isActtk = true;
@@ -76,7 +82,7 @@ private:
 
 	int m_pv;
 	int m_attack;
-	int playerSpeed = 60;
+	int playerSpeed = 20;
 	sf::Clock endurance;
 
 	bool lookingLeft = false;

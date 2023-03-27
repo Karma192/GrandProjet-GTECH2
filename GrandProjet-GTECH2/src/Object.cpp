@@ -27,6 +27,24 @@ void Object::Loop()
 void Object::Render()
 {
 	gameData = GetGameData();
-	gameData.window->draw(randomPosObject);
-	gameData.window->draw(randomPosObject2);
+	if (!StopDraw) {
+		gameData.window->draw(randomPosObject);
+		gameData.window->draw(randomPosObject2);
+	}
+}
+
+bool Object::collidesWith(CollisionObject* other)
+{
+	if (Player* player = dynamic_cast<Player*>(other)) {
+		if (randomPosObject.getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
+			return true;
+		}
+	}
+}
+
+void Object::handleCollision(CollisionObject* other)
+{
+	if (dynamic_cast<Player*>(other)) {
+		StopDraw = true;
+	}
 }
