@@ -1,8 +1,8 @@
 #include "Lobby.hpp"
 
 Lobby::Lobby() {
-	collisionmanager.addObject(&p);
 	collisionmanager.addObject(&e);
+	collisionmanager.addObject(&p);
 	collisionmanager.addObject(&object);
 }
 
