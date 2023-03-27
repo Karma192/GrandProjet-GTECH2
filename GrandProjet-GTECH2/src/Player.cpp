@@ -4,6 +4,7 @@
 Player::Player()
 {
     CubeTest();
+    // test
 }
 
 Player::~Player()
