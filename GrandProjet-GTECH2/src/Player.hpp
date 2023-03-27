@@ -5,6 +5,7 @@
 #include <math.h>
 #include "GameObject.hpp"
 #include "Enemies.hpp"
+#include "MapGenerator.hpp"
 
 
 

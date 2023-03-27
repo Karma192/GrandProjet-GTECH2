@@ -2,10 +2,7 @@
 
 // Room class
 
-Room::Room(Player* p)
-{
-	player = p;
-}
+
 
 Room::Room(std::string file)
 {
@@ -13,6 +10,7 @@ Room::Room(std::string file)
 	background = new MapLayer(map, 0);
 	decoration = new MapLayer(map, 1);
 	collision = new MapLayer(map, 2);
+	
 }
 
 Room::~Room()
@@ -22,33 +20,34 @@ Room::~Room()
 
 void Room::Loop()
 {
-	/*for (int x = 0; x < map.getTileCount().x; x++) {
-		for (int y = 0; y < map.getTileCount().y; y++) {
-			if (collision->getTile(x, y).ID != 0) {
-				sf::FloatRect rect = collision->getGlobalBounds();
-				if (player->cube.getGlobalBounds().intersects(rect)) {
-					std::cout << "test";
-				};
-			}
-		}
-	}*/
+
 }
 
 void Room::Render()
 {
 	gameData = GetGameData();
-	gameData.window->draw(*background);
+	//gameData.window->draw(*background);
 	gameData.window->draw(*decoration);
-	gameData.window->draw(*collision);
+	//gameData.window->draw(*collision);
 }
 
 bool Room::collidesWith(CollisionObject* other)
 {
-	return false;
+	std::cout << "player1";
+	if (Player* layer = dynamic_cast<Player*>(other)) {
+		if (decoration->getGlobalBounds().intersects(layer->cube.getLocalBounds())) {
+			std::cout << "player2";
+			return true;
+		}
+	std::cout << "player3";
+	}
 }
 
 void Room::handleCollision(CollisionObject* other)
 {
+	if (dynamic_cast<Player*>(other)) {
+		std::cout << "player";
+	}
 }
 
 // RoomWallet class

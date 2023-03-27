@@ -29,6 +29,7 @@ void CollisionManager::updateCollisions() {
 
             // Test de collision entre object1 et object2
             if (object1->collidesWith(object2)) {
+            std::cout << "123";
                 // Gestion de la collision
                 object1->handleCollision(object2);
                 object2->handleCollision(object1);

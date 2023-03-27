@@ -4,6 +4,7 @@ Lobby::Lobby() {
 	collisionmanager.addObject(&p);
 	collisionmanager.addObject(&e);
 	collisionmanager.addObject(&object);
+	collisionmanager.addObject(&room);
 }
 
 Lobby::~Lobby()
