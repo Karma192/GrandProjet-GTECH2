@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <stdlib.h>
 #include <time.h> 
@@ -31,11 +33,13 @@ public:
     MapLayer* collision;
 
     std::vector<sf::RectangleShape> rect;
+
 private:
+
     std::string path = "ressources/map/";
     tmx::Map map;
     sf::RectangleShape rectCube;
-    sf::FloatRect playerCube;
+    sf::Vector2f playerCube;
     int i = 0;
     bool collisionCheck = false;
 };

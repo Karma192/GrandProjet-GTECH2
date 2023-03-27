@@ -39,7 +39,7 @@ void Room::Render()
 bool Room::collidesWith(CollisionObject* other)
 {
 	if (Player* player = dynamic_cast<Player*>(other)) {
-		playerCube = player->cube.getGlobalBounds();
+		playerCube = player->cube.getPosition();
 		if (collisionCheck) {
 			return true;
 		}
@@ -56,15 +56,14 @@ void Room::GetTilesBounds() {
 				rectCube.setSize(sf::Vector2f(16, 16));
 				rectCube.setFillColor(sf::Color::Red);
 				rectCube.setPosition(sf::Vector2f(16*x,16*y));
-				std::cout << "player : " << playerCube.left << std::endl;
-				std::cout << "rect : " << rectCube.getGlobalBounds().left << std::endl;
-				if (playerCube.intersects(rectCube.getGlobalBounds())) {
+				if (rectCube.getGlobalBounds().contains(playerCube)) {
 					collisionCheck = true;
 				}
 				rect.push_back(rectCube);
 			}
 		}
 	}
+	std::cout << "player : " << playerCube.x << std::endl;
 	//std::cout << "render : " << rect.size() << std::endl;
 }
 
