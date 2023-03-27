@@ -26,7 +26,7 @@ void SceneManager::Update()
 // Function for switch between all scenes
 void SceneManager::SwitchScene()
 {
-	smData = GetGameData();
+	smData = GameMaster::GetInstance()->GetGameData();
 	switch (smData.indexScene)
 	{
 	case MENU:

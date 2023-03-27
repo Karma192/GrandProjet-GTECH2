@@ -67,7 +67,7 @@ void menuHUD::Loop()
 
 void menuHUD::Render() 
 {
-    gameData = GetGameData();
+    gameData = GameMaster::GetInstance()->GetGameData();
     gameData.window->draw(menuBckSprite);
     menuSelection();
     menuTitle();
@@ -160,7 +160,7 @@ void menuHUD::menuTxt()
                 switch (i)
                 {
                 case 0:
-                    SetActiveScene(LOBBY);
+                    GameMaster::GetInstance()->SetActiveScene(LOBBY);
                     break;
                 case 1:
                     optionOn = false;

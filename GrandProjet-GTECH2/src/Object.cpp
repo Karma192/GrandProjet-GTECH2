@@ -26,7 +26,7 @@ void Object::Loop()
 
 void Object::Render()
 {
-	gameData = GetGameData();
+	gameData = GameMaster::GetInstance()->GetGameData();
 	if (!StopDraw) {
 		gameData.window->draw(randomPosObject);
 		gameData.window->draw(randomPosObject2);

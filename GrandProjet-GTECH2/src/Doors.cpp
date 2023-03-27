@@ -17,6 +17,6 @@ void Doors::Loop()
 
 void Doors::Render()
 {
-	gameData = GetGameData();
+	gameData = GameMaster::GetInstance()->GetGameData();
 	gameData.window->draw(exit);
 }

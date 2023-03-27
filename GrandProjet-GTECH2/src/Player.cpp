@@ -23,7 +23,7 @@ void Player::Loop()
 
 void Player::Render()
 {
-    gameData = GetGameData();
+    gameData = GameMaster::GetInstance()->GetGameData();
     gameData.window->draw(enduranceBar);
     gameData.window->draw(lifeBar);
     gameData.window->draw(playerUltiUI);
@@ -167,7 +167,7 @@ void Player::MovePlayer()
 }
 
 void Player::setCamera() {
-    gameData = GetGameData();
+    gameData = GameMaster::GetInstance()->GetGameData();
     view = gameData.window->getDefaultView();
     view.setCenter(cube.getPosition());
     gameData.window->setView(view);

@@ -13,7 +13,7 @@ GameObject::~GameObject()
 
 void GameObject::Update() 
 {
-	gameData = GetGameData();
+	gameData = GameMaster::GetInstance()->GetGameData();
 	this->Loop();
 	this->Render();
 }
@@ -39,5 +39,5 @@ void GameObject::SetData()
 {
 	srand(time(0));
 	id = rand();
-	gameData = GetGameData();
+	gameData = GameMaster::GetInstance()->GetGameData();
 }

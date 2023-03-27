@@ -13,7 +13,7 @@ Game::~Game()
 
 void Game::GameLoop()
 {
-	SetWindow(window, event);
+	GameMaster::GetInstance()->SetWindow(window, event);
 	sm->SetSM(window, event);
 	window->setFramerateLimit(60);
 	window->setVerticalSyncEnabled(true);

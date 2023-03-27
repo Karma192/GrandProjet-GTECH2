@@ -36,7 +36,7 @@ void Room::Loop()
 
 void Room::Render()
 {
-	gameData = GetGameData();
+	gameData = GameMaster::GetInstance()->GetGameData();
 	gameData.window->draw(*background);
 	gameData.window->draw(*decoration);
 	gameData.window->draw(*collision);

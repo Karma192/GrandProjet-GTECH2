@@ -17,20 +17,29 @@ struct GameData {
 	int indexMap = 0;
 };
 
-static GameData data;
-
 enum {
 	MENU = 0,
 	LOBBY = 1,
 	INGAME = 2,
 };
 
-// Function for get game's global data
-GameData GetGameData();
-// Function to call for change active scene
-void SetActiveScene(int);
-// Function for set the window and event
-void SetWindow(RenderWindow*, Event*);
+class GameMaster 
+{
+protected:
+	static GameMaster* instance;
+	static GameData data;
+	GameMaster();
+public:
+	GameMaster(GameMaster& other) = delete;
 
-// Function for Destroy a GameObject
-//void Destroy(GameObject*);
+	void operator=(const GameMaster&) = delete;
+
+	static GameMaster* GetInstance();
+
+	// Function for get game's global data
+	GameData GetGameData();
+	// Function to call for change active scene
+	void SetActiveScene(int);
+	// Function for set the window and event
+	void SetWindow(RenderWindow*, Event*);
+};
