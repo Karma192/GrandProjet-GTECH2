@@ -131,6 +131,7 @@
     <ClCompile Include="src\scene\Menu.cpp" />
     <ClCompile Include="src\scene\Scene.cpp" />
     <ClCompile Include="src\scene\SceneManager.cpp" />
+    <ClCompile Include="src\Spawner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -152,6 +153,7 @@
     <ClInclude Include="src\scene\Scene.hpp" />
     <ClInclude Include="src\scene\SceneManager.hpp" />
     <ClInclude Include="src\SFMLLayer.hpp" />
+    <ClInclude Include="src\Spawner.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="ressources\ICON.png" />
