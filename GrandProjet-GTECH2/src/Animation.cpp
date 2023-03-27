@@ -11,13 +11,10 @@ void Animation::AnimationInit(sf::String texturePath, sf::Sprite* sprite, int st
 	texture.loadFromFile(aTexturePath);
 	aSprite->setTexture(texture);
 	aSprite->scale(3.0f, 3.0f);
-	sf::IntRect rectSourceSprite(aStartFrameColumn * aXImage, 0, aXImage, aYImage);
-	aRectSourceSprite = rectSourceSprite;
+	aRectSourceSprite = sf::IntRect(aStartFrameColumn * aXImage, 0, aXImage, aYImage);
 }
 
-
-void Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX, 
-	int startFrameLine, int endFrameColumn, int endFrameLine)
+void Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX, int startFrameLine, int endFrameColumn, int endFrameLine)
 {
 	if (clock.getElapsedTime().asMilliseconds() >= 100) {
 		// If the rect is at the right border of the spritesheet, and it isn't the end of the animation, 
@@ -44,21 +41,4 @@ void Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX,
 		aSprite->setTextureRect(aRectSourceSprite);
 		clock.restart();
 	}
-	
 }
-
-void Animation::flipSprite(sf::Sprite sprite, sf::Vector2f moveSpeed)
-{
-	if (moveSpeed.x > 0)
-	{
-		flip = 1;
-	}
-	else if (moveSpeed.x < 0)
-	{
-		flip = -1;
-	}
-
-	sprite.scale(flip * 3.0f, 3.0f);
-}
-
-

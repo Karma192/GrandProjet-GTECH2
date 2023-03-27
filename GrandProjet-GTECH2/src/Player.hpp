@@ -5,14 +5,12 @@
 #include <math.h>
 #include "GameObject.hpp"
 #include "Enemies.hpp"
-
-
+#include "Animation.h"
 
 class Player : public GameObject {
 public:
 	Player();
 	virtual ~Player();
-
 
 	virtual void Loop()override;
 	virtual void Render()override;
@@ -25,9 +23,10 @@ public:
 	void playerRegenEndurance();
 	void playerUI();
 
+	//Player display
+	void DisplayPLayer();
 
 	//Player controller
-	void CubeTest();
 	void ControllerMove();
 	void MovePlayer();
 	void KeyboardMove();
@@ -50,7 +49,7 @@ public:
 	sf::RectangleShape hitboxTest;
 
 	//Player draw
-	sf::RectangleShape cube;
+	sf::Sprite cube;
 	sf::Vector2f moveSpeed;
 	sf::View view;
 
@@ -61,8 +60,7 @@ protected:
 	float cd_Endurance = endurance.getElapsedTime().asSeconds();
 
 private:
-	sf::Texture playerTexture;
-	sf::Sprite playerSprite;
+	Animation animationPlayer;
 
 	//Player attack basic
 	bool isActtk = true;
@@ -78,7 +76,6 @@ private:
 	sf::CircleShape playerFirstSpell;
 	sf::CircleShape playerSecondSpell;
 	sf::CircleShape playerThirdSpell;
-
 
 	int m_pv;
 	int m_attack;

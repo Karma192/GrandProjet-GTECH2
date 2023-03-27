@@ -3,8 +3,7 @@
 
 Player::Player()
 {
-    CubeTest();
-    // test
+    DisplayPLayer();
 }
 
 Player::~Player()
@@ -20,6 +19,8 @@ void Player::Loop()
     KeyboardMove();
     PlayerAttack();
     //setCamera();
+
+    animationPlayer.SpriteAnimation(4, 4, 1, 4, 1);
 }
 
 void Player::Render()
@@ -32,11 +33,15 @@ void Player::Render()
     gameData.window->draw(playerSecondSpell);
     gameData.window->draw(playerThirdSpell);
     
-    if (isActtk == true && asAttacked == true) 
-    { 
-        IsAttacking = true;
-        gameData.window->draw(hitboxTest);
-    }
+    // DEBUG
+    IsAttacking = true;
+    gameData.window->draw(hitboxTest);
+
+    //if (isActtk == true && asAttacked == true) 
+    //{ 
+    //    IsAttacking = true;
+    //    gameData.window->draw(hitboxTest);
+    //}
     if (cdBasicAttack.getElapsedTime().asSeconds() >= 0.1f)
     {
         isActtk = false;
@@ -86,6 +91,7 @@ void Player::playerEndurance()
     }
     if (endurancePlayer <= 0 && sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
+
     }
 }
 
@@ -139,11 +145,10 @@ void Player::playerUI()
     playerThirdSpell.setPosition(playerThirdSpellV);
 }
 
-void  Player::CubeTest()
+void Player::DisplayPLayer()
 {
-	cube.setSize(sf::Vector2f(30.f, 30.f));
-	cube.setFillColor(sf::Color::Red);
-	cube.setPosition(sf::Vector2f(200, 200));
+    cube.setPosition(sf::Vector2f(200, 200));
+    animationPlayer.AnimationInit("ressources/sprites/player/animations/idle/adventurer_idle.png", &cube, 0, 200, 37);
 }
 
 void Player::ControllerMove()
@@ -158,13 +163,11 @@ void Player::ControllerMove()
 	{
 		MovePlayer();
 	}
-
 }
 
 void Player::MovePlayer()
 {
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
-
 }
 
 void Player::setCamera() {
@@ -198,7 +201,6 @@ void Player::KeyboardMove()
     }
 }
 
-
 int Player::GetPlayerXPos()
 {
     return cube.getPosition().x;
@@ -221,20 +223,21 @@ void Player::PlayerBasicAttack()
     hitboxTest.setFillColor(sf::Color::Blue);
     hitboxTest.setPosition(cube.getPosition());
 
+
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
-        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - 30.f);
+        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos());
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
     {
-        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() + 30.f);
+        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos());
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
     {
-        hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos());
+        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos());
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-        hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos());
+        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos());
     }
 }
