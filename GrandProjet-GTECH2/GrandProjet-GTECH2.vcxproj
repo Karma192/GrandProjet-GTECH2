@@ -94,6 +94,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Spells.cpp" />
     <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\ContactManager.cpp" />
     <ClCompile Include="src\Doors.cpp" />
@@ -113,6 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="src\Spells.hpp" />
     <ClInclude Include="src\Animation.h" />
     <ClInclude Include="src\ContactManager.hpp" />
     <ClInclude Include="src\Doors.hpp" />

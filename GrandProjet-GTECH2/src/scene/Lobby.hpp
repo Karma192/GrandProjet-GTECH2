@@ -6,6 +6,7 @@
 #include "../Object.hpp"
 #include "../PhysicsObject.hpp"
 #include "../Doors.hpp"
+#include "../Spells.hpp"
 
 class Lobby : public GameScene {
 public:
@@ -17,6 +18,7 @@ public:
 
 private:
     Player* p;
+    Spells* sp;
     Object* object;
     PhysicsObject* po;
     Enemies* e;
