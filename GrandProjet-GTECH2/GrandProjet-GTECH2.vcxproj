@@ -105,7 +105,6 @@
     <ClCompile Include="src\CollisionManager.cpp" />
     <ClCompile Include="src\CollisionObject.cpp" />
     <ClCompile Include="src\Animation.cpp" />
-    <ClCompile Include="src\ContactManager.cpp" />
     <ClCompile Include="src\Doors.cpp" />
     <ClCompile Include="src\Enemies.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -127,7 +126,6 @@
     <ClInclude Include="src\CollisionManager.h" />
     <ClInclude Include="src\CollisionObject.h" />
     <ClInclude Include="src\Animation.h" />
-    <ClInclude Include="src\ContactManager.hpp" />
     <ClInclude Include="src\Doors.hpp" />
     <ClInclude Include="src\Enemies.hpp" />
     <ClInclude Include="src\Game.hpp" />

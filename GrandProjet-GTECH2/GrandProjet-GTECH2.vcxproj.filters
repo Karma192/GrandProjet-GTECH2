@@ -63,11 +63,6 @@
     <ClCompile Include="src\scene\Menu.cpp"> 
       <Filter>Fichiers sources</Filter> 
     </ClCompile>
-    <ClCompile Include="src\CollisionObject.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CollisionManager.cpp">
-      <Filter>Fichiers sources</Filter>
     <ClCompile Include="src\scene\Scene.cpp"> 
       <Filter>Fichiers sources</Filter> 
     </ClCompile>
@@ -103,13 +98,9 @@
     <ClInclude Include="src\Object.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\SFMLLayer.hpp">
+    <ClInclude Include="src\PhysicsObject.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\CollisionObject.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CollisionManager.h">
     <ClInclude Include="src\Player.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -144,8 +135,7 @@
     <Image Include="ressources\sprites\player\idle.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ressources\map\village\inside_tavern.tmx" />
+    <None Include="ClassDiagram.cd" />
     <None Include="ressources\map\village\village.tmx" />
-    <None Include="src\ClassDiagram.cd" />
   </ItemGroup>
 </Project>
