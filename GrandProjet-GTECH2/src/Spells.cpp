@@ -20,7 +20,7 @@ void Spells::Loop()
 void Spells::Render() 
 {
 	DrawSpell();
-	gameData = GetGameData();
+	gameData = GameMaster::GetGameData();
 	gameData.window->draw(Spell);
 }
 

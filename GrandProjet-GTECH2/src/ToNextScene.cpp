@@ -21,7 +21,7 @@ void ToNextScene::Loop()
 
 void ToNextScene::Render()
 {
-	GetGameData().window->draw(_sprite);
+	GameMaster::GetGameData().window->draw(_sprite);
 }
 
 bool ToNextScene::collidesWith(CollisionObject* other)
@@ -44,5 +44,5 @@ void ToNextScene::handleCollision(CollisionObject* other)
 
 void ToNextScene::GoToScene()
 {
-	SetActiveScene(scene);
+	GameMaster::GetInstance()->SetActiveScene(scene);
 }
