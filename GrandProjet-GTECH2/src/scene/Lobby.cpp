@@ -1,10 +1,11 @@
 #include "Lobby.hpp"
 
 Lobby::Lobby() {
+	collisionmanager.addObject(&map);
 	collisionmanager.addObject(&sp);
-	collisionmanager.addObject(&p);
 	collisionmanager.addObject(&e);
-	collisionmanager.addObject(&object);
+	collisionmanager.addObject(&p);
+	//collisionmanager.addObject(&object);
 	collisionmanager.addObject(&_door);
 
 	sf::Texture texture;
@@ -19,7 +20,6 @@ Lobby::~Lobby()
 
 void Lobby::Loop() {
 	collisionmanager.updateCollisions();
-	room.Loop();
 	p.Loop();
 	sp.Loop();
 	e.Loop();
@@ -32,6 +32,6 @@ void Lobby::Render() {
 	sp.Render();
 	e.Render();
 	_door.Render();
-	object.Render();
+	//object.Render();
 }
 

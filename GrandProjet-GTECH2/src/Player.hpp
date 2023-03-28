@@ -5,6 +5,7 @@
 #include <cmath>
 #include "GameObject.hpp"
 #include "Enemies.hpp"
+#include "MapGenerator.hpp"
 
 
 
@@ -83,11 +84,16 @@ private:
 	sf::CircleShape playerSecondSpell;
 	sf::CircleShape playerThirdSpell;
 
+	sf::CircleShape playerUITab[4];
+
+
 
 	int m_pv;
 	int m_attack;
 	int playerSpeed = 20;
+	int _playerDirection = 0;
 	sf::Clock endurance;
 
 	bool lookingLeft = false;
+	bool _stopMoving = false;
 };
