@@ -19,8 +19,6 @@ void Player::Loop()
     KeyboardMove();
     PlayerAttack();
     setCamera();
-    _stopMoving = false;
-    //std::cout << "Player direction : " << _playerDirection << std::endl;
 }
 
 void Player::Render()
@@ -64,6 +62,35 @@ bool Player::collidesWith(CollisionObject* other) {
 			return true;
 		}
 	}
+    if (MapGenerator* map = dynamic_cast<MapGenerator*>(other)) {
+        for (int i = 0; i < map->wallet->GetRoom(0)->rect.size(); i++) {
+            if (cube.getGlobalBounds().intersects(map->wallet->GetRoom(0)->rect[i].getGlobalBounds())) {
+                cube.setOrigin(0, 0);
+                _wallTouched++;
+                if (cube.getGlobalBounds().left < (map->wallet->GetRoom(0)->rect[i].getGlobalBounds().left + map->wallet->GetRoom(0)->rect[i].getGlobalBounds().width)) {
+                    _collideLeft = true;
+                    std::cout << "left" << std::endl;
+                }
+                if ((cube.getGlobalBounds().left + cube.getGlobalBounds().width) > map->wallet->GetRoom(0)->rect[i].getGlobalBounds().left) {
+                    _collideRight = true;
+                    std::cout << "right" << std::endl;
+                }
+                if (cube.getGlobalBounds().top < (map->wallet->GetRoom(0)->rect[i].getGlobalBounds().top + map->wallet->GetRoom(0)->rect[i].getGlobalBounds().height)) {
+                    _collideUp = true;
+                    std::cout << "up" << std::endl;
+                }
+                if ((cube.getGlobalBounds().top + cube.getGlobalBounds().height) > map->wallet->GetRoom(0)->rect[i].getGlobalBounds().top) {
+                    _collideDown = true;
+                    std::cout << "down" << std::endl;
+                }
+                    return true;
+            }
+            _collideUp = false;
+            _collideDown = false;
+            _collideLeft = false;
+            _collideRight = false;
+        }
+    }
 	return false;
 }
 
@@ -77,27 +104,7 @@ void Player::handleCollision(CollisionObject* other)
 
     }
 	if (dynamic_cast<MapGenerator*>(other)) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && _playerDirection != 1)
-        {
-            moveSpeed = sf::Vector2f(0.f, -100.f);
-            MovePlayer();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _playerDirection != 2)
-        {
-            moveSpeed = sf::Vector2f(0.f, 100.f);
-            MovePlayer();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && _playerDirection != 3)
-        {
-            moveSpeed = sf::Vector2f(-100.f, 0.f);
-            MovePlayer();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && _playerDirection != 4)
-        {
-            moveSpeed = sf::Vector2f(100.f, 0.f);
-            MovePlayer();
-        }
-        _stopMoving = true;
+        
     }
 }
 
@@ -200,31 +207,25 @@ void Player::setCamera() {
 
 void Player::KeyboardMove()
 {
-    if (!_stopMoving) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-        {
-            moveSpeed = sf::Vector2f(0.f, -100.f);
-            _playerDirection = 1;
-            MovePlayer();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-        {
-            moveSpeed = sf::Vector2f(0.f, 100.f);
-            _playerDirection = 2;
-            MovePlayer();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-        {
-            moveSpeed = sf::Vector2f(-100.f, 0.f);
-            _playerDirection = 3;
-            MovePlayer();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-        {
-            moveSpeed = sf::Vector2f(100.f, 0.f);
-            _playerDirection = 4;
-            MovePlayer();
-        }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && !_collideUp)
+    {
+        moveSpeed = sf::Vector2f(0.f, -100.f);
+        MovePlayer();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && !_collideDown)
+    {
+        moveSpeed = sf::Vector2f(0.f, 100.f);
+        MovePlayer();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && !_collideLeft)
+    {
+        moveSpeed = sf::Vector2f(-100.f, 0.f);
+        MovePlayer();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && !_collideRight)
+    {
+        moveSpeed = sf::Vector2f(100.f, 0.f);
+        MovePlayer();
     }
 }
 
