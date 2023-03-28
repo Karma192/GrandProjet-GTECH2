@@ -57,6 +57,7 @@ void Spells::SetFireBall()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 		if (CooldownFireBall <= 0) {
+			this->Destroy();
 			CooldownFireBall = MaxCooldownFireBall;
 			sf::Vector2f launchDirection(std::cos(PlayerRotation * 3.14159265 / 180),
 				std::sin(PlayerRotation * 3.14159265 / 180));
