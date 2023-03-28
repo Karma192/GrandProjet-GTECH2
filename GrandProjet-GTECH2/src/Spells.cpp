@@ -3,6 +3,7 @@
 
 Spells::Spells()
 {
+	CooldownFireBall = 0;
 }
 
 
@@ -18,23 +19,24 @@ void Spells::Loop()
 
 void Spells::Render() 
 {
+	DrawSpell();
 	gameData = GetGameData();
-	gameData.window->draw(spell);
+	gameData.window->draw(Spell);
 }
 
 bool Spells::collidesWith(CollisionObject* other)
 {
 	if (Player* player = dynamic_cast<Player*>(other)) {
 		PlayerPos = player->cube.getPosition();
-		DrawSpell();
-		playerRotation = player->cube.getRotation();
-		if (spell.getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
+		PlayerRotation = player->cube.getRotation();
+		PlayerBounds = player->cube.getLocalBounds();
+		if (Spell.getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
 			return true;
 		}
 	}
 
 	if (Enemies* enemy = dynamic_cast<Enemies*>(other)) {
-		if (spell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) {
+		if (Spell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) {
 			return true;
 		}
 	}
@@ -54,17 +56,25 @@ void Spells::handleCollision(CollisionObject* other)
 void Spells::SetFireBall() 
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-		sf::Vector2f launchDirection(std::cos(playerRotation * 3.14159265 / 180),
-			std::sin(playerRotation * 3.14159265 / 180));
-		std::cout << launchDirection.x <<std::endl<<launchDirection.y;
-		if (launchDirection == sf::Vector2f(0,-1)) {
-			Launch(PlayerPos, sf::Vector2f(0,-10));
+		if (CooldownFireBall <= 0) {
+			CooldownFireBall = MaxCooldownFireBall;
+			sf::Vector2f launchDirection(std::cos(PlayerRotation * 3.14159265 / 180),
+				std::sin(PlayerRotation * 3.14159265 / 180));
+			if (launchDirection == sf::Vector2f(0, -1)) {
+				Launch(PlayerPos, sf::Vector2f(0, -10));
+			}
+			else
+				Launch(PlayerPos, launchDirection);
 		}
-		else
-			Launch(PlayerPos, launchDirection);
 	}
+	CooldownFireBall--;
 	Update();
-
+	if (isLaunched()) {
+		if (Spell.getPosition().x < 0 || Spell.getPosition().x > 1920 ||
+			Spell.getPosition().y < 0 || Spell.getPosition().y > 1080) {
+			reset();
+		}
+	}
 }
 
 void Spells::Update() 
@@ -76,6 +86,7 @@ void Spells::Update()
 
 void Spells::Launch(sf::Vector2f StartPos, sf::Vector2f LaunchDir) 
 {
+
 	position = StartPos;
 	direction = LaunchDir;
 
@@ -86,8 +97,8 @@ void Spells::Launch(sf::Vector2f StartPos, sf::Vector2f LaunchDir)
 
 void Spells::DrawSpell() 
 {
-	spell.setRadius(10);
-	spell.setFillColor(sf::Color::Green);
-	spell.setPosition(position);
-	spell.setOrigin(PlayerBounds.width / 2.0f, PlayerBounds.height / 2.0f);
+	Spell.setRadius(10);
+	Spell.setFillColor(sf::Color::Green);
+	Spell.setPosition(position);
+	Spell.setOrigin(PlayerBounds.width / 2.0f, PlayerBounds.height / 2.0f);
 }

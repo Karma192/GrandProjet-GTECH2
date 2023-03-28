@@ -27,7 +27,9 @@ public:
 	bool isLaunched() { return launched; }
 	void reset(){ launched = false; }
 
-	sf::CircleShape spell;
+	sf::CircleShape Spell;
+	int CooldownFireBall;
+	int MaxCooldownFireBall = 100;
 
 private:
 	sf::Vector2f position;
@@ -36,7 +38,7 @@ private:
 	sf::FloatRect PlayerBounds;
 	sf::Vector2f launchDirection;
 	float speed = 10;
-	float playerRotation;
+	float PlayerRotation;
 	bool launched = true;
 };
 

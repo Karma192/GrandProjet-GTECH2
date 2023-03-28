@@ -118,6 +118,7 @@ void Player::playerUI()
     sf::Vector2f playerUltiUIV = gameData.window->mapPixelToCoords(sf::Vector2i(30,880));
     playerUltiUI.setPosition(playerUltiUIV);
 
+    //For FireBall
     playerFirstSpell.setRadius(20);
     playerFirstSpell.setFillColor(sf::Color::Transparent);
     playerFirstSpell.setOutlineThickness(5);
@@ -182,7 +183,7 @@ void Player::KeyboardMove()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
-        cube.move(sf::Vector2f(0.f, -5));
+        moveSpeed = sf::Vector2f(0.f, -100.f);;
         MovePlayer();
 
     }
