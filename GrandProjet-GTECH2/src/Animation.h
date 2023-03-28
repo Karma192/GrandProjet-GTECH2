@@ -5,9 +5,10 @@
 class Animation
 {
 public:
-	void InitAnimation(sf::String texturePath, sf::Sprite* sprite, int frameWidth, int frameHeight, int totalFrames, int animationSpeed, int currentFrame);
-	void Animate();
+	void InitAnimation(sf::String texturePath, sf::Sprite* sprite, int frameWidth, int frameHeight, int totalFrames, int currentFrame);
+	void Animate(float animationSpeed);
 
+private:
 	sf::Clock animationClock;
 	sf::Texture texture;
 	sf::Sprite* aSprite;
@@ -17,10 +18,6 @@ public:
 	int aFrameWidth;
 	int aFrameHeight;
 	int aTotalFrames;
-	int aAnimationSpeed;
 	int aCurrentFrame;
-
-private:
-
 };
 

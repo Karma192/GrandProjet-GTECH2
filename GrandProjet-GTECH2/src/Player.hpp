@@ -45,13 +45,9 @@ public:
 	void PlayerAttack();
 	void PlayerBasicAttack();
 
+	sf::Sprite cube;
 	sf::Clock cdBasicAttack;
 	sf::RectangleShape hitboxTest;
-
-	//Player draw
-	sf::Sprite cube;
-	sf::Vector2f moveSpeed;
-	sf::View view;
 
 	bool IsAttacking = false;
 
@@ -60,6 +56,10 @@ protected:
 	float cd_Endurance = endurance.getElapsedTime().asSeconds();
 
 private:
+	//Player draw
+	sf::Vector2f moveSpeed;
+	sf::View view;
+
 	Animation animationPlayer;
 
 	//Player attack basic

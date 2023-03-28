@@ -1,6 +1,6 @@
 #include "Animation.h"
 
-void Animation::InitAnimation(sf::String texturePath, sf::Sprite* sprite, int frameWidth, int frameHeight, int totalFrames, int animationSpeed, int currentFrame)
+void Animation::InitAnimation(sf::String texturePath, sf::Sprite* sprite, int frameWidth, int frameHeight, int totalFrames, int currentFrame)
 {
 	aTexturePath = texturePath;
 
@@ -13,24 +13,22 @@ void Animation::InitAnimation(sf::String texturePath, sf::Sprite* sprite, int fr
 	aFrameWidth = frameWidth;
 	aFrameHeight = frameHeight;
 	aTotalFrames = totalFrames;
-	aAnimationSpeed = animationSpeed;
+
+	// Start to 0
+	// exemple : 4 frames -> 0 - 3
 	aCurrentFrame = currentFrame;
 
-	aSprite->setPosition(sf::Vector2f(200, 200));
 	aSprite->setScale(sf::Vector2f(3.0f, 3.0f));
 	aSprite->setTexture(texture);
 
 	frameRect = sf::IntRect(0, 0, aFrameWidth, aFrameHeight);
 
-	// Calculate the rectangle for the third frame
-	frameRect.left = aFrameWidth * 0;
-
 	aSprite->setTextureRect(frameRect);
 }
 
-void Animation::Animate()
+void Animation::Animate(float animationSpeed)
 {
-	if (animationClock.getElapsedTime().asMilliseconds() >= aAnimationSpeed) {
+	if (animationClock.getElapsedTime().asSeconds() >= animationSpeed) {
 		aCurrentFrame = (aCurrentFrame + 1) % aTotalFrames;
 		frameRect.left = aCurrentFrame * aFrameWidth;
 		aSprite->setTextureRect(frameRect);

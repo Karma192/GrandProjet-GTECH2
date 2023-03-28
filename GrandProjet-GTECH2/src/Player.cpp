@@ -19,7 +19,7 @@ void Player::Loop()
     PlayerAttack();
     //setCamera();
 
-    animationPlayer.Animate();
+    animationPlayer.Animate(0.2f);
 }
 
 void Player::Render()
@@ -146,7 +146,9 @@ void Player::playerUI()
 
 void Player::DisplayPLayer()
 {
-    animationPlayer.InitAnimation("ressources/sprites/player/animations/idle/adventurer_idle.png", &cube, 50, 37, 4, 1000, 0);
+    animationPlayer.InitAnimation("ressources/sprites/player/animations/idle/adventurer_idle.png", &cube, 50, 37, 4, 0);
+
+    cube.setPosition(sf::Vector2f(200, 200));
 }
 
 void Player::ControllerMove()
