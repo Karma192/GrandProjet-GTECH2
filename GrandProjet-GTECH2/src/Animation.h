@@ -5,8 +5,9 @@
 class Animation
 {
 public:
-	void InitAnimation(sf::String texturePath, sf::Sprite* sprite, int frameWidth, int frameHeight, int totalFrames, int currentFrame);
-	void Animate(float animationSpeed);
+	void InitAnimation(sf::String texturePath, sf::Sprite* sprite, int frameWidth, int frameHeight, int totalFrames, int currentFrame, float scale);
+	void Animate(float animationSpeed, bool doFlip);
+	void Flip(bool doFlip, float scaleX, float scaleY);
 
 private:
 	sf::Clock animationClock;
@@ -19,5 +20,8 @@ private:
 	int aFrameHeight;
 	int aTotalFrames;
 	int aCurrentFrame;
+	int aColumns;
+	int aRows;
+	float aScale;
 };
 

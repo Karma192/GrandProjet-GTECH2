@@ -1,24 +1,19 @@
 #include "Animation.h"
 
-void Animation::InitAnimation(sf::String texturePath, sf::Sprite* sprite, int frameWidth, int frameHeight, int totalFrames, int currentFrame)
+void Animation::InitAnimation(sf::String texturePath, sf::Sprite* sprite, int frameWidth, int frameHeight, int totalFrames, int currentFrame, float scale)
 {
 	aTexturePath = texturePath;
-
-	if (!texture.loadFromFile(aTexturePath))
-	{
-		std::cout << "error load tileset" << std::endl;
-	}
+	texture.loadFromFile(aTexturePath);
 
 	aSprite = sprite;
 	aFrameWidth = frameWidth;
 	aFrameHeight = frameHeight;
 	aTotalFrames = totalFrames;
-
-	// Start to 0
-	// exemple : 4 frames -> 0 - 3
+	aScale = scale;
 	aCurrentFrame = currentFrame;
+	// Current frame start to 0
+	// exemple : 4 frames -> 0 - 3
 
-	aSprite->setScale(sf::Vector2f(3.0f, 3.0f));
 	aSprite->setTexture(texture);
 
 	frameRect = sf::IntRect(0, 0, aFrameWidth, aFrameHeight);
@@ -26,8 +21,17 @@ void Animation::InitAnimation(sf::String texturePath, sf::Sprite* sprite, int fr
 	aSprite->setTextureRect(frameRect);
 }
 
-void Animation::Animate(float animationSpeed)
+void Animation::Animate(float animationSpeed, bool doFlip)
 {
+	if (doFlip)
+	{
+		aSprite->setScale(-aScale, aScale);
+	}
+	else
+	{
+		aSprite->setScale(aScale, aScale);
+	}
+
 	if (animationClock.getElapsedTime().asSeconds() >= animationSpeed) {
 		aCurrentFrame = (aCurrentFrame + 1) % aTotalFrames;
 		frameRect.left = aCurrentFrame * aFrameWidth;

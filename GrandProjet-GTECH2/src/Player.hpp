@@ -60,7 +60,8 @@ private:
 	sf::Vector2f moveSpeed;
 	sf::View view;
 
-	Animation animationPlayer;
+	Animation animationIdlePlayer;
+	Animation animationRunPlayer;
 
 	//Player attack basic
 	bool isActtk = true;
