@@ -42,8 +42,9 @@ void Enemies::handleCollision(CollisionObject* other)
     {
         ennemieHP--;
         std::cout << ennemieHP << std::endl;
-        if (ennemieHP == 0)
+        if (ennemieHP <= 0)
         {
+            std::cout << "ennemi mort";
             this->Destroy();
         }
     }

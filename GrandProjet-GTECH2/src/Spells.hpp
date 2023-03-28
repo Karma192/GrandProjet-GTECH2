@@ -29,7 +29,7 @@ public:
 
 	sf::CircleShape Spell;
 	int CooldownFireBall;
-	int MaxCooldownFireBall = 100;
+	int MaxCooldownFireBall = 0;
 
 private:
 	sf::Vector2f position;
