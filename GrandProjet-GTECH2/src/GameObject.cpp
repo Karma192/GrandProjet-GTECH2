@@ -33,6 +33,9 @@ void GameObject::Destroy()
 	std::vector<GameObject*> list;
 	list.push_back(this);
 	list.clear();
+
+	// à tester avec CHASSAING
+	//delete& list[0];
 }
 
 void GameObject::SetData()
