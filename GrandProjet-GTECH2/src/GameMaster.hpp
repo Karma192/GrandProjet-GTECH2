@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
+//#include "GameObject.hpp"
 
 using namespace sf;
 
@@ -10,9 +11,10 @@ struct player {
 };
 
 struct GameData {
-	int indexScene;
-	RenderWindow* window;
-	Event* event;
+	int indexScene = 0;
+	RenderWindow* window = nullptr;
+	Event* event = nullptr;
+	int indexMap = 0;
 };
 
 static GameData data;
@@ -29,3 +31,6 @@ GameData GetGameData();
 void SetActiveScene(int);
 // Function for set the window and event
 void SetWindow(RenderWindow*, Event*);
+
+// Function for Destroy a GameObject
+//void Destroy(GameObject*);

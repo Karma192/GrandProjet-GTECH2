@@ -4,9 +4,9 @@
 #include <time.h>
 #include <SFML/Graphics.hpp>
 #include "GameMaster.hpp"
-#include "ContactManager.hpp"
+#include "CollisionObject.h"
 
-class GameObject : public ContactManager {
+class GameObject : public CollisionObject {
 public:
 	int id;
 
@@ -21,6 +21,8 @@ public:
 	virtual void Loop();
 	// Rendu du game object
 	virtual void Render();
+	//Destruction du game object
+	void Destroy();
 
 private:
 	void SetData();

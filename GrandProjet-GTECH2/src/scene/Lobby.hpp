@@ -2,8 +2,10 @@
 #include "Scene.hpp"
 #include "../Player.hpp"
 #include "../Enemies.hpp"
+#include "../MapGenerator.hpp"
 #include "../Object.hpp"
-#include "../PhysicsObject.hpp"
+#include "../CollisionManager.h"
+#include "../ToNextScene.hpp"
 
 class Lobby : public GameScene {
 public:
@@ -16,9 +18,12 @@ public:
 private:
     Player p;
     Object object;
-    PhysicsObject po;
-    Enemies* e;
-
+    Enemies e;
+    MapGenerator map;
+    Room room;
+    ToNextScene _door;
+    CollisionManager collisionmanager;
+    
     void Background();
     sf::Texture menuBackground;
     sf::Sprite menuBckSprite;

@@ -1,36 +1,34 @@
 #include "Lobby.hpp"
 
 Lobby::Lobby() {
-    p = Player();
-    e = new Enemies(&p);
-    po = PhysicsObject(&p);
-    AddToScene(&p, 0);
-    AddToScene(e, 1);
+	collisionmanager.addObject(&p);
+	collisionmanager.addObject(&e);
+	collisionmanager.addObject(&object);
+	collisionmanager.addObject(&_door);
+
+	sf::Texture texture;
+	texture.create(1, 1);
+	texture.loadFromFile("ressources/sprites/player/idle.png");
+	_door = ToNextScene(0, sf::Sprite(texture),1 ,1);
 }
 
-Lobby::~Lobby() {
-    delete e;
+Lobby::~Lobby()
+{
 }
 
 void Lobby::Loop() {
-    p.Loop();
-    po.SetPtr(&p.cube,&e->cube2,&p.hitboxTest);
-    object.Loop();
-    po.Loop();
-    e->Loop();
+	collisionmanager.updateCollisions();
+	room.Loop();
+	p.Loop();
+	e.Loop();
+	_door.Loop();
 }
 
-void Lobby::Render()
-{
-    p.Render();
-    object.Render();
-    //Background();
-    e->Render();
+void Lobby::Render() {
+	map.Render();
+	p.Render();
+	e.Render();
+	_door.Render();
+	object.Render();
 }
 
-void Lobby::Background() {
-    /*menuBackground.loadFromFile("ressources/background.jpg");
-    menuBckSprite.setTexture(menuBackground);
-    gameData.window->draw(menuBckSprite);*/
-    //map.Render();
-}

@@ -17,6 +17,9 @@ public:
 	virtual void Loop()override;
 	virtual void Render()override;
 
+	bool collidesWith(CollisionObject* other) override;
+	void handleCollision(CollisionObject* other) override;
+
 
 private:
 	bool optionOn = true;

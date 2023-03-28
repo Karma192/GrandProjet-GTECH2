@@ -2,11 +2,10 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
-#include <vector>
+#include <math.h>
 #include "GameObject.hpp"
+#include "Enemies.hpp"
 
-#define PLAYER_TEXTURE "ressources/sprites/player/idle.png"
-#define PLAYER_IDLE {sf::IntRect(0, 0, 54, 52), sf::IntRect(69, 0, 54, 52),sf::IntRect(130, 0, 54, 52), sf::IntRect(195, 0, 54, 52) }
 
 
 class Player : public GameObject {
@@ -17,6 +16,9 @@ public:
 
 	virtual void Loop()override;
 	virtual void Render()override;
+
+	bool collidesWith(CollisionObject* other) override;
+	void handleCollision(CollisionObject* other) override;
 
 	//Player HUD 
 	void playerEndurance();
@@ -43,17 +45,17 @@ public:
 	//Player attack
 	void PlayerAttack();
 	void PlayerBasicAttack();
-	sf::Clock cdBasicAttack;
 
-	//test
+	sf::Clock cdBasicAttack;
+	sf::RectangleShape hitboxTest;
+
+	//Player draw
 	sf::RectangleShape cube;
 	sf::Vector2f moveSpeed;
 	sf::View view;
 
 	bool IsAttacking = false;
 
-	sf::RectangleShape hitboxTest;
-	
 protected:
 	float endurancePlayer = 100;
 	float cd_Endurance = endurance.getElapsedTime().asSeconds();
@@ -61,7 +63,6 @@ protected:
 private:
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
-
 
 	//Player attack basic
 	bool isActtk = true;
@@ -81,9 +82,10 @@ private:
 	sf::CircleShape playerThirdSpell;
 
 
-	sf::Clock clock;
 	int m_pv;
 	int m_attack;
-	int playerSpeed = 60;
+	int playerSpeed = 20;
 	sf::Clock endurance;
+
+	bool lookingLeft = false;
 };
