@@ -20,7 +20,7 @@ void Player::Loop()
     PlayerAttack();
     setCamera();
     _stopMoving = false;
-    std::cout << "Player direction : " << _playerDirection << std::endl;
+    //std::cout << "Player direction : " << _playerDirection << std::endl;
 }
 
 void Player::Render()
