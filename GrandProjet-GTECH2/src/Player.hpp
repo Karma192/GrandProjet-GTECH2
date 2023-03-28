@@ -84,7 +84,9 @@ private:
 	int m_pv;
 	int m_attack;
 	int playerSpeed = 20;
+	int _playerDirection = 0;
 	sf::Clock endurance;
 
 	bool lookingLeft = false;
+	bool _stopMoving = false;
 };

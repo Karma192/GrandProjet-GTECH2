@@ -19,6 +19,8 @@ void Player::Loop()
     KeyboardMove();
     PlayerAttack();
     setCamera();
+    _stopMoving = false;
+    std::cout << "Player direction : " << _playerDirection << std::endl;
 }
 
 void Player::Render()
@@ -74,28 +76,29 @@ void Player::handleCollision(CollisionObject* other)
 	if (dynamic_cast<Object*>(other)) {
 
     }
-	/*if (dynamic_cast<MapGenerator*>(other)) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-        {
-            moveSpeed = sf::Vector2f(0.f, 100.f);
-            MovePlayer();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	if (dynamic_cast<MapGenerator*>(other)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && _playerDirection != 1)
         {
             moveSpeed = sf::Vector2f(0.f, -100.f);
             MovePlayer();
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _playerDirection != 2)
         {
-            moveSpeed = sf::Vector2f(100.f, 0.f);
+            moveSpeed = sf::Vector2f(0.f, 100.f);
             MovePlayer();
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && _playerDirection != 3)
         {
             moveSpeed = sf::Vector2f(-100.f, 0.f);
             MovePlayer();
         }
-    }*/
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && _playerDirection != 4)
+        {
+            moveSpeed = sf::Vector2f(100.f, 0.f);
+            MovePlayer();
+        }
+        _stopMoving = true;
+    }
 }
 
 void Player::playerEndurance()
@@ -197,27 +200,34 @@ void Player::setCamera() {
 
 void Player::KeyboardMove()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-    {
-        moveSpeed = sf::Vector2f(0.f, -100.f);
-        MovePlayer();
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-    {
-        moveSpeed = sf::Vector2f(0.f, 100.f);
-        MovePlayer();
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-    {
-        moveSpeed = sf::Vector2f(-100.f, 0.f);
-        MovePlayer();
-    }
-    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-    {
-        moveSpeed = sf::Vector2f(100.f, 0.f);
-        MovePlayer();
+    if (!_stopMoving) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+        {
+            moveSpeed = sf::Vector2f(0.f, -100.f);
+            _playerDirection = 1;
+            MovePlayer();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        {
+            moveSpeed = sf::Vector2f(0.f, 100.f);
+            _playerDirection = 2;
+            MovePlayer();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+        {
+            moveSpeed = sf::Vector2f(-100.f, 0.f);
+            _playerDirection = 3;
+            MovePlayer();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        {
+            moveSpeed = sf::Vector2f(100.f, 0.f);
+            _playerDirection = 4;
+            MovePlayer();
+        }
     }
 }
+
 
 
 int Player::GetPlayerXPos()
