@@ -2,17 +2,13 @@
 
 // Room class
 
-Room::Room(Player* p)
-{
-	player = p;
-}
-
 Room::Room(std::string file)
 {
 	map.load(path + file);
 	background = new MapLayer(map, 0);
 	decoration = new MapLayer(map, 1);
 	collision = new MapLayer(map, 2);
+	GetTilesBounds();
 }
 
 Room::~Room()
@@ -22,16 +18,7 @@ Room::~Room()
 
 void Room::Loop()
 {
-	/*for (int x = 0; x < map.getTileCount().x; x++) {
-		for (int y = 0; y < map.getTileCount().y; y++) {
-			if (collision->getTile(x, y).ID != 0) {
-				sf::FloatRect rect = collision->getGlobalBounds();
-				if (player->cube.getGlobalBounds().intersects(rect)) {
-					std::cout << "test";
-				};
-			}
-		}
-	}*/
+
 }
 
 void Room::Render()
@@ -40,6 +27,9 @@ void Room::Render()
 	gameData.window->draw(*background);
 	gameData.window->draw(*decoration);
 	gameData.window->draw(*collision);
+	for (int i = 0; i < rect.size(); i++) {
+		gameData.window->draw(rect[i]);
+	}
 }
 
 bool Room::collidesWith(CollisionObject* other)
@@ -47,8 +37,26 @@ bool Room::collidesWith(CollisionObject* other)
 	return false;
 }
 
+void Room::GetTilesBounds() {
+	for (int x = 0; x < 60; x++) {
+		for (int y = 0; y < 40; y++) {
+			if(collision->getTile(x,y).ID != 0){
+				i++;
+				rectCube.setSize(sf::Vector2f(16, 16));
+				rectCube.setFillColor(sf::Color::Red);
+				rectCube.setPosition(sf::Vector2f(16*x,16*y));
+				if (rectCube.getGlobalBounds().contains(playerCube)) {
+					collisionCheck = true;
+				}
+				rect.push_back(rectCube);
+			}
+		}
+	}
+}
+
 void Room::handleCollision(CollisionObject* other)
 {
+
 }
 
 // RoomWallet class
@@ -77,8 +85,7 @@ void RoomWallet::LoadAll()
 // MapGenerator class
 
 MapGenerator::MapGenerator() {
-	RoomWallet wallet;
-	
+	wallet = new RoomWallet();
 }
 
 MapGenerator::~MapGenerator() {
@@ -90,7 +97,7 @@ void MapGenerator::Loop() {
 }
 
 void MapGenerator::Render() {
-	wallet.GetRoom(0)->Render();
+	wallet->GetRoom(0)->Render();
 	//switch (gameData.indexScene)
 	//{
 	//case LOBBY : 
@@ -108,11 +115,21 @@ void MapGenerator::Render() {
 
 bool MapGenerator::collidesWith(CollisionObject* other)
 {
+	if (Player* player = dynamic_cast<Player*>(other)) {
+		for (int i = 0; i < wallet->GetRoom(0)->rect.size(); i++) {
+			if (wallet->GetRoom(0)->rect[i].getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
+				return true;
+			}
+		}
+	}
 	return false;
 }
 
 void MapGenerator::handleCollision(CollisionObject* other)
 {
+	if (dynamic_cast<Player*>(other)) {
+		std::cout << "player";
+	}
 }
 
 

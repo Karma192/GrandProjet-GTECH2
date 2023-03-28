@@ -19,7 +19,7 @@ public:
 
 private:
     Player p;
-    Object object;
+    //Object object;
     Enemies e;
     Spells sp;
     MapGenerator map;
@@ -27,7 +27,6 @@ private:
     ToNextScene _door;
     CollisionManager collisionmanager;
     
-    void Background();
     sf::Texture menuBackground;
     sf::Sprite menuBckSprite;
 };
