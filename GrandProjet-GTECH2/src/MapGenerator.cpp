@@ -2,16 +2,13 @@
 
 // Room class
 
-Room::Room()
-{
-}
-
 Room::Room(std::string file)
 {
 	map.load(path + file);
 	background = new MapLayer(map, 0);
 	decoration = new MapLayer(map, 1);
 	collision = new MapLayer(map, 2);
+	GetTilesBounds();
 }
 
 Room::~Room()
@@ -21,16 +18,15 @@ Room::~Room()
 
 void Room::Loop()
 {
+
 }
 
 void Room::Render()
 {
-	rect.clear();
 	gameData = GetGameData();
 	gameData.window->draw(*background);
 	gameData.window->draw(*decoration);
 	gameData.window->draw(*collision);
-	GetTilesBounds();
 	for (int i = 0; i < rect.size(); i++) {
 		gameData.window->draw(rect[i]);
 	}
@@ -38,13 +34,6 @@ void Room::Render()
 
 bool Room::collidesWith(CollisionObject* other)
 {
-	if (Player* player = dynamic_cast<Player*>(other)) {
-		playerCube = player->cube.getPosition();
-		if (collisionCheck) {
-			return true;
-		}
-		//std::cout << "collide : " << rect.size() << std::endl;
-	}
 	return false;
 }
 
@@ -63,15 +52,11 @@ void Room::GetTilesBounds() {
 			}
 		}
 	}
-	std::cout << "player : " << playerCube.x << std::endl;
-	//std::cout << "render : " << rect.size() << std::endl;
 }
 
 void Room::handleCollision(CollisionObject* other)
 {
-	if (dynamic_cast<Player*>(other)) {
-		std::cout << "player";
-	}
+
 }
 
 // RoomWallet class
@@ -100,8 +85,7 @@ void RoomWallet::LoadAll()
 // MapGenerator class
 
 MapGenerator::MapGenerator() {
-	RoomWallet wallet;
-	
+	wallet = new RoomWallet();
 }
 
 MapGenerator::~MapGenerator() {
@@ -113,7 +97,7 @@ void MapGenerator::Loop() {
 }
 
 void MapGenerator::Render() {
-	wallet.GetRoom(0)->Render();
+	wallet->GetRoom(0)->Render();
 	//switch (gameData.indexScene)
 	//{
 	//case LOBBY : 
@@ -131,11 +115,21 @@ void MapGenerator::Render() {
 
 bool MapGenerator::collidesWith(CollisionObject* other)
 {
+	if (Player* player = dynamic_cast<Player*>(other)) {
+		for (int i = 0; i < wallet->GetRoom(0)->rect.size(); i++) {
+			if (wallet->GetRoom(0)->rect[i].getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
+				return true;
+			}
+		}
+	}
 	return false;
 }
 
 void MapGenerator::handleCollision(CollisionObject* other)
 {
+	if (dynamic_cast<Player*>(other)) {
+		std::cout << "player";
+	}
 }
 
 

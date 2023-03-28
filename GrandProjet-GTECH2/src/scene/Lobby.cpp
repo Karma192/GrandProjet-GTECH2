@@ -1,7 +1,7 @@
 #include "Lobby.hpp"
 
 Lobby::Lobby() {
-	collisionmanager.addObject(&room);
+	collisionmanager.addObject(&map);
 	collisionmanager.addObject(&e);
 	collisionmanager.addObject(&p);
 	collisionmanager.addObject(&object);
@@ -14,7 +14,6 @@ Lobby::~Lobby()
 
 void Lobby::Loop() {
 	collisionmanager.updateCollisions();
-	room.Loop();
 	p.Loop();
 	e.Loop();
 }

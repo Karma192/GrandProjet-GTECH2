@@ -16,7 +16,7 @@ class Room : public GameObject
 {
 public:
 
-    Room();
+    Room() = default;
     Room(std::string);
     virtual ~Room();
 
@@ -33,12 +33,12 @@ public:
     MapLayer* collision;
 
     std::vector<sf::RectangleShape> rect;
+    sf::RectangleShape rectCube;
 
 private:
 
     std::string path = "ressources/map/";
     tmx::Map map;
-    sf::RectangleShape rectCube;
     sf::Vector2f playerCube;
     int i = 0;
     bool collisionCheck = false;
@@ -69,7 +69,7 @@ public:
     std::string x;
     int place = 2;
     char map[10][10];
-    RoomWallet wallet;
+    RoomWallet* wallet;
 
 
     MapGenerator();

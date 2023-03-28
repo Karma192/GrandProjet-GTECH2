@@ -18,7 +18,7 @@ void Player::Loop()
     ControllerMove();
     KeyboardMove();
     PlayerAttack();
-    //setCamera();
+    setCamera();
 }
 
 void Player::Render()
@@ -62,13 +62,6 @@ bool Player::collidesWith(CollisionObject* other) {
 			return true;
 		}
 	}
-	if (Room* room = dynamic_cast<Room*>(other)) {
-		for (int i = 0; i < room->rect.size(); i++) {
-			if (cube.getGlobalBounds().intersects(room->rect[i].getGlobalBounds())) {
-				return true;
-			}
-		}
-	}
 	return false;
 }
 
@@ -76,14 +69,33 @@ bool Player::collidesWith(CollisionObject* other) {
 void Player::handleCollision(CollisionObject* other)
 {
 	if (dynamic_cast<Enemies*>(other)) {
-
+        
 	}
 	if (dynamic_cast<Object*>(other)) {
-		std::cout << "test";
-	}
-	if (dynamic_cast<Room*>(other)) {
-		std::cout << "map";
-	}
+
+    }
+	/*if (dynamic_cast<MapGenerator*>(other)) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+        {
+            moveSpeed = sf::Vector2f(0.f, 100.f);
+            MovePlayer();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        {
+            moveSpeed = sf::Vector2f(0.f, -100.f);
+            MovePlayer();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+        {
+            moveSpeed = sf::Vector2f(100.f, 0.f);
+            MovePlayer();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        {
+            moveSpeed = sf::Vector2f(-100.f, 0.f);
+            MovePlayer();
+        }
+    }*/
 }
 
 void Player::playerEndurance()
@@ -152,7 +164,7 @@ void  Player::CubeTest()
 {
 	cube.setSize(sf::Vector2f(30.f, 30.f));
 	cube.setFillColor(sf::Color::Red);
-	cube.setPosition(sf::Vector2f(200, 200));
+	cube.setPosition(sf::Vector2f(200, 220));
 }
 
 void Player::ControllerMove()
@@ -187,20 +199,20 @@ void Player::KeyboardMove()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
-        cube.move(sf::Vector2f(0.f, -5));
-        //Destroy();
+        moveSpeed = sf::Vector2f(0.f, -100.f);
+        MovePlayer();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
         moveSpeed = sf::Vector2f(0.f, 100.f);
         MovePlayer();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
         moveSpeed = sf::Vector2f(-100.f, 0.f);
         MovePlayer();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
         moveSpeed = sf::Vector2f(100.f, 0.f);
         MovePlayer();
