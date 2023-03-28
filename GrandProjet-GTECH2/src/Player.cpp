@@ -1,4 +1,5 @@
 ﻿#include "Player.hpp"
+#include "ToNextScene.hpp"
 
 
 Player::Player()
@@ -148,6 +149,7 @@ void Player::playerUI()
     sf::Vector2f playerUltiUIV = gameData.window->mapPixelToCoords(sf::Vector2i(30,880));
     playerUltiUI.setPosition(playerUltiUIV);
 
+    //For FireBall
     playerFirstSpell.setRadius(20);
     playerFirstSpell.setFillColor(sf::Color::Transparent);
     playerFirstSpell.setOutlineThickness(5);
@@ -174,7 +176,9 @@ void  Player::CubeTest()
 {
 	cube.setSize(sf::Vector2f(30.f, 30.f));
 	cube.setFillColor(sf::Color::Red);
-	cube.setPosition(sf::Vector2f(200, 220));
+	cube.setPosition(sf::Vector2f(200, 200));
+    CubeBounds = cube.getLocalBounds();
+    cube.setOrigin(CubeBounds.width/2.0f,CubeBounds.height/2.0f);
 }
 
 void Player::ControllerMove()
@@ -195,7 +199,8 @@ void Player::ControllerMove()
 void Player::MovePlayer()
 {
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
-
+    rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / 3.14159265358979323846;
+    cube.setRotation(rotation);
 }
 
 void Player::setCamera() {
@@ -252,6 +257,8 @@ void Player::PlayerBasicAttack()
     hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
     hitboxTest.setFillColor(sf::Color::Blue);
     hitboxTest.setPosition(cube.getPosition());
+    hitboxTest.setRotation(cube.getRotation());
+    hitboxTest.setOrigin(CubeBounds.width / 2.0f, CubeBounds.height / 2.0f);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {

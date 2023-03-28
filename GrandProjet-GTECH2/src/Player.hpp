@@ -2,7 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
-#include <math.h>
+#include <cmath>
 #include "GameObject.hpp"
 #include "Enemies.hpp"
 #include "MapGenerator.hpp"
@@ -54,6 +54,10 @@ public:
 	sf::RectangleShape cube;
 	sf::Vector2f moveSpeed;
 	sf::View view;
+	float rotation;
+	sf::Vector2f velocity;
+	sf::FloatRect CubeBounds = cube.getLocalBounds();
+
 
 	bool IsAttacking = false;
 

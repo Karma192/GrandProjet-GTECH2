@@ -21,6 +21,8 @@ public:
 	virtual void Loop();
 	// Rendu du game object
 	virtual void Render();
+	//Destruction du game object
+	void Destroy();
 
 private:
 	void SetData();
