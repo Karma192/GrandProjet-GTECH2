@@ -4,7 +4,10 @@
 #include "../Enemies.hpp"
 #include "../MapGenerator.hpp"
 #include "../Object.hpp"
+#include "../Doors.hpp"
+#include "../Spells.hpp"
 #include "../CollisionManager.h"
+#include "../ToNextScene.hpp"
 
 class Lobby : public GameScene {
 public:
@@ -18,11 +21,12 @@ private:
     Player p;
     //Object object;
     Enemies e;
+    Spells sp;
     MapGenerator map;
     Room room;
+    ToNextScene _door;
     CollisionManager collisionmanager;
     
-    void Background();
     sf::Texture menuBackground;
     sf::Sprite menuBckSprite;
 };

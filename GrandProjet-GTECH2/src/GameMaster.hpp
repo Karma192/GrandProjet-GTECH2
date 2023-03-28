@@ -11,9 +11,9 @@ struct player {
 };
 
 struct GameData {
-	int indexScene;
-	RenderWindow* window;
-	Event* event;
+	int indexScene = 0;
+	RenderWindow* window = nullptr;
+	Event* event = nullptr;
 	int indexMap = 0;
 };
 
