@@ -39,4 +39,5 @@ private:
 	sf::Texture enemiesTexture;
 	sf::Sprite enemiesSprite;
 	sf::Vector2f TargetPos;
+	//Object object;
 };

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-<ItemGroup>
+  <ItemGroup>
     <Filter Include="Fichiers sources">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -21,60 +21,63 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ContactManager.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\Enemies.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Enemies.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\Game.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\GameMaster.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameMaster.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\GameObject.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\GameObject.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\main.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\main.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\menuHUD.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\MapGenerator.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\Object.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\menuHUD.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\Player.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Object.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\scene\InGame.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\PhysicsObject.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\scene\Lobby.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\Player.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\scene\Menu.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\scene\InGame.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\scene\Scene.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\scene\Lobby.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\scene\SceneManager.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\scene\Menu.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\CollisionManager.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\scene\Scene.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\CollisionObject.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\scene\SceneManager.cpp"> 
-      <Filter>Fichiers sources</Filter> 
+    <ClCompile Include="src\Animation.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Doors.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MapGenerator.cpp">
+      <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ContactManager.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\Enemies.hpp">
@@ -89,16 +92,10 @@
     <ClInclude Include="src\GameObject.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\MapGenerator.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="src\menuHUD.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\Object.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\PhysicsObject.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\Player.hpp">
@@ -125,6 +122,21 @@
     <ClInclude Include="src\Animation.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="src\CollisionManager.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CollisionObject.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Doors.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MapGenerator.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Spells.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GrandProjet-GTECH2.rc" />
@@ -135,7 +147,8 @@
     <Image Include="ressources\sprites\player\idle.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
     <None Include="ressources\map\village\village.tmx" />
+    <None Include="ressources\map\village\inside_tavern.tmx" />
+    <None Include="src\ClassDiagram.cd" />
   </ItemGroup>
 </Project>
