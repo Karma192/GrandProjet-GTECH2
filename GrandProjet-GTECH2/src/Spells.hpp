@@ -25,7 +25,6 @@ public:
 	void DrawSpell();
 
 	bool isLaunched() { return launched; }
-	void reset(){ launched = false; }
 
 	sf::CircleShape Spell;
 	int CooldownFireBall;

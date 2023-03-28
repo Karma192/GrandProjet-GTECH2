@@ -152,7 +152,7 @@ void  Player::CubeTest()
 	cube.setSize(sf::Vector2f(30.f, 30.f));
 	cube.setFillColor(sf::Color::Red);
 	cube.setPosition(sf::Vector2f(200, 200));
-    CubeBounds = cube.getLocalBounds();
+    CubeBounds = cube.getGlobalBounds();
     cube.setOrigin(CubeBounds.width/2.0f,CubeBounds.height/2.0f);
 }
 

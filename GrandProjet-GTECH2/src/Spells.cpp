@@ -57,37 +57,26 @@ void Spells::SetFireBall()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 		if (CooldownFireBall <= 0) {
-			this->Destroy();
 			CooldownFireBall = MaxCooldownFireBall;
 			sf::Vector2f launchDirection(std::cos(PlayerRotation * 3.14159265 / 180),
 				std::sin(PlayerRotation * 3.14159265 / 180));
-			if (launchDirection == sf::Vector2f(0, -1)) {
-				Launch(PlayerPos, sf::Vector2f(0, -10));
-			}
-			else
-				Launch(PlayerPos, launchDirection);
+			Launch(PlayerPos, launchDirection);
 		}
 	}
 	CooldownFireBall--;
-	Update();
+	if (launched) {
+		position += direction * speed;
+	}
 	if (isLaunched()) {
 		if (Spell.getPosition().x < 0 || Spell.getPosition().x > 1920 ||
 			Spell.getPosition().y < 0 || Spell.getPosition().y > 1080) {
-			reset();
+			this->Destroy();
 		}
-	}
-}
-
-void Spells::Update() 
-{
-	if (launched) {
-		position += direction * speed;
 	}
 }
 
 void Spells::Launch(sf::Vector2f StartPos, sf::Vector2f LaunchDir) 
 {
-
 	position = StartPos;
 	direction = LaunchDir;
 
@@ -102,4 +91,11 @@ void Spells::DrawSpell()
 	Spell.setFillColor(sf::Color::Green);
 	Spell.setPosition(position);
 	Spell.setOrigin(PlayerBounds.width / 2.0f, PlayerBounds.height / 2.0f);
+}
+
+void Spells::SetSlide() 
+{
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
+
+	}
 }
