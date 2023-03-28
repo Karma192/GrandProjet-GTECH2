@@ -1,5 +1,8 @@
 #include "GameMaster.hpp"
 
+GameMaster* GameMaster::instance = nullptr;
+GameData GameMaster::data;
+
 GameMaster::GameMaster()
 {
 	if (instance == nullptr && instance != this) 
