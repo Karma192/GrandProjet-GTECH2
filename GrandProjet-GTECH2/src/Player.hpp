@@ -53,9 +53,6 @@ public:
 	sf::Vector2f moveSpeed;
 	sf::View view;
 
-	sf::IntRect frameRect;
-	sf::Clock animationClock;
-
 	bool IsAttacking = false;
 
 protected:
@@ -63,7 +60,6 @@ protected:
 	float cd_Endurance = endurance.getElapsedTime().asSeconds();
 
 private:
-	Texture texturePlayer;
 	Animation animationPlayer;
 
 	//Player attack basic
@@ -87,11 +83,4 @@ private:
 	sf::Clock endurance;
 
 	bool lookingLeft = false;
-
-	// TEST
-	int frameWidth;
-	int frameHeight;
-	int totalFrames;
-	int animationSpeed;
-	int currentFrame;
 };

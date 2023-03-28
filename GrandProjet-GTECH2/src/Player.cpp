@@ -19,16 +19,7 @@ void Player::Loop()
     PlayerAttack();
     //setCamera();
 
-    // DEBUG
-    //animationPlayer->SpriteAnimation(4, 4, 1, 4, 1);
-    //animationPlayer->Animate(4, 0.2f, 0);
-
-    if (animationClock.getElapsedTime().asMilliseconds() >= animationSpeed) {
-        currentFrame = (currentFrame + 1) % totalFrames;
-        frameRect.left = currentFrame * frameWidth;
-        cube.setTextureRect(frameRect);
-        animationClock.restart();
-    }
+    animationPlayer.Animate();
 }
 
 void Player::Render()
@@ -155,31 +146,7 @@ void Player::playerUI()
 
 void Player::DisplayPLayer()
 {
-    //cube.setPosition(sf::Vector2f(200, 200));
-
-    //animationPlayer = new Animation();
-
-    //animationPlayer->AnimationInit("ressources/sprites/player/animations/idle/adventurer_idle.png", &cube, 1, 200, 37);
-
-    //animationPlayer->InitAnimation("ressources/sprites/player/animations/idle/adventurer_idle.png", &cube, 50, 37);
-
-    if (!texturePlayer.loadFromFile("ressources/sprites/player/animations/idle/adventurer_idle.png"))
-    {
-        std::cout << "error load file" << std::endl;
-    }
-
-    cube.setPosition(sf::Vector2f(200, 200));
-    cube.setScale(sf::Vector2f(3.0f, 3.0f));
-    cube.setTexture(texturePlayer);
-
-    frameWidth = 50;
-    frameHeight = 37;
-    totalFrames = 4;
-    animationSpeed = 200;
-    currentFrame = 0;
-
-    frameRect = sf::IntRect(0, 0, frameWidth, frameHeight);
-    cube.setTextureRect(frameRect);
+    animationPlayer.InitAnimation("ressources/sprites/player/animations/idle/adventurer_idle.png", &cube, 50, 37, 4, 1000, 0);
 }
 
 void Player::ControllerMove()
@@ -187,7 +154,6 @@ void Player::ControllerMove()
 	float deadZone = 5.f;
 	moveSpeed.x = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
 	moveSpeed.y = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
-	
 
 	if (moveSpeed.x > deadZone || moveSpeed.y > deadZone || 
 		moveSpeed.x < -deadZone || moveSpeed.y < -deadZone)
@@ -249,7 +215,7 @@ void Player::PlayerAttack()
 }
 
 void Player::PlayerBasicAttack()
-{  
+{
     hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
     hitboxTest.setFillColor(sf::Color::Blue);
     hitboxTest.setPosition(cube.getPosition());
