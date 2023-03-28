@@ -36,7 +36,7 @@ void Object::Render()
 bool Object::collidesWith(CollisionObject* other)
 {
 	if (Player* player = dynamic_cast<Player*>(other)) {
-		if (randomPosObject.getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
+		if (randomPosObject.getGlobalBounds().intersects(player->playerSprite.getGlobalBounds())) {
 			return true;
 		}
 	}

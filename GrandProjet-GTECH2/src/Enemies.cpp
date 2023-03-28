@@ -25,7 +25,7 @@ void Enemies::Render()
 bool Enemies::collidesWith(CollisionObject* other)
 {
     if (Player* player = dynamic_cast<Player*>(other)) {
-        if (cube2.getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
+        if (cube2.getGlobalBounds().intersects(player->playerSprite.getGlobalBounds())) {
             return true;
         }
     }

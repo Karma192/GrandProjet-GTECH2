@@ -17,10 +17,8 @@ void Player::Loop()
     ControllerMove();
     KeyboardMove();
     PlayerAttack();
+    Static();
     //setCamera();
-
-    //animationIdlePlayer.Animate(0.2f, true);
-    animationRunPlayer.Animate(0.2f, false);
 }
 
 void Player::Render()
@@ -53,18 +51,18 @@ void Player::Render()
         IsAttacking = false;
         isActtk = true;
     }
-    gameData.window->draw(cube);
+    gameData.window->draw(playerSprite);
     playerUI();
 }
 
 bool Player::collidesWith(CollisionObject* other) {
     if (Enemies* enemy = dynamic_cast<Enemies*>(other)){
-        if (cube.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) {
+        if (playerSprite.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) {
             return true;
         }
     }
     if (Object* object = dynamic_cast<Object*>(other)) {
-        if (cube.getGlobalBounds().intersects(object->randomPosObject.getGlobalBounds())) {
+        if (playerSprite.getGlobalBounds().intersects(object->randomPosObject.getGlobalBounds())) {
             return true;
         }
     }
@@ -147,10 +145,10 @@ void Player::playerUI()
 
 void Player::DisplayPLayer()
 {
-    animationIdlePlayer.InitAnimation("ressources/sprites/player/animations/idle/adventurer_idle.png", &cube, 50, 37, 4, 0, 3.0f);
-    animationRunPlayer.InitAnimation("ressources/sprites/player/animations/run/adventurer_run.png", &cube, 50, 37, 6, 0, 3.0f);
+    animationRunPlayer.InitAnimation("ressources/sprites/player/animations/run/adventurer_run.png", &playerSprite, 50, 37, 6, 0, 3.0f);
+    //animationIdlePlayer.InitAnimation("ressources/sprites/player/animations/idle/adventurer_idle.png", &playerSprite, 50, 37, 4, 0, 3.0f);
 
-    cube.setPosition(sf::Vector2f(200, 200));
+    playerSprite.setPosition(sf::Vector2f(200, 200));
 }
 
 void Player::ControllerMove()
@@ -168,13 +166,13 @@ void Player::ControllerMove()
 
 void Player::MovePlayer()
 {
-    cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
+    playerSprite.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
 }
 
 void Player::setCamera() {
     gameData = GetGameData();
     view = gameData.window->getDefaultView();
-    view.setCenter(cube.getPosition());
+    view.setCenter(playerSprite.getPosition());
     gameData.window->setView(view);
 }
 
@@ -182,7 +180,7 @@ void Player::KeyboardMove()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
-        cube.move(sf::Vector2f(0.f, -5));
+        playerSprite.move(sf::Vector2f(0.f, -5));
         //Destroy();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
@@ -192,11 +190,13 @@ void Player::KeyboardMove()
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
+        animationRunPlayer.Animate(0.2f, true);
         moveSpeed = sf::Vector2f(-100.f, 0.f);
         MovePlayer();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
+        animationRunPlayer.Animate(0.2f, false);
         moveSpeed = sf::Vector2f(100.f, 0.f);
         MovePlayer();
     }
@@ -204,12 +204,12 @@ void Player::KeyboardMove()
 
 int Player::GetPlayerXPos()
 {
-    return cube.getPosition().x;
+    return playerSprite.getPosition().x;
 }
 
 int Player::GetPlayerYPos()
 {
-    return cube.getPosition().y;
+    return playerSprite.getPosition().y;
 }
 
 void Player::PlayerAttack()
@@ -218,11 +218,19 @@ void Player::PlayerAttack()
     asAttacked = true;
 }
 
+void Player::Static()
+{
+    if (moveSpeed.x == 0 && moveSpeed.y == 0)
+    {
+        //animationIdlePlayer.Animate(0.2f, false);
+    }
+}
+
 void Player::PlayerBasicAttack()
 {
     hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
     hitboxTest.setFillColor(sf::Color::Blue);
-    hitboxTest.setPosition(cube.getPosition());
+    hitboxTest.setPosition(playerSprite.getPosition());
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {

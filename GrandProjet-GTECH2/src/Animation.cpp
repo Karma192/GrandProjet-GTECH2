@@ -10,15 +10,17 @@ void Animation::InitAnimation(sf::String texturePath, sf::Sprite* sprite, int fr
 	aFrameHeight = frameHeight;
 	aTotalFrames = totalFrames;
 	aScale = scale;
-	aCurrentFrame = currentFrame;
-	// Current frame start to 0
-	// exemple : 4 frames -> 0 - 3
 
 	aSprite->setTexture(texture);
 
-	frameRect = sf::IntRect(0, 0, aFrameWidth, aFrameHeight);
+	// Current frame start to 0
+	// exemple : 4 frames -> 0 - 3
+	aCurrentFrame = currentFrame;
 
+	frameRect = sf::IntRect(0, 0, aFrameWidth, aFrameHeight);
 	aSprite->setTextureRect(frameRect);
+	sf::Vector2f center(aSprite->getLocalBounds().width / 2.f, aSprite->getLocalBounds().height / 2.f);
+	aSprite->setOrigin(center);
 }
 
 void Animation::Animate(float animationSpeed, bool doFlip)
@@ -32,7 +34,8 @@ void Animation::Animate(float animationSpeed, bool doFlip)
 		aSprite->setScale(aScale, aScale);
 	}
 
-	if (animationClock.getElapsedTime().asSeconds() >= animationSpeed) {
+	if (animationClock.getElapsedTime().asSeconds() >= animationSpeed)
+	{
 		aCurrentFrame = (aCurrentFrame + 1) % aTotalFrames;
 		frameRect.left = aCurrentFrame * aFrameWidth;
 		aSprite->setTextureRect(frameRect);

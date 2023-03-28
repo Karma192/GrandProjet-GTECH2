@@ -29,6 +29,7 @@ public:
 	//Player controller
 	void ControllerMove();
 	void MovePlayer();
+	void Static();
 	void KeyboardMove();
 	void setCamera();
 
@@ -45,11 +46,14 @@ public:
 	void PlayerAttack();
 	void PlayerBasicAttack();
 
-	sf::Sprite cube;
+	sf::Sprite playerSprite;
 	sf::Clock cdBasicAttack;
 	sf::RectangleShape hitboxTest;
 
 	bool IsAttacking = false;
+
+	Animation animationIdlePlayer;
+	Animation animationRunPlayer;
 
 protected:
 	float endurancePlayer = 100;
@@ -60,8 +64,8 @@ private:
 	sf::Vector2f moveSpeed;
 	sf::View view;
 
-	Animation animationIdlePlayer;
-	Animation animationRunPlayer;
+	//Animation* animationIdlePlayer;
+	//Animation* animationRunPlayer;
 
 	//Player attack basic
 	bool isActtk = true;
