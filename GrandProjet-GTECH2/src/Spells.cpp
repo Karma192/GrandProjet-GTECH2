@@ -27,9 +27,13 @@ void Spells::Render()
 bool Spells::collidesWith(CollisionObject* other)
 {
 	if (Player* player = dynamic_cast<Player*>(other)) {
+
 		PlayerPos = player->cube.getPosition();
 		PlayerRotation = player->cube.getRotation();
 		PlayerBounds = player->cube.getLocalBounds();
+
+		//Endurance = player->playerEndurance();
+
 		if (Spell.getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
 			return true;
 		}
