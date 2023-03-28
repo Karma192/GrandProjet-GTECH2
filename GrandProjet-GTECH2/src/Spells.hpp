@@ -27,9 +27,13 @@ public:
 	sf::CircleShape Spell;
 	int CooldownFireBall;
 	int MaxCooldownFireBall = 100;
+	float speed = 10;
+
 
 	///For Slide
 	void SetSlide();
+	int PlayerRapidity;
+	int Rap = 40;
 
 private:
 	sf::Vector2f position;
@@ -37,7 +41,6 @@ private:
 	sf::Vector2f PlayerPos;
 	sf::FloatRect PlayerBounds;
 	sf::Vector2f launchDirection;
-	float speed = 10;
 	float PlayerRotation;
 	bool launched = true;
 };

@@ -245,6 +245,16 @@ int Player::GetPlayerYPos()
     return cube.getPosition().y;
 }
 
+int Player::getPlayerSpeed()
+{
+    return playerSpeed;
+}
+
+void Player::setPlayerSpeed(int OtherSpeed)
+{
+    playerSpeed = OtherSpeed;
+}
+
 void Player::PlayerAttack()
 {
     PlayerBasicAttack();

@@ -42,6 +42,8 @@ public:
 	//Player attributes
 	int GetPlayerXPos();
 	int GetPlayerYPos();
+	int getPlayerSpeed();
+	void setPlayerSpeed(int);
 
 	//Player attack
 	void PlayerAttack();

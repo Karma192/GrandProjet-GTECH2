@@ -15,6 +15,7 @@ Spells::~Spells()
 void Spells::Loop()
 {
 	SetFireBall();
+	SetSlide();
 }
 
 void Spells::Render() 
@@ -31,16 +32,17 @@ bool Spells::collidesWith(CollisionObject* other)
 		PlayerPos = player->cube.getPosition();
 		PlayerRotation = player->cube.getRotation();
 		PlayerBounds = player->cube.getLocalBounds();
+		//PlayerRapidity = player->getPlayerSpeed();
 
-		//Endurance = player->playerEndurance();
-
-		if (Spell.getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
+		if (Spell.getGlobalBounds().intersects(player->cube.getGlobalBounds())) 
+		{
 			return true;
 		}
 	}
-
-	if (Enemies* enemy = dynamic_cast<Enemies*>(other)) {
-		if (Spell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) {
+	if (Enemies* enemy = dynamic_cast<Enemies*>(other)) 
+	{
+		if (Spell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) 
+		{
 			return true;
 		}
 	}
@@ -99,7 +101,7 @@ void Spells::DrawSpell()
 
 void Spells::SetSlide() 
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
-
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+		std::cout << "Cours";
 	}
 }
