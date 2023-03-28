@@ -14,7 +14,6 @@ Game::~Game()
 void Game::GameLoop()
 {
 	GameMaster::GetInstance()->SetWindow(window, event);
-	sm->SetSM(window, event);
 	window->setFramerateLimit(60);
 	window->setVerticalSyncEnabled(true);
 

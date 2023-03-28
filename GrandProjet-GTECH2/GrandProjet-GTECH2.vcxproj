@@ -131,7 +131,6 @@
     <ClInclude Include="src\CollisionManager.h" />
     <ClInclude Include="src\CollisionObject.h" />
     <ClInclude Include="src\Animation.h" />
-    <ClInclude Include="src\ContactManager.hpp" />
     <ClInclude Include="src\Doors.hpp" />
     <ClInclude Include="src\Enemies.hpp" />
     <ClInclude Include="src\Game.hpp" />

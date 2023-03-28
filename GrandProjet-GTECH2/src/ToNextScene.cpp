@@ -38,7 +38,9 @@ void ToNextScene::handleCollision(CollisionObject* other)
 {
 	if (dynamic_cast<Player*>(other)) {
 		GoToScene();
+#if DEBUG
 		std::cout << "Collide with a door" << std::endl;
+#endif // DEBUG
 	}
 }
 

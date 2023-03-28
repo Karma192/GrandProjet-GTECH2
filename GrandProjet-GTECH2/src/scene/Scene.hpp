@@ -26,7 +26,6 @@ public:
 	virtual void Render();
 	// Permet d'ajouter un game object à la sc�ne à un certain layer (0 étant le plus profond)
 	void AddToScene(GameObject*, int);
-	// Creer un layer dans la sc�ne (max 10/scene)
 
 private:
 	Layer* layers[10] = { nullptr };
