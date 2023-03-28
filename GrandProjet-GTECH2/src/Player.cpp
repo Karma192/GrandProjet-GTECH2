@@ -1,4 +1,5 @@
 ﻿#include "Player.hpp"
+#include "ToNextScene.hpp"
 
 
 Player::Player()
@@ -61,6 +62,11 @@ bool Player::collidesWith(CollisionObject* other) {
     }
     if (Object* object = dynamic_cast<Object*>(other)) {
         if (cube.getGlobalBounds().intersects(object->randomPosObject.getGlobalBounds())) {
+            return true;
+        }
+    }
+    if (ToNextScene* object = dynamic_cast<ToNextScene*>(other)) {
+        if (cube.getGlobalBounds().intersects(object->_sprite.getGlobalBounds())) {
             return true;
         }
     }
