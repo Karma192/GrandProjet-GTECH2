@@ -1,7 +1,7 @@
 #pragma once
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
-//#include "GameObject.hpp"
 
 using namespace sf;
 
@@ -28,8 +28,8 @@ class GameMaster
 protected:
 	static GameMaster* instance;
 	static GameData data;
-	GameMaster();
 public:
+	GameMaster();
 	GameMaster(GameMaster& other) = delete;
 
 	void operator=(const GameMaster&) = delete;
@@ -37,7 +37,7 @@ public:
 	static GameMaster* GetInstance();
 
 	// Function for get game's global data
-	GameData GetGameData();
+	static GameData GetGameData();
 	// Function to call for change active scene
 	void SetActiveScene(int);
 	// Function for set the window and event
