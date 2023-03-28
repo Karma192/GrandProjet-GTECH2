@@ -109,7 +109,6 @@
     <ClCompile Include="src\CollisionManager.cpp" />
     <ClCompile Include="src\CollisionObject.cpp" />
     <ClCompile Include="src\Animation.cpp" />
-    <ClCompile Include="src\CollisionManager.cpp" />
     <ClCompile Include="src\Doors.cpp" />
     <ClCompile Include="src\Enemies.cpp" />
     <ClCompile Include="src\Game.cpp" />
