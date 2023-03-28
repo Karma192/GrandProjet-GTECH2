@@ -66,21 +66,22 @@ bool Player::collidesWith(CollisionObject* other) {
     if (MapGenerator* map = dynamic_cast<MapGenerator*>(other)) {
         for (int i = 0; i < map->wallet->GetRoom(0)->rect.size(); i++) {
             if (cube.getGlobalBounds().intersects(map->wallet->GetRoom(0)->rect[i].getGlobalBounds())) {
-                cube.setOrigin(0, 0);
                 _wallTouched++;
-                if (cube.getGlobalBounds().left < (map->wallet->GetRoom(0)->rect[i].getGlobalBounds().left + map->wallet->GetRoom(0)->rect[i].getGlobalBounds().width)) {
+                sf::FloatRect _playerRect = cube.getGlobalBounds();
+                sf::FloatRect _tileRect = map->wallet->GetRoom(0)->rect[i].getGlobalBounds();
+                if ((_playerRect.left < (_tileRect.left + _tileRect.width))) {
                     _collideLeft = true;
                     std::cout << "left" << std::endl;
                 }
-                if ((cube.getGlobalBounds().left + cube.getGlobalBounds().width) > map->wallet->GetRoom(0)->rect[i].getGlobalBounds().left) {
+                if ((_playerRect.left + _playerRect.width) > _tileRect.left) {
                     _collideRight = true;
                     std::cout << "right" << std::endl;
                 }
-                if (cube.getGlobalBounds().top < (map->wallet->GetRoom(0)->rect[i].getGlobalBounds().top + map->wallet->GetRoom(0)->rect[i].getGlobalBounds().height)) {
+                if (_playerRect.top < (_tileRect.top + _tileRect.width)) {
                     _collideUp = true;
                     std::cout << "up" << std::endl;
                 }
-                if ((cube.getGlobalBounds().top + cube.getGlobalBounds().height) > map->wallet->GetRoom(0)->rect[i].getGlobalBounds().top) {
+                if ((_playerRect.top + _playerRect.height) > _tileRect.top) {
                     _collideDown = true;
                     std::cout << "down" << std::endl;
                 }
@@ -176,7 +177,7 @@ void  Player::CubeTest()
 {
 	cube.setSize(sf::Vector2f(30.f, 30.f));
 	cube.setFillColor(sf::Color::Red);
-	cube.setPosition(sf::Vector2f(200, 220));
+	cube.setPosition(sf::Vector2f(200, 240));
     CubeBounds = cube.getLocalBounds();
     cube.setOrigin(CubeBounds.width/2.0f,CubeBounds.height/2.0f);
 }
