@@ -1,4 +1,5 @@
 #include "Lobby.hpp"
+#include "../Camera.hpp"
 
 Lobby::Lobby() {
 	collisionmanager.addObject(&map);
@@ -19,6 +20,7 @@ Lobby::~Lobby()
 }
 
 void Lobby::Loop() {
+	Camera::GetInstance()->SetFollow(&p.cube);
 	collisionmanager.updateCollisions();
 	p.Loop();
 	sp.Loop();

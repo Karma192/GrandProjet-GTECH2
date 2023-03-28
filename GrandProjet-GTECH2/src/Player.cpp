@@ -19,7 +19,7 @@ void Player::Loop()
     ControllerMove();
     KeyboardMove();
     PlayerAttack();
-    setCamera();
+    //setCamera();
     _stopMoving = false;
     //std::cout << "Player direction : " << _playerDirection << std::endl;
     PlayerBasicAttack();
@@ -194,13 +194,6 @@ void Player::MovePlayer()
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
     rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / 3.14159265358979323846;
     cube.setRotation(rotation);
-}
-
-void Player::setCamera() {
-    gameData = GameMaster::GetInstance()->GetGameData();
-    view = gameData.window->getDefaultView();
-    view.setCenter(cube.getPosition());
-    gameData.window->setView(view);
 }
 
 void Player::KeyboardMove()

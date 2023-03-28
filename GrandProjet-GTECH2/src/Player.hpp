@@ -32,7 +32,6 @@ public:
 	void ControllerMove();
 	void MovePlayer();
 	void KeyboardMove();
-	void setCamera();
 
 	void setPv(int pv) { m_pv = pv; }
 	int getPv() const { return m_pv; }
