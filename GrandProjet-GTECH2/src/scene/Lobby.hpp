@@ -16,7 +16,7 @@ public:
 
 private:
     Player p;
-    Object object;
+    //Object object;
     Enemies e;
     MapGenerator map;
     Room room;

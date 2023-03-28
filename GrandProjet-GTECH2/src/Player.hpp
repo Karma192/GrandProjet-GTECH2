@@ -79,6 +79,9 @@ private:
 	sf::CircleShape playerSecondSpell;
 	sf::CircleShape playerThirdSpell;
 
+	sf::CircleShape playerUITab[4];
+
+
 
 	int m_pv;
 	int m_attack;

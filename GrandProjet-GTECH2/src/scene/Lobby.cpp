@@ -3,7 +3,7 @@
 Lobby::Lobby() {
 	collisionmanager.addObject(&p);
 	collisionmanager.addObject(&e);
-	collisionmanager.addObject(&object);
+	//collisionmanager.addObject(&object);
 }
 
 Lobby::~Lobby()
@@ -21,6 +21,6 @@ void Lobby::Render() {
 	map.Render();
 	p.Render();
 	e.Render();
-	object.Render();
+	//object.Render();
 }
 
