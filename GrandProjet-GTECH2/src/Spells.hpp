@@ -15,9 +15,6 @@ public:
 	virtual void Loop()override;
 	virtual void Render()override;
 
-	bool collidesWith(CollisionObject* other) override;
-	void handleCollision(CollisionObject* other) override;
-
 	///For FireBall
 	void SetFireBall();
 	void Launch(Vector2f StartPos,Vector2f LaunchDir);

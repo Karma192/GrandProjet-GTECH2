@@ -24,26 +24,6 @@ void ToNextScene::Render()
 	GameMaster::GetGameData().window->draw(_sprite);
 }
 
-bool ToNextScene::collidesWith(CollisionObject* other)
-{
-	if (Player* player = dynamic_cast<Player*>(other)) {
-		if (_sprite.getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
-			return true;
-		}
-	}
-	return false;
-}
-
-void ToNextScene::handleCollision(CollisionObject* other)
-{
-	if (dynamic_cast<Player*>(other)) {
-		GoToScene();
-#if DEBUG
-		std::cout << "Collide with a door" << std::endl;
-#endif // DEBUG
-	}
-}
-
 void ToNextScene::GoToScene()
 {
 	GameMaster::GetInstance()->SetActiveScene(scene);

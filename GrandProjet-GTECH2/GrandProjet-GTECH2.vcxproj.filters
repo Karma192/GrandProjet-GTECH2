@@ -19,6 +19,12 @@
     <Filter Include="Fichiers sources\scene">
       <UniqueIdentifier>{c2e1ae60-3df6-4286-ab3d-b0de4c89636f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\CSPurpose">
+      <UniqueIdentifier>{014b11ce-7bc1-4f50-aab9-140eb4809ea0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\CSPurpose">
+      <UniqueIdentifier>{a806dc70-a96c-4d51-908e-37abd2ca16eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Enemies.cpp">
@@ -37,9 +43,6 @@
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="src\menuHUD.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Object.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="src\Player.cpp">
@@ -75,6 +78,18 @@
     <ClCompile Include="src\MapGenerator.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="src\Spells.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ToNextScene.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PhysicBody.cpp">
+      <Filter>Fichiers sources\CSPurpose</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PhysicsManager.cpp">
+      <Filter>Fichiers sources\CSPurpose</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -93,9 +108,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\menuHUD.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Object.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\Player.hpp">
@@ -137,6 +149,15 @@
     <ClInclude Include="src\Spells.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="src\ToNextScene.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PhysicBody.hpp">
+      <Filter>Fichiers d%27en-tête\CSPurpose</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PhysicsManager.hpp">
+      <Filter>Fichiers d%27en-tête\CSPurpose</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GrandProjet-GTECH2.rc" />
@@ -148,7 +169,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ressources\map\village\village.tmx" />
-    <None Include="ressources\map\village\inside_tavern.tmx" />
-    <None Include="src\ClassDiagram.cd" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

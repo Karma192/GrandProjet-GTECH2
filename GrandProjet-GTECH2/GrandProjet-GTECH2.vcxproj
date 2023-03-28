@@ -105,6 +105,8 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\PhysicBody.cpp" />
+    <ClCompile Include="src\PhysicsManager.cpp" />
     <ClCompile Include="src\Spells.cpp" />
     <ClCompile Include="src\CollisionManager.cpp" />
     <ClCompile Include="src\CollisionObject.cpp" />
@@ -127,6 +129,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="src\PhysicBody.hpp" />
+    <ClInclude Include="src\PhysicsManager.hpp" />
     <ClInclude Include="src\Spells.hpp" />
     <ClInclude Include="src\CollisionManager.h" />
     <ClInclude Include="src\CollisionObject.h" />

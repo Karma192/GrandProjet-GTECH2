@@ -29,11 +29,6 @@ void Room::Render()
 	gameData.window->draw(*collision);
 }
 
-bool Room::collidesWith(CollisionObject* other)
-{
-	return false;
-}
-
 void Room::GetTilesBounds() {
 	for (int x = 0; x < 60; x++) {
 		for (int y = 0; y < 40; y++) {
@@ -49,11 +44,6 @@ void Room::GetTilesBounds() {
 			}
 		}
 	}
-}
-
-void Room::handleCollision(CollisionObject* other)
-{
-
 }
 
 // RoomWallet class

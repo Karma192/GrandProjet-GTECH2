@@ -11,8 +11,6 @@ public:
 	void Loop()override;
 	void Render()override;
 
-	bool collidesWith(CollisionObject* other) override;
-	void handleCollision(CollisionObject* other) override;
 	sf::Sprite _sprite;
 private:
 	int scene;

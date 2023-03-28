@@ -14,8 +14,7 @@ public:
 	virtual void Loop()override;
 	virtual void Render()override;
 
-	bool collidesWith(CollisionObject* other) override;
-	void handleCollision(CollisionObject* other) override;
+	virtual void OnCollisionEnter(PhysicBody* other)override;
 
 	void Cube2Test();
 	void FollowTarget(bool);

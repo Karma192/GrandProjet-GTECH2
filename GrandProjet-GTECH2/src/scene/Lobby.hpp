@@ -25,7 +25,6 @@ private:
     MapGenerator map;
     Room room;
     ToNextScene _door;
-    CollisionManager collisionmanager;
     
     sf::Texture menuBackground;
     sf::Sprite menuBckSprite;

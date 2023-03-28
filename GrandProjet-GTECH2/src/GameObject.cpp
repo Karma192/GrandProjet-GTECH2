@@ -1,9 +1,9 @@
 #pragma once
 #include "GameObject.hpp"
 
-GameObject::GameObject() 
+GameObject::GameObject()
 {
-	SetData();
+	gameData = GameMaster::GetInstance()->GetGameData();
 }
 
 GameObject::~GameObject() 
@@ -11,7 +11,13 @@ GameObject::~GameObject()
 
 }
 
-void GameObject::Update() 
+void GameObject::SetID(std::string name, std::string tag)
+{
+	_name = name;
+	SetCollideTag(tag);
+}
+
+void GameObject::Update()
 {
 	gameData = GameMaster::GetInstance()->GetGameData();
 	this->Loop();
@@ -36,11 +42,4 @@ void GameObject::Destroy()
 
 	// à tester avec CHASSAING
 	//delete& list[0];
-}
-
-void GameObject::SetData()
-{
-	srand(time(0));
-	id = rand();
-	gameData = GameMaster::GetInstance()->GetGameData();
 }

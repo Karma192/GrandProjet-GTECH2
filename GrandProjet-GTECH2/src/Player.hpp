@@ -6,10 +6,12 @@
 #include "GameObject.hpp"
 #include "Enemies.hpp"
 #include "MapGenerator.hpp"
+#include "ToNextScene.hpp"
 
 
 
-class Player : public GameObject {
+class Player : public GameObject 
+{
 public:
 	Player();
 	virtual ~Player();
@@ -18,14 +20,12 @@ public:
 	virtual void Loop()override;
 	virtual void Render()override;
 
-	bool collidesWith(CollisionObject* other) override;
-	void handleCollision(CollisionObject* other) override;
+	virtual void OnCollisionEnter(PhysicBody* other)override;
 
 	//Player HUD 
 	void playerEndurance();
 	void playerRegenEndurance();
 	void playerUI();
-
 
 	//Player controller
 	void CubeTest();

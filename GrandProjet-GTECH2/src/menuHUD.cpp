@@ -84,15 +84,6 @@ void menuHUD::Render()
     }
 }
 
-bool menuHUD::collidesWith(CollisionObject* other)
-{
-    return false;
-}
-
-void menuHUD::handleCollision(CollisionObject* other)
-{
-}
-
 void menuHUD::menuSelection()
 {
     oldScreenSize = gameData.window->getSize();

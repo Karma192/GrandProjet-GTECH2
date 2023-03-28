@@ -23,9 +23,6 @@ public:
     virtual void Loop()override;
     virtual void Render()override;
 
-    bool collidesWith(CollisionObject* other) override;
-    void handleCollision(CollisionObject* other) override;
-
     void GetTilesBounds();
 
     MapLayer* background;
@@ -77,9 +74,6 @@ public:
 
     virtual void Loop()override;
     virtual void Render()override;
-
-    bool collidesWith(CollisionObject* other) override;
-    void handleCollision(CollisionObject* other) override;
 
 private:
 

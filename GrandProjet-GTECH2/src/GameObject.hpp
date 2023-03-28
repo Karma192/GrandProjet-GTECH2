@@ -4,27 +4,29 @@
 #include <time.h>
 #include <SFML/Graphics.hpp>
 #include "GameMaster.hpp"
-#include "CollisionObject.h"
+#include "PhysicBody.hpp"
 
-class GameObject : public CollisionObject {
+class GameObject : public PhysicBody
+{
 public:
-	int id;
-
 	GameObject();
 	virtual ~GameObject();
 
 	GameData gameData;
 
+	// Setup des données identitaires du GameObject
+	void SetID(std::string, std::string);
 	// Boucle du game object
 	void Update();
 	// Processus en back du game object
 	virtual void Loop();
 	// Rendu du game object
 	virtual void Render();
-	//Destruction du game object
+	// Destruction du game object
 	void Destroy();
+	// Fonction pour récuperer le nom du game object
+	std::string GetName() { return _name; }
 
 private:
-	void SetData();
-
+	std::string _name;
 };

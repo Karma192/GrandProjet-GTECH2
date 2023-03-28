@@ -1,10 +1,11 @@
 ﻿#include "Player.hpp"
-#include "ToNextScene.hpp"
 
 
 Player::Player()
 {
     CubeTest();
+    SetID("Player", "Player");
+    SetHitbox(sf::Vector2f(cube.getGlobalBounds().left, cube.getGlobalBounds().top), sf::Vector2f(cube.getGlobalBounds().width, cube.getGlobalBounds().height));
 }
 
 Player::~Player()
@@ -57,57 +58,12 @@ void Player::Render()
     playerUI();
 }
 
-bool Player::collidesWith(CollisionObject* other) {
-    if (Enemies* enemy = dynamic_cast<Enemies*>(other)){
-        if (cube.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) {
-            return true;
-        }
-    }
-    if (Object* object = dynamic_cast<Object*>(other)) {
-        if (cube.getGlobalBounds().intersects(object->randomPosObject.getGlobalBounds())) {
-            return true;
-        }
-    }
-    if (ToNextScene* object = dynamic_cast<ToNextScene*>(other)) {
-        if (cube.getGlobalBounds().intersects(object->_sprite.getGlobalBounds())) {
-            return true;
-        }
-    }
-    return false;
-}
-
-
-void Player::handleCollision(CollisionObject* other)
+void Player::OnCollisionEnter(PhysicBody* other)
 {
-	if (dynamic_cast<Enemies*>(other)) {
-        
+    if (other->CompareTag("Enemy"))
+    {
+		std::cout << "Collision of player with an enemy" << std::endl;
 	}
-	if (dynamic_cast<Object*>(other)) {
-
-    }
-	if (dynamic_cast<MapGenerator*>(other)) {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && _playerDirection != 1)
-        {
-            moveSpeed = sf::Vector2f(0.f, -100.f);
-            MovePlayer();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _playerDirection != 2)
-        {
-            moveSpeed = sf::Vector2f(0.f, 100.f);
-            MovePlayer();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && _playerDirection != 3)
-        {
-            moveSpeed = sf::Vector2f(-100.f, 0.f);
-            MovePlayer();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && _playerDirection != 4)
-        {
-            moveSpeed = sf::Vector2f(100.f, 0.f);
-            MovePlayer();
-        }
-        _stopMoving = true;
-    }
 }
 
 void Player::playerEndurance()
@@ -232,8 +188,6 @@ void Player::KeyboardMove()
         }
     }
 }
-
-
 
 int Player::GetPlayerXPos()
 {

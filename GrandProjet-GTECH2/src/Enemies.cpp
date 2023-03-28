@@ -3,6 +3,9 @@
 Enemies::Enemies()
 {
     Cube2Test();
+    SetID("Enemy1", "Enemy");
+    SetHitbox(sf::Vector2f(cube2.getGlobalBounds().left, cube2.getGlobalBounds().top),
+        sf::Vector2f(cube2.getGlobalBounds().width, cube2.getGlobalBounds().height));
 }
 
 Enemies::~Enemies()
@@ -22,22 +25,12 @@ void Enemies::Render()
     gameData.window->draw(cube2);
 }
 
-bool Enemies::collidesWith(CollisionObject* other)
+void Enemies::OnCollisionEnter(PhysicBody* other)
 {
-    if (Player* player = dynamic_cast<Player*>(other)) {
-        TargetPos = player->cube.getPosition();
-        if (cube2.getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
-            return true;
-        }
-    }
-    return false;
-}
-
-void Enemies::handleCollision(CollisionObject* other)
-{
-    if (dynamic_cast<Player*>(other)) {
-
-    }
+    if (other->CompareTag("Player"))
+    {
+		std::cout << "Collision of " << GetName() <<" with player" << std::endl;
+	}
 }
 
 void Enemies::Cube2Test()

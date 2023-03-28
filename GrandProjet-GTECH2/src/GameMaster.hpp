@@ -17,10 +17,17 @@ struct GameData {
 	int indexMap = 0;
 };
 
-enum {
+enum Scene {
 	MENU = 0,
 	LOBBY = 1,
 	INGAME = 2,
+};
+
+enum Tag {
+	PLAYER,
+	ENEMY,
+	PROJECTILE,
+	ITEM,
 };
 
 class GameMaster 
