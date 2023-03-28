@@ -35,6 +35,9 @@ public:
 
 private:
 	//void EnemyTest();
+
+	int ennemieHP; 
+
 	float followRadius = 1.f;
 	sf::Texture enemiesTexture;
 	sf::Sprite enemiesSprite;

@@ -5,7 +5,7 @@ Lobby::Lobby() {
 	collisionmanager.addObject(&sp);
 	collisionmanager.addObject(&e);
 	collisionmanager.addObject(&p);
-	collisionmanager.addObject(&object);
+	//collisionmanager.addObject(&object);
 	collisionmanager.addObject(&_door);
 
 	sf::Texture texture;
@@ -32,6 +32,6 @@ void Lobby::Render() {
 	sp.Render();
 	e.Render();
 	_door.Render();
-	object.Render();
+	//object.Render();
 }
 

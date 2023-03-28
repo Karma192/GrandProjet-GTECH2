@@ -3,6 +3,7 @@
 Enemies::Enemies()
 {
     Cube2Test();
+    this->ennemieHP = 10;
 }
 
 Enemies::~Enemies()
@@ -24,9 +25,11 @@ void Enemies::Render()
 
 bool Enemies::collidesWith(CollisionObject* other)
 {
-    if (Player* player = dynamic_cast<Player*>(other)) {
+    if (Player* player = dynamic_cast<Player*>(other)) 
+    {
         TargetPos = player->cube.getPosition();
-        if (cube2.getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
+        if (cube2.getGlobalBounds().intersects(player->cube.getGlobalBounds())) 
+        {
             return true;
         }
     }
@@ -35,8 +38,14 @@ bool Enemies::collidesWith(CollisionObject* other)
 
 void Enemies::handleCollision(CollisionObject* other)
 {
-    if (dynamic_cast<Player*>(other)) {
-
+    if (dynamic_cast<Player*>(other)) 
+    {
+        ennemieHP--;
+        std::cout << ennemieHP << std::endl;
+        if (ennemieHP == 0)
+        {
+            this->Destroy();
+        }
     }
 }
 

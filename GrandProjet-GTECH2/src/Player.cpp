@@ -5,6 +5,7 @@
 Player::Player()
 {
     CubeTest();
+    this->playerHP = 20;
 }
 
 Player::~Player()
@@ -79,13 +80,17 @@ bool Player::collidesWith(CollisionObject* other) {
 
 void Player::handleCollision(CollisionObject* other)
 {
-	if (dynamic_cast<Enemies*>(other)) {
-        
+	if (dynamic_cast<Enemies*>(other)) 
+    {
+        //std::cout << playerHP << std::endl; 
+        playerHP--;
 	}
-	if (dynamic_cast<Object*>(other)) {
+	if (dynamic_cast<Object*>(other)) 
+    {
 
     }
-	if (dynamic_cast<MapGenerator*>(other)) {
+	if (dynamic_cast<MapGenerator*>(other)) 
+    {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && _playerDirection != 1)
         {
             moveSpeed = sf::Vector2f(0.f, -100.f);
