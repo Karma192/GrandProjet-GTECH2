@@ -6,6 +6,7 @@ GameObject::GameObject()
 {
 	SetData();
 	GameMaster::AddGameObject(this);
+	_destructed = false;
 }
 
 GameObject::~GameObject()
@@ -31,16 +32,10 @@ void GameObject::Render()
 
 void GameObject::Destroy()
 {
-	std::vector<GameObject*>& list = GameMaster::GetInstance()->GetListGameObject();
-	auto it = std::find(list.begin(), list.end(), this);
-	if (it != list.end()) {
-		list.erase(it);
-	}
-	delete this;
+	_destructed = true;
 }
 
 void GameObject::SetData()
 {
 	srand(time(0));
-	id = rand();
 }

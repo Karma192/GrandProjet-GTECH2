@@ -18,12 +18,11 @@ public:
     virtual void Render()override;
 
 private:
-    Player p;
+    Player* p;
     //Object object;
-    Enemies e;
+    Enemies* e;
     Spells sp;
-    MapGenerator map;
-    Room room;
+    MapGenerator* map;
     ToNextScene _door;
     CollisionManager collisionmanager;
     

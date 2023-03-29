@@ -36,7 +36,7 @@ bool Enemies::collidesWith(CollisionObject* other)
 void Enemies::handleCollision(CollisionObject* other)
 {
     if (dynamic_cast<Player*>(other)) {
-
+        Destroy();
     }
 }
 
