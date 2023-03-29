@@ -1,8 +1,11 @@
 ﻿#include "Player.hpp"
+#include "ToNextScene.hpp"
+#include "GameMaster.hpp"
 
 Player::Player()
 {
     DisplayPLayer();
+    this->playerHP = 20;
 }
 
 Player::~Player()
@@ -12,40 +15,34 @@ Player::~Player()
 
 void Player::Loop()
 {
-    playerEndurance();
-    playerRegenEndurance();
     ControllerMove();
     KeyboardMove();
     PlayerAttack();
-
-    // idle
+    setCamera();
+    _stopMoving = false;
+    PlayerBasicAttack();
+        // idle
     if (moveSpeed.x == 0 && moveSpeed.y == 0)
     {
         animationPlayer.Animate(4, 7, 1, 1, 0.2f, false);
     }
-
-    //setCamera();
 }
 
 void Player::Render()
 {
-    gameData = GetGameData();
-    gameData.window->draw(enduranceBar);
-    gameData.window->draw(lifeBar);
-    gameData.window->draw(playerUltiUI);
-    gameData.window->draw(playerFirstSpell);
-    gameData.window->draw(playerSecondSpell);
-    gameData.window->draw(playerThirdSpell);
+    GameMaster::GetInstance()->GetGameData().window->draw(enduranceBar);
+    GameMaster::GetInstance()->GetGameData().window->draw(lifeBar);
+    GameMaster::GetInstance()->GetGameData().window->draw(playerUltiUI);
+    for (int i = 0; i < 3; i++)
+    {
+        GameMaster::GetInstance()->GetGameData().window->draw(playerUITab[i]);
+    }
     
-    // DEBUG
-    IsAttacking = true;
-    gameData.window->draw(hitboxTest);
-
-    //if (isActtk == true && asAttacked == true) 
-    //{ 
-    //    IsAttacking = true;
-    //    gameData.window->draw(hitboxTest);
-    //}
+    if (isActtk == true && asAttacked == true) 
+    { 
+        IsAttacking = true;
+        GameMaster::GetInstance()->GetGameData().window->draw(hitboxTest);
+    }
     if (cdBasicAttack.getElapsedTime().asSeconds() >= 0.1f)
     {
         isActtk = false;
@@ -57,7 +54,7 @@ void Player::Render()
         IsAttacking = false;
         isActtk = true;
     }
-    gameData.window->draw(playerSprite);
+    GameMaster::GetInstance()->GetGameData().window->draw(playerSprite);
     playerUI();
 }
 
@@ -72,81 +69,80 @@ bool Player::collidesWith(CollisionObject* other) {
             return true;
         }
     }
+    if (ToNextScene* object = dynamic_cast<ToNextScene*>(other)) {
+        if (cube.getGlobalBounds().intersects(object->_sprite.getGlobalBounds())) {
+            return true;
+        }
+    }
     return false;
 }
 
 
 void Player::handleCollision(CollisionObject* other)
 {
-    if (dynamic_cast<Enemies*>(other)) {
-        std::cout << "EUREKA";
-    }
-    if (dynamic_cast<Object*>(other)) {
-        std::cout << "test";
-    }
-}
-
-void Player::playerEndurance()
-{
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cd_Endurance >= 2 && endurancePlayer > 0)
+	if (dynamic_cast<Enemies*>(other)) 
     {
-        endurancePlayer -= 0.5;
-        enduranceBar.setScale(endurancePlayer / 100, 1);
-    }
-    if (endurancePlayer <= 0 && sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+        //std::cout << playerHP << std::endl; 
+        playerHP--;
+	}
+	if (dynamic_cast<Object*>(other)) 
     {
 
     }
-}
-
-void Player::playerRegenEndurance()
-{
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && endurancePlayer <= 100)
+	if (dynamic_cast<MapGenerator*>(other)) 
     {
-        endurancePlayer += 0.1;
-        enduranceBar.setScale(endurancePlayer / 100, 1);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && _playerDirection != 1)
+        {
+            moveSpeed = sf::Vector2f(0.f, -100.f);
+            MovePlayer();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && _playerDirection != 2)
+        {
+            moveSpeed = sf::Vector2f(0.f, 100.f);
+            MovePlayer();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q) && _playerDirection != 3)
+        {
+            moveSpeed = sf::Vector2f(-100.f, 0.f);
+            MovePlayer();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && _playerDirection != 4)
+        {
+            moveSpeed = sf::Vector2f(100.f, 0.f);
+            MovePlayer();
+        }
+        _stopMoving = true;
     }
 }
+
 
 void Player::playerUI()
 {
-    enduranceBar.setSize(sf::Vector2f(300.f, 25.f));
-    enduranceBar.setFillColor(sf::Color::Blue);
-    sf::Vector2f enduranceBarV = gameData.window->mapPixelToCoords(sf::Vector2i(2, 830));
-    enduranceBar.setPosition(enduranceBarV);
-
     lifeBar.setSize(sf::Vector2f(300.f, 25.f));
     lifeBar.setFillColor(sf::Color::Green);
-    sf::Vector2f lifeBarV = gameData.window->mapPixelToCoords(sf::Vector2i(2, 800));
+    sf::Vector2f lifeBarV = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(sf::Vector2i(2, 800));
     lifeBar.setPosition(lifeBarV);
 
     playerUltiUI.setRadius(40);
     playerUltiUI.setFillColor(sf::Color::Transparent);
     playerUltiUI.setOutlineThickness(5);
     playerUltiUI.setOutlineColor(sf::Color::Yellow);
-    sf::Vector2f playerUltiUIV = gameData.window->mapPixelToCoords(sf::Vector2i(30,880));
+    sf::Vector2f playerUltiUIV = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(sf::Vector2i(30,880));
     playerUltiUI.setPosition(playerUltiUIV);
 
-    playerFirstSpell.setRadius(20);
-    playerFirstSpell.setFillColor(sf::Color::Transparent);
-    playerFirstSpell.setOutlineThickness(5);
-    playerFirstSpell.setOutlineColor(sf::Color::Green);
-    sf::Vector2f PlayerFirstSpellV = gameData.window->mapPixelToCoords(sf::Vector2i(140, 920));
-    playerFirstSpell.setPosition(PlayerFirstSpellV);
+    // j = position sur l'écran sur l'axe x
+    int j = 140;
+    for (int i = 0; i < 3; i++)
+    {
+        playerUITab[i].setRadius(20);
+        playerUITab[i].setFillColor(sf::Color::Transparent);
+        playerUITab[i].setOutlineThickness(5);
+        playerUITab[i].setOutlineColor(sf::Color::Green);
+        sf::Vector2f playerUiSpellPosition = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(sf::Vector2i(j, 920));
+        playerUITab[i].setPosition(playerUiSpellPosition);
+        j += 60;
+    }
 
-    playerSecondSpell.setRadius(20);
-    playerSecondSpell.setFillColor(sf::Color::Transparent);
-    playerSecondSpell.setOutlineThickness(5);
-    playerSecondSpell.setOutlineColor(sf::Color::Green);
-    sf::Vector2f playerSecondSpellV = gameData.window->mapPixelToCoords(sf::Vector2i(200, 920));
-    playerSecondSpell.setPosition(playerSecondSpellV);
-
-    playerThirdSpell.setRadius(20);
-    playerThirdSpell.setFillColor(sf::Color::Transparent);
-    playerThirdSpell.setOutlineThickness(5);
-    playerThirdSpell.setOutlineColor(sf::Color::Green);
-    sf::Vector2f playerThirdSpellV = gameData.window->mapPixelToCoords(sf::Vector2i(260, 920));
-    playerThirdSpell.setPosition(playerThirdSpellV);
 }
 
 void Player::DisplayPLayer()
@@ -172,39 +168,47 @@ void Player::ControllerMove()
 void Player::MovePlayer()
 {
     playerSprite.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
+    rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / 3.14159265358979323846;
+    playerSprite.setRotation(rotation);
 }
 
 void Player::setCamera() {
-    gameData = GetGameData();
-    view = gameData.window->getDefaultView();
+    view = GameMaster::GetInstance()->GetGameData().window->getDefaultView();
     view.setCenter(playerSprite.getPosition());
-    gameData.window->setView(view);
+    GameMaster::GetInstance()->GetGameData().window->setView(view);
 }
 
 void Player::KeyboardMove()
 {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-    {
-        playerSprite.move(sf::Vector2f(0.f, -5));
-        //Destroy();
+    if (!_stopMoving) {
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+        {
+            moveSpeed = sf::Vector2f(0.f, -100.f);
+            _playerDirection = 1;
+            MovePlayer();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        {
+            moveSpeed = sf::Vector2f(0.f, 100.f);
+            _playerDirection = 2;
+            MovePlayer();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+        {
+            animationPlayer.Animate(6, 7, 2, 2, 0.2f, true);
+            moveSpeed = sf::Vector2f(-100.f, 0.f);
+            _playerDirection = 3;
+            MovePlayer();
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        {
+            animationPlayer.Animate(6, 7, 2, 2, 0.2f, false);
+            moveSpeed = sf::Vector2f(100.f, 0.f);
+            _playerDirection = 4;
+            MovePlayer();
+        }
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-    {
-        moveSpeed = sf::Vector2f(0.f, 100.f);
-        MovePlayer();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-    {
-        animationPlayer.Animate(6, 7, 2, 2, 0.2f, true);
-        moveSpeed = sf::Vector2f(-100.f, 0.f);
-        MovePlayer();
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-    {
-        animationPlayer.Animate(6, 7, 2, 2, 0.2f, false);
-        moveSpeed = sf::Vector2f(100.f, 0.f);
-        MovePlayer();
-    }
+
 }
 
 int Player::GetPlayerXPos()
@@ -228,6 +232,8 @@ void Player::PlayerBasicAttack()
     hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
     hitboxTest.setFillColor(sf::Color::Blue);
     hitboxTest.setPosition(playerSprite.getPosition());
+    hitboxTest.setRotation(playerSprite.getRotation());
+    hitboxTest.setOrigin(CubeBounds.width / 2.0f, CubeBounds.height / 2.0f);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {

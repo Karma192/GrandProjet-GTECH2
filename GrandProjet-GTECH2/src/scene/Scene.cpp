@@ -13,7 +13,7 @@ GameScene::~GameScene() {
 }
 
 void GameScene::Update() {
-	gameData = GetGameData();
+	gameData = GameMaster::GetInstance()->GetGameData();
 	this->Loop();
 	this->Render();
 	/*if (layers != nullptr) {

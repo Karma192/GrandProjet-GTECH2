@@ -1,4 +1,5 @@
 #include "Enemies.hpp"
+#include "GameMaster.hpp"
 
 Enemies::Enemies()
 {
@@ -20,25 +21,35 @@ void Enemies::Loop()
 
 void Enemies::Render() 
 {
-    gameData = GetGameData();
-    gameData.window->draw(enemySlime);
+    GameMaster::GetInstance()->GetGameData().window->draw(enemySlime);
 }
 
 bool Enemies::collidesWith(CollisionObject* other)
 {
-    if (Player* player = dynamic_cast<Player*>(other)) {
-        if (enemySlime.getGlobalBounds().intersects(player->playerSprite.getGlobalBounds())) {
+    if (Player* player = dynamic_cast<Player*>(other)) 
+    {
+        TargetPos = player->player.getPosition();
+        if (enemySlime.getGlobalBounds().intersects(player->cube.getGlobalBounds())) 
+        {
             return true;
         }
     }
-
     return false;
 }
 
 void Enemies::handleCollision(CollisionObject* other)
 {
-    if (dynamic_cast<Player*>(other)) {
-        std::cout << "dinguerie";
+    if (dynamic_cast<Player*>(other)) 
+    {
+        ennemieHP--;
+        std::cout << ennemieHP << std::endl;
+        if (ennemieHP <= 0)
+        {
+            std::cout << "ennemi mort";
+            enemySlime.setPosition(1800.f, 60.f);
+            FollowTarget(false);
+            //TODO DESTROY ENNEMIES
+        }
     }
 }
 
@@ -51,47 +62,39 @@ void Enemies::DisplaySlime()
 
 void Enemies::FollowTarget(bool)
 {
-    ////Radius for Aggro
-    ////interval for aggro
-    //sf::Clock clock;
-    //float interval = 0.001f;
-    //sf::Vector2f TargetPos = contextPlayer->cube.getPosition();
-    //sf::Vector2f FollowPos = cube2.getPosition();
-    //sf::Vector2f RelatPos = TargetPos - FollowPos;
-    //float deltaLength = std::sqrt(RelatPos.x * RelatPos.x + RelatPos.y * RelatPos.y);
-    //if (deltaLength > followRadius) {
-    //    cube2.move(.005f * RelatPos);
-    //}
-    //clock.restart();
-
-    //distance = std::sqrt((TargetPos.x - FollowPos.x) * (TargetPos.x - FollowPos.x) +
-    //    (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));
+    //Radius for Aggro
+    //interval for aggro
+    sf::Vector2f FollowPos = enemySlime.getPosition();
+    sf::Vector2f RelatPos = TargetPos - FollowPos;
+    distance = std::sqrt((TargetPos.x - FollowPos.x) * (TargetPos.x - FollowPos.x) +
+        (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));
 
 
-    //if (distance <= 600 && follow)
-    //{
-    //    cube2.setFillColor(sf::Color::Blue);
-    //    follow = true;
-    //    cube2.move(.02f * RelatPos);
-    //    //MoveBase(false);
-    //}
-    //else {
-    //    cube2.setFillColor(sf::Color::Green);
-    //}
+    if (distance <= 150)
+    {
+        follow = true;
+        //cube2.setFillColor(sf::Color::Blue);
+        enemySlime.move(.02f * RelatPos);
+    }
+    else 
+    {
+        follow = false;
+        //cube2.setFillColor(sf::Color::Green);
+    }
 }
 
-//void Enemies::GetStunned()
-//{
-//    Player* contextPlayer;
-//    sf::FloatRect rect = contextPlayer->hitboxTest.getGlobalBounds();
-//    sf::FloatRect rect2 = cube2.getGlobalBounds();
-//    if (contextPlayer->IsAttacking) {
-//        if (IsDamaged(rect, rect2)) {
-//            follow = false;
-//            clock2.restart();
-//        }
-//    }
-//    if (clock2.getElapsedTime().asSeconds() > 2.f) {
-//        follow = true;
-//    }
-//}
+void Enemies::GetStunned()
+{
+    /*Player* contextPlayer;
+    sf::FloatRect rect = contextPlayer->hitboxTest.getGlobalBounds();
+    sf::FloatRect rect2 = cube2.getGlobalBounds();
+    if (contextPlayer->IsAttacking) {
+        if (IsDamaged(rect, rect2)) {
+            follow = false;
+            clock2.restart();
+        }
+    }
+    if (clock2.getElapsedTime().asSeconds() > 2.f) {
+        follow = true;
+    }*/
+}

@@ -20,23 +20,24 @@ public:
 
 	void DisplaySlime();
 	void FollowTarget(bool);
-	void MoveBase();
-	void EnemyMove();
 	void GetStunned();
 	sf::Sprite enemySlime;
 	sf::Clock clock2;
 
 	GameObject* target;
 
-	bool follow = true;
+	bool follow = false;
 	bool IsFixed = true;
 
 	int distance;
 
 private:
 	//void EnemyTest();
-	float followRadius = 1.f;
-	Animation animationSlime;
 
+	int ennemieHP; 
+
+	Animation animationSlime;
+	
 	sf::Vector2f TargetPos;
+	//Object object;
 };

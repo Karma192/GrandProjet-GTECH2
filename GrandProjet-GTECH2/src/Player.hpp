@@ -2,10 +2,11 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
-#include <math.h>
+#include <cmath>
 #include "GameObject.hpp"
 #include "Enemies.hpp"
 #include "Animation.h"
+#include "MapGenerator.hpp"
 
 class Player : public GameObject {
 public:
@@ -19,8 +20,6 @@ public:
 	void handleCollision(CollisionObject* other) override;
 
 	//Player HUD 
-	void playerEndurance();
-	void playerRegenEndurance();
 	void playerUI();
 
 	//Player display
@@ -48,6 +47,14 @@ public:
 	sf::Sprite playerSprite;
 	sf::Clock cdBasicAttack;
 	sf::RectangleShape hitboxTest;
+
+	//Player draw
+	sf::RectangleShape cube;
+	sf::Vector2f moveSpeed;
+	sf::View view;
+	float rotation;
+	sf::Vector2f velocity;
+	sf::FloatRect CubeBounds = cube.getLocalBounds();
 
 	bool IsAttacking = false;
 
@@ -77,10 +84,15 @@ private:
 	sf::CircleShape playerSecondSpell;
 	sf::CircleShape playerThirdSpell;
 
+	sf::CircleShape playerUITab[4];
+
+	int playerHP;
 	int m_pv;
 	int m_attack;
 	int playerSpeed = 20;
+	int _playerDirection = 0;
 	sf::Clock endurance;
 
 	bool lookingLeft = false;
+	bool _stopMoving = false;
 };

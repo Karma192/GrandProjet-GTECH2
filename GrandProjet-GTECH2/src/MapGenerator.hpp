@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <stdlib.h>
 #include <time.h> 
@@ -13,8 +15,8 @@
 class Room : public GameObject
 {
 public:
+
     Room() = default;
-    Room(Player* p);
     Room(std::string);
     virtual ~Room();
 
@@ -24,14 +26,22 @@ public:
     bool collidesWith(CollisionObject* other) override;
     void handleCollision(CollisionObject* other) override;
 
-private:
-    std::string path = "ressources/map/";
-    tmx::Map map;
-    Player* player;
+    void GetTilesBounds();
+
     MapLayer* background;
     MapLayer* decoration;
     MapLayer* collision;
-    sf::RectangleShape* rectCube;
+
+    std::vector<sf::RectangleShape> rect;
+    sf::RectangleShape rectCube;
+
+private:
+
+    std::string path = "ressources/map/";
+    tmx::Map map;
+    sf::Vector2f playerCube;
+    int i = 0;
+    bool collisionCheck = false;
 };
 
 class RoomWallet
@@ -59,7 +69,7 @@ public:
     std::string x;
     int place = 2;
     char map[10][10];
-    RoomWallet wallet;
+    RoomWallet* wallet;
 
 
     MapGenerator();
