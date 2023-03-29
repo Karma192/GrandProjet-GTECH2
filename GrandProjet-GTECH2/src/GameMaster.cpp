@@ -26,10 +26,10 @@ std::vector<GameObject*> GameMaster::GetListGameObject()
 	return _listGameObject;
 }
 
-void GameMaster::AddGameObject(GameObject* obj)
+/*void GameMaster::AddGameObject(GameObject* obj)
 {
 	_listGameObject.push_back(obj);
-}
+}*/
 
 GameData GameMaster::GetGameData()
 {
@@ -38,7 +38,8 @@ GameData GameMaster::GetGameData()
 
 void GameMaster::SetActiveScene(int value)
 {
-	switch (value) {
+	switch (value) 
+	{
 	case MENU:
 		data.indexScene = MENU;
 		break;
@@ -54,7 +55,8 @@ void GameMaster::SetActiveScene(int value)
 	}
 }
 
-void GameMaster::SetWindow(RenderWindow* win, Event* e) {
+void GameMaster::SetWindow(RenderWindow* win, Event* e) 
+{
 	data.window = win;
 	data.event = e;
 }
