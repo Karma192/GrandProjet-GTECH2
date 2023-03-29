@@ -45,7 +45,9 @@ void Enemies::handleCollision(CollisionObject* other)
         if (ennemieHP <= 0)
         {
             std::cout << "ennemi mort";
-            this->Destroy();
+            cube2.setPosition(1800.f, 60.f);
+            FollowTarget(false);
+            //TODO DESTROY ENNEMIES
         }
     }
 }
@@ -61,29 +63,21 @@ void Enemies::FollowTarget(bool)
 {
     //Radius for Aggro
     //interval for aggro
-
-    sf::Clock clock;
-    float interval = 0.001f;
     sf::Vector2f FollowPos = cube2.getPosition();
     sf::Vector2f RelatPos = TargetPos - FollowPos;
-    float deltaLength = std::sqrt(RelatPos.x * RelatPos.x + RelatPos.y * RelatPos.y);
-    if (deltaLength > followRadius) {
-        cube2.move(.005f * RelatPos);
-    }
-    clock.restart();
-
     distance = std::sqrt((TargetPos.x - FollowPos.x) * (TargetPos.x - FollowPos.x) +
         (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));
 
 
-    if (distance <= 600 && follow)
+    if (distance <= 150)
     {
-        cube2.setFillColor(sf::Color::Blue);
         follow = true;
+        cube2.setFillColor(sf::Color::Blue);
         cube2.move(.02f * RelatPos);
-        //MoveBase(false);
     }
-    else {
+    else 
+    {
+        follow = false;
         cube2.setFillColor(sf::Color::Green);
     }
 }

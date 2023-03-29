@@ -5,7 +5,7 @@
 GameObject::GameObject()
 {
 	SetData();
-	GameMaster::AddGameObject(this);
+	//GameMaster::AddGameObject(this);
 }
 
 GameObject::~GameObject()
@@ -31,12 +31,12 @@ void GameObject::Render()
 
 void GameObject::Destroy()
 {
-	std::vector<GameObject*>& list = GameMaster::GetInstance()->GetListGameObject();
+	/*std::vector<GameObject*>& list = GameMaster::GetInstance()->GetListGameObject();
 	auto it = std::find(list.begin(), list.end(), this);
 	if (it != list.end()) {
 		list.erase(it);
 	}
-	delete this;
+	delete this;*/
 }
 
 void GameObject::SetData()

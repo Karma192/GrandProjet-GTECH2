@@ -19,8 +19,6 @@ public:
 
 	void Cube2Test();
 	void FollowTarget(bool);
-	void MoveBase();
-	void EnemyMove();
 	void GetStunned();
 
 	sf::RectangleShape cube2;
@@ -28,7 +26,7 @@ public:
 
 	GameObject* target;
 
-	bool follow = true;
+	bool follow = false;
 	bool IsFixed = true;
 
 	int distance;
@@ -38,7 +36,6 @@ private:
 
 	int ennemieHP; 
 
-	float followRadius = 1.f;
 	sf::Texture enemiesTexture;
 	sf::Sprite enemiesSprite;
 	sf::Vector2f TargetPos;
