@@ -26,7 +26,7 @@ public:
 
 	sf::CircleShape Spell;
 	int CooldownFireBall;
-	int MaxCooldownFireBall = 100;
+	int MaxCooldownFireBall = 0;
 
 	///For Slide
 	void SetSlide();
