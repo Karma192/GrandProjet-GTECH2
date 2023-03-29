@@ -5,8 +5,9 @@
 #include <cmath>
 #include "GameObject.hpp"
 #include "Enemies.hpp"
+#include "GameMaster.hpp"
 #include "MapGenerator.hpp"
-
+# define M_PI           3.14159265358979323846  /* pi */
 
 
 class Player : public GameObject {
@@ -29,6 +30,7 @@ public:
 
 	//Player controller
 	void CubeTest();
+	void MouseUsage();
 	void ControllerMove();
 	void MovePlayer();
 	void KeyboardMove();
@@ -69,6 +71,13 @@ private:
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
 
+	sf::Vector2i _mousePos;
+	sf::Vector2f _playerCenter;
+	sf::Vector2f _worldPosition;
+	sf::Vector2f _aimDir;
+	float _aimDirNorm;
+	float angleDegrees;
+
 	//Player attack basic
 	bool isActtk = true;
 	bool asAttacked = false;
@@ -92,6 +101,8 @@ private:
 
 	bool lookingLeft = false;
 
+	int _playerDirection = 0;
+	bool _stopMoving = false;
 	int _wallTouched = 0;
 
 	bool _collideUp;
