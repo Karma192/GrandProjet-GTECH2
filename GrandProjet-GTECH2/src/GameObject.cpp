@@ -1,43 +1,41 @@
 #pragma once
 #include "GameObject.hpp"
+#include "GameMaster.hpp"
 
-GameObject::GameObject() 
+GameObject::GameObject()
 {
 	SetData();
+	GameMaster::AddGameObject(this);
+	_destructed = false;
 }
 
-GameObject::~GameObject() 
+GameObject::~GameObject()
 {
 
 }
 
-void GameObject::Update() 
+void GameObject::Update()
 {
-	gameData = GetGameData();
 	this->Loop();
 	this->Render();
 }
 
-void GameObject::Loop() 
+void GameObject::Loop()
 {
 
 }
 
-void GameObject::Render() 
+void GameObject::Render()
 {
 
 }
 
-void GameObject::Destroy() 
+void GameObject::Destroy()
 {
-	std::vector<GameObject*> list;
-	list.push_back(this);
-	list.clear();
+	_destructed = true;
 }
 
 void GameObject::SetData()
 {
 	srand(time(0));
-	id = rand();
-	gameData = GetGameData();
 }

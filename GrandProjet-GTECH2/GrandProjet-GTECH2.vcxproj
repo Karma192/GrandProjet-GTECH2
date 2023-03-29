@@ -74,15 +74,7 @@
     <IncludePath>..\SFML-2.5.1\include;$(IncludePath)</IncludePath>
     <LibraryPath>..\SFML-2.5.1\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\SFML-2.5.1\include;..\tmxlite-master\tmxlite\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <MultiProcessorCompilation>true</MultiProcessorCompilation>
-    </ClCompile>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Link>
       <AdditionalLibraryDirectories>..\SFML-2.5.1\lib;..\tmxlite-master\tmxlite\x64\bin\DebugStatic;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;libtmxlite-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -125,7 +117,6 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\MapGenerator.cpp" />
     <ClCompile Include="src\menuHUD.cpp" />
-    <ClCompile Include="src\Object.cpp" />
     <ClCompile Include="src\Player.cpp" />
     <ClCompile Include="src\scene\InGame.cpp" />
     <ClCompile Include="src\scene\Lobby.cpp" />
@@ -147,7 +138,6 @@
     <ClInclude Include="src\GameObject.hpp" />
     <ClInclude Include="src\MapGenerator.hpp" />
     <ClInclude Include="src\menuHUD.h" />
-    <ClInclude Include="src\Object.hpp" />
     <ClInclude Include="src\Player.hpp" />
     <ClInclude Include="src\scene\InGame.hpp" />
     <ClInclude Include="src\scene\Lobby.hpp" />
@@ -166,9 +156,8 @@
     <ResourceCompile Include="GrandProjet-GTECH2.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ressources\map\village\inside_tavern.tmx" />
+    <None Include="ClassDiagram.cd" />
     <None Include="ressources\map\village\village.tmx" />
-    <None Include="src\ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

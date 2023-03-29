@@ -1,4 +1,5 @@
 #include "ToNextScene.hpp"
+#include "GameMaster.hpp"
 
 ToNextScene::ToNextScene()
 {
@@ -21,7 +22,7 @@ void ToNextScene::Loop()
 
 void ToNextScene::Render()
 {
-	GetGameData().window->draw(_sprite);
+	GameMaster::GetGameData().window->draw(_sprite);
 }
 
 bool ToNextScene::collidesWith(CollisionObject* other)
@@ -38,11 +39,13 @@ void ToNextScene::handleCollision(CollisionObject* other)
 {
 	if (dynamic_cast<Player*>(other)) {
 		GoToScene();
+#if DEBUG
 		std::cout << "Collide with a door" << std::endl;
+#endif // DEBUG
 	}
 }
 
 void ToNextScene::GoToScene()
 {
-	SetActiveScene(scene);
+	GameMaster::GetInstance()->SetActiveScene(scene);
 }

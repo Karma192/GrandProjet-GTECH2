@@ -1,10 +1,12 @@
 ﻿#include "Player.hpp"
 #include "ToNextScene.hpp"
+#include "GameMaster.hpp"
 
 
 Player::Player()
 {
     CubeTest();
+    this->playerHP = 20;
 }
 
 Player::~Player()
@@ -14,30 +16,30 @@ Player::~Player()
 
 void Player::Loop()
 {
-    playerEndurance();
-    playerRegenEndurance();
     ControllerMove();
     KeyboardMove();
     PlayerAttack();
     setCamera();
     MouseUsage();
     _stopMoving = false;
+    PlayerBasicAttack();
+
 }
 
 void Player::Render()
 {
-    gameData = GetGameData();
-    gameData.window->draw(enduranceBar);
-    gameData.window->draw(lifeBar);
-    gameData.window->draw(playerUltiUI);
-    gameData.window->draw(playerFirstSpell);
-    gameData.window->draw(playerSecondSpell);
-    gameData.window->draw(playerThirdSpell);
+    GameMaster::GetInstance()->GetGameData().window->draw(enduranceBar);
+    GameMaster::GetInstance()->GetGameData().window->draw(lifeBar);
+    GameMaster::GetInstance()->GetGameData().window->draw(playerUltiUI);
+    for (int i = 0; i < 3; i++)
+    {
+        GameMaster::GetInstance()->GetGameData().window->draw(playerUITab[i]);
+    }
     
     if (isActtk == true && asAttacked == true) 
     { 
         IsAttacking = true;
-        gameData.window->draw(hitboxTest);
+        GameMaster::GetInstance()->GetGameData().window->draw(hitboxTest);
     }
     if (cdBasicAttack.getElapsedTime().asSeconds() >= 0.1f)
     {
@@ -50,7 +52,7 @@ void Player::Render()
         IsAttacking = false;
         isActtk = true;
     }
-    gameData.window->draw(cube);
+    GameMaster::GetInstance()->GetGameData().window->draw(cube);
     playerUI();
 }
 
@@ -78,14 +80,16 @@ bool Player::collidesWith(CollisionObject* other) {
 
 void Player::handleCollision(CollisionObject* other)
 {
-    if (dynamic_cast<Enemies*>(other))
+	if (dynamic_cast<Enemies*>(other)) 
     {
-    }
-    if (dynamic_cast<Object*>(other))
+        //std::cout << playerHP << std::endl; 
+        playerHP--;
+	}
+	if (dynamic_cast<Object*>(other)) 
     {
 
     }
-    if (dynamic_cast<MapGenerator*>(other))
+	if (dynamic_cast<MapGenerator*>(other)) 
     {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && _playerDirection != 1)
         {
@@ -111,67 +115,34 @@ void Player::handleCollision(CollisionObject* other)
     }
 }
 
-void Player::playerEndurance()
-{
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cd_Endurance >= 2 && endurancePlayer > 0)
-    {
-        endurancePlayer -= 0.5;
-        enduranceBar.setScale(endurancePlayer / 100, 1);
-    }
-    if (endurancePlayer <= 0 && sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-    {
-    }
-}
-
-void Player::playerRegenEndurance()
-{
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && endurancePlayer <= 100)
-    {
-        endurancePlayer += 0.1;
-        enduranceBar.setScale(endurancePlayer / 100, 1);
-    }
-}
 
 void Player::playerUI()
 {
-    enduranceBar.setSize(sf::Vector2f(300.f, 25.f));
-    enduranceBar.setFillColor(sf::Color::Blue);
-    sf::Vector2f enduranceBarV = gameData.window->mapPixelToCoords(sf::Vector2i(2, 830));
-    enduranceBar.setPosition(enduranceBarV);
-
     lifeBar.setSize(sf::Vector2f(300.f, 25.f));
     lifeBar.setFillColor(sf::Color::Green);
-    sf::Vector2f lifeBarV = gameData.window->mapPixelToCoords(sf::Vector2i(2, 800));
+    sf::Vector2f lifeBarV = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(sf::Vector2i(2, 800));
     lifeBar.setPosition(lifeBarV);
 
     playerUltiUI.setRadius(40);
     playerUltiUI.setFillColor(sf::Color::Transparent);
     playerUltiUI.setOutlineThickness(5);
     playerUltiUI.setOutlineColor(sf::Color::Yellow);
-    sf::Vector2f playerUltiUIV = gameData.window->mapPixelToCoords(sf::Vector2i(30,880));
+    sf::Vector2f playerUltiUIV = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(sf::Vector2i(30,880));
     playerUltiUI.setPosition(playerUltiUIV);
 
-    //For FireBall
-    playerFirstSpell.setRadius(20);
-    playerFirstSpell.setFillColor(sf::Color::Transparent);
-    playerFirstSpell.setOutlineThickness(5);
-    playerFirstSpell.setOutlineColor(sf::Color::Green);
-    sf::Vector2f PlayerFirstSpellV = gameData.window->mapPixelToCoords(sf::Vector2i(140, 920));
-    playerFirstSpell.setPosition(PlayerFirstSpellV);
+    // j = position sur l'écran sur l'axe x
+    int j = 140;
+    for (int i = 0; i < 3; i++)
+    {
+        playerUITab[i].setRadius(20);
+        playerUITab[i].setFillColor(sf::Color::Transparent);
+        playerUITab[i].setOutlineThickness(5);
+        playerUITab[i].setOutlineColor(sf::Color::Green);
+        sf::Vector2f playerUiSpellPosition = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(sf::Vector2i(j, 920));
+        playerUITab[i].setPosition(playerUiSpellPosition);
+        j += 60;
+    }
 
-    playerSecondSpell.setRadius(20);
-    playerSecondSpell.setFillColor(sf::Color::Transparent);
-    playerSecondSpell.setOutlineThickness(5);
-    playerSecondSpell.setOutlineColor(sf::Color::Green);
-    sf::Vector2f playerSecondSpellV = gameData.window->mapPixelToCoords(sf::Vector2i(200, 920));
-    playerSecondSpell.setPosition(playerSecondSpellV);
-
-    playerThirdSpell.setRadius(20);
-    playerThirdSpell.setFillColor(sf::Color::Transparent);
-    playerThirdSpell.setOutlineThickness(5);
-    playerThirdSpell.setOutlineColor(sf::Color::Green);
-    sf::Vector2f playerThirdSpellV = gameData.window->mapPixelToCoords(sf::Vector2i(260, 920));
-    playerThirdSpell.setPosition(playerThirdSpellV);
 }
 
 void Player::CubeTest()
@@ -228,10 +199,9 @@ void Player::MovePlayer()
 }
 
 void Player::setCamera() {
-    gameData = GetGameData();
-    view = gameData.window->getDefaultView();
+    view = GameMaster::GetInstance()->GetGameData().window->getDefaultView();
     view.setCenter(cube.getPosition());
-    gameData.window->setView(view);
+    GameMaster::GetInstance()->GetGameData().window->setView(view);
 }
 
 void Player::KeyboardMove()
@@ -262,6 +232,7 @@ void Player::KeyboardMove()
             MovePlayer();
         }
     }
+
 }
 
 int Player::GetPlayerXPos()

@@ -1,11 +1,19 @@
 #include "Lobby.hpp"
 
 Lobby::Lobby() {
+	e = new Enemies();
+	p = new Player();
+	map = new MapGenerator();
+
+
+	GameMaster::GetInstance()->SetCollisionManager(&collisionmanager);
+
+	collisionmanager.addObject(map);
 	collisionmanager.addObject(&sp);
-	collisionmanager.addObject(&e);
-	collisionmanager.addObject(&p);
-	collisionmanager.addObject(&map);
-	collisionmanager.addObject(&object);
+	collisionmanager.addObject(e);
+	collisionmanager.addObject(p);
+	
+	//collisionmanager.addObject(&object);
 	collisionmanager.addObject(&_door);
 
 	sf::Texture texture;
@@ -20,18 +28,19 @@ Lobby::~Lobby()
 
 void Lobby::Loop() {
 	collisionmanager.updateCollisions();
-	p.Loop();
+	p->Loop();
 	sp.Loop();
-	e.Loop();
+	if (e->_destructed == false)
+		e->Loop();
 	_door.Loop();
 }
 
 void Lobby::Render() {
-	map.Render();
-	p.Render();
+	map->Render();
+	p->Render();
 	sp.Render();
-	e.Render();
+	if ( e->_destructed == false)
+		e->Render();
 	_door.Render();
-	object.Render();
 }
 

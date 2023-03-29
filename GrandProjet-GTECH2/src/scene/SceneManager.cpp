@@ -1,20 +1,11 @@
 #include "SceneManager.hpp"
 
-SceneManager::SceneManager() {
-	this->event = nullptr;
-	this->window = nullptr;
+SceneManager::SceneManager() 
+{
 }
 
 SceneManager::~SceneManager()
 {
-
-}
-
-// Set the pointer to give to all scenes
-void SceneManager::SetSM(sf::RenderWindow* win, sf::Event* e)
-{
-	this->window = win;
-	this->event = e;
 }
 
 // Switch between scene's Loop
@@ -26,22 +17,27 @@ void SceneManager::Update()
 // Function for switch between all scenes
 void SceneManager::SwitchScene()
 {
-	smData = GetGameData();
-	switch (smData.indexScene)
+	switch (GameMaster::GetInstance()->GetGameData().indexScene)
 	{
 	case MENU:
 		menu.Update();
-		//std::cout << "C'est le menu !" << std::endl;
+#ifdef _DEBUG
+		std::cout << "C'est le menu !" << std::endl;
+#endif // DEBUG
 		break;
 
 	case LOBBY:
 		lobby.Update();
-		//std::cout << "C'est le lobby !" << std::endl;
+#ifdef _DEBUG
+		std::cout << "C'est le lobby !" << std::endl;
+#endif // DEBUG
 		break;
 
 	case INGAME:
 		ingame.Update();
-		//std::cout << "C'est le ingame !" << std::endl;
+#ifdef _DEBUG
+		std::cout << "C'est le ingame !" << std::endl;
+#endif // DEBUG
 		break;
 
 	default:
