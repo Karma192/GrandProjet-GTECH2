@@ -48,21 +48,6 @@
     <ClCompile Include="src\Player.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\scene\InGame.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\Lobby.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\Menu.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\Scene.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\scene\SceneManager.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="src\CollisionManager.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
@@ -84,11 +69,26 @@
     <ClCompile Include="src\ToNextScene.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\PhysicBody.cpp">
+    <ClCompile Include="src\CSPurpose\PhysicBody.cpp">
       <Filter>Fichiers sources\CSPurpose</Filter>
     </ClCompile>
-    <ClCompile Include="src\PhysicsManager.cpp">
+    <ClCompile Include="src\CSPurpose\PhysicsManager.cpp">
       <Filter>Fichiers sources\CSPurpose</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\InGame.cpp">
+      <Filter>Fichiers sources\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\Lobby.cpp">
+      <Filter>Fichiers sources\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\Menu.cpp">
+      <Filter>Fichiers sources\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\Scene.cpp">
+      <Filter>Fichiers sources\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scene\SceneManager.cpp">
+      <Filter>Fichiers sources\scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -111,21 +111,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\Player.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\InGame.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\Lobby.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\Menu.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\Scene.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\SceneManager.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\SFMLLayer.hpp">
@@ -152,11 +137,26 @@
     <ClInclude Include="src\ToNextScene.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\PhysicBody.hpp">
+    <ClInclude Include="src\scene\SceneManager.hpp">
+      <Filter>Fichiers d%27en-tête\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\Scene.hpp">
+      <Filter>Fichiers d%27en-tête\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CSPurpose\PhysicBody.hpp">
       <Filter>Fichiers d%27en-tête\CSPurpose</Filter>
     </ClInclude>
-    <ClInclude Include="src\PhysicsManager.hpp">
+    <ClInclude Include="src\CSPurpose\PhysicsManager.hpp">
       <Filter>Fichiers d%27en-tête\CSPurpose</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\Menu.hpp">
+      <Filter>Fichiers d%27en-tête\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\Lobby.hpp">
+      <Filter>Fichiers d%27en-tête\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\InGame.hpp">
+      <Filter>Fichiers d%27en-tête\scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

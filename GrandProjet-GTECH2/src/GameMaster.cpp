@@ -26,10 +26,10 @@ std::vector<GameObject*> GameMaster::GetListGameObject()
 	return _listGameObject;
 }
 
-/*void GameMaster::AddGameObject(GameObject* obj)
+void GameMaster::AddGameObject(GameObject* obj)
 {
 	_listGameObject.push_back(obj);
-}*/
+}
 
 GameData GameMaster::GetGameData()
 {
@@ -69,16 +69,10 @@ void GameMaster::Purge()
 		{
 			if (_listGameObject[i]->_destructed)
 			{
-				_cm->removeObject(_listGameObject[i]);
 				delete _listGameObject[i];
 				_listGameObject.erase(_listGameObject.begin() + i);
 				
 			}
 		}
 	}
-}
-
-void GameMaster::SetCollisionManager(CollisionManager* cm)
-{
-	_cm = cm;
 }

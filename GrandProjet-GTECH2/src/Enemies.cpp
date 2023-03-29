@@ -1,5 +1,4 @@
 #include "Enemies.hpp"
-#include "GameMaster.hpp"
 
 Enemies::Enemies()
 {

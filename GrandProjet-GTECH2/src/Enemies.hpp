@@ -4,6 +4,7 @@
 #include "GameObject.hpp"
 #include "Player.hpp"
 #include "Object.hpp"
+#include "GameMaster.hpp"
 
 class Enemies : public GameObject
 {

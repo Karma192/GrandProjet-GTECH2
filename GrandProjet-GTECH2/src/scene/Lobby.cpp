@@ -16,17 +16,17 @@ Lobby::~Lobby()
 }
 
 void Lobby::Loop() {
-	p.Loop();
+	p->Loop();
 	sp.Loop();
-	e.Loop();
+	e->Loop();
 	//_door.Loop();
 }
 
 void Lobby::Render() {
-	map->Render();
+	map.Render();
 	p->Render();
 	sp.Render();
-	e.Render();
+	e->Render();
 	//_door.Render();
 	//object.Render();
 }

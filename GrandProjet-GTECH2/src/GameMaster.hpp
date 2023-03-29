@@ -1,10 +1,7 @@
 #pragma once
-
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include <SFML/Config.hpp>
 #include "GameObject.hpp"
-#include "CollisionManager.h"
 
 using namespace sf;
 
@@ -21,20 +18,12 @@ enum Scene {
 	INGAME = 2,
 };
 
-enum Tag {
-	PLAYER,
-	ENEMY,
-	PROJECTILE,
-	ITEM,
-};
-
 class GameMaster 
 {
 protected:
 	static GameMaster* instance;
 	static GameData data;
 	static std::vector<GameObject*> _listGameObject;
-	CollisionManager* _cm;
 
 public:
 	GameMaster();
@@ -56,6 +45,4 @@ public:
 	void SetWindow(RenderWindow*, Event*);
 	// Fonction pour détruire les objets à détruire
 	void Purge();
-	// Fonction pour récupérer le CollisionManager
-	void SetCollisionManager(CollisionManager*);
 };

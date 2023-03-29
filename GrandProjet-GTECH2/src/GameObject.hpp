@@ -1,5 +1,4 @@
 #pragma once
-
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
@@ -30,5 +29,4 @@ public:
 
 private:
 	std::string _name;
-	void SetData();
 };
