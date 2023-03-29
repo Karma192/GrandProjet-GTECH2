@@ -1,4 +1,5 @@
 #include "Spells.hpp"
+#include "GameMaster.hpp"
 
 
 Spells::Spells()
@@ -23,8 +24,7 @@ void Spells::Loop()
 void Spells::Render() 
 {
 	DrawSpell();
-	gameData = GetGameData();
-	gameData.window->draw(Spell);
+	GameMaster::GetGameData().window->draw(Spell);
 }
 
 bool Spells::collidesWith(CollisionObject* other)
