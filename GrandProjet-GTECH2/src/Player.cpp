@@ -212,6 +212,8 @@ void Player::MouseUsage() {
     angleDegrees = angleRadians * 180 / M_PI;
     angleDegrees += 180;
 
+    std::cout << angleDegrees << std::endl;
+
     if (angleDegrees > 360)
     {
         angleDegrees -= 360;
@@ -279,7 +281,7 @@ void Player::PlayerAttack()
 }
 
 void Player::PlayerBasicAttack()
-{  
+{
     hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
     hitboxTest.setFillColor(sf::Color::Blue);
     hitboxTest.setPosition(cube.getPosition());
@@ -288,17 +290,17 @@ void Player::PlayerBasicAttack()
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
-        if (angleDegrees < 360 && angleDegrees > 180) {
+        if (angleDegrees > 45 && angleDegrees < 135) {
             hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - 30.f);
         }
-        if (angleDegrees < 360 && angleDegrees > 180) {
-        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() + 30.f);
+        if (angleDegrees > 135 && angleDegrees < 225) {
+            hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() + 30.f);
         }
-        if (angleDegrees < 360 && angleDegrees > 180) {
-        hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos());
+        if (angleDegrees > 225 && angleDegrees < 315) {
+            hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos());
         }
-        if (angleDegrees < 360 && angleDegrees > 180) {
-        hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos());
+        if (angleDegrees > 270 || angleDegrees < 45) {
+            hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos());
         }
     }
 }
