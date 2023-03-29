@@ -86,7 +86,7 @@ private:
 
 
 
-	int playerHP;
+	int playerHP; 
 	int m_pv;
 	int m_attack;
 	int playerSpeed = 20;

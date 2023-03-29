@@ -28,8 +28,8 @@ void Lobby::Loop() {
 
 void Lobby::Render() {
 	map.Render();
-	p.Render();
 	sp.Render();
+	p.Render();
 	e.Render();
 	_door.Render();
 	//object.Render();

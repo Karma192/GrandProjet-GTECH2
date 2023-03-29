@@ -22,6 +22,8 @@ void Spells::Render()
 {
 	DrawSpell();
 	GameMaster::GetGameData().window->draw(Spell);
+	HitboxThirdSpell();
+	GameMaster::GetInstance()->GetGameData().window->draw(_hitboxThirdSpell);
 }
 
 bool Spells::collidesWith(CollisionObject* other)
@@ -32,15 +34,22 @@ bool Spells::collidesWith(CollisionObject* other)
 		PlayerRotation = player->cube.getRotation();
 		PlayerBounds = player->cube.getLocalBounds();
 
-		//Endurance = player->playerEndurance();
 
-		if (Spell.getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
+		if (Spell.getGlobalBounds().intersects(player->cube.getGlobalBounds())) 
+		{
 			return true;
 		}
+
+		if (_hitboxThirdSpell.getGlobalBounds().intersects(player->cube.getGlobalBounds()))
+		{
+			return true;
+		}
+
 	}
 
 	if (Enemies* enemy = dynamic_cast<Enemies*>(other)) {
-		if (Spell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) {
+		if (Spell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) 
+		{
 			return true;
 		}
 	}
@@ -49,11 +58,13 @@ bool Spells::collidesWith(CollisionObject* other)
 
 void Spells::handleCollision(CollisionObject* other)
 {
-	if (dynamic_cast<Player*>(other)) {
+	if (dynamic_cast<Player*>(other)) 
+	{
 
 	}
-	if (dynamic_cast<Enemies*>(other)) {
-		std::cout << "bam degats";
+	if (dynamic_cast<Enemies*>(other)) 
+	{
+		std::cout << "DAMAGE THIRD SPELL" << std::endl;
 	}
 }
 
@@ -99,7 +110,17 @@ void Spells::DrawSpell()
 
 void Spells::SetSlide() 
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) 
+	{
 
 	}
+}
+
+void Spells::HitboxThirdSpell()
+{
+	_hitboxThirdSpell.setRadius(80.f);
+	_hitboxThirdSpell.setFillColor(sf::Color::Blue);
+	_hitboxThirdSpell.setOrigin(_hitboxThirdSpell.getGlobalBounds().width/ 2.0f,
+		_hitboxThirdSpell.getGlobalBounds().height / 2.0f);
+	_hitboxThirdSpell.setPosition(PlayerPos);
 }
