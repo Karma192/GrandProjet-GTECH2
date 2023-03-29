@@ -1,46 +1,46 @@
 #pragma once
 #include "GameObject.hpp"
+#include "GameMaster.hpp"
 
-GameObject::GameObject() 
+GameObject::GameObject()
 {
 	SetData();
+	GameMaster::AddGameObject(this);
 }
 
-GameObject::~GameObject() 
+GameObject::~GameObject()
 {
 
 }
 
-void GameObject::Update() 
+void GameObject::Update()
 {
-	gameData = GameMaster::GetInstance()->GetGameData();
 	this->Loop();
 	this->Render();
 }
 
-void GameObject::Loop() 
+void GameObject::Loop()
 {
 
 }
 
-void GameObject::Render() 
+void GameObject::Render()
 {
 
 }
 
-void GameObject::Destroy() 
+void GameObject::Destroy()
 {
-	std::vector<GameObject*> list;
-	list.push_back(this);
-	list.clear();
-
-	// à tester avec CHASSAING
-	//delete& list[0];
+	std::vector<GameObject*>& list = GameMaster::GetInstance()->GetListGameObject();
+	auto it = std::find(list.begin(), list.end(), this);
+	if (it != list.end()) {
+		list.erase(it);
+	}
+	delete this;
 }
 
 void GameObject::SetData()
 {
 	srand(time(0));
 	id = rand();
-	gameData = GameMaster::GetInstance()->GetGameData();
 }

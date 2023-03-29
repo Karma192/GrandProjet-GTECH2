@@ -1,5 +1,6 @@
 ﻿#include "Player.hpp"
 #include "ToNextScene.hpp"
+#include "GameMaster.hpp"
 
 
 Player::Player()
@@ -26,19 +27,18 @@ void Player::Loop()
 
 void Player::Render()
 {
-    gameData = GameMaster::GetInstance()->GetGameData();
-    gameData.window->draw(enduranceBar);
-    gameData.window->draw(lifeBar);
-    gameData.window->draw(playerUltiUI);
+    GameMaster::GetInstance()->GetGameData().window->draw(enduranceBar);
+    GameMaster::GetInstance()->GetGameData().window->draw(lifeBar);
+    GameMaster::GetInstance()->GetGameData().window->draw(playerUltiUI);
     for (int i = 0; i < 3; i++)
     {
-        gameData.window->draw(playerUITab[i]);
+        GameMaster::GetInstance()->GetGameData().window->draw(playerUITab[i]);
     }
     
     if (isActtk == true && asAttacked == true) 
     { 
         IsAttacking = true;
-        gameData.window->draw(hitboxTest);
+        GameMaster::GetInstance()->GetGameData().window->draw(hitboxTest);
     }
     if (cdBasicAttack.getElapsedTime().asSeconds() >= 0.1f)
     {
@@ -51,7 +51,7 @@ void Player::Render()
         IsAttacking = false;
         isActtk = true;
     }
-    gameData.window->draw(cube);
+    GameMaster::GetInstance()->GetGameData().window->draw(cube);
     playerUI();
 }
 
@@ -117,14 +117,14 @@ void Player::playerUI()
 {
     lifeBar.setSize(sf::Vector2f(300.f, 25.f));
     lifeBar.setFillColor(sf::Color::Green);
-    sf::Vector2f lifeBarV = gameData.window->mapPixelToCoords(sf::Vector2i(2, 800));
+    sf::Vector2f lifeBarV = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(sf::Vector2i(2, 800));
     lifeBar.setPosition(lifeBarV);
 
     playerUltiUI.setRadius(40);
     playerUltiUI.setFillColor(sf::Color::Transparent);
     playerUltiUI.setOutlineThickness(5);
     playerUltiUI.setOutlineColor(sf::Color::Yellow);
-    sf::Vector2f playerUltiUIV = gameData.window->mapPixelToCoords(sf::Vector2i(30,880));
+    sf::Vector2f playerUltiUIV = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(sf::Vector2i(30,880));
     playerUltiUI.setPosition(playerUltiUIV);
 
     // j = position sur l'écran sur l'axe x
@@ -135,7 +135,7 @@ void Player::playerUI()
         playerUITab[i].setFillColor(sf::Color::Transparent);
         playerUITab[i].setOutlineThickness(5);
         playerUITab[i].setOutlineColor(sf::Color::Green);
-        sf::Vector2f playerUiSpellPosition = gameData.window->mapPixelToCoords(sf::Vector2i(j, 920));
+        sf::Vector2f playerUiSpellPosition = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(sf::Vector2i(j, 920));
         playerUITab[i].setPosition(playerUiSpellPosition);
         j += 60;
     }
@@ -174,10 +174,9 @@ void Player::MovePlayer()
 }
 
 void Player::setCamera() {
-    gameData = GameMaster::GetInstance()->GetGameData();
-    view = gameData.window->getDefaultView();
+    view = GameMaster::GetInstance()->GetGameData().window->getDefaultView();
     view.setCenter(cube.getPosition());
-    gameData.window->setView(view);
+    GameMaster::GetInstance()->GetGameData().window->setView(view);
 }
 
 void Player::KeyboardMove()
