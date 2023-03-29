@@ -1,4 +1,5 @@
 #include "menuHUD.h"
+#include "GameMaster.hpp"
 
 //Initialisation of all elements
 menuHUD::menuHUD()
@@ -67,8 +68,7 @@ void menuHUD::Loop()
 
 void menuHUD::Render() 
 {
-    gameData = GameMaster::GetInstance()->GetGameData();
-    gameData.window->draw(menuBckSprite);
+    GameMaster::GetInstance()->GetGameData().window->draw(menuBckSprite);
     menuSelection();
     menuTitle();
     if (optionOn)
@@ -86,7 +86,7 @@ void menuHUD::Render()
 
 void menuHUD::menuSelection()
 {
-    oldScreenSize = gameData.window->getSize();
+    oldScreenSize = GameMaster::GetInstance()->GetGameData().window->getSize();
     screenSizeX = float(oldScreenSize.x);
     screenSizeY = float(oldScreenSize.y);
 
@@ -99,7 +99,7 @@ void menuHUD::menuSelection()
 
     selectionBck.setOrigin(sf::Vector2f((selectionBck.getSize()) / 2.0f));
     selectionBck.setPosition(screenSizeX / 2.0f, screenSizeY / 2.0f);
-    gameData.window->draw(selectionBck);
+    GameMaster::GetInstance()->GetGameData().window->draw(selectionBck);
 }
 
 void menuHUD::menuTitle()
@@ -112,7 +112,7 @@ void menuHUD::menuTitle()
     titleBounds = title.getLocalBounds();
 
     title.setPosition(screenSizeX / 2.0f - titleBounds.width / 2, 10);
-    gameData.window->draw(title);
+    GameMaster::GetInstance()->GetGameData().window->draw(title);
 }
 
 //Text different Option
@@ -137,13 +137,13 @@ void menuHUD::menuTxt()
         playRect.setOrigin(x, y);
         playRect.setPosition(play[i].getPosition());
 
-        gameData.window->draw(playRect);
-        gameData.window->draw(play[i]);
+        GameMaster::GetInstance()->GetGameData().window->draw(playRect);
+        GameMaster::GetInstance()->GetGameData().window->draw(play[i]);
 
         play.push_back(playFirstChoice);
 
 
-        mousePos = sf::Mouse::getPosition(*gameData.window);
+        mousePos = sf::Mouse::getPosition(*GameMaster::GetInstance()->GetGameData().window);
 
         //Detection selection + contain cursor mouse
         if (playBounds.contains(sf::Vector2f(mousePos.x , mousePos.y))) {
@@ -157,7 +157,7 @@ void menuHUD::menuTxt()
                     optionOn = false;
                     break;
                 case 2:
-                    gameData.window->close();
+                    GameMaster::GetInstance()->GetGameData().window->close();
                     break;
                 default:
                     break;
@@ -194,14 +194,14 @@ void menuHUD::Volume() {
     volumeTxtValue.setString(scaleFactorTxt);
     volumeTxtValue.setPosition(volume.getPosition().x + volume.getSize().x, volume.getPosition().y - volume.getSize().y /2);
     volumeTxtValue.setFont(font);
-    gameData.window->draw(volumeTxtValue);
-    gameData.window->draw(volumeTxt);
-    gameData.window->draw(volume);
+    GameMaster::GetInstance()->GetGameData().window->draw(volumeTxtValue);
+    GameMaster::GetInstance()->GetGameData().window->draw(volumeTxt);
+    GameMaster::GetInstance()->GetGameData().window->draw(volume);
 }
 
 //Quit the option
 void menuHUD::GoBack() {
-    mousePos = sf::Mouse::getPosition(*gameData.window);
+    mousePos = sf::Mouse::getPosition(*GameMaster::GetInstance()->GetGameData().window);
     returnbutton.setPosition(selectionBck.getPosition().x - selectionBck.getSize().x / 2, selectionBck.getPosition().y - selectionBck.getSize().y / 2);
     returnGlobalPos = returnbutton.getGlobalBounds();
     if (returnGlobalPos.contains(sf::Vector2f(mousePos.x, mousePos.y))) {
@@ -209,27 +209,27 @@ void menuHUD::GoBack() {
             optionOn = true;
         }
     }
-    gameData.window->draw(returnbutton);
+    GameMaster::GetInstance()->GetGameData().window->draw(returnbutton);
 }
 
 
 //Swap the screen resolution
 void menuHUD::ChangeResolution() {
     screenTxt.setPosition(volume.getPosition().x, volume.getPosition().y + 50);
-    gameData.window->draw(screenTxt);
+    GameMaster::GetInstance()->GetGameData().window->draw(screenTxt);
 
     screenResLow.setPosition(volume.getPosition().x + volume.getSize().x - screenResLow.getSize().x, volume.getPosition().y +50);
     buttonChangeRect = screenResLow.getGlobalBounds();
     if (buttonChangeRect.contains(sf::Vector2f(mousePos.x, mousePos.y))) {
         if (detectedClick() && screenResLow.getFillColor() == sf::Color::Red) {
-            gameData.window->create(sf::VideoMode(1600, 900), "Crusade Of The Abyss", sf::Style::Fullscreen);
+            GameMaster::GetInstance()->GetGameData().window->create(sf::VideoMode(1600, 900), "Crusade Of The Abyss", sf::Style::Fullscreen);
             screenResLow.setFillColor(sf::Color::Blue);
         }
         else if (detectedClick() && screenResLow.getFillColor() == sf::Color::Blue) {
-            gameData.window->create(sf::VideoMode(1920, 1080), "Crusade Of The Abyss", sf::Style::Fullscreen);
+            GameMaster::GetInstance()->GetGameData().window->create(sf::VideoMode(1920, 1080), "Crusade Of The Abyss", sf::Style::Fullscreen);
         }
     }
-    gameData.window->draw(screenResLow);
+    GameMaster::GetInstance()->GetGameData().window->draw(screenResLow);
 }
 
 //Change the language
@@ -240,7 +240,7 @@ void menuHUD::Language() {
 
     languageTxt.setPosition(volume.getPosition().x, volume.getPosition().y + 125);
 
-    gameData.window->draw(languageTxt);
-    gameData.window->draw(languageOptionEN);
-    gameData.window->draw(languageOptionFR);
+    GameMaster::GetInstance()->GetGameData().window->draw(languageTxt);
+    GameMaster::GetInstance()->GetGameData().window->draw(languageOptionEN);
+    GameMaster::GetInstance()->GetGameData().window->draw(languageOptionFR);
 }

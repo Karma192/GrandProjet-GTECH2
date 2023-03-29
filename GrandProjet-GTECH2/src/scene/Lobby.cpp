@@ -1,7 +1,11 @@
 #include "Lobby.hpp"
 
 Lobby::Lobby() {
-	/*sf::Texture texture;
+	/*e = new Enemies();
+	p = new Player();
+	map = new MapGenerator();
+
+	sf::Texture texture;
 	texture.create(1, 1);
 	texture.loadFromFile("ressources/sprites/player/idle.png");
 	_door = ToNextScene(0, sf::Sprite(texture),1 ,1);*/
@@ -19,8 +23,8 @@ void Lobby::Loop() {
 }
 
 void Lobby::Render() {
-	map.Render();
-	p.Render();
+	map->Render();
+	p->Render();
 	sp.Render();
 	e.Render();
 	//_door.Render();

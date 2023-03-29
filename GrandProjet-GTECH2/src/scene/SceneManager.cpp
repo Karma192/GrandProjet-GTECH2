@@ -21,7 +21,7 @@ void SceneManager::SwitchScene()
 	{
 	case MENU:
 		menu.Update();
-#ifdef DEBUG
+#ifdef _DEBUG
 		std::cout << "C'est le menu !" << std::endl;
 #endif // DEBUG
 		break;

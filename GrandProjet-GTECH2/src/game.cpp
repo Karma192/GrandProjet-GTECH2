@@ -22,6 +22,7 @@ void Game::GameLoop()
 	{
 		window->clear();
 		sm->Update();
+		GameMaster::GetInstance()->Purge();
 		window->display();
 
 		while (window->pollEvent(*event))

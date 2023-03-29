@@ -1,4 +1,5 @@
 #pragma once
+
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
@@ -12,9 +13,9 @@ public:
 	GameObject();
 	virtual ~GameObject();
 
-	GameData gameData;
+	bool _destructed = false;
 
-	// Setup des données identitaires du GameObject
+	// Setup des donnï¿½es identitaires du GameObject
 	void SetID(std::string name, std::string tag);
 	// Boucle du game object
 	void Update();
@@ -24,9 +25,10 @@ public:
 	virtual void Render();
 	// Destruction du game object
 	void Destroy();
-	// Fonction pour récuperer le nom du game object
+	// Fonction pour rï¿½cuperer le nom du game object
 	std::string GetName() { return _name; }
 
 private:
 	std::string _name;
+	void SetData();
 };

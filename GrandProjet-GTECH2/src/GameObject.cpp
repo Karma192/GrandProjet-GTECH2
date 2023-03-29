@@ -1,12 +1,15 @@
 #pragma once
 #include "GameObject.hpp"
+#include "GameMaster.hpp"
 
 GameObject::GameObject()
 {
-	gameData = GameMaster::GetInstance()->GetGameData();
+	SetData();
+	GameMaster::AddGameObject(this);
+	_destructed = false;
 }
 
-GameObject::~GameObject() 
+GameObject::~GameObject()
 {
 
 }
@@ -19,27 +22,26 @@ void GameObject::SetID(std::string name, std::string tag)
 
 void GameObject::Update()
 {
-	gameData = GameMaster::GetInstance()->GetGameData();
 	this->Loop();
 	this->Render();
 }
 
-void GameObject::Loop() 
+void GameObject::Loop()
 {
 
 }
 
-void GameObject::Render() 
+void GameObject::Render()
 {
 
 }
 
-void GameObject::Destroy() 
+void GameObject::Destroy()
 {
-	std::vector<GameObject*> list;
-	list.push_back(this);
-	list.clear();
+	_destructed = true;
+}
 
-	// à tester avec CHASSAING
-	//delete& list[0];
+void GameObject::SetData()
+{
+	srand(time(0));
 }

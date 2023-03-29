@@ -18,12 +18,13 @@ public:
     virtual void Render()override;
 
 private:
-    Player p;
+    Player* p;
     //Object object;
-    Enemies e;
+    Enemies* e;
     Spells sp;
     MapGenerator map;
     Room room;
+    ToNextScene _door;
     
     sf::Texture menuBackground;
     sf::Sprite menuBckSprite;

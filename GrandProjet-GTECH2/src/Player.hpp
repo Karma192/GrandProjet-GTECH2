@@ -23,8 +23,6 @@ public:
 	virtual void OnCollisionEnter(PhysicBody* other)override;
 
 	//Player HUD 
-	void playerEndurance();
-	void playerRegenEndurance();
 	void playerUI();
 
 	//Player controller
@@ -88,6 +86,7 @@ private:
 
 
 
+	int playerHP;
 	int m_pv;
 	int m_attack;
 	int playerSpeed = 20;

@@ -2,23 +2,34 @@
 
 GameMaster* GameMaster::instance = nullptr;
 GameData GameMaster::data;
+std::vector<GameObject*> GameMaster::_listGameObject;
 
 GameMaster::GameMaster()
 {
-	if (instance == nullptr && instance != this) 
+	if (instance == nullptr && instance != this)
 	{
 		instance = this;
 	}
 }
 
-GameMaster* GameMaster::GetInstance() 
+GameMaster* GameMaster::GetInstance()
 {
-	if (instance == nullptr) 
+	if (instance == nullptr)
 	{
 		instance = new GameMaster();
 	}
 	return instance;
 }
+
+std::vector<GameObject*> GameMaster::GetListGameObject()
+{
+	return _listGameObject;
+}
+
+/*void GameMaster::AddGameObject(GameObject* obj)
+{
+	_listGameObject.push_back(obj);
+}*/
 
 GameData GameMaster::GetGameData()
 {
@@ -27,7 +38,8 @@ GameData GameMaster::GetGameData()
 
 void GameMaster::SetActiveScene(int value)
 {
-	switch (value) {
+	switch (value) 
+	{
 	case MENU:
 		data.indexScene = MENU;
 		break;
@@ -43,7 +55,30 @@ void GameMaster::SetActiveScene(int value)
 	}
 }
 
-void GameMaster::SetWindow(RenderWindow* win, Event* e) {
+void GameMaster::SetWindow(RenderWindow* win, Event* e) 
+{
 	data.window = win;
 	data.event = e;
+}
+
+void GameMaster::Purge()
+{
+	if (!_listGameObject.empty())
+	{
+		for (int i = 0; i < _listGameObject.size()-1; i++) 
+		{
+			if (_listGameObject[i]->_destructed)
+			{
+				_cm->removeObject(_listGameObject[i]);
+				delete _listGameObject[i];
+				_listGameObject.erase(_listGameObject.begin() + i);
+				
+			}
+		}
+	}
+}
+
+void GameMaster::SetCollisionManager(CollisionManager* cm)
+{
+	_cm = cm;
 }

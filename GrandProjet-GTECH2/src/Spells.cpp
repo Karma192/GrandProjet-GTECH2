@@ -1,4 +1,5 @@
 #include "Spells.hpp"
+#include "GameMaster.hpp"
 
 
 Spells::Spells()
@@ -20,8 +21,7 @@ void Spells::Loop()
 void Spells::Render() 
 {
 	DrawSpell();
-	gameData = GameMaster::GetGameData();
-	gameData.window->draw(Spell);
+	GameMaster::GetGameData().window->draw(Spell);
 }
 
 void Spells::SetFireBall() 
@@ -41,7 +41,7 @@ void Spells::SetFireBall()
 	if (isLaunched()) {
 		if (Spell.getPosition().x < 0 || Spell.getPosition().x > 1920 ||
 			Spell.getPosition().y < 0 || Spell.getPosition().y > 1080) {
-			this->Destroy();
+			//this->Destroy();
 		}
 	}
 }

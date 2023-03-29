@@ -25,14 +25,16 @@ public:
 
 	GameObject* target;
 
-	bool follow = true;
+	bool follow = false;
 	bool IsFixed = true;
 
 	int distance;
 
 private:
 	//void EnemyTest();
-	float followRadius = 1.f;
+
+	int ennemieHP; 
+
 	sf::Texture enemiesTexture;
 	sf::Sprite enemiesSprite;
 	sf::Vector2f TargetPos;
