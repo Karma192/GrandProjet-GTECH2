@@ -128,7 +128,7 @@ bool MapGenerator::collidesWith(CollisionObject* other)
 void MapGenerator::handleCollision(CollisionObject* other)
 {
 	if (dynamic_cast<Player*>(other)) {
-		std::cout << "player";
+		//std::cout << "player";
 	}
 }
 

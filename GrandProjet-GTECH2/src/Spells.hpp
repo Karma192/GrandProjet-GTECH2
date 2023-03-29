@@ -29,19 +29,24 @@ public:
 	int MaxCooldownFireBall = 100;
 	float speed = 10;
 
-
 	///For Slide
 	void SetSlide();
-	int PlayerRapidity;
-	int Rap = 40;
+	int _Speed;
+	int DashTime = 0;
+	int CooldownDash = 100;
+	int Rap = 10;
 
 private:
+	Player* player;
+
 	sf::Vector2f position;
 	sf::Vector2f direction;
 	sf::Vector2f PlayerPos;
 	sf::FloatRect PlayerBounds;
 	sf::Vector2f launchDirection;
-	float PlayerRotation;
+	sf::RectangleShape Cube;
+	int PlayerRapidity;
+	int PlayerRotation;
 	bool launched = true;
 };
 

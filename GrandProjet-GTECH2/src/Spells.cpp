@@ -4,6 +4,8 @@
 Spells::Spells()
 {
 	CooldownFireBall = 0;
+	_Speed = PlayerRapidity / 2;
+	this->player;
 }
 
 
@@ -31,13 +33,14 @@ bool Spells::collidesWith(CollisionObject* other)
 
 		PlayerPos = player->cube.getPosition();
 		PlayerRotation = player->cube.getRotation();
-		PlayerBounds = player->cube.getLocalBounds();
-		//PlayerRapidity = player->getPlayerSpeed();
-
+		PlayerBounds = player->cube.getGlobalBounds();
+		PlayerRapidity = player->getPlayerSpeed();
 		if (Spell.getGlobalBounds().intersects(player->cube.getGlobalBounds())) 
 		{
 			return true;
 		}
+
+
 	}
 	if (Enemies* enemy = dynamic_cast<Enemies*>(other)) 
 	{
@@ -96,12 +99,23 @@ void Spells::DrawSpell()
 	Spell.setRadius(10);
 	Spell.setFillColor(sf::Color::Green);
 	Spell.setPosition(position);
-	Spell.setOrigin(PlayerBounds.width / 2.0f, PlayerBounds.height / 2.0f);
+	//Spell.setOrigin(PlayerBounds.width / 2.0f, PlayerBounds.height / 2.0f);
 }
 
 void Spells::SetSlide() 
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-		std::cout << "Cours";
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		player->setPlayerSpeed(Rap);
+
+		/*	if (DashTime <= 0)
+		{
+			DashTime = CooldownDash;
+			if (PlayerRotation == 0 || PlayerRotation == 90 
+				|| PlayerRotation == 180 || PlayerRotation == 270)
+			{
+			}
+		}*/
 	}
+	DashTime--;
 }
