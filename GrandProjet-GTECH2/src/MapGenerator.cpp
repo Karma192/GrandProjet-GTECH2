@@ -27,9 +27,9 @@ void Room::Render()
 	gameData.window->draw(*background);
 	gameData.window->draw(*decoration);
 	gameData.window->draw(*collision);
-	for (int i = 0; i < rect.size(); i++) {
+	/*for (int i = 0; i < rect.size(); i++) {
 		gameData.window->draw(rect[i]);
-	}
+	}*/
 }
 
 bool Room::collidesWith(CollisionObject* other)
