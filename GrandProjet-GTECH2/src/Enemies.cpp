@@ -19,7 +19,7 @@ void Enemies::Loop()
 
 void Enemies::Render() 
 {
-    gameData = GetGameData();
+    gameData = GameMaster::GetInstance()->GetGameData();
     gameData.window->draw(cube2);
 }
 

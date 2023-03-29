@@ -11,19 +11,13 @@
 
 class SceneManager {
 public:
-	sf::RenderWindow* window;
-	sf::Event* event;
-
 	Menu menu;
 	Lobby lobby;
 	InGame ingame;
 
-	GameData smData;
-
 	SceneManager();
 	virtual ~SceneManager();
 
-	void SetSM(sf::RenderWindow*, sf::Event*);
 	void Update();
 
 private:

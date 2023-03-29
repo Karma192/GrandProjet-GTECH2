@@ -1,11 +1,31 @@
 #include "GameMaster.hpp"
 
-GameData GetGameData() 
+GameMaster* GameMaster::instance = nullptr;
+GameData GameMaster::data;
+
+GameMaster::GameMaster()
+{
+	if (instance == nullptr && instance != this) 
+	{
+		instance = this;
+	}
+}
+
+GameMaster* GameMaster::GetInstance() 
+{
+	if (instance == nullptr) 
+	{
+		instance = new GameMaster();
+	}
+	return instance;
+}
+
+GameData GameMaster::GetGameData()
 {
 	return data;
 }
 
-void SetActiveScene(int value) 
+void GameMaster::SetActiveScene(int value)
 {
 	switch (value) {
 	case MENU:
@@ -23,7 +43,7 @@ void SetActiveScene(int value)
 	}
 }
 
-void SetWindow(RenderWindow* win, Event* e) {
+void GameMaster::SetWindow(RenderWindow* win, Event* e) {
 	data.window = win;
 	data.event = e;
 }
