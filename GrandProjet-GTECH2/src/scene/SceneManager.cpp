@@ -22,14 +22,14 @@ void SceneManager::SwitchScene()
 	case MENU:
 		menu.Update();
 #ifdef _DEBUG
-		std::cout << "C'est le menu !" << std::endl;
+		//std::cout << "C'est le menu !" << std::endl;
 #endif // DEBUG
 		break;
 
 	case LOBBY:
 		lobby.Update();
 #ifdef _DEBUG
-		std::cout << "C'est le lobby !" << std::endl;
+		//std::cout << "C'est le lobby !" << std::endl;
 #endif // DEBUG
 		break;
 

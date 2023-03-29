@@ -8,7 +8,8 @@
 class Spells : public GameObject
 {
 public:
-	Spells();
+	Spells() = default;
+	Spells(Player *p);
 	virtual ~Spells();
 
 
@@ -33,8 +34,7 @@ public:
 	void SetSlide();
 	int _Speed;
 	int DashTime = 0;
-	int CooldownDash = 100;
-	int Rap = 10;
+	int CooldownDash;
 
 private:
 	Player* player;

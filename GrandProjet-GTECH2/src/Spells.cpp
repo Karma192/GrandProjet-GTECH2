@@ -2,11 +2,12 @@
 #include "GameMaster.hpp"
 
 
-Spells::Spells()
+Spells::Spells(Player *p)
 {
 	CooldownFireBall = 0;
+	CooldownDash = 0;
 	_Speed = PlayerRapidity / 2;
-	this->player;
+	player = p;
 }
 
 
@@ -46,6 +47,7 @@ bool Spells::collidesWith(CollisionObject* other)
 	{
 		if (Spell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) 
 		{
+			std::cout << "bam degats";
 			return true;
 		}
 	}
@@ -54,12 +56,16 @@ bool Spells::collidesWith(CollisionObject* other)
 
 void Spells::handleCollision(CollisionObject* other)
 {
-	if (dynamic_cast<Player*>(other)) {
-
-	}
-	if (dynamic_cast<Enemies*>(other)) {
+	if (dynamic_cast<Enemies*>(other)) 
+	{
 		std::cout << "bam degats";
 	}
+
+	if (dynamic_cast<Player*>(other)) 
+	{
+		std::cout << "Casting";
+	}
+
 }
 
 void Spells::SetFireBall() 
@@ -79,7 +85,7 @@ void Spells::SetFireBall()
 	if (isLaunched()) {
 		if (Spell.getPosition().x < 0 || Spell.getPosition().x > 1920 ||
 			Spell.getPosition().y < 0 || Spell.getPosition().y > 1080) {
-			this->Destroy();
+			//this->Destroy();
 		}
 	}
 }
@@ -106,16 +112,15 @@ void Spells::SetSlide()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		player->setPlayerSpeed(Rap);
-
-		/*	if (DashTime <= 0)
+		if (DashTime <= 0)
 		{
 			DashTime = CooldownDash;
 			if (PlayerRotation == 0 || PlayerRotation == 90 
 				|| PlayerRotation == 180 || PlayerRotation == 270)
 			{
+				player->setPlayerSpeed(_Speed);
 			}
-		}*/
+		}
 	}
 	DashTime--;
 }

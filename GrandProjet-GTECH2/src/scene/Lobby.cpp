@@ -2,9 +2,11 @@
 
 Lobby::Lobby() {
 	collisionmanager.addObject(&map);
-	collisionmanager.addObject(&sp);
 	collisionmanager.addObject(&e);
+	collisionmanager.addObject(&sp);
 	collisionmanager.addObject(&p);
+	p = Player();
+	sp = Spells(&p);
 	//collisionmanager.addObject(&object);
 	collisionmanager.addObject(&_door);
 

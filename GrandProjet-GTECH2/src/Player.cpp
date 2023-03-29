@@ -79,12 +79,16 @@ bool Player::collidesWith(CollisionObject* other) {
 
 void Player::handleCollision(CollisionObject* other)
 {
-	if (dynamic_cast<Enemies*>(other)) {
+	if (dynamic_cast<Enemies*>(other)) 
+    {
         
 	}
-	if (dynamic_cast<Object*>(other)) {
+
+	if (dynamic_cast<Object*>(other)) 
+    {
 
     }
+
 	if (dynamic_cast<MapGenerator*>(other)) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && _playerDirection != 1)
         {
@@ -249,7 +253,7 @@ int Player::getPlayerSpeed()
     return playerSpeed;
 }
 
-void Player::setPlayerSpeed(int OtherSpeed)
+void Player::setPlayerSpeed(float OtherSpeed)
 {
     playerSpeed = OtherSpeed;
 }

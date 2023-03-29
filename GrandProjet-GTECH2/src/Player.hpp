@@ -43,7 +43,7 @@ public:
 	int GetPlayerXPos();
 	int GetPlayerYPos();
 	int getPlayerSpeed();
-	void setPlayerSpeed(int);
+	void setPlayerSpeed(float);
 
 	//Player attack
 	void PlayerAttack();
@@ -62,6 +62,7 @@ public:
 
 
 	bool IsAttacking = false;
+	float playerSpeed = 20;
 
 protected:
 	float endurancePlayer = 100;
@@ -92,7 +93,6 @@ private:
 
 	int m_pv;
 	int m_attack;
-	int playerSpeed = 20;
 	int _playerDirection = 0;
 	sf::Clock endurance;
 
