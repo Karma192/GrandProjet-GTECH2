@@ -22,12 +22,9 @@ void PhysicBody::OnCollisionEnter(PhysicBody* other)
 	}
 }
 
-void PhysicBody::SetHitbox(sf::Vector2f coord, sf::Vector2f size)
+void PhysicBody::SetHitbox(sf::FloatRect* rect)
 {
-	_hitbox.left = coord.x;
-	_hitbox.top = coord.y;
-	_hitbox.width = size.x;
-	_hitbox.height = size.y;
+	_hitbox = rect;
 }
 
 void PhysicBody::SetCollideTag(std::string tag)

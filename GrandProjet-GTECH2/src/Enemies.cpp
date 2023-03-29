@@ -4,8 +4,8 @@ Enemies::Enemies()
 {
     Cube2Test();
     SetID("Enemy1", "Enemy");
-    SetHitbox(sf::Vector2f(cube2.getGlobalBounds().left, cube2.getGlobalBounds().top),
-        sf::Vector2f(cube2.getGlobalBounds().width, cube2.getGlobalBounds().height));
+    sf::FloatRect* hitbox = &cube2.getGlobalBounds();
+    SetHitbox(hitbox);
 }
 
 Enemies::~Enemies()
@@ -30,6 +30,10 @@ void Enemies::OnCollisionEnter(PhysicBody* other)
     if (other->CompareTag("Player"))
     {
 		std::cout << "Collision of " << GetName() <<" with player" << std::endl;
+	}
+    if (other->CompareTag("Enemy"))
+    {
+		std::cout << "Collision of " << GetName() << " with enemy" << std::endl;
 	}
 }
 

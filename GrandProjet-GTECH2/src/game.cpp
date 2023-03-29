@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include <stdlib.h>
 
 Game::Game() {
 	sm = new SceneManager;

@@ -4,8 +4,9 @@
 Player::Player()
 {
     CubeTest();
-    SetID("Player", "Player");
-    SetHitbox(sf::Vector2f(cube.getGlobalBounds().left, cube.getGlobalBounds().top), sf::Vector2f(cube.getGlobalBounds().width, cube.getGlobalBounds().height));
+    SetID("Player", "Enemy");
+    sf::FloatRect* hitbox = &cube.getGlobalBounds();
+    SetHitbox(hitbox);
 }
 
 Player::~Player()

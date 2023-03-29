@@ -23,23 +23,23 @@ PhysicsManager* PhysicsManager::GetInstance()
 void PhysicsManager::Update()
 {
 #ifdef _DEBUG
-	std::cout << "Body count : " << _bodies.size() << std::endl;
+	//std::cout << "Body count : " << _bodies.size() << std::endl;
 #endif // _DEBUG
 
 	for (int i = 0; i < _bodies.size(); i++)
 	{
 		for (int j = i + 1; j < _bodies.size(); j++)
 		{
-			if (_bodies[i]->Hitbox()->intersects(*_bodies[j]->Hitbox()))
+			if (_bodies[i]->Hitbox() != nullptr && _bodies[j]->Hitbox() != nullptr
+				&&_bodies[i]->Hitbox()->intersects(*_bodies[j]->Hitbox()))
 			{
 				_bodies[i]->OnCollisionEnter(_bodies[j]);
 				_bodies[j]->OnCollisionEnter(_bodies[i]);
 			}
-#ifdef _DEBUG
-			std::cout << "Tag" << i << " : " << _bodies[i]->GetTag() << std::endl;
-#endif // _DEBUG
-
 		}
+#ifdef _DEBUG
+		//std::cout << "Tag" << i << " : " << _bodies[i]->GetTag() << std::endl;
+#endif // _DEBUG
 	}
 }
 

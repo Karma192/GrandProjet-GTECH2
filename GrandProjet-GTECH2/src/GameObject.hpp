@@ -15,7 +15,7 @@ public:
 	GameData gameData;
 
 	// Setup des données identitaires du GameObject
-	void SetID(std::string, std::string);
+	void SetID(std::string name, std::string tag);
 	// Boucle du game object
 	void Update();
 	// Processus en back du game object

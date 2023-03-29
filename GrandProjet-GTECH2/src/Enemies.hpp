@@ -18,8 +18,6 @@ public:
 
 	void Cube2Test();
 	void FollowTarget(bool);
-	void MoveBase();
-	void EnemyMove();
 	void GetStunned();
 
 	sf::RectangleShape cube2;
