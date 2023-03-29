@@ -15,14 +15,11 @@ Player::~Player()
 
 void Player::Loop()
 {
-    playerEndurance();
-    playerRegenEndurance();
     ControllerMove();
     KeyboardMove();
     PlayerAttack();
     setCamera();
     _stopMoving = false;
-    //std::cout << "Player direction : " << _playerDirection << std::endl;
     PlayerBasicAttack();
 
 }
@@ -115,34 +112,9 @@ void Player::handleCollision(CollisionObject* other)
     }
 }
 
-void Player::playerEndurance()
-{
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cd_Endurance >= 2 && endurancePlayer > 0)
-    {
-        endurancePlayer -= 0.5;
-        enduranceBar.setScale(endurancePlayer / 100, 1);
-    }
-    if (endurancePlayer <= 0 && sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-    {
-    }
-}
-
-void Player::playerRegenEndurance()
-{
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && endurancePlayer <= 100)
-    {
-        endurancePlayer += 0.1;
-        enduranceBar.setScale(endurancePlayer / 100, 1);
-    }
-}
 
 void Player::playerUI()
 {
-    enduranceBar.setSize(sf::Vector2f(300.f, 25.f));
-    enduranceBar.setFillColor(sf::Color::Blue);
-    sf::Vector2f enduranceBarV = gameData.window->mapPixelToCoords(sf::Vector2i(2, 830));
-    enduranceBar.setPosition(enduranceBarV);
-
     lifeBar.setSize(sf::Vector2f(300.f, 25.f));
     lifeBar.setFillColor(sf::Color::Green);
     sf::Vector2f lifeBarV = gameData.window->mapPixelToCoords(sf::Vector2i(2, 800));
@@ -236,6 +208,7 @@ void Player::KeyboardMove()
             MovePlayer();
         }
     }
+
 }
 
 

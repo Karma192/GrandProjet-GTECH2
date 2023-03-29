@@ -22,8 +22,6 @@ public:
 	void handleCollision(CollisionObject* other) override;
 
 	//Player HUD 
-	void playerEndurance();
-	void playerRegenEndurance();
 	void playerUI();
 
 
