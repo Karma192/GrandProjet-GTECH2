@@ -1,9 +1,9 @@
 #pragma once
+
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
 #include <SFML/Graphics.hpp>
-#include "GameMaster.hpp"
 #include "CollisionObject.h"
 
 class GameObject : public CollisionObject {
@@ -12,8 +12,6 @@ public:
 
 	GameObject();
 	virtual ~GameObject();
-
-	GameData gameData;
 
 	// Boucle du game object
 	void Update();

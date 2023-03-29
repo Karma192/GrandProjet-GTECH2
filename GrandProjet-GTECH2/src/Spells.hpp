@@ -18,18 +18,18 @@ public:
 	bool collidesWith(CollisionObject* other) override;
 	void handleCollision(CollisionObject* other) override;
 
+	///For FireBall
 	void SetFireBall();
-
-	void Update();
-	void Launch(Vector2f StartPos,Vector2f LaunchDir);
+	void Launch(sf::Vector2f StartPos,sf::Vector2f LaunchDir);
 	void DrawSpell();
-
 	bool isLaunched() { return launched; }
-	void reset(){ launched = false; }
 
 	sf::CircleShape Spell;
 	int CooldownFireBall;
 	int MaxCooldownFireBall = 0;
+
+	///For Slide
+	void SetSlide();
 
 private:
 	sf::Vector2f position;
