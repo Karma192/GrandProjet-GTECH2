@@ -22,7 +22,7 @@ void Spells::Render()
 {
 	DrawSpell();
 	GameMaster::GetGameData().window->draw(Spell);
-	HitboxThirdSpell();
+	ThirdSpell();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 	{
 		GameMaster::GetInstance()->GetGameData().window->draw(_hitboxThirdSpell);
@@ -47,8 +47,7 @@ bool Spells::collidesWith(CollisionObject* other)
 
 	if (Enemies* enemy = dynamic_cast<Enemies*>(other)) 
 	{
-		enemyHP = enemy->GetEnemieHP();
-		enemy->SetEnemieHP(enemyHP); 
+		enemyHP = enemy->GetEnemieHP(); 
 
 		if (Spell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) 
 		{
@@ -72,8 +71,7 @@ void Spells::handleCollision(CollisionObject* other)
 	}
 	if (dynamic_cast<Enemies*>(other)) 
 	{
-		enemyHP -= 5;
-		std::cout << enemyHP << std::endl;
+		//TODO DAMAGE ENEMY HP
 	}
 }
 
@@ -125,7 +123,7 @@ void Spells::SetSlide()
 	}
 }
 
-void Spells::HitboxThirdSpell()
+void Spells::ThirdSpell()
 {
 	_hitboxThirdSpell.setRadius(80.f);
 	_hitboxThirdSpell.setFillColor(sf::Color::Blue);

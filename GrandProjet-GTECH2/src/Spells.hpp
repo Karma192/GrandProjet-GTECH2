@@ -32,7 +32,7 @@ public:
 	void SetSlide();
 
 	///For third spell
-	void HitboxThirdSpell();
+	void ThirdSpell();
 
 
 private:
