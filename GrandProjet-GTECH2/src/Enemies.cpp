@@ -21,13 +21,13 @@ void Enemies::Loop()
 void Enemies::Render() 
 {
     gameData = GetGameData();
-    gameData.window->draw(playerSlime);
+    gameData.window->draw(enemySlime);
 }
 
 bool Enemies::collidesWith(CollisionObject* other)
 {
     if (Player* player = dynamic_cast<Player*>(other)) {
-        if (playerSlime.getGlobalBounds().intersects(player->playerSprite.getGlobalBounds())) {
+        if (enemySlime.getGlobalBounds().intersects(player->playerSprite.getGlobalBounds())) {
             return true;
         }
     }
@@ -44,9 +44,9 @@ void Enemies::handleCollision(CollisionObject* other)
 
 void Enemies::DisplaySlime()
 {
-    animationSlime.InitAnimation("ressources/sprites/enemy/slime/slime_sprite_sheet.png", &playerSlime, 3.f, 32, 32);
+    animationSlime.InitAnimation("ressources/sprites/enemy/slime/slime_sprite_sheet.png", &enemySlime, 3.f, 32, 32);
 
-    playerSlime.setPosition(sf::Vector2f(600, 350));
+    enemySlime.setPosition(sf::Vector2f(600, 350));
 }
 
 void Enemies::FollowTarget(bool)

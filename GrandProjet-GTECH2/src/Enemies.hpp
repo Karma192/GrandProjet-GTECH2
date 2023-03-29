@@ -23,7 +23,7 @@ public:
 	void MoveBase();
 	void EnemyMove();
 	void GetStunned();
-	sf::Sprite playerSlime;
+	sf::Sprite enemySlime;
 	sf::Clock clock2;
 
 	GameObject* target;

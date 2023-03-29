@@ -63,7 +63,7 @@ void Player::Render()
 
 bool Player::collidesWith(CollisionObject* other) {
     if (Enemies* enemy = dynamic_cast<Enemies*>(other)){
-        if (playerSprite.getGlobalBounds().intersects(enemy->playerSlime.getGlobalBounds())) {
+        if (playerSprite.getGlobalBounds().intersects(enemy->enemySlime.getGlobalBounds())) {
             return true;
         }
     }
