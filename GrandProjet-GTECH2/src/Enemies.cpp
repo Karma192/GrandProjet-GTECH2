@@ -28,7 +28,7 @@ bool Enemies::collidesWith(CollisionObject* other)
 {
     if (Player* player = dynamic_cast<Player*>(other)) 
     {
-        TargetPos = player->player.getPosition();
+        TargetPos = player->playerSprite.getPosition();
         if (enemySlime.getGlobalBounds().intersects(player->cube.getGlobalBounds())) 
         {
             return true;

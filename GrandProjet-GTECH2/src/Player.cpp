@@ -22,15 +22,12 @@ void Player::Loop()
     _stopMoving = false;
     PlayerBasicAttack();
         // idle
-    if (moveSpeed.x == 0 && moveSpeed.y == 0)
-    {
-        animationPlayer.Animate(4, 7, 1, 1, 0.2f, false);
-    }
+    animationPlayer.Animate(4, 7, 1, 1, 0.2f, false);
+    
 }
 
 void Player::Render()
 {
-    GameMaster::GetInstance()->GetGameData().window->draw(enduranceBar);
     GameMaster::GetInstance()->GetGameData().window->draw(lifeBar);
     GameMaster::GetInstance()->GetGameData().window->draw(playerUltiUI);
     for (int i = 0; i < 3; i++)

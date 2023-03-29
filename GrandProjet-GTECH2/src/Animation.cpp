@@ -8,6 +8,8 @@ void Animation::InitAnimation(sf::String texturePath, sf::Sprite* sprite, float 
 	aFrameHeight = frameHeight;
 	aScale = scale;
 
+	std::cout << texturePath << std::endl;
+
 	texture.loadFromFile(aTexturePath);
 	aSprite->setTexture(texture);
 

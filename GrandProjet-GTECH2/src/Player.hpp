@@ -50,17 +50,12 @@ public:
 
 	//Player draw
 	sf::RectangleShape cube;
-	sf::Vector2f moveSpeed;
-	sf::View view;
 	float rotation;
 	sf::Vector2f velocity;
 	sf::FloatRect CubeBounds = cube.getLocalBounds();
 
 	bool IsAttacking = false;
 
-protected:
-	float endurancePlayer = 100;
-	float cd_Endurance = endurance.getElapsedTime().asSeconds();
 
 private:
 	//Player draw
@@ -74,15 +69,10 @@ private:
 	bool asAttacked = false;
 
 	//rectangle pour endurance + vie
-	sf::RectangleShape enduranceBar;
-	sf::RectangleShape enduranceBarBack;
 	sf::RectangleShape lifeBar;
 
 	//cercle pour ulti + spell
 	sf::CircleShape playerUltiUI;
-	sf::CircleShape playerFirstSpell;
-	sf::CircleShape playerSecondSpell;
-	sf::CircleShape playerThirdSpell;
 
 	sf::CircleShape playerUITab[4];
 

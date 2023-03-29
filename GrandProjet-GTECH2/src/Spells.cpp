@@ -40,7 +40,7 @@ bool Spells::collidesWith(CollisionObject* other)
 	}
 
 	if (Enemies* enemy = dynamic_cast<Enemies*>(other)) {
-		if (Spell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) {
+		if (Spell.getGlobalBounds().intersects(enemy->enemySlime.getGlobalBounds())) {
 			return true;
 		}
 	}
