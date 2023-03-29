@@ -50,6 +50,7 @@ private:
 
 	///Third Spell
 	sf::CircleShape _hitboxThirdSpell;
+	int enemyHP; 
 
 };
 

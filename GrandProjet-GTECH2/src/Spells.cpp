@@ -23,7 +23,10 @@ void Spells::Render()
 	DrawSpell();
 	GameMaster::GetGameData().window->draw(Spell);
 	HitboxThirdSpell();
-	GameMaster::GetInstance()->GetGameData().window->draw(_hitboxThirdSpell);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+	{
+		GameMaster::GetInstance()->GetGameData().window->draw(_hitboxThirdSpell);
+	}
 }
 
 bool Spells::collidesWith(CollisionObject* other)
@@ -40,18 +43,23 @@ bool Spells::collidesWith(CollisionObject* other)
 			return true;
 		}
 
-		if (_hitboxThirdSpell.getGlobalBounds().intersects(player->cube.getGlobalBounds()))
-		{
-			return true;
-		}
-
 	}
 
-	if (Enemies* enemy = dynamic_cast<Enemies*>(other)) {
+	if (Enemies* enemy = dynamic_cast<Enemies*>(other)) 
+	{
+		enemyHP = enemy->GetEnemieHP();
+		enemy->SetEnemieHP(enemyHP); 
+
 		if (Spell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) 
 		{
 			return true;
 		}
+
+		if (_hitboxThirdSpell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds()))
+		{
+			return true;
+		}
+
 	}
 	return false;
 }
@@ -64,7 +72,8 @@ void Spells::handleCollision(CollisionObject* other)
 	}
 	if (dynamic_cast<Enemies*>(other)) 
 	{
-		std::cout << "DAMAGE THIRD SPELL" << std::endl;
+		enemyHP -= 5;
+		std::cout << enemyHP << std::endl;
 	}
 }
 
