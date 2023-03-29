@@ -29,7 +29,7 @@ void SceneManager::SwitchScene()
 	case LOBBY:
 		lobby.Update();
 #ifdef _DEBUG
-		std::cout << "C'est le lobby !" << std::endl;
+		//std::cout << "C'est le lobby !" << std::endl;
 #endif // DEBUG
 		break;
 

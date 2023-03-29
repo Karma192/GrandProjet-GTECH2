@@ -1,7 +1,5 @@
 ﻿#include "Player.hpp"
 #include "ToNextScene.hpp"
-#include "GameMaster.hpp"
-
 
 Player::Player()
 {
@@ -171,10 +169,9 @@ void Player::ControllerMove()
 }
 
 void Player::MouseUsage() {
-    gameData = GetGameData();
     _playerCenter = cube.getPosition();
-    _mousePos = sf::Mouse::getPosition(*gameData.window);
-    _worldPosition = gameData.window->mapPixelToCoords(_mousePos, gameData.window->getView());
+    _mousePos = sf::Mouse::getPosition(*GameMaster::GetInstance()->GetGameData().window);
+    _worldPosition = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(_mousePos, GameMaster::GetInstance()->GetGameData().window->getView());
 
     float dx = _worldPosition.x - _playerCenter.x;
     float dy = _worldPosition.y - _playerCenter.y;
@@ -265,13 +262,13 @@ void Player::PlayerBasicAttack()
             hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - 30.f);
         }
         if (angleDegrees > 135 && angleDegrees < 225) {
-            hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() + 30.f);
+            hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos());
         }
         if (angleDegrees > 225 && angleDegrees < 315) {
-            hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos());
+            hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() + 30.f);
         }
-        if (angleDegrees > 270 || angleDegrees < 45) {
-            hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos());
+        if (angleDegrees > 325 || angleDegrees < 45) {
+            hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos());
         }
     }
 }

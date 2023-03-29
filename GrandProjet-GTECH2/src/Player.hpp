@@ -1,4 +1,7 @@
 #pragma once 
+
+#define M_PI           3.14159265358979323846  /* pi */
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
@@ -7,7 +10,7 @@
 #include "Enemies.hpp"
 #include "GameMaster.hpp"
 #include "MapGenerator.hpp"
-# define M_PI           3.14159265358979323846  /* pi */
+
 
 
 class Player : public GameObject {
