@@ -42,3 +42,8 @@ bool PhysicBody::CompareTag(std::string tag)
 	else
 		return false;
 }
+
+std::string PhysicBody::GetTag()
+{
+	return _tag;
+}

@@ -17,4 +17,5 @@ public:
 	void SetHitbox(sf::Vector2f coord, sf::Vector2f size);
 	void SetCollideTag(std::string tag);
 	bool CompareTag(std::string tag);
+	std::string GetTag();
 };
