@@ -11,7 +11,7 @@ protected:
 	static sf::RectangleShape* _target;
 	sf::View _cameraView;
 
-	int _offset;
+	int _delay;
 public:
 	Camera();
 	Camera(Camera& other) = delete;
@@ -24,5 +24,5 @@ public:
 	void SetFollow(sf::RectangleShape*);
 	void ResetCamera();
 	void SetPosCamera(float, float);
-	void SetCameraOffset(int);
+	void SetCameraDelay(int);
 };

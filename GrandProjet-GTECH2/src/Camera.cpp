@@ -52,7 +52,7 @@ void Camera::SetPosCamera(float x, float y)
 	_cameraView.setCenter(sf::Vector2f(x, y));
 }
 
-void Camera::SetCameraOffset(int value)
+void Camera::SetCameraDelay(int value)
 {
-	_offset = value;
+	_delay = value;
 }
