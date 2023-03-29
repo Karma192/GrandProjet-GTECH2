@@ -2,7 +2,7 @@
 
 Enemies::Enemies()
 {
-    Cube2Test();
+    DisplaySlime();
 }
 
 Enemies::~Enemies()
@@ -14,18 +14,20 @@ void Enemies::Loop()
 {
     //GetStunned();
     FollowTarget(follow);
+
+    animationSlime.Animate(4, 7, 1, 1, 0.2f, false);
 }
 
 void Enemies::Render() 
 {
     gameData = GetGameData();
-    gameData.window->draw(cube2);
+    gameData.window->draw(playerSlime);
 }
 
 bool Enemies::collidesWith(CollisionObject* other)
 {
     if (Player* player = dynamic_cast<Player*>(other)) {
-        if (cube2.getGlobalBounds().intersects(player->playerSprite.getGlobalBounds())) {
+        if (playerSlime.getGlobalBounds().intersects(player->playerSprite.getGlobalBounds())) {
             return true;
         }
     }
@@ -40,11 +42,11 @@ void Enemies::handleCollision(CollisionObject* other)
     }
 }
 
-void Enemies::Cube2Test()
+void Enemies::DisplaySlime()
 {
-    cube2.setSize(sf::Vector2f(30.f, 30.f));
-    cube2.setFillColor(sf::Color::Blue);
-    cube2.setPosition(sf::Vector2f(800, 400));
+    animationSlime.InitAnimation("ressources/sprites/enemy/slime/slime_sprite_sheet.png", &playerSlime, 3.f, 32, 32);
+
+    playerSlime.setPosition(sf::Vector2f(600, 350));
 }
 
 void Enemies::FollowTarget(bool)

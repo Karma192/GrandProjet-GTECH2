@@ -29,7 +29,6 @@ public:
 	//Player controller
 	void ControllerMove();
 	void MovePlayer();
-	void Static();
 	void KeyboardMove();
 	void setCamera();
 
@@ -52,9 +51,6 @@ public:
 
 	bool IsAttacking = false;
 
-	Animation animationIdlePlayer;
-	Animation animationRunPlayer;
-
 protected:
 	float endurancePlayer = 100;
 	float cd_Endurance = endurance.getElapsedTime().asSeconds();
@@ -64,8 +60,7 @@ private:
 	sf::Vector2f moveSpeed;
 	sf::View view;
 
-	//Animation* animationIdlePlayer;
-	//Animation* animationRunPlayer;
+	Animation animationPlayer;
 
 	//Player attack basic
 	bool isActtk = true;

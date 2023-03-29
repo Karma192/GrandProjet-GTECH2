@@ -17,7 +17,13 @@ void Player::Loop()
     ControllerMove();
     KeyboardMove();
     PlayerAttack();
-    Static();
+
+    // idle
+    if (moveSpeed.x == 0 && moveSpeed.y == 0)
+    {
+        animationPlayer.Animate(4, 7, 1, 1, 0.2f, false);
+    }
+
     //setCamera();
 }
 
@@ -57,7 +63,7 @@ void Player::Render()
 
 bool Player::collidesWith(CollisionObject* other) {
     if (Enemies* enemy = dynamic_cast<Enemies*>(other)){
-        if (playerSprite.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) {
+        if (playerSprite.getGlobalBounds().intersects(enemy->playerSlime.getGlobalBounds())) {
             return true;
         }
     }
@@ -145,8 +151,7 @@ void Player::playerUI()
 
 void Player::DisplayPLayer()
 {
-    animationRunPlayer.InitAnimation("ressources/sprites/player/animations/run/adventurer_run.png", &playerSprite, 50, 37, 6, 0, 3.0f);
-    //animationIdlePlayer.InitAnimation("ressources/sprites/player/animations/idle/adventurer_idle.png", &playerSprite, 50, 37, 4, 0, 3.0f);
+    animationPlayer.InitAnimation("ressources/sprites/player/adventurer_sprite_sheet.png", &playerSprite, 3.f, 50, 37);
 
     playerSprite.setPosition(sf::Vector2f(200, 200));
 }
@@ -190,13 +195,13 @@ void Player::KeyboardMove()
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
-        animationRunPlayer.Animate(0.2f, true);
+        animationPlayer.Animate(6, 7, 2, 2, 0.2f, true);
         moveSpeed = sf::Vector2f(-100.f, 0.f);
         MovePlayer();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
-        animationRunPlayer.Animate(0.2f, false);
+        animationPlayer.Animate(6, 7, 2, 2, 0.2f, false);
         moveSpeed = sf::Vector2f(100.f, 0.f);
         MovePlayer();
     }
@@ -216,14 +221,6 @@ void Player::PlayerAttack()
 {
     PlayerBasicAttack();
     asAttacked = true;
-}
-
-void Player::Static()
-{
-    if (moveSpeed.x == 0 && moveSpeed.y == 0)
-    {
-        //animationIdlePlayer.Animate(0.2f, false);
-    }
 }
 
 void Player::PlayerBasicAttack()

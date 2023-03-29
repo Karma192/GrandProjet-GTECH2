@@ -4,6 +4,7 @@
 #include "GameObject.hpp"
 #include "Player.hpp"
 #include "Object.hpp"
+#include "Animation.h"
 
 class Enemies : public GameObject
 {
@@ -17,13 +18,12 @@ public:
 	bool collidesWith(CollisionObject* other) override;
 	void handleCollision(CollisionObject* other) override;
 
-	void Cube2Test();
+	void DisplaySlime();
 	void FollowTarget(bool);
 	void MoveBase();
 	void EnemyMove();
 	void GetStunned();
-
-	sf::RectangleShape cube2;
+	sf::Sprite playerSlime;
 	sf::Clock clock2;
 
 	GameObject* target;
@@ -36,7 +36,7 @@ public:
 private:
 	//void EnemyTest();
 	float followRadius = 1.f;
-	sf::Texture enemiesTexture;
-	sf::Sprite enemiesSprite;
+	Animation animationSlime;
+
 	sf::Vector2f TargetPos;
 };
