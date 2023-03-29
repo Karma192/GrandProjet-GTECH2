@@ -1,3 +1,5 @@
+#pragma once
+
 #include "GameObject.hpp"
 #include "Player.hpp"
 

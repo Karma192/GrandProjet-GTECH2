@@ -2,13 +2,10 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Config.hpp>
+#include "GameObject.hpp"
 
 using namespace sf;
-
-struct player {
-	int gold, key;
-	float hp, resources, speed, baseSpeed, baseDmg, attackSpeed, speedProjectile, luck;
-};
 
 struct GameData {
 	int indexScene = 0;
@@ -28,6 +25,7 @@ class GameMaster
 protected:
 	static GameMaster* instance;
 	static GameData data;
+	static std::vector<GameObject*> _listGameObject;
 public:
 	GameMaster();
 	GameMaster(GameMaster& other) = delete;
@@ -36,10 +34,14 @@ public:
 
 	static GameMaster* GetInstance();
 
-	// Function for get game's global data
+	// Fonction pour récuperer la liste d'objets
+	static std::vector<GameObject*> GetListGameObject();
+	// Fonction pour ajouter un objet à la liste
+	static void AddGameObject(GameObject*);
+	// Fonction pour recuperer les donnees du jeu
 	static GameData GetGameData();
-	// Function to call for change active scene
+	// Fonction pour changer de scene
 	void SetActiveScene(int);
-	// Function for set the window and event
+	// Fonction pour setup du Game Master
 	void SetWindow(RenderWindow*, Event*);
 };

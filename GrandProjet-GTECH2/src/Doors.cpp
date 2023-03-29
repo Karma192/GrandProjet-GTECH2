@@ -1,4 +1,5 @@
 #include "Doors.hpp"
+#include "GameMaster.hpp"
 
 Doors::Doors()
 {
@@ -17,6 +18,5 @@ void Doors::Loop()
 
 void Doors::Render()
 {
-	gameData = GameMaster::GetInstance()->GetGameData();
-	gameData.window->draw(exit);
+	GameMaster::GetInstance()->GetGameData().window->draw(exit);
 }

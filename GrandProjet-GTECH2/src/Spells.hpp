@@ -20,7 +20,7 @@ public:
 
 	///For FireBall
 	void SetFireBall();
-	void Launch(Vector2f StartPos,Vector2f LaunchDir);
+	void Launch(sf::Vector2f StartPos,sf::Vector2f LaunchDir);
 	void DrawSpell();
 	bool isLaunched() { return launched; }
 

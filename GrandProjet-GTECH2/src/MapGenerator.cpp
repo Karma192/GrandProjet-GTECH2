@@ -1,4 +1,5 @@
 #include "MapGenerator.hpp"
+#include "GameMaster.hpp"
 
 // Room class
 
@@ -23,10 +24,9 @@ void Room::Loop()
 
 void Room::Render()
 {
-	gameData = GameMaster::GetInstance()->GetGameData();
-	gameData.window->draw(*background);
-	gameData.window->draw(*decoration);
-	gameData.window->draw(*collision);
+	GameMaster::GetInstance()->GetGameData().window->draw(*background);
+	GameMaster::GetInstance()->GetGameData().window->draw(*decoration);
+	GameMaster::GetInstance()->GetGameData().window->draw(*collision);
 }
 
 bool Room::collidesWith(CollisionObject* other)

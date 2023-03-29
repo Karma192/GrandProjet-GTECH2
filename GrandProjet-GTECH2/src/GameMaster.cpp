@@ -2,6 +2,7 @@
 
 GameMaster* GameMaster::instance = nullptr;
 GameData GameMaster::data;
+std::vector<GameObject*> GameMaster::_listGameObject;
 
 GameMaster::GameMaster()
 {
@@ -18,6 +19,16 @@ GameMaster* GameMaster::GetInstance()
 		instance = new GameMaster();
 	}
 	return instance;
+}
+
+std::vector<GameObject*> GameMaster::GetListGameObject()
+{
+	return _listGameObject;
+}
+
+void GameMaster::AddGameObject(GameObject* obj)
+{
+	_listGameObject.push_back(obj);
 }
 
 GameData GameMaster::GetGameData()

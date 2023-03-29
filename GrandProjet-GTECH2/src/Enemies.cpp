@@ -1,4 +1,5 @@
 #include "Enemies.hpp"
+#include "GameMaster.hpp"
 
 Enemies::Enemies()
 {
@@ -18,8 +19,7 @@ void Enemies::Loop()
 
 void Enemies::Render() 
 {
-    gameData = GameMaster::GetInstance()->GetGameData();
-    gameData.window->draw(cube2);
+    GameMaster::GetInstance()->GetGameData().window->draw(cube2);
 }
 
 bool Enemies::collidesWith(CollisionObject* other)
