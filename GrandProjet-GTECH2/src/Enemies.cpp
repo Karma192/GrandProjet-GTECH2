@@ -40,15 +40,16 @@ void Enemies::handleCollision(CollisionObject* other)
 {
     if (dynamic_cast<Player*>(other)) 
     {
-        //ennemieHP--;
-        //std::cout << ennemieHP << std::endl;
-        //if (ennemieHP <= 0)
-        //{
-        //    std::cout << "ennemi mort";
-        //    cube2.setPosition(1800.f, 60.f);
-        //    FollowTarget(false);
-        //    //TODO DESTROY ENNEMIES
-        //}
+        ennemieHP--;
+        std::cout << ennemieHP << std::endl;
+        if (ennemieHP <= 0)
+        {
+            std::cout << "ennemi mort";
+            cube2.setPosition(1800.f, 60.f);
+            FollowTarget(false);
+            Destroy();
+            //TODO DESTROY ENNEMIES
+        }
     }
 }
 
