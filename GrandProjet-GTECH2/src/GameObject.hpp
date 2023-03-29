@@ -4,7 +4,7 @@
 #include <time.h>
 #include <SFML/Graphics.hpp>
 #include "GameMaster.hpp"
-#include "PhysicBody.hpp"
+#include "CSPurpose/PhysicBody.hpp"
 
 class GameObject : public PhysicBody
 {

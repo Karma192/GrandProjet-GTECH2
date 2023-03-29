@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "PhysicsManager.hpp"
 
 class PhysicBody
 {

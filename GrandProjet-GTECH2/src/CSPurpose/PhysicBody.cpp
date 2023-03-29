@@ -1,4 +1,5 @@
 #include "PhysicBody.hpp"
+#include "PhysicsManager.hpp"
 
 PhysicBody::PhysicBody()
 {

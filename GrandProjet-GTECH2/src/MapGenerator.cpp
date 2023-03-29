@@ -100,26 +100,6 @@ void MapGenerator::Render() {
 
 }
 
-bool MapGenerator::collidesWith(CollisionObject* other)
-{
-	if (Player* player = dynamic_cast<Player*>(other)) {
-		for (int i = 0; i < wallet->GetRoom(0)->rect.size(); i++) {
-			if (wallet->GetRoom(0)->rect[i].getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
-				return true;
-			}
-		}
-	}
-	return false;
-}
-
-void MapGenerator::handleCollision(CollisionObject* other)
-{
-	if (dynamic_cast<Player*>(other)) {
-		std::cout << "player";
-	}
-}
-
-
 void MapGenerator::mapInit()
 {
 	for (int i = 0; i < 10; i++)

@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include "../GameMaster.hpp"
+#include "../CSPurpose/PhysicsManager.hpp"
 #include "Menu.hpp"
 #include "Lobby.hpp"
 #include "InGame.hpp"

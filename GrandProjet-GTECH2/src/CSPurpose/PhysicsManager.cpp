@@ -1,6 +1,7 @@
 #include "PhysicsManager.hpp"
 
 PhysicsManager* PhysicsManager::_instance = nullptr;
+std::vector<PhysicBody*> PhysicsManager::_bodies;
 
 PhysicsManager::PhysicsManager()
 {
@@ -21,6 +22,10 @@ PhysicsManager* PhysicsManager::GetInstance()
 
 void PhysicsManager::Update()
 {
+#ifdef _DEBUG
+	std::cout << "Body count : " << _bodies.size() << std::endl;
+#endif // _DEBUG
+
 	for (int i = 0; i < _bodies.size(); i++)
 	{
 		for (int j = i + 1; j < _bodies.size(); j++)
@@ -30,6 +35,10 @@ void PhysicsManager::Update()
 				_bodies[i]->OnCollisionEnter(_bodies[j]);
 				_bodies[j]->OnCollisionEnter(_bodies[i]);
 			}
+#ifdef _DEBUG
+			std::cout << "Tag" << i << " : " << _bodies[i].
+#endif // _DEBUG
+
 		}
 	}
 }

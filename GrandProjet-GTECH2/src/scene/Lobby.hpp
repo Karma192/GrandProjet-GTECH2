@@ -24,7 +24,6 @@ private:
     Spells sp;
     MapGenerator map;
     Room room;
-    ToNextScene _door;
     
     sf::Texture menuBackground;
     sf::Sprite menuBckSprite;
