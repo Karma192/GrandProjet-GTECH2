@@ -48,6 +48,7 @@ void Enemies::handleCollision(CollisionObject* other)
             std::cout << "ennemi mort";
             enemySlime.setPosition(1800.f, 60.f);
             FollowTarget(false);
+            Destroy();
             //TODO DESTROY ENNEMIES
         }
     }

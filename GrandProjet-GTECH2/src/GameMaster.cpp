@@ -6,15 +6,15 @@ std::vector<GameObject*> GameMaster::_listGameObject;
 
 GameMaster::GameMaster()
 {
-	if (instance == nullptr && instance != this) 
+	if (instance == nullptr && instance != this)
 	{
 		instance = this;
 	}
 }
 
-GameMaster* GameMaster::GetInstance() 
+GameMaster* GameMaster::GetInstance()
 {
-	if (instance == nullptr) 
+	if (instance == nullptr)
 	{
 		instance = new GameMaster();
 	}
@@ -59,4 +59,26 @@ void GameMaster::SetWindow(RenderWindow* win, Event* e)
 {
 	data.window = win;
 	data.event = e;
+}
+
+void GameMaster::Purge()
+{
+	if (!_listGameObject.empty())
+	{
+		for (int i = 0; i < _listGameObject.size()-1; i++) 
+		{
+			if (_listGameObject[i]->_destructed)
+			{
+				_cm->removeObject(_listGameObject[i]);
+				delete _listGameObject[i];
+				_listGameObject.erase(_listGameObject.begin() + i);
+				
+			}
+		}
+	}
+}
+
+void GameMaster::SetCollisionManager(CollisionManager* cm)
+{
+	_cm = cm;
 }

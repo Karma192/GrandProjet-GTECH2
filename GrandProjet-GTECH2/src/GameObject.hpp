@@ -8,7 +8,7 @@
 
 class GameObject : public CollisionObject {
 public:
-	int id;
+	bool _destructed = false;
 
 	GameObject();
 	virtual ~GameObject();
@@ -24,5 +24,4 @@ public:
 
 private:
 	void SetData();
-
 };
