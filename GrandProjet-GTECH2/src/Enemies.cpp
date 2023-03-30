@@ -28,7 +28,7 @@ bool Enemies::collidesWith(CollisionObject* other)
     if (Player* player = dynamic_cast<Player*>(other)) 
     {
         TargetPos = player->cube.getPosition();
-        if (cube2.getGlobalBounds().intersects(player->cube.getGlobalBounds())) 
+        if (cube2.getGlobalBounds().intersects(player->hitboxTest.getGlobalBounds())) 
         {
             return true;
         }
@@ -47,7 +47,7 @@ void Enemies::handleCollision(CollisionObject* other)
             std::cout << "ennemi mort";
             cube2.setPosition(1800.f, 60.f);
             FollowTarget(false);
-            Destroy();
+            //Destroy();
             //TODO DESTROY ENNEMIES
         }
     }

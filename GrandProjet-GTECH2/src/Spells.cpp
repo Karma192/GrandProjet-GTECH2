@@ -28,9 +28,8 @@ bool Spells::collidesWith(CollisionObject* other)
 {
 	if (Player* player = dynamic_cast<Player*>(other)) {
 
-		PlayerPos = player->cube.getPosition();
-		PlayerRotation = player->cube.getRotation();
-		PlayerBounds = player->cube.getLocalBounds();
+		playerCenter = Vector2f(player->cube.getPosition());
+		mousePosWindow = Vector2f(Mouse::getPosition(*GameMaster::GetGameData().window));
 
 		//Endurance = player->playerEndurance();
 
@@ -57,25 +56,23 @@ void Spells::handleCollision(CollisionObject* other)
 	}
 }
 
-void Spells::SetFireBall() 
+void Spells::SetFireBall()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-		if (CooldownFireBall <= 0) {
-			CooldownFireBall = MaxCooldownFireBall;
-			sf::Vector2f launchDirection(std::cos(PlayerRotation * 3.14159265 / 180),
-				std::sin(PlayerRotation * 3.14159265 / 180));
-			Launch(PlayerPos, launchDirection);
-		}
-	}
-	CooldownFireBall--;
-	if (launched) {
-		position += direction * speed;
-	}
-	if (isLaunched()) {
-		if (Spell.getPosition().x < 0 || Spell.getPosition().x > 1920 ||
-			Spell.getPosition().y < 0 || Spell.getPosition().y > 1080) {
-			//this->Destroy();
-		}
+
+
+	aimDir = mousePosWindow - playerCenter;
+	aimDirNorm = aimDir / sqrt(pow(aimDir.x, 2) + pow(aimDir.y, 2));
+
+	float PI = 3.14159265f;
+	float deg = atan2(aimDirNorm.y, aimDirNorm.x) * 180 / PI;
+	player.setRotation(deg + 90);
+
+	if (Mouse::isButtonPressed(Mouse::Left))
+	{
+		b1.shape.setPosition(playerCenter);
+		b1.currVelocity = aimDirNorm * b1.maxSpeed;
+
+		bullets.push_back(Bullet(b1));
 	}
 }
 
@@ -94,7 +91,7 @@ void Spells::DrawSpell()
 	Spell.setRadius(10);
 	Spell.setFillColor(sf::Color::Green);
 	Spell.setPosition(position);
-	Spell.setOrigin(PlayerBounds.width / 2.0f, PlayerBounds.height / 2.0f);
+	Spell.setOrigin(Spell.getGlobalBounds().width / 2 , Spell.getGlobalBounds().height / 2);
 }
 
 void Spells::SetSlide() 

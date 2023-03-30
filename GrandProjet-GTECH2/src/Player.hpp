@@ -62,6 +62,7 @@ public:
 	sf::FloatRect CubeBounds = cube.getLocalBounds();
 
 
+	float angleDegrees;
 	bool IsAttacking = false;
 
 protected:
@@ -77,7 +78,6 @@ private:
 	sf::Vector2f _worldPosition;
 	sf::Vector2f _aimDir;
 	float _aimDirNorm;
-	float angleDegrees;
 
 	//Player attack basic
 	bool isActtk = true;

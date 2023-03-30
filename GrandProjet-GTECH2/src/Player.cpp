@@ -20,8 +20,6 @@ void Player::Loop()
     setCamera();
     MouseUsage();
     _stopMoving = false;
-    PlayerBasicAttack();
-
 }
 
 void Player::Render()
@@ -80,7 +78,6 @@ void Player::handleCollision(CollisionObject* other)
 {
 	if (dynamic_cast<Enemies*>(other)) 
     {
-        //std::cout << playerHP << std::endl; 
         playerHP--;
 	}
 	if (dynamic_cast<Object*>(other)) 
@@ -180,8 +177,6 @@ void Player::MouseUsage() {
     angleDegrees = angleRadians * 180 / M_PI;
     angleDegrees += 180;
 
-    std::cout << angleDegrees << std::endl;
-
     if (angleDegrees > 360)
     {
         angleDegrees -= 360;
@@ -191,8 +186,6 @@ void Player::MouseUsage() {
 void Player::MovePlayer()
 {
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
-    rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / M_PI;
-    cube.setRotation(rotation);
 }
 
 void Player::setCamera() {
@@ -245,19 +238,18 @@ int Player::GetPlayerYPos()
 void Player::PlayerAttack()
 {
     PlayerBasicAttack();
-    asAttacked = true;
 }
 
 void Player::PlayerBasicAttack()
 {
-    hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
-    hitboxTest.setFillColor(sf::Color::Blue);
-    hitboxTest.setPosition(cube.getPosition());
-    hitboxTest.setRotation(cube.getRotation());
-    hitboxTest.setOrigin(CubeBounds.width / 2.0f, CubeBounds.height / 2.0f);
-
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
+        hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
+        hitboxTest.setFillColor(sf::Color::Blue);
+        hitboxTest.setPosition(cube.getPosition());
+        hitboxTest.setRotation(cube.getRotation());
+        hitboxTest.setOrigin(CubeBounds.width / 2.0f, CubeBounds.height / 2.0f);
+
         if (angleDegrees > 45 && angleDegrees < 135) {
             hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - 30.f);
         }
@@ -270,5 +262,6 @@ void Player::PlayerBasicAttack()
         if (angleDegrees > 325 || angleDegrees < 45) {
             hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos());
         }
+        asAttacked = true;
     }
 }

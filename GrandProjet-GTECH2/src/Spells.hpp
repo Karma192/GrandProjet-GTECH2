@@ -32,10 +32,13 @@ public:
 	void SetSlide();
 
 private:
-	sf::Vector2f position;
-	sf::Vector2f direction;
-	sf::Vector2f PlayerPos;
-	sf::FloatRect PlayerBounds;
+
+	Vector2f playerCenter;
+	Vector2f mousePosWindow;
+	Vector2f aimDir;
+	Vector2f aimDirNorm;
+
+	float _mousePos;
 	sf::Vector2f launchDirection;
 	float speed = 10;
 	float PlayerRotation;
