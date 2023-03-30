@@ -1,4 +1,5 @@
 #include "GameMaster.hpp"
+#include "GameObject.hpp"
 
 GameMaster* GameMaster::instance = nullptr;
 GameData GameMaster::data;
@@ -26,10 +27,10 @@ std::vector<GameObject*> GameMaster::GetListGameObject()
 	return _listGameObject;
 }
 
-/*void GameMaster::AddGameObject(GameObject* obj)
+void GameMaster::AddGameObject(GameObject* obj)
 {
 	_listGameObject.push_back(obj);
-}*/
+}
 
 GameData GameMaster::GetGameData()
 {
