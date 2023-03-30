@@ -33,7 +33,7 @@ void PhysicsManager::Update()
 			if (/*_bodies[i]->Hitbox() != nullptr && _bodies[j]->Hitbox() != nullptr
 				&& _bodies[i]->GetTag() != _bodies[j]->GetTag()
 				&&*/ _bodies[i] != _bodies[j]
-				&&_bodies[i]->Hitbox()->intersects(*_bodies[j]->Hitbox()))
+				&& _bodies[i]->Hitbox()->intersects(*_bodies[j]->Hitbox()))
 			{
 				_bodies[i]->OnCollisionEnter(_bodies[j]);
 				_bodies[j]->OnCollisionEnter(_bodies[i]);
@@ -48,4 +48,19 @@ void PhysicsManager::Update()
 void PhysicsManager::AddBody(PhysicBody* body)
 {
 	_bodies.push_back(body);
+}
+
+void PhysicsManager::RemoveBody(PhysicBody* body)
+{
+	if (!_bodies.empty())
+	{
+		for (int i = 0; i < _bodies.size(); i++)
+		{
+			if (_bodies[i] == body)
+			{
+				delete _bodies[i];
+				_bodies.erase(_bodies.begin() + i);
+			}
+		}
+	}
 }

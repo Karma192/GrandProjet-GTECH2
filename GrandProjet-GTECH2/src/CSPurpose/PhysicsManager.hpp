@@ -16,8 +16,13 @@ public:
 
 	void operator=(const PhysicsManager&) = delete;
 
+	// Fonction pour récupérer l'instance du PhysicsManager
 	static PhysicsManager* GetInstance();
 
+	// Fonction pour mettre à jour les collisions
 	void Update();
+	// Fonction pour ajouter un PhysicBody à la liste des PhysicBody
 	static void AddBody(PhysicBody* body);
+	//Fonction pour retirer un PhysicBody de la liste des PhysicBody
+	static void RemoveBody(PhysicBody* body);
 };
