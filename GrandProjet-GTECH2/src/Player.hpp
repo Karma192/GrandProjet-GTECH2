@@ -1,10 +1,14 @@
 #pragma once 
+
+#define M_PI           3.14159265358979323846  /* pi */
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
 #include <cmath>
 #include "GameObject.hpp"
 #include "Enemies.hpp"
+#include "GameMaster.hpp"
 #include "MapGenerator.hpp"
 #include "Spells.hpp"
 
@@ -23,17 +27,15 @@ public:
 	void handleCollision(CollisionObject* other) override;
 
 	//Player HUD 
-	void playerEndurance();
-	void playerRegenEndurance();
 	void playerUI();
 
 
 	//Player controller
 	void CubeTest();
+	void MouseUsage();
 	void ControllerMove();
 	void MovePlayer();
 	void KeyboardMove();
-	void setCamera();
 
 	void setPv(int pv) { m_pv = pv; }
 	int getPv() const { return m_pv; }
@@ -54,13 +56,12 @@ public:
 	sf::RectangleShape hitboxTest;
 
 	//Player draw
-	sf::RectangleShape cube;
+	sf::Sprite cube;
 	sf::Vector2f moveSpeed;
 	sf::View view;
 	float rotation;
 	sf::Vector2f velocity;
 	sf::FloatRect CubeBounds = cube.getGlobalBounds();
-
 
 	bool IsAttacking = false;
 	float playerSpeed = 20;
@@ -72,6 +73,15 @@ protected:
 private:
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
+	sf::Clock clock;
+	sf::IntRect rectSprite;
+
+	sf::Vector2i _mousePos;
+	sf::Vector2f _playerCenter;
+	sf::Vector2f _worldPosition;
+	sf::Vector2f _aimDir;
+	float _aimDirNorm;
+	float angleDegrees;
 
 	//Player attack basic
 	bool _dashing = false;
@@ -96,13 +106,21 @@ private:
 	sf::CircleShape playerUITab[4];
 
 
-
-
+	int _playerDirection = 0;
+	int playerHP; 
 	int m_pv;
 	int m_attack;
-	int _playerDirection = 0;
+	int playerSpeed = 20;
 	sf::Clock endurance;
 
 	bool lookingLeft = false;
+
+	int _playerDirection = 0;
 	bool _stopMoving = false;
+	int _wallTouched = 0;
+
+	bool _collideUp;
+	bool _collideDown;
+	bool _collideLeft;
+	bool _collideRight;
 };

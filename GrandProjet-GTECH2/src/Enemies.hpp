@@ -4,6 +4,7 @@
 #include "GameObject.hpp"
 #include "Player.hpp"
 #include "Object.hpp"
+#include "Spells.hpp"
 
 class Enemies : public GameObject
 {
@@ -21,19 +22,24 @@ public:
 	void FollowTarget(bool);
 	void GetStunned();
 
+	int GetEnemieHP() { return ennemieHP; }
+	void SetEnemieHP(int damage) { damage = ennemieHP; }
+
 	sf::RectangleShape cube2;
 	sf::Clock clock2;
 
 	GameObject* target;
 
-	bool follow = true;
+	bool follow = false;
 	bool IsFixed = true;
 
 	int distance;
 
+
 private:
 	//void EnemyTest();
-	float followRadius = 1.f;
+
+	int ennemieHP; 
 	sf::Texture enemiesTexture;
 	sf::Sprite enemiesSprite;
 	sf::Vector2f TargetPos;

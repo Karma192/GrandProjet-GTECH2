@@ -1,14 +1,14 @@
 #pragma once
-
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
 #include <SFML/Graphics.hpp>
 #include "CollisionObject.h"
+#include "GameMaster.hpp"
 
 class GameObject : public CollisionObject {
 public:
-	int id;
+	bool _destructed = false;
 
 	GameObject();
 	virtual ~GameObject();
@@ -24,5 +24,4 @@ public:
 
 private:
 	void SetData();
-
 };

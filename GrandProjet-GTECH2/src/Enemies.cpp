@@ -4,6 +4,7 @@
 Enemies::Enemies()
 {
     Cube2Test();
+    this->ennemieHP = 10;
 }
 
 Enemies::~Enemies()
@@ -24,19 +25,51 @@ void Enemies::Render()
 
 bool Enemies::collidesWith(CollisionObject* other)
 {
-    if (Player* player = dynamic_cast<Player*>(other)) {
+    if (Player* player = dynamic_cast<Player*>(other)) 
+    {
         TargetPos = player->cube.getPosition();
-        if (cube2.getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
+        if (cube2.getGlobalBounds().intersects(player->hitboxTest.getGlobalBounds())) 
+        {
             return true;
         }
     }
+    if (Spells* spells = dynamic_cast<Spells*>(other))
+    {
+        int enemyDamage = spells->GetThirdSpellDamage();
+
+        if (cube2.getGlobalBounds().intersects(spells->_hitboxThirdSpell.getGlobalBounds()))
+        {
+            return true;
+        }
+    }
+
+
     return false;
 }
 
 void Enemies::handleCollision(CollisionObject* other)
 {
-    if (dynamic_cast<Player*>(other)) {
-
+    if (dynamic_cast<Player*>(other)) 
+    {
+        ennemieHP--;
+        if (ennemieHP <= 0)
+        {
+            std::cout << "ennemi mort";
+            cube2.setPosition(1800.f, 60.f);
+            FollowTarget(false);
+            //TODO DESTROY ENNEMIES
+        }
+    }
+    if (dynamic_cast<Spells*>(other))
+    {
+        ennemieHP--;
+        if (ennemieHP <= 0)
+        {
+            std::cout << "ennemi mort";
+            cube2.setPosition(1800.f, 60.f);
+            FollowTarget(false);
+            //TODO DESTROY ENNEMIES
+        }
     }
 }
 
@@ -51,29 +84,21 @@ void Enemies::FollowTarget(bool)
 {
     //Radius for Aggro
     //interval for aggro
-
-    sf::Clock clock;
-    float interval = 0.001f;
     sf::Vector2f FollowPos = cube2.getPosition();
     sf::Vector2f RelatPos = TargetPos - FollowPos;
-    float deltaLength = std::sqrt(RelatPos.x * RelatPos.x + RelatPos.y * RelatPos.y);
-    if (deltaLength > followRadius) {
-        cube2.move(.005f * RelatPos);
-    }
-    clock.restart();
-
     distance = std::sqrt((TargetPos.x - FollowPos.x) * (TargetPos.x - FollowPos.x) +
         (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));
 
 
-    if (distance <= 600 && follow)
+    if (distance <= 150)
     {
-        cube2.setFillColor(sf::Color::Blue);
         follow = true;
+        cube2.setFillColor(sf::Color::Blue);
         cube2.move(.02f * RelatPos);
-        //MoveBase(false);
     }
-    else {
+    else 
+    {
+        follow = false;
         cube2.setFillColor(sf::Color::Green);
     }
 }

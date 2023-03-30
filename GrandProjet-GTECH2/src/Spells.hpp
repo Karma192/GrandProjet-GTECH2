@@ -41,7 +41,16 @@ public:
 	sf::Time DashReset;
 	sf::Clock clock;
 
+	///For third spell
+	void ThirdSpell();
+	int GetThirdSpellDamage() { return thirdSpellDamage;  };
+	sf::CircleShape _hitboxThirdSpell;
+	int thirdSpellDamage;
+
+
 private:
+
+	///Second spell
 	sf::Vector2f position;
 	sf::Vector2f direction;
 	sf::Vector2f PlayerPos;
@@ -50,5 +59,7 @@ private:
 	sf::RectangleShape Cube;
 	int PlayerRotation;
 	bool launched = true;
+
+
 };
 

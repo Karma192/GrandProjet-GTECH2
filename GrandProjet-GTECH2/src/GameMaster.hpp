@@ -3,7 +3,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
-#include "GameObject.hpp"
+#include "CollisionManager.h"
 
 using namespace sf;
 
@@ -20,12 +20,16 @@ enum {
 	INGAME = 2,
 };
 
+class GameObject;
+
 class GameMaster 
 {
 protected:
 	static GameMaster* instance;
 	static GameData data;
 	static std::vector<GameObject*> _listGameObject;
+	CollisionManager* _cm;
+
 public:
 	GameMaster();
 	GameMaster(GameMaster& other) = delete;
@@ -44,4 +48,8 @@ public:
 	void SetActiveScene(int);
 	// Fonction pour setup du Game Master
 	void SetWindow(RenderWindow*, Event*);
+	// Fonction pour détruire les objets à détruire
+	void Purge();
+	// Fonction pour récupérer le CollisionManager
+	void SetCollisionManager(CollisionManager*);
 };
