@@ -10,6 +10,7 @@
 #include "Enemies.hpp"
 #include "GameMaster.hpp"
 #include "MapGenerator.hpp"
+#include "Spells.hpp"
 
 
 
@@ -44,6 +45,8 @@ public:
 	//Player attributes
 	int GetPlayerXPos();
 	int GetPlayerYPos();
+	int getPlayerSpeed();
+	void setPlayerSpeed(float);
 
 	//Player attack
 	void PlayerAttack();
@@ -58,7 +61,7 @@ public:
 	sf::View view;
 	float rotation;
 	sf::Vector2f velocity;
-	sf::FloatRect CubeBounds = cube.getLocalBounds();
+	sf::FloatRect CubeBounds = cube.getGlobalBounds();
 
 	bool IsAttacking = false;
 
@@ -80,8 +83,13 @@ private:
 	float angleDegrees;
 
 	//Player attack basic
+	bool _dashing = false;
 	bool isActtk = true;
 	bool asAttacked = false;
+
+
+	//Dashing
+	int BoostSpeed;
 
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;
@@ -95,7 +103,6 @@ private:
 	sf::CircleShape playerThirdSpell;
 
 	sf::CircleShape playerUITab[4];
-
 
 
 	int playerHP; 
