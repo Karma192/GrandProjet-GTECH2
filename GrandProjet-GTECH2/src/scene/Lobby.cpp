@@ -13,14 +13,14 @@ Lobby::Lobby() {
 	collisionmanager.addObject(&sp);
 	collisionmanager.addObject(e);
 	collisionmanager.addObject(p);
-	
+
 	//collisionmanager.addObject(&object);
 	collisionmanager.addObject(&_door);
 
 	sf::Texture texture;
 	texture.create(1, 1);
 	texture.loadFromFile("ressources/sprites/player/idle.png");
-	_door = ToNextScene(0, sf::Sprite(texture),300 ,600);
+	_door = ToNextScene(0, sf::Sprite(texture), 300, 600);
 }
 
 Lobby::~Lobby()
@@ -40,7 +40,7 @@ void Lobby::Render() {
 	map->Render();
 	sp.Render();
 	p->Render();
-	if ( e->_destructed == false)
+	if (e->_destructed == false)
 		e->Render();
 	_door.Render();
 }
