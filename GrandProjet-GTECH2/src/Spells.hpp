@@ -4,6 +4,7 @@
 #include <math.h>
 #include "GameObject.hpp"
 #include "Player.hpp"
+#include <chrono>
 
 class Spells : public GameObject
 {
@@ -29,12 +30,15 @@ public:
 	int CooldownFireBall;
 	int MaxCooldownFireBall = 100;
 	float speed = 10;
+	int PlayerRapidity;
 
 	///For Slide
 	void SetSlide();
 	int _Speed;
-	int DashTime = 0;
-	int CooldownDash;
+	bool canDash = true;
+	sf::Time CooldownDash = sf::seconds(3.f);
+	sf::Time DashReset;
+	sf::Clock clock;
 
 private:
 	Player* player;
@@ -45,7 +49,6 @@ private:
 	sf::FloatRect PlayerBounds;
 	sf::Vector2f launchDirection;
 	sf::RectangleShape Cube;
-	int PlayerRapidity;
 	int PlayerRotation;
 	bool launched = true;
 };

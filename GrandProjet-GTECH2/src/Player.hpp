@@ -58,7 +58,7 @@ public:
 	sf::View view;
 	float rotation;
 	sf::Vector2f velocity;
-	sf::FloatRect CubeBounds = cube.getLocalBounds();
+	sf::FloatRect CubeBounds = cube.getGlobalBounds();
 
 
 	bool IsAttacking = false;

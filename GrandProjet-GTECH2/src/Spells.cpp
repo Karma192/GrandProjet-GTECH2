@@ -5,8 +5,6 @@
 Spells::Spells(Player *p)
 {
 	CooldownFireBall = 0;
-	CooldownDash = 0;
-	_Speed = PlayerRapidity / 2;
 	player = p;
 }
 
@@ -35,7 +33,6 @@ bool Spells::collidesWith(CollisionObject* other)
 		PlayerPos = player->cube.getPosition();
 		PlayerRotation = player->cube.getRotation();
 		PlayerBounds = player->cube.getGlobalBounds();
-		PlayerRapidity = player->getPlayerSpeed();
 		if (Spell.getGlobalBounds().intersects(player->cube.getGlobalBounds())) 
 		{
 			return true;
@@ -105,22 +102,31 @@ void Spells::DrawSpell()
 	Spell.setRadius(10);
 	Spell.setFillColor(sf::Color::Green);
 	Spell.setPosition(position);
-	//Spell.setOrigin(PlayerBounds.width / 2.0f, PlayerBounds.height / 2.0f);
+	Spell.setOrigin(PlayerBounds.width / 2.0f, PlayerBounds.height / 2.0f);
 }
 
 void Spells::SetSlide() 
 {
+	PlayerRapidity = player->playerSpeed;
+	_Speed = PlayerRapidity * 2;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		if (DashTime <= 0)
+		if (canDash)
 		{
-			DashTime = CooldownDash;
-			if (PlayerRotation == 0 || PlayerRotation == 90 
-				|| PlayerRotation == 180 || PlayerRotation == 270)
-			{
-				player->setPlayerSpeed(_Speed);
-			}
+			std::cout << "DASH";
+			player->setPlayerSpeed(_Speed);
+			canDash = false;
+			DashReset = sf::Time::Zero;
 		}
 	}
-	DashTime--;
+	if (!canDash) 
+	{
+		std::cout << " PAS DASH";
+		player->setPlayerSpeed(PlayerRapidity);
+		DashReset += clock.restart();
+		if (DashReset >= CooldownDash)
+		{
+			canDash = true;
+		}
+	}
 }
