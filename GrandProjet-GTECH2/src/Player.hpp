@@ -1,10 +1,14 @@
 #pragma once 
+
+#define M_PI           3.14159265358979323846  /* pi */
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
 #include <cmath>
 #include "GameObject.hpp"
 #include "Enemies.hpp"
+#include "GameMaster.hpp"
 #include "MapGenerator.hpp"
 
 
@@ -27,6 +31,7 @@ public:
 
 	//Player controller
 	void CubeTest();
+	void MouseUsage();
 	void ControllerMove();
 	void MovePlayer();
 	void KeyboardMove();
@@ -68,6 +73,13 @@ private:
 	sf::Clock clock;
 	sf::IntRect rectSprite;
 
+	sf::Vector2i _mousePos;
+	sf::Vector2f _playerCenter;
+	sf::Vector2f _worldPosition;
+	sf::Vector2f _aimDir;
+	float _aimDirNorm;
+	float angleDegrees;
+
 	//Player attack basic
 	bool isActtk = true;
 	bool asAttacked = false;
@@ -91,9 +103,16 @@ private:
 	int m_pv;
 	int m_attack;
 	int playerSpeed = 20;
-	int _playerDirection = 0;
 	sf::Clock endurance;
 
 	bool lookingLeft = false;
+
+	int _playerDirection = 0;
 	bool _stopMoving = false;
+	int _wallTouched = 0;
+
+	bool _collideUp;
+	bool _collideDown;
+	bool _collideLeft;
+	bool _collideRight;
 };

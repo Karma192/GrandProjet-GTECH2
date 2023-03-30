@@ -1,7 +1,5 @@
 ﻿#include "Player.hpp"
 #include "ToNextScene.hpp"
-#include "GameMaster.hpp"
-
 
 Player::Player()
 {
@@ -20,6 +18,7 @@ void Player::Loop()
     KeyboardMove();
     PlayerAttack();
     setCamera();
+    MouseUsage();
     _stopMoving = false;
     PlayerBasicAttack();
 
@@ -67,7 +66,7 @@ void Player::Render()
 }
 
 bool Player::collidesWith(CollisionObject* other) {
-    if (Enemies* enemy = dynamic_cast<Enemies*>(other)){
+    if (Enemies* enemy = dynamic_cast<Enemies*>(other)) {
         if (cube.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) {
             return true;
         }
@@ -77,12 +76,14 @@ bool Player::collidesWith(CollisionObject* other) {
             return true;
         }
     }
-    if (ToNextScene* object = dynamic_cast<ToNextScene*>(other)) {
-        if (cube.getGlobalBounds().intersects(object->_sprite.getGlobalBounds())) {
-            return true;
+    if (MapGenerator* map = dynamic_cast<MapGenerator*>(other)) {
+        for (int i = 0; i < map->wallet->GetRoom(0)->rect.size(); i++) {
+            if (cube.getGlobalBounds().intersects(map->wallet->GetRoom(0)->rect[i].getGlobalBounds())) {
+                return true;
+            }
         }
+        return false;
     }
-    return false;
 }
 
 
@@ -153,7 +154,7 @@ void Player::playerUI()
 
 }
 
-void  Player::CubeTest()
+void Player::CubeTest()
 {
     playerTexture.loadFromFile("ressources/sprites/player/adventurer-idle.png");
 
@@ -170,6 +171,7 @@ void  Player::CubeTest()
     cube.setTextureRect(rectSprite);
 }
 
+
 void Player::ControllerMove()
 {
 	float deadZone = 5.f;
@@ -184,10 +186,30 @@ void Player::ControllerMove()
 
 }
 
+void Player::MouseUsage() {
+    _playerCenter = cube.getPosition();
+    _mousePos = sf::Mouse::getPosition(*GameMaster::GetInstance()->GetGameData().window);
+    _worldPosition = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(_mousePos, GameMaster::GetInstance()->GetGameData().window->getView());
+
+    float dx = _worldPosition.x - _playerCenter.x;
+    float dy = _worldPosition.y - _playerCenter.y;
+
+    float angleRadians = std::atan2(dy, dx);
+    angleDegrees = angleRadians * 180 / M_PI;
+    angleDegrees += 180;
+
+    std::cout << angleDegrees << std::endl;
+
+    if (angleDegrees > 360)
+    {
+        angleDegrees -= 360;
+    }
+}
+
 void Player::MovePlayer()
 {
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
-    rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / 3.14159265358979323846;
+    rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / M_PI;
     cube.setRotation(rotation);
 }
 
@@ -228,8 +250,6 @@ void Player::KeyboardMove()
 
 }
 
-
-
 int Player::GetPlayerXPos()
 {
     return cube.getPosition().x;
@@ -247,27 +267,26 @@ void Player::PlayerAttack()
 }
 
 void Player::PlayerBasicAttack()
-{  
+{
     hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
     hitboxTest.setFillColor(sf::Color::Blue);
     hitboxTest.setPosition(cube.getPosition());
     hitboxTest.setRotation(cube.getRotation());
     hitboxTest.setOrigin(CubeBounds.width / 2.0f, CubeBounds.height / 2.0f);
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
-        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - 30.f);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    {
-        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() + 30.f);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    {
-        hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos());
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    {
-        hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos());
+        if (angleDegrees > 45 && angleDegrees < 135) {
+            hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - 30.f);
+        }
+        if (angleDegrees > 135 && angleDegrees < 225) {
+            hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos());
+        }
+        if (angleDegrees > 225 && angleDegrees < 315) {
+            hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() + 30.f);
+        }
+        if (angleDegrees > 325 || angleDegrees < 45) {
+            hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos());
+        }
     }
 }
