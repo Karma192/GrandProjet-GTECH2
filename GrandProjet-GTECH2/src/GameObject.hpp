@@ -3,17 +3,15 @@
 #include <stdlib.h>
 #include <time.h>
 #include <SFML/Graphics.hpp>
-#include "GameMaster.hpp"
 #include "CollisionObject.h"
+#include "GameMaster.hpp"
 
 class GameObject : public CollisionObject {
 public:
-	int id;
+	bool _destructed = false;
 
 	GameObject();
 	virtual ~GameObject();
-
-	GameData gameData;
 
 	// Boucle du game object
 	void Update();
@@ -26,5 +24,4 @@ public:
 
 private:
 	void SetData();
-
 };

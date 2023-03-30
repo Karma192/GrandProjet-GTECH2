@@ -1,4 +1,5 @@
 #include "ToNextScene.hpp"
+#include "GameMaster.hpp"
 
 ToNextScene::ToNextScene()
 {

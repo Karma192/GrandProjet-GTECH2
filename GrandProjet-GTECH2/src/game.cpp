@@ -23,6 +23,7 @@ void Game::GameLoop()
 		window->clear();
 		sm->Update();
 		Camera::GetInstance()->Update();
+		GameMaster::GetInstance()->Purge();
 		window->display();
 
 		while (window->pollEvent(*event))

@@ -1,8 +1,10 @@
 #include "Enemies.hpp"
+#include "GameMaster.hpp"
 
 Enemies::Enemies()
 {
     Cube2Test();
+    this->ennemieHP = 10;
 }
 
 Enemies::~Enemies()
@@ -18,15 +20,16 @@ void Enemies::Loop()
 
 void Enemies::Render() 
 {
-    gameData = GameMaster::GetInstance()->GetGameData();
-    gameData.window->draw(cube2);
+    GameMaster::GetInstance()->GetGameData().window->draw(cube2);
 }
 
 bool Enemies::collidesWith(CollisionObject* other)
 {
-    if (Player* player = dynamic_cast<Player*>(other)) {
+    if (Player* player = dynamic_cast<Player*>(other)) 
+    {
         TargetPos = player->cube.getPosition();
-        if (cube2.getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
+        if (cube2.getGlobalBounds().intersects(player->cube.getGlobalBounds())) 
+        {
             return true;
         }
     }
@@ -35,8 +38,18 @@ bool Enemies::collidesWith(CollisionObject* other)
 
 void Enemies::handleCollision(CollisionObject* other)
 {
-    if (dynamic_cast<Player*>(other)) {
-
+    if (dynamic_cast<Player*>(other)) 
+    {
+        ennemieHP--;
+        std::cout << ennemieHP << std::endl;
+        if (ennemieHP <= 0)
+        {
+            std::cout << "ennemi mort";
+            cube2.setPosition(1800.f, 60.f);
+            FollowTarget(false);
+            Destroy();
+            //TODO DESTROY ENNEMIES
+        }
     }
 }
 
@@ -51,29 +64,21 @@ void Enemies::FollowTarget(bool)
 {
     //Radius for Aggro
     //interval for aggro
-
-    sf::Clock clock;
-    float interval = 0.001f;
     sf::Vector2f FollowPos = cube2.getPosition();
     sf::Vector2f RelatPos = TargetPos - FollowPos;
-    float deltaLength = std::sqrt(RelatPos.x * RelatPos.x + RelatPos.y * RelatPos.y);
-    if (deltaLength > followRadius) {
-        cube2.move(.005f * RelatPos);
-    }
-    clock.restart();
-
     distance = std::sqrt((TargetPos.x - FollowPos.x) * (TargetPos.x - FollowPos.x) +
         (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));
 
 
-    if (distance <= 600 && follow)
+    if (distance <= 150)
     {
-        cube2.setFillColor(sf::Color::Blue);
         follow = true;
+        cube2.setFillColor(sf::Color::Blue);
         cube2.move(.02f * RelatPos);
-        //MoveBase(false);
     }
-    else {
+    else 
+    {
+        follow = false;
         cube2.setFillColor(sf::Color::Green);
     }
 }

@@ -20,13 +20,13 @@ public:
 
 	///For FireBall
 	void SetFireBall();
-	void Launch(Vector2f StartPos,Vector2f LaunchDir);
+	void Launch(sf::Vector2f StartPos,sf::Vector2f LaunchDir);
 	void DrawSpell();
 	bool isLaunched() { return launched; }
 
 	sf::CircleShape Spell;
 	int CooldownFireBall;
-	int MaxCooldownFireBall = 100;
+	int MaxCooldownFireBall = 0;
 
 	///For Slide
 	void SetSlide();

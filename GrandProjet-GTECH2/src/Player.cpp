@@ -1,10 +1,10 @@
 ﻿#include "Player.hpp"
 #include "ToNextScene.hpp"
 
-
 Player::Player()
 {
     CubeTest();
+    this->playerHP = 20;
 }
 
 Player::~Player()
@@ -14,33 +14,40 @@ Player::~Player()
 
 void Player::Loop()
 {
-    playerEndurance();
-    playerRegenEndurance();
     ControllerMove();
     KeyboardMove();
     PlayerAttack();
-    //setCamera();
+    MouseUsage();
     _stopMoving = false;
-    //std::cout << "Player direction : " << _playerDirection << std::endl;
     PlayerBasicAttack();
 
+    // Passage à la frame suivante de l'animation
+    if (clock.getElapsedTime().asSeconds() > 0.2f)
+    {
+        if (rectSprite.left == 150)
+            rectSprite.left = 0;
+        else
+            rectSprite.left += 50;
+
+        cube.setTextureRect(rectSprite);
+        clock.restart();
+    }
 }
 
 void Player::Render()
 {
-    gameData = GameMaster::GetInstance()->GetGameData();
-    gameData.window->draw(enduranceBar);
-    gameData.window->draw(lifeBar);
-    gameData.window->draw(playerUltiUI);
+    GameMaster::GetInstance()->GetGameData().window->draw(enduranceBar);
+    GameMaster::GetInstance()->GetGameData().window->draw(lifeBar);
+    GameMaster::GetInstance()->GetGameData().window->draw(playerUltiUI);
     for (int i = 0; i < 3; i++)
     {
-        gameData.window->draw(playerUITab[i]);
+        GameMaster::GetInstance()->GetGameData().window->draw(playerUITab[i]);
     }
     
     if (isActtk == true && asAttacked == true) 
     { 
         IsAttacking = true;
-        gameData.window->draw(hitboxTest);
+        GameMaster::GetInstance()->GetGameData().window->draw(hitboxTest);
     }
     if (cdBasicAttack.getElapsedTime().asSeconds() >= 0.1f)
     {
@@ -53,12 +60,12 @@ void Player::Render()
         IsAttacking = false;
         isActtk = true;
     }
-    gameData.window->draw(cube);
+    GameMaster::GetInstance()->GetGameData().window->draw(cube);
     playerUI();
 }
 
 bool Player::collidesWith(CollisionObject* other) {
-    if (Enemies* enemy = dynamic_cast<Enemies*>(other)){
+    if (Enemies* enemy = dynamic_cast<Enemies*>(other)) {
         if (cube.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) {
             return true;
         }
@@ -68,24 +75,30 @@ bool Player::collidesWith(CollisionObject* other) {
             return true;
         }
     }
-    if (ToNextScene* object = dynamic_cast<ToNextScene*>(other)) {
-        if (cube.getGlobalBounds().intersects(object->_sprite.getGlobalBounds())) {
-            return true;
+    if (MapGenerator* map = dynamic_cast<MapGenerator*>(other)) {
+        for (int i = 0; i < map->wallet->GetRoom(0)->rect.size(); i++) {
+            if (cube.getGlobalBounds().intersects(map->wallet->GetRoom(0)->rect[i].getGlobalBounds())) {
+                return true;
+            }
         }
+        return false;
     }
-    return false;
 }
 
 
 void Player::handleCollision(CollisionObject* other)
 {
-	if (dynamic_cast<Enemies*>(other)) {
-        
+	if (dynamic_cast<Enemies*>(other)) 
+    {
+        //std::cout << playerHP << std::endl; 
+        playerHP--;
 	}
-	if (dynamic_cast<Object*>(other)) {
+	if (dynamic_cast<Object*>(other)) 
+    {
 
     }
-	if (dynamic_cast<MapGenerator*>(other)) {
+	if (dynamic_cast<MapGenerator*>(other)) 
+    {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && _playerDirection != 1)
         {
             moveSpeed = sf::Vector2f(0.f, -100.f);
@@ -110,44 +123,19 @@ void Player::handleCollision(CollisionObject* other)
     }
 }
 
-void Player::playerEndurance()
-{
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && cd_Endurance >= 2 && endurancePlayer > 0)
-    {
-        endurancePlayer -= 0.5;
-        enduranceBar.setScale(endurancePlayer / 100, 1);
-    }
-    if (endurancePlayer <= 0 && sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-    {
-    }
-}
-
-void Player::playerRegenEndurance()
-{
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && endurancePlayer <= 100)
-    {
-        endurancePlayer += 0.1;
-        enduranceBar.setScale(endurancePlayer / 100, 1);
-    }
-}
 
 void Player::playerUI()
 {
-    enduranceBar.setSize(sf::Vector2f(300.f, 25.f));
-    enduranceBar.setFillColor(sf::Color::Blue);
-    sf::Vector2f enduranceBarV = gameData.window->mapPixelToCoords(sf::Vector2i(2, 830));
-    enduranceBar.setPosition(enduranceBarV);
-
     lifeBar.setSize(sf::Vector2f(300.f, 25.f));
     lifeBar.setFillColor(sf::Color::Green);
-    sf::Vector2f lifeBarV = gameData.window->mapPixelToCoords(sf::Vector2i(2, 800));
+    sf::Vector2f lifeBarV = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(sf::Vector2i(2, 800));
     lifeBar.setPosition(lifeBarV);
 
     playerUltiUI.setRadius(40);
     playerUltiUI.setFillColor(sf::Color::Transparent);
     playerUltiUI.setOutlineThickness(5);
     playerUltiUI.setOutlineColor(sf::Color::Yellow);
-    sf::Vector2f playerUltiUIV = gameData.window->mapPixelToCoords(sf::Vector2i(30,880));
+    sf::Vector2f playerUltiUIV = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(sf::Vector2i(30,880));
     playerUltiUI.setPosition(playerUltiUIV);
 
     // j = position sur l'écran sur l'axe x
@@ -158,21 +146,31 @@ void Player::playerUI()
         playerUITab[i].setFillColor(sf::Color::Transparent);
         playerUITab[i].setOutlineThickness(5);
         playerUITab[i].setOutlineColor(sf::Color::Green);
-        sf::Vector2f playerUiSpellPosition = gameData.window->mapPixelToCoords(sf::Vector2i(j, 920));
+        sf::Vector2f playerUiSpellPosition = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(sf::Vector2i(j, 920));
         playerUITab[i].setPosition(playerUiSpellPosition);
         j += 60;
     }
 
 }
 
-void  Player::CubeTest()
+void Player::CubeTest()
 {
-	cube.setSize(sf::Vector2f(30.f, 30.f));
-	cube.setFillColor(sf::Color::Red);
-	cube.setPosition(sf::Vector2f(200, 200));
+    // Load the sprite texture
+    playerTexture.loadFromFile("ressources/sprites/player/adventurer-idle.png");
+
+    cube.setTexture(playerTexture);
+    cube.scale(3.0f, 3.0f);
+    cube.setPosition(sf::Vector2f(200, 200));
+
     CubeBounds = cube.getGlobalBounds();
     cube.setOrigin(CubeBounds.width/2.0f,CubeBounds.height/2.0f);
+
+    sf::IntRect rectDefaultSprite = sf::IntRect(50, 0, 50, 37);
+    rectSprite = rectDefaultSprite;
+
+    cube.setTextureRect(rectSprite);
 }
+
 
 void Player::ControllerMove()
 {
@@ -180,7 +178,6 @@ void Player::ControllerMove()
 	moveSpeed.x = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
 	moveSpeed.y = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
 	
-
 	if (moveSpeed.x > deadZone || moveSpeed.y > deadZone || 
 		moveSpeed.x < -deadZone || moveSpeed.y < -deadZone)
 	{
@@ -189,10 +186,30 @@ void Player::ControllerMove()
 
 }
 
+void Player::MouseUsage() {
+    _playerCenter = cube.getPosition();
+    _mousePos = sf::Mouse::getPosition(*GameMaster::GetInstance()->GetGameData().window);
+    _worldPosition = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(_mousePos, GameMaster::GetInstance()->GetGameData().window->getView());
+
+    float dx = _worldPosition.x - _playerCenter.x;
+    float dy = _worldPosition.y - _playerCenter.y;
+
+    float angleRadians = std::atan2(dy, dx);
+    angleDegrees = angleRadians * 180 / M_PI;
+    angleDegrees += 180;
+
+    std::cout << angleDegrees << std::endl;
+
+    if (angleDegrees > 360)
+    {
+        angleDegrees -= 360;
+    }
+}
+
 void Player::MovePlayer()
 {
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
-    rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / 3.14159265358979323846;
+    rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / M_PI;
     cube.setRotation(rotation);
 }
 
@@ -224,9 +241,8 @@ void Player::KeyboardMove()
             MovePlayer();
         }
     }
+
 }
-
-
 
 int Player::GetPlayerXPos()
 {
@@ -245,27 +261,26 @@ void Player::PlayerAttack()
 }
 
 void Player::PlayerBasicAttack()
-{  
+{
     hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
     hitboxTest.setFillColor(sf::Color::Blue);
     hitboxTest.setPosition(cube.getPosition());
     hitboxTest.setRotation(cube.getRotation());
     hitboxTest.setOrigin(CubeBounds.width / 2.0f, CubeBounds.height / 2.0f);
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
-        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - 30.f);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    {
-        hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() + 30.f);
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    {
-        hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos());
-    }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    {
-        hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos());
+        if (angleDegrees > 45 && angleDegrees < 135) {
+            hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - 30.f);
+        }
+        if (angleDegrees > 135 && angleDegrees < 225) {
+            hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos());
+        }
+        if (angleDegrees > 225 && angleDegrees < 315) {
+            hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() + 30.f);
+        }
+        if (angleDegrees > 325 || angleDegrees < 45) {
+            hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos());
+        }
     }
 }

@@ -2,13 +2,10 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Config.hpp>
+#include "CollisionManager.h"
 
 using namespace sf;
-
-struct player {
-	int gold, key;
-	float hp, resources, speed, baseSpeed, baseDmg, attackSpeed, speedProjectile, luck;
-};
 
 struct GameData {
 	int indexScene = 0;
@@ -23,11 +20,16 @@ enum {
 	INGAME = 2,
 };
 
+class GameObject;
+
 class GameMaster 
 {
 protected:
 	static GameMaster* instance;
 	static GameData data;
+	static std::vector<GameObject*> _listGameObject;
+	CollisionManager* _cm;
+
 public:
 	GameMaster();
 	GameMaster(GameMaster& other) = delete;
@@ -36,10 +38,18 @@ public:
 
 	static GameMaster* GetInstance();
 
-	// Function for get game's global data
+	// Fonction pour récuperer la liste d'objets
+	static std::vector<GameObject*> GetListGameObject();
+	// Fonction pour ajouter un objet à la liste
+	static void AddGameObject(GameObject*);
+	// Fonction pour recuperer les donnees du jeu
 	static GameData GetGameData();
-	// Function to call for change active scene
+	// Fonction pour changer de scene
 	void SetActiveScene(int);
-	// Function for set the window and event
+	// Fonction pour setup du Game Master
 	void SetWindow(RenderWindow*, Event*);
+	// Fonction pour détruire les objets à détruire
+	void Purge();
+	// Fonction pour récupérer le CollisionManager
+	void SetCollisionManager(CollisionManager*);
 };
