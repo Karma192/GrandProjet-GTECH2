@@ -47,14 +47,13 @@ bool Spells::collidesWith(CollisionObject* other)
 
 	if (Enemies* enemy = dynamic_cast<Enemies*>(other)) 
 	{
-		enemyHP = enemy->GetEnemieHP(); 
 
 		if (Spell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) 
 		{
 			return true;
 		}
 
-		if (_hitboxThirdSpell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds()))
+		if (_hitboxThirdSpell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds()) && sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
 		{
 			return true;
 		}

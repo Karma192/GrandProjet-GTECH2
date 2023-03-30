@@ -28,11 +28,22 @@ bool Enemies::collidesWith(CollisionObject* other)
     if (Player* player = dynamic_cast<Player*>(other)) 
     {
         TargetPos = player->cube.getPosition();
-        if (cube2.getGlobalBounds().intersects(player->cube.getGlobalBounds())) 
+        if (cube2.getGlobalBounds().intersects(player->hitboxTest.getGlobalBounds())) 
         {
             return true;
         }
     }
+    if (Spells* spells = dynamic_cast<Spells*>(other))
+    {
+        int enemyDamage = spells->GetThirdSpellDamage();
+
+        if (cube2.getGlobalBounds().intersects(spells->_hitboxThirdSpell.getGlobalBounds()))
+        {
+            return true;
+        }
+    }
+
+
     return false;
 }
 
@@ -41,13 +52,22 @@ void Enemies::handleCollision(CollisionObject* other)
     if (dynamic_cast<Player*>(other)) 
     {
         ennemieHP--;
-        std::cout << ennemieHP << std::endl;
         if (ennemieHP <= 0)
         {
             std::cout << "ennemi mort";
             cube2.setPosition(1800.f, 60.f);
             FollowTarget(false);
-            Destroy();
+            //TODO DESTROY ENNEMIES
+        }
+    }
+    if (dynamic_cast<Spells*>(other))
+    {
+        ennemieHP--;
+        if (ennemieHP <= 0)
+        {
+            std::cout << "ennemi mort";
+            cube2.setPosition(1800.f, 60.f);
+            FollowTarget(false);
             //TODO DESTROY ENNEMIES
         }
     }

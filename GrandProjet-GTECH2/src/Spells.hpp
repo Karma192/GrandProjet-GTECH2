@@ -33,10 +33,12 @@ public:
 
 	///For third spell
 	void ThirdSpell();
+	int GetThirdSpellDamage() { return thirdSpellDamage;  };
+	sf::CircleShape _hitboxThirdSpell;
+	int thirdSpellDamage;
 
 
 private:
-	Player* player;
 
 	///Second spell
 	sf::Vector2f position;
@@ -48,9 +50,6 @@ private:
 	float PlayerRotation;
 	bool launched = true;
 
-	///Third Spell
-	sf::CircleShape _hitboxThirdSpell;
-	int enemyHP; 
 
 };
 

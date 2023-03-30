@@ -4,6 +4,7 @@
 #include "GameObject.hpp"
 #include "Player.hpp"
 #include "Object.hpp"
+#include "Spells.hpp"
 
 class Enemies : public GameObject
 {
@@ -37,7 +38,6 @@ public:
 
 private:
 	//void EnemyTest();
-
 
 	int ennemieHP; 
 	sf::Texture enemiesTexture;
