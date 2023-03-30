@@ -36,9 +36,10 @@ void Player::Loop()
 
 void Player::Render()
 {
-    GameMaster::GetInstance()->GetGameData().window->draw(enduranceBar);
     GameMaster::GetInstance()->GetGameData().window->draw(lifeBar);
     GameMaster::GetInstance()->GetGameData().window->draw(playerUltiUI);
+    GameMaster::GetInstance()->GetGameData().window->draw(playerUltiUI);
+
     for (int i = 0; i < 3; i++)
     {
         GameMaster::GetInstance()->GetGameData().window->draw(playerUITab[i]);
@@ -64,8 +65,9 @@ void Player::Render()
     playerUI();
 }
 
-bool Player::collidesWith(CollisionObject* other) {
-    if (Enemies* enemy = dynamic_cast<Enemies*>(other)) {
+bool Player::collidesWith(CollisionObject* other) 
+{
+    if (Enemies* enemy = dynamic_cast<Enemies*>(other)){
         if (cube.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) {
             return true;
         }
@@ -83,6 +85,11 @@ bool Player::collidesWith(CollisionObject* other) {
         }
         return false;
     }
+    if (Spells* spell = dynamic_cast<Spells*>(other)) {
+        _dashing = spell->_asDash;
+        std::cout << _dashing << std::endl;
+    }
+    return false;
 }
 
 void Player::handleCollision(CollisionObject* other)
@@ -96,8 +103,12 @@ void Player::handleCollision(CollisionObject* other)
     {
 
     }
-	if (dynamic_cast<MapGenerator*>(other)) 
+    if (dynamic_cast<Spells*>(other))
     {
+        
+    }
+
+	if (dynamic_cast<MapGenerator*>(other)) {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && _playerDirection != 1)
         {
             moveSpeed = sf::Vector2f(0.f, -100.f);
@@ -195,8 +206,6 @@ void Player::MouseUsage() {
     angleDegrees = angleRadians * 180 / M_PI;
     angleDegrees += 180;
 
-    std::cout << angleDegrees << std::endl;
-
     if (angleDegrees > 360)
     {
         angleDegrees -= 360;
@@ -206,8 +215,15 @@ void Player::MouseUsage() {
 void Player::MovePlayer()
 {
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
-    rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / M_PI;
-    cube.setRotation(rotation);
+
+    if (_dashing)
+    {
+        playerSpeed = 5;
+    }
+    if (!_dashing)
+    {
+        playerSpeed = 20;
+    }
 }
 
 void Player::KeyboardMove()
@@ -249,6 +265,16 @@ int Player::GetPlayerXPos()
 int Player::GetPlayerYPos()
 {
     return cube.getPosition().y;
+}
+
+int Player::getPlayerSpeed()
+{
+    return playerSpeed;
+}
+
+void Player::setPlayerSpeed(float OtherSpeed)
+{
+    playerSpeed = OtherSpeed;
 }
 
 void Player::PlayerAttack()

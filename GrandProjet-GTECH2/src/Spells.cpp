@@ -16,6 +16,8 @@ Spells::~Spells()
 void Spells::Loop()
 {
 	SetFireBall();
+	SetDash();
+
 }
 
 void Spells::Render() 
@@ -35,19 +37,14 @@ bool Spells::collidesWith(CollisionObject* other)
 
 		PlayerPos = player->cube.getPosition();
 		PlayerRotation = player->cube.getRotation();
-		PlayerBounds = player->cube.getLocalBounds();
-
-
+		PlayerBounds = player->cube.getGlobalBounds();
 		if (Spell.getGlobalBounds().intersects(player->cube.getGlobalBounds())) 
 		{
 			return true;
 		}
-
 	}
-
 	if (Enemies* enemy = dynamic_cast<Enemies*>(other)) 
 	{
-
 		if (Spell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) 
 		{
 			return true;
@@ -72,6 +69,11 @@ void Spells::handleCollision(CollisionObject* other)
 	{
 		//TODO DAMAGE ENEMY HP
 	}
+
+	if (dynamic_cast<Player*>(other)) 
+	{
+	}
+
 }
 
 void Spells::SetFireBall() 
@@ -114,11 +116,30 @@ void Spells::DrawSpell()
 	Spell.setOrigin(PlayerBounds.width / 2.0f, PlayerBounds.height / 2.0f);
 }
 
-void Spells::SetSlide() 
+void Spells::SetDash() 
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
+		if (_canDash)
+		{
+			_canDash = false;
+			_asDash = true;
+			DashReset = sf::Time::Zero;
+			DashReset += clock.restart();
+		}
+	}	
 
+	if (clock.getElapsedTime().asSeconds() > 0.2f)
+	{
+		_asDash = false;
+	}
+
+	if (!_canDash)
+	{
+		if (clock.getElapsedTime().asSeconds() > 3.f)
+		{
+			_canDash = true;
+		}
 	}
 }
 
