@@ -256,7 +256,7 @@ void Player::PlayerBasicAttack()
     hitboxTest.setRotation(cube.getRotation());
     hitboxTest.setOrigin(CubeBounds.width / 2.0f, CubeBounds.height / 2.0f);
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) || sf::Keyboard::isKeyPressed(sf::Keyboard::Down) || sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         if (angleDegrees > 45 && angleDegrees < 135) {
             hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - 30.f);
