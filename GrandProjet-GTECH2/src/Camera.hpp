@@ -8,7 +8,7 @@ class Camera
 {
 protected:
 	static Camera* _instance;
-	static sf::RectangleShape* _target;
+	static sf::Sprite* _target;
 	sf::View _cameraView;
 
 	int _delay;
@@ -21,7 +21,7 @@ public:
 	void Update();
 
 	static Camera* GetInstance();
-	void SetFollow(sf::RectangleShape*);
+	void SetFollow(sf::Sprite*);
 	void ResetCamera();
 	void SetPosCamera(float, float);
 	void SetCameraDelay(int);

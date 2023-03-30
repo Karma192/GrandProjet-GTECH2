@@ -1,11 +1,10 @@
 #include "Camera.hpp"
 
 Camera* Camera::_instance = nullptr;
-sf::RectangleShape* Camera::_target = nullptr;
+sf::Sprite* Camera::_target = nullptr;
 
 Camera::Camera()
 {
-	_offset = 0;
 	_cameraView = GameMaster::GetGameData().window->getDefaultView();
 
 	if (_instance == nullptr && _instance != this)
@@ -33,7 +32,7 @@ Camera* Camera::GetInstance()
 	return _instance;
 }
 
-void Camera::SetFollow(sf::RectangleShape* tar)
+void Camera::SetFollow(sf::Sprite* tar)
 {
 	_target = tar;
 }

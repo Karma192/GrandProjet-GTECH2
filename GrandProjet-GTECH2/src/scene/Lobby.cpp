@@ -28,7 +28,7 @@ Lobby::~Lobby()
 }
 
 void Lobby::Loop() {
-	Camera::GetInstance()->SetFollow(&p.cube);
+	Camera::GetInstance()->SetFollow(&p->cube);
 	collisionmanager.updateCollisions();
 	p->Loop();
 	sp.Loop();
