@@ -1,5 +1,5 @@
 #include "Game.hpp"
-#include "Camera.hpp"
+#include "../Instance/Camera.hpp"
 
 Game::Game() {
 	sm = new SceneManager;

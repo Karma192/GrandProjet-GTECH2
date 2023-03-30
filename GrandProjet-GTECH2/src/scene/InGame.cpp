@@ -1,5 +1,5 @@
 #include  "InGame.hpp"
-#include "../Camera.hpp"
+#include "../Instance/Camera.hpp"
 
 InGame::InGame() {
 

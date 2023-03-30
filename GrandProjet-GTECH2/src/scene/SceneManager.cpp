@@ -1,5 +1,5 @@
 #include "SceneManager.hpp"
-#include "../Camera.hpp"
+#include "../Instance/Camera.hpp"
 
 SceneManager::SceneManager() 
 {

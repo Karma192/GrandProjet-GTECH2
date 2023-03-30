@@ -1,5 +1,5 @@
 #include "Lobby.hpp"
-#include "../Camera.hpp"
+#include "../Instance/Camera.hpp"
 
 Lobby::Lobby() {
 	p = new Player();

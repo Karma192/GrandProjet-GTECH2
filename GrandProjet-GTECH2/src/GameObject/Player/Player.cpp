@@ -63,7 +63,7 @@ void Player::Render()
         IsAttacking = false;
         isActtk = true;
     }
-    GameMaster::GetInstance()->GetGameData().window->draw(*cube);
+    GameMaster::GetInstance()->GetGameData().window->draw(cube);
     playerUI();
 }
 
@@ -200,12 +200,12 @@ void Player::KeyboardMove()
 
 int Player::GetPlayerXPos()
 {
-    return cube->getPosition().x;
+    return cube.getPosition().x;
 }
 
 int Player::GetPlayerYPos()
 {
-    return cube->getPosition().y;
+    return cube.getPosition().y;
 }
 
 void Player::PlayerAttack()
@@ -218,8 +218,8 @@ void Player::PlayerBasicAttack()
 {
     hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
     hitboxTest.setFillColor(sf::Color::Blue);
-    hitboxTest.setPosition(cube->getPosition());
-    hitboxTest.setRotation(cube->getRotation());
+    hitboxTest.setPosition(cube.getPosition());
+    hitboxTest.setRotation(cube.getRotation());
     hitboxTest.setOrigin(CubeBounds.width / 2.0f, CubeBounds.height / 2.0f);
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))

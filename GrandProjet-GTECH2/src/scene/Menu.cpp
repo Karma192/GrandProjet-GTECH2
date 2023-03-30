@@ -1,5 +1,5 @@
 #include "Menu.hpp"
-#include "../Camera.hpp"
+#include "../Instance/Camera.hpp"
 
 Menu::Menu() {
 	AddToScene(&menuhud, 0);
