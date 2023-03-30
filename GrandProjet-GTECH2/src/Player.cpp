@@ -85,7 +85,6 @@ bool Player::collidesWith(CollisionObject* other) {
     }
 }
 
-
 void Player::handleCollision(CollisionObject* other)
 {
 	if (dynamic_cast<Enemies*>(other)) 
@@ -122,7 +121,6 @@ void Player::handleCollision(CollisionObject* other)
         _stopMoving = true;
     }
 }
-
 
 void Player::playerUI()
 {
@@ -162,15 +160,14 @@ void Player::CubeTest()
     cube.scale(3.0f, 3.0f);
     cube.setPosition(sf::Vector2f(200, 200));
 
-    CubeBounds = cube.getGlobalBounds();
-    cube.setOrigin(CubeBounds.width/2.0f,CubeBounds.height/2.0f);
-
     sf::IntRect rectDefaultSprite = sf::IntRect(50, 0, 50, 37);
     rectSprite = rectDefaultSprite;
 
+    sf::Vector2f center(cube.getLocalBounds().width / 2.f, cube.getLocalBounds().height / 2.f);
+    cube.setOrigin(center);
+
     cube.setTextureRect(rectSprite);
 }
-
 
 void Player::ControllerMove()
 {
