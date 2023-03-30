@@ -168,13 +168,13 @@ void Player::CubeTest()
     playerTexture.loadFromFile("ressources/sprites/player/adventurer-idle.png");
 
     cube.setTexture(playerTexture);
-    cube.scale(3.0f, 3.0f);
+    cube.scale(2.5f, 2.5f);
     cube.setPosition(sf::Vector2f(200, 200));
 
     sf::IntRect rectDefaultSprite = sf::IntRect(50, 0, 50, 37);
     rectSprite = rectDefaultSprite;
 
-    sf::Vector2f center(cube.getLocalBounds().width / 2.f, cube.getLocalBounds().height / 2.f);
+    sf::Vector2f center(cube.getLocalBounds().width / 2.f - 82, cube.getLocalBounds().height / 2.f);
     cube.setOrigin(center);
 
     cube.setTextureRect(rectSprite);
