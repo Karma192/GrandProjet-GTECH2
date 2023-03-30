@@ -3,7 +3,7 @@
 GameObject::GameObject()
 {
 	SetData();
-	GameMaster::AddGameObject(this);
+	//GameMaster::AddGameObject(this);
 	_destructed = false;
 }
 

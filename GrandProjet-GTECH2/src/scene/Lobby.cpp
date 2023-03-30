@@ -39,8 +39,8 @@ void Lobby::Loop() {
 
 void Lobby::Render() {
 	map->Render();
-	p->Render();
 	sp.Render();
+	p->Render();
 	if ( e->_destructed == false)
 		e->Render();
 	_door.Render();

@@ -78,8 +78,8 @@ void GameMaster::Purge()
 		}
 	}
 }
-
 void GameMaster::SetCollisionManager(CollisionManager* cm)
 {
 	_cm = cm;
 }
+
