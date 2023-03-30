@@ -1,4 +1,5 @@
 #include "GameMaster.hpp"
+#include "GameObject.hpp"
 
 GameMaster* GameMaster::instance = nullptr;
 GameData GameMaster::data;

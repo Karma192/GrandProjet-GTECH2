@@ -142,11 +142,19 @@ void Player::playerUI()
 
 void Player::CubeTest()
 {
-	cube.setSize(sf::Vector2f(30.f, 30.f));
-	cube.setFillColor(sf::Color::Red);
-	cube.setPosition(sf::Vector2f(200, 240));
-    CubeBounds = cube.getLocalBounds();
+    playerTexture.loadFromFile("ressources/sprites/player/adventurer-idle.png");
+
+    cube.setTexture(playerTexture);
+    cube.scale(3.0f, 3.0f);
+    cube.setPosition(sf::Vector2f(200, 200));
+
+    CubeBounds = cube.getGlobalBounds();
     cube.setOrigin(CubeBounds.width/2.0f,CubeBounds.height/2.0f);
+
+    sf::IntRect rectDefaultSprite = sf::IntRect(50, 0, 50, 37);
+    rectSprite = rectDefaultSprite;
+
+    cube.setTextureRect(rectSprite);
 }
 
 
@@ -156,7 +164,6 @@ void Player::ControllerMove()
 	moveSpeed.x = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
 	moveSpeed.y = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
 	
-
 	if (moveSpeed.x > deadZone || moveSpeed.y > deadZone || 
 		moveSpeed.x < -deadZone || moveSpeed.y < -deadZone)
 	{

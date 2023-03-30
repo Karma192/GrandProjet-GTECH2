@@ -1,10 +1,10 @@
 #pragma once
-
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
 #include <SFML/Graphics.hpp>
 #include "CollisionObject.h"
+#include "GameMaster.hpp"
 
 class GameObject : public CollisionObject {
 public:
