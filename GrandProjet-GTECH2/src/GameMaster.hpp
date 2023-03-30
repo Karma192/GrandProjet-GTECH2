@@ -3,7 +3,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
-#include "GameObject.hpp"
 #include "CollisionManager.h"
 
 using namespace sf;
@@ -20,6 +19,8 @@ enum {
 	LOBBY = 1,
 	INGAME = 2,
 };
+
+class GameObject;
 
 class GameMaster 
 {
