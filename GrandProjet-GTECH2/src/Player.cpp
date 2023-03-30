@@ -89,6 +89,11 @@ bool Player::collidesWith(CollisionObject* other)
         _dashing = spell->_asDash;
         std::cout << _dashing << std::endl;
     }
+    if (ToNextScene* object = dynamic_cast<ToNextScene*>(other)) {
+        if (cube.getGlobalBounds().intersects(object->_sprite.getGlobalBounds())) {
+            return true;
+        }
+    }
     return false;
 }
 

@@ -20,7 +20,7 @@ Lobby::Lobby() {
 	sf::Texture texture;
 	texture.create(1, 1);
 	texture.loadFromFile("ressources/sprites/player/idle.png");
-	_door = ToNextScene(0, sf::Sprite(texture),1 ,1);
+	_door = ToNextScene(0, sf::Sprite(texture),300 ,600);
 }
 
 Lobby::~Lobby()
@@ -34,7 +34,6 @@ void Lobby::Loop() {
 	sp.Loop();
 	if (e->_destructed == false)
 		e->Loop();
-	_door.Loop();
 }
 
 void Lobby::Render() {
