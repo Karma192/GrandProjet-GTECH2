@@ -4,13 +4,13 @@
 #include <math.h>
 #include "GameObject.hpp"
 #include "Player.hpp"
+#include "Enemies.hpp"
 #include <chrono>
 
 class Spells : public GameObject
 {
 public:
-	Spells() = default;
-	Spells(Player *p);
+	Spells();
 	virtual ~Spells();
 
 
@@ -32,17 +32,16 @@ public:
 	float speed = 10;
 	int PlayerRapidity;
 
+
 	///For Slide
-	void SetSlide();
+	void SetDash();
 	int _Speed;
-	bool canDash = true;
-	sf::Time CooldownDash = sf::seconds(3.f);
+	bool _canDash = true;
+	bool _asDash = false;
 	sf::Time DashReset;
 	sf::Clock clock;
 
 private:
-	Player* player;
-
 	sf::Vector2f position;
 	sf::Vector2f direction;
 	sf::Vector2f PlayerPos;

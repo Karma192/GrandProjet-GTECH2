@@ -57,7 +57,9 @@ void Player::Render()
     playerUI();
 }
 
-bool Player::collidesWith(CollisionObject* other) {
+bool Player::collidesWith(CollisionObject* other) 
+{
+
     if (Enemies* enemy = dynamic_cast<Enemies*>(other)){
         if (cube.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) {
             return true;
@@ -73,6 +75,10 @@ bool Player::collidesWith(CollisionObject* other) {
             return true;
         }
     }
+    if (Spells* spell = dynamic_cast<Spells*>(other)) {
+        _dashing = spell->_asDash;
+        std::cout << _dashing << std::endl;
+    }
     return false;
 }
 
@@ -87,6 +93,11 @@ void Player::handleCollision(CollisionObject* other)
 	if (dynamic_cast<Object*>(other)) 
     {
 
+    }
+
+    if (dynamic_cast<Spells*>(other))
+    {
+        
     }
 
 	if (dynamic_cast<MapGenerator*>(other)) {
@@ -198,6 +209,15 @@ void Player::MovePlayer()
     cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
     rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / 3.14159265358979323846;
     cube.setRotation(rotation);
+
+    if (_dashing)
+    {
+        playerSpeed = 5;
+    }
+    if (!_dashing)
+    {
+        playerSpeed = 20;
+    }
 }
 
 void Player::setCamera() {

@@ -2,10 +2,9 @@
 #include "GameMaster.hpp"
 
 
-Spells::Spells(Player *p)
+Spells::Spells()
 {
 	CooldownFireBall = 0;
-	player = p;
 }
 
 
@@ -17,7 +16,8 @@ Spells::~Spells()
 void Spells::Loop()
 {
 	SetFireBall();
-	SetSlide();
+	SetDash();
+
 }
 
 void Spells::Render() 
@@ -44,7 +44,6 @@ bool Spells::collidesWith(CollisionObject* other)
 	{
 		if (Spell.getGlobalBounds().intersects(enemy->cube2.getGlobalBounds())) 
 		{
-			std::cout << "bam degats";
 			return true;
 		}
 	}
@@ -60,7 +59,6 @@ void Spells::handleCollision(CollisionObject* other)
 
 	if (dynamic_cast<Player*>(other)) 
 	{
-		std::cout << "Casting";
 	}
 
 }
@@ -105,28 +103,29 @@ void Spells::DrawSpell()
 	Spell.setOrigin(PlayerBounds.width / 2.0f, PlayerBounds.height / 2.0f);
 }
 
-void Spells::SetSlide() 
+void Spells::SetDash() 
 {
-	PlayerRapidity = player->playerSpeed;
-	_Speed = PlayerRapidity * 2;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		if (canDash)
+		if (_canDash)
 		{
-			std::cout << "DASH";
-			player->setPlayerSpeed(_Speed);
-			canDash = false;
+			_canDash = false;
+			_asDash = true;
 			DashReset = sf::Time::Zero;
+			DashReset += clock.restart();
 		}
-	}
-	if (!canDash) 
+	}	
+
+	if (clock.getElapsedTime().asSeconds() > 0.2f)
 	{
-		std::cout << " PAS DASH";
-		player->setPlayerSpeed(PlayerRapidity);
-		DashReset += clock.restart();
-		if (DashReset >= CooldownDash)
+		_asDash = false;
+	}
+
+	if (!_canDash)
+	{
+		if (clock.getElapsedTime().asSeconds() > 3.f)
 		{
-			canDash = true;
+			_canDash = true;
 		}
 	}
 }

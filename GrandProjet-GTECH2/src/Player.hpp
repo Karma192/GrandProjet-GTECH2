@@ -6,6 +6,7 @@
 #include "GameObject.hpp"
 #include "Enemies.hpp"
 #include "MapGenerator.hpp"
+#include "Spells.hpp"
 
 
 
@@ -73,8 +74,13 @@ private:
 	sf::Sprite playerSprite;
 
 	//Player attack basic
+	bool _dashing = false;
 	bool isActtk = true;
 	bool asAttacked = false;
+
+
+	//Dashing
+	int BoostSpeed;
 
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;
@@ -88,6 +94,7 @@ private:
 	sf::CircleShape playerThirdSpell;
 
 	sf::CircleShape playerUITab[4];
+
 
 
 
