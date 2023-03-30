@@ -22,7 +22,7 @@ void Player::Loop()
     _stopMoving = false;
     PlayerBasicAttack();
 
-
+    // Passage à la frame suivante de l'animation
     if (clock.getElapsedTime().asSeconds() > 0.2f)
     {
         if (rectSprite.left == 150)
@@ -156,6 +156,7 @@ void Player::playerUI()
 
 void Player::CubeTest()
 {
+    // Load the sprite texture
     playerTexture.loadFromFile("ressources/sprites/player/adventurer-idle.png");
 
     cube.setTexture(playerTexture);
