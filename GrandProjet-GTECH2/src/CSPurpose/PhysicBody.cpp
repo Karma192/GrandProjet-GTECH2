@@ -4,6 +4,7 @@
 PhysicBody::PhysicBody()
 {
 	PhysicsManager::GetInstance()->AddBody(this);
+	_hitbox = new sf::FloatRect();
 }
 
 void PhysicBody::OnCollisionEnter(PhysicBody* other)
@@ -34,10 +35,7 @@ void PhysicBody::SetCollideTag(std::string tag)
 
 bool PhysicBody::CompareTag(std::string tag)
 {
-	if (_tag == tag)
-		return true;
-	else
-		return false;
+	return _tag == tag;
 }
 
 std::string PhysicBody::GetTag()

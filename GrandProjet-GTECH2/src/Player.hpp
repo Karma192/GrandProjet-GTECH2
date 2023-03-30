@@ -49,7 +49,7 @@ public:
 	sf::RectangleShape hitboxTest;
 
 	//Player draw
-	sf::RectangleShape cube;
+	sf::RectangleShape* cube;
 	sf::Vector2f moveSpeed;
 	sf::View view;
 	float rotation;

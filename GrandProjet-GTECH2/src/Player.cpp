@@ -5,9 +5,8 @@
 Player::Player()
 {
     CubeTest();
-    SetID("Player", "Enemy");
-    sf::FloatRect* hitbox = &cube.getGlobalBounds();
-    SetHitbox(hitbox);
+    SetHitbox(&cube->getGlobalBounds());
+    SetID("Player", "Player");
     this->playerHP = 20;
 }
 
@@ -53,7 +52,7 @@ void Player::Render()
         IsAttacking = false;
         isActtk = true;
     }
-    GameMaster::GetInstance()->GetGameData().window->draw(cube);
+    GameMaster::GetInstance()->GetGameData().window->draw(*cube);
     playerUI();
 }
 
@@ -99,11 +98,12 @@ void Player::playerUI()
 
 void  Player::CubeTest()
 {
-	cube.setSize(sf::Vector2f(30.f, 30.f));
-	cube.setFillColor(sf::Color::Red);
-	cube.setPosition(sf::Vector2f(200, 200));
-    CubeBounds = cube.getGlobalBounds();
-    cube.setOrigin(CubeBounds.width/2.0f,CubeBounds.height/2.0f);
+    cube = new sf::RectangleShape();
+	cube->setSize(sf::Vector2f(30.f, 30.f));
+	cube->setFillColor(sf::Color::Red);
+	cube->setPosition(sf::Vector2f(200, 200));
+    CubeBounds = cube->getGlobalBounds();
+    cube->setOrigin(CubeBounds.width/2.0f,CubeBounds.height/2.0f);
 }
 
 void Player::ControllerMove()
@@ -123,14 +123,14 @@ void Player::ControllerMove()
 
 void Player::MovePlayer()
 {
-    cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
+    cube->move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
     rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / 3.14159265358979323846;
-    cube.setRotation(rotation);
+    cube->setRotation(rotation);
 }
 
 void Player::setCamera() {
     view = GameMaster::GetInstance()->GetGameData().window->getDefaultView();
-    view.setCenter(cube.getPosition());
+    view.setCenter(cube->getPosition());
     GameMaster::GetInstance()->GetGameData().window->setView(view);
 }
 
@@ -167,12 +167,12 @@ void Player::KeyboardMove()
 
 int Player::GetPlayerXPos()
 {
-    return cube.getPosition().x;
+    return cube->getPosition().x;
 }
 
 int Player::GetPlayerYPos()
 {
-    return cube.getPosition().y;
+    return cube->getPosition().y;
 }
 
 void Player::PlayerAttack()
@@ -185,8 +185,8 @@ void Player::PlayerBasicAttack()
 {  
     hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
     hitboxTest.setFillColor(sf::Color::Blue);
-    hitboxTest.setPosition(cube.getPosition());
-    hitboxTest.setRotation(cube.getRotation());
+    hitboxTest.setPosition(cube->getPosition());
+    hitboxTest.setRotation(cube->getRotation());
     hitboxTest.setOrigin(CubeBounds.width / 2.0f, CubeBounds.height / 2.0f);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))

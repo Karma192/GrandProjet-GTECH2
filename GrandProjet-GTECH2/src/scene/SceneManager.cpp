@@ -22,7 +22,7 @@ void SceneManager::SwitchScene()
 	case MENU:
 		menu.Update();
 #ifdef _DEBUG
-		std::cout << "C'est le menu !" << std::endl;
+		//std::cout << "C'est le menu !" << std::endl;
 #endif // DEBUG
 		break;
 
@@ -30,7 +30,7 @@ void SceneManager::SwitchScene()
 		lobby.Update();
 		PhysicsManager::GetInstance()->Update();
 #ifdef DEBUG
-		std::cout << "C'est le lobby !" << std::endl;
+		//std::cout << "C'est le lobby !" << std::endl;
 #endif // DEBUG
 		break;
 
@@ -38,7 +38,7 @@ void SceneManager::SwitchScene()
 		ingame.Update();
 		PhysicsManager::GetInstance()->Update();
 #ifdef DEBUG
-		std::cout << "C'est le ingame !" << std::endl;
+		//std::cout << "C'est le ingame !" << std::endl;
 #endif // DEBUG
 		break;
 

@@ -21,10 +21,9 @@ private:
     Player* p;
     //Object object;
     Enemies* e;
-    Spells* sp;
+    //Spells* sp;
     MapGenerator* map;
-    Room* room;
-    ToNextScene* _door;
+    //ToNextScene* _door;
     
     sf::Texture menuBackground;
     sf::Sprite menuBckSprite;

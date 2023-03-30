@@ -108,8 +108,6 @@
     <ClCompile Include="src\CSPurpose\PhysicBody.cpp" />
     <ClCompile Include="src\CSPurpose\PhysicsManager.cpp" />
     <ClCompile Include="src\Spells.cpp" />
-    <ClCompile Include="src\CollisionManager.cpp" />
-    <ClCompile Include="src\CollisionObject.cpp" />
     <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\Doors.cpp" />
     <ClCompile Include="src\Enemies.cpp" />
@@ -132,8 +130,6 @@
     <ClInclude Include="src\CSPurpose\PhysicBody.hpp" />
     <ClInclude Include="src\CSPurpose\PhysicsManager.hpp" />
     <ClInclude Include="src\Spells.hpp" />
-    <ClInclude Include="src\CollisionManager.h" />
-    <ClInclude Include="src\CollisionObject.h" />
     <ClInclude Include="src\Animation.h" />
     <ClInclude Include="src\Doors.hpp" />
     <ClInclude Include="src\Enemies.hpp" />
