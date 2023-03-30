@@ -6,8 +6,7 @@
 #include "GameObject.hpp"
 #include "Enemies.hpp"
 #include "MapGenerator.hpp"
-
-
+#include "Animation.h"
 
 class Player : public GameObject {
 public:
@@ -67,6 +66,8 @@ private:
 	sf::Sprite playerSprite;
 	sf::Clock clock;
 	sf::IntRect rectSprite;
+
+	Animation animation;
 
 	//Player attack basic
 	bool isActtk = true;

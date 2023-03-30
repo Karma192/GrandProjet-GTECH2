@@ -23,17 +23,16 @@ void Player::Loop()
     _stopMoving = false;
     PlayerBasicAttack();
 
+    //if (clock.getElapsedTime().asSeconds() > 0.2f)
+    //{
+    //    if (rectSprite.left == 150)
+    //        rectSprite.left = 0;
+    //    else
+    //        rectSprite.left += 50;
 
-    if (clock.getElapsedTime().asSeconds() > 0.2f)
-    {
-        if (rectSprite.left == 150)
-            rectSprite.left = 0;
-        else
-            rectSprite.left += 50;
-
-        cube.setTextureRect(rectSprite);
-        clock.restart();
-    }
+    //    cube.setTextureRect(rectSprite);
+    //    clock.restart();
+    //}
 }
 
 void Player::Render()
@@ -155,7 +154,9 @@ void Player::playerUI()
 
 void  Player::CubeTest()
 {
-    playerTexture.loadFromFile("ressources/sprites/player/adventurer-idle.png");
+    animation.AnimationInit("ressources/sprites/player/adventurer-idle.png", &cube, 200, 50, 3.f);
+
+    /*playerTexture.loadFromFile("ressources/sprites/player/adventurer-idle.png");
 
     cube.setTexture(playerTexture);
     cube.scale(3.0f, 3.0f);
@@ -164,10 +165,9 @@ void  Player::CubeTest()
     CubeBounds = cube.getGlobalBounds();
     cube.setOrigin(CubeBounds.width/2.0f,CubeBounds.height/2.0f);
 
-    sf::IntRect rectDefaultSprite = sf::IntRect(50, 0, 50, 37);
-    rectSprite = rectDefaultSprite;
+    rectSprite = sf::IntRect(50, 0, 50, 37);
 
-    cube.setTextureRect(rectSprite);
+    cube.setTextureRect(rectSprite);*/
 }
 
 void Player::ControllerMove()
