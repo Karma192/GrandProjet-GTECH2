@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene.hpp"
-#include "../menuHUD.h"
+#include "../GameObject/menuHUD.h"
 
 
 class Menu : public GameScene {

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <SFML/Graphics.hpp>
-#include "CSPurpose/PhysicBody.hpp"
+#include "PhysicBody.hpp"
 
 class GameObject : public PhysicBody
 {
@@ -23,9 +23,12 @@ public:
 	virtual void Render();
 	// Destruction du game object
 	void Destroy();
+	// Fonction pour r�cuperer le sprite du game object
+	sf::FloatRect* GetBounds() { return &_sprite.getGlobalBounds(); }
 	// Fonction pour r�cuperer le nom du game object
 	std::string GetName() { return _name; }
 
 private:
+	sf::Sprite _sprite;
 	std::string _name;
 };

@@ -1,5 +1,5 @@
 #include "Spells.hpp"
-#include "GameMaster.hpp"
+#include "../../Instance/GameMaster.hpp"
 
 
 Spells::Spells()

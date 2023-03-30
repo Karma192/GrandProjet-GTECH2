@@ -1,5 +1,5 @@
 #include "GameObject.hpp"
-#include "GameMaster.hpp"
+#include "../Instance/GameMaster.hpp"
 
 GameObject::GameObject()
 {

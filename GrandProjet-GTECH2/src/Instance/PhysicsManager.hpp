@@ -2,7 +2,7 @@
 
 #include <stdio.h>
 #include <vector>
-#include "PhysicBody.hpp"
+#include "../GameObject/PhysicBody.hpp"
 
 class PhysicsManager
 {
@@ -22,7 +22,7 @@ public:
 	// Fonction pour mettre à jour les collisions
 	void Update();
 	// Fonction pour ajouter un PhysicBody à la liste des PhysicBody
-	static void AddBody(PhysicBody* body);
+	static void AddBody(PhysicBody* obj);
 	//Fonction pour retirer un PhysicBody de la liste des PhysicBody
 	static void RemoveBody(PhysicBody* body);
 };

@@ -3,11 +3,17 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
+class GameObject;
+
 class PhysicBody
 {
 private:
+	GameObject* _owner;
 	sf::FloatRect* _hitbox;
 	std::string _tag;
+	
+	// Fonction pour créer la hitbox
+	void SetHitbox(sf::FloatRect* rect);
 public:
 	PhysicBody();
 
@@ -15,8 +21,8 @@ public:
 
 	// Fonction à override pour déterminer les actions à faire OnCollision
 	virtual void OnCollisionEnter(PhysicBody* other);
-	// Fonction pour créer la hitbox
-	void SetHitbox(sf::FloatRect* rect);
+	// Fonction pour définir le propriétaire du PhysicBody
+	void DefineOwnBody(GameObject* go);
 	// Fonction pour déterminer le tag de l'objet
 	void SetCollideTag(std::string tag);
 	// Fonction pour comparer le tag de l'objet avec un autre tag

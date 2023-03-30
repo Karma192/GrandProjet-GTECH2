@@ -1,11 +1,11 @@
 ﻿#include "Player.hpp"
-#include "GameMaster.hpp"
+#include "../../Instance/GameMaster.hpp"
 
 
 Player::Player()
 {
     CubeTest();
-    SetHitbox(&cube->getGlobalBounds());
+    DefineOwnBody(this);
     SetID("Player", "Player");
     this->playerHP = 20;
 }

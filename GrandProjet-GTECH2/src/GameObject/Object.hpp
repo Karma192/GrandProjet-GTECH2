@@ -4,7 +4,7 @@
 #include <SFML/Config.hpp>
 #include <cstdlib>
 #include "GameObject.hpp"
-#include "Player.hpp"
+#include "Player/Player.hpp"
 
 class Object : public GameObject
 {

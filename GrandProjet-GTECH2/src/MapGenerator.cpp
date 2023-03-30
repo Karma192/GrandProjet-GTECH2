@@ -1,5 +1,5 @@
 #include "MapGenerator.hpp"
-#include "GameMaster.hpp"
+#include "Instance/GameMaster.hpp"
 
 // Room class
 

@@ -1,5 +1,5 @@
 #include "menuHUD.h"
-#include "GameMaster.hpp"
+#include "../Instance/GameMaster.hpp"
 
 //Initialisation of all elements
 menuHUD::menuHUD()

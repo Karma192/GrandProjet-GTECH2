@@ -1,4 +1,4 @@
-#include "scene/Scene.hpp"
+#include "../Scene/Scene.hpp"
 #include "Game.hpp"
 
 Game* game = new Game;

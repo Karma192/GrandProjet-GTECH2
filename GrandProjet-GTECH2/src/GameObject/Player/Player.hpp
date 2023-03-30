@@ -3,10 +3,10 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
 #include <cmath>
-#include "GameObject.hpp"
-#include "Enemies.hpp"
-#include "MapGenerator.hpp"
-#include "ToNextScene.hpp"
+#include "../GameObject.hpp"
+#include "../Enemies.hpp"
+#include "../../MapGenerator.hpp"
+#include "../ToNextScene.hpp"
 
 
 

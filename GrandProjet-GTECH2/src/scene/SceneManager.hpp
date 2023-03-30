@@ -2,8 +2,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <string>
-#include "../GameMaster.hpp"
-#include "../CSPurpose/PhysicsManager.hpp"
+#include "../Instance/GameMaster.hpp"
+#include "../Instance/PhysicsManager.hpp"
 #include "Menu.hpp"
 #include "Lobby.hpp"
 #include "InGame.hpp"

@@ -1,8 +1,8 @@
 ﻿#pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "../GameObject.hpp"
-#include "../GameMaster.hpp"
+#include "../GameObject/GameObject.hpp"
+#include "../Instance/GameMaster.hpp"
 
 class Layer {
 public:

@@ -24,16 +24,18 @@ void PhysicsManager::Update()
 {
 #ifdef _DEBUG
 	//std::cout << "Body count : " << _bodies.size() << std::endl;
-	std::cout << "x : " << _bodies[1]->Hitbox()->left << "\ty : " << _bodies[1]->Hitbox()->top << std::endl;
+	std::cout << "x : " << _bodies[0]->Hitbox()->left << "\ty : " << _bodies[0]->Hitbox()->top << std::endl;
 #endif // _DEBUG
 
 	for (int i = 0; i < _bodies.size(); i++)
 	{
 		for (int j = i + 1; j < _bodies.size() - 1; j++)
 		{
-			if (_bodies[i]->Hitbox() != nullptr && _bodies[j]->Hitbox() != nullptr
-				&& !_bodies[i]->CompareTag(_bodies[j]->GetTag())
-				&& _bodies[i]->Hitbox()->intersects(*_bodies[j]->Hitbox()))
+			bool isColliding = _bodies[i]->Hitbox()->intersects(*_bodies[j]->Hitbox());
+			bool isNull = _bodies[i]->Hitbox() != nullptr && _bodies[j]->Hitbox() != nullptr;
+			bool isTheSame = _bodies[i] == _bodies[j];
+
+			if (isColliding && !isNull && !isTheSame)
 			{
 				_bodies[i]->OnCollisionEnter(_bodies[j]);
 				_bodies[j]->OnCollisionEnter(_bodies[i]);
@@ -45,9 +47,9 @@ void PhysicsManager::Update()
 	}
 }
 
-void PhysicsManager::AddBody(PhysicBody* body)
+void PhysicsManager::AddBody(PhysicBody* obj)
 {
-	_bodies.push_back(body);
+	_bodies.push_back(obj);
 }
 
 void PhysicsManager::RemoveBody(PhysicBody* body)

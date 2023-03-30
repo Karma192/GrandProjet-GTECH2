@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include "GameObject.hpp"
-#include "Player.hpp"
+#include "Player/Player.hpp"
 
 class ToNextScene : public GameObject
 {

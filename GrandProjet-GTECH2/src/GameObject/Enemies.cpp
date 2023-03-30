@@ -5,7 +5,7 @@ Enemies::Enemies()
     Cube2Test();
     SetID("Enemy1", "Enemy");
     sf::FloatRect* hitbox = &cube2.getGlobalBounds();
-    SetHitbox(hitbox);
+    //SetHitbox(hitbox);
     this->ennemieHP = 10;
 }
 

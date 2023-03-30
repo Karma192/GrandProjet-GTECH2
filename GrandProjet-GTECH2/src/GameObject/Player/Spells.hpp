@@ -2,7 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <math.h>
-#include "GameObject.hpp"
+#include "../GameObject.hpp"
 #include "Player.hpp"
 
 class Spells : public GameObject

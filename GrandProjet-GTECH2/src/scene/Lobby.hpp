@@ -1,13 +1,11 @@
 #pragma once
 #include "Scene.hpp"
-#include "../Player.hpp"
-#include "../Enemies.hpp"
+#include "../GameObject/Player/Player.hpp"
+#include "../GameObject/Enemies.hpp"
 #include "../MapGenerator.hpp"
-#include "../Object.hpp"
-#include "../Doors.hpp"
-#include "../Spells.hpp"
-#include "../CollisionManager.h"
-#include "../ToNextScene.hpp"
+#include "../GameObject/Object.hpp"
+#include "../GameObject/Player/Spells.hpp"
+#include "../GameObject/ToNextScene.hpp"
 
 class Lobby : public GameScene {
 public:

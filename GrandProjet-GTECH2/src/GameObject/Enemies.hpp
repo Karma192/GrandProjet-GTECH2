@@ -2,9 +2,9 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "GameObject.hpp"
-#include "Player.hpp"
-#include "Object.hpp"
-#include "GameMaster.hpp"
+#include "../GameObject/Player/Player.hpp"
+#include "../GameObject/PhysicBody.hpp"
+#include "../Instance/GameMaster.hpp"
 
 class Enemies : public GameObject
 {

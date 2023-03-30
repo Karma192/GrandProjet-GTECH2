@@ -9,8 +9,8 @@
 #include <tmxlite/TileLayer.hpp>
 #include <tmxlite/ObjectGroup.hpp>
 #include "SFMLLayer.hpp"
-#include "Player.hpp"
-#include "GameObject.hpp"
+#include "GameObject/Player/Player.hpp"
+#include "GameObject/GameObject.hpp"
 
 class Room : public GameObject
 {

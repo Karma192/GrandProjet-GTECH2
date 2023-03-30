@@ -1,16 +1,15 @@
 #include "PhysicBody.hpp"
-#include "PhysicsManager.hpp"
+#include "../Instance/PhysicsManager.hpp"
+#include "GameObject.hpp"
 
 PhysicBody::PhysicBody()
 {
-	PhysicsManager::GetInstance()->AddBody(this);
 	_hitbox = new sf::FloatRect();
 }
 
 void PhysicBody::OnCollisionEnter(PhysicBody* other)
 {
-	//Here is an example of how to use the CompareTag function
-	//and the OnCollisionEnter function
+	// Ici c'est un exemple de comment on peut utiliser les tags pour faire des collisions
 
 	if (other->CompareTag("Player"))
 	{
@@ -21,6 +20,13 @@ void PhysicBody::OnCollisionEnter(PhysicBody* other)
 	{
 		std::cout << "Collision with enemy" << std::endl;
 	}
+}
+
+void PhysicBody::DefineOwnBody(GameObject* go)
+{
+	_owner = go;
+	SetHitbox(go->GetBounds());
+	PhysicsManager::AddBody(this);
 }
 
 void PhysicBody::SetHitbox(sf::FloatRect* rect)
