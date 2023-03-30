@@ -64,7 +64,6 @@ public:
 	sf::FloatRect CubeBounds = cube.getGlobalBounds();
 
 	bool IsAttacking = false;
-	float playerSpeed = 20;
 
 protected:
 	float endurancePlayer = 100;
@@ -106,7 +105,6 @@ private:
 	sf::CircleShape playerUITab[4];
 
 
-	int _playerDirection = 0;
 	int playerHP; 
 	int m_pv;
 	int m_attack;
