@@ -1,4 +1,5 @@
 #include "Lobby.hpp"
+#include "../Camera.hpp"
 
 Lobby::Lobby() {
 	p = new Player();
@@ -17,6 +18,7 @@ Lobby::~Lobby()
 }
 
 void Lobby::Loop() {
+	Camera::GetInstance()->SetFollow(&p->cube);
 	p->Loop();
 	//sp->Loop();
 	e->Loop();
