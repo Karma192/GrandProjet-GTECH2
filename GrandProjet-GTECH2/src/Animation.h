@@ -10,7 +10,6 @@ public:
 		int startFrameLine, int endFrameColumn, int endFrameLine);
 	void flipSprite(sf::Sprite sprite, sf::Vector2f moveSpeed);
 
-
 private:
 	sf::Clock clock;
 	sf::Texture texture;

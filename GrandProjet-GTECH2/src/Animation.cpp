@@ -47,18 +47,3 @@ void Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX,
 	
 }
 
-void Animation::flipSprite(sf::Sprite sprite, sf::Vector2f moveSpeed)
-{
-	if (moveSpeed.x > 0)
-	{
-		flip = 1;
-	}
-	else if (moveSpeed.x < 0)
-	{
-		flip = -1;
-	}
-
-	sprite.scale(flip * 3.0f, 3.0f);
-}
-
-

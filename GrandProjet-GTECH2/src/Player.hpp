@@ -54,13 +54,12 @@ public:
 	sf::RectangleShape hitboxTest;
 
 	//Player draw
-	sf::RectangleShape cube;
+	sf::Sprite cube;
 	sf::Vector2f moveSpeed;
 	sf::View view;
 	float rotation;
 	sf::Vector2f velocity;
 	sf::FloatRect CubeBounds = cube.getLocalBounds();
-
 
 	bool IsAttacking = false;
 
@@ -71,6 +70,8 @@ protected:
 private:
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
+	sf::Clock clock;
+	sf::IntRect rectSprite;
 
 	sf::Vector2i _mousePos;
 	sf::Vector2f _playerCenter;
