@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "GameObject.hpp"
 
 using namespace sf;
 
@@ -17,6 +16,8 @@ enum Scene {
 	LOBBY = 1,
 	INGAME = 2,
 };
+
+class GameObject;
 
 class GameMaster 
 {

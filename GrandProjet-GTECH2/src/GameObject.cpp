@@ -1,4 +1,5 @@
 #include "GameObject.hpp"
+#include "GameMaster.hpp"
 
 GameObject::GameObject()
 {
