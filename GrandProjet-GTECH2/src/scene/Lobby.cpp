@@ -10,9 +10,9 @@ Lobby::Lobby() {
 	GameMaster::GetInstance()->SetCollisionManager(&collisionmanager);
 
 	collisionmanager.addObject(map);
-	collisionmanager.addObject(&sp);
 	collisionmanager.addObject(e);
 	collisionmanager.addObject(p);
+	collisionmanager.addObject(&sp);
 
 	//collisionmanager.addObject(&object);
 	collisionmanager.addObject(&_door);
