@@ -1,10 +1,9 @@
 #include "GameObject.hpp"
 #include "../Instance/GameMaster.hpp"
 
-GameObject::GameObject()
+GameObject::GameObject(GameObject* self) : PhysicBody(self)
 {
 	GameMaster::AddGameObject(this);
-	_destructed = false;
 }
 
 GameObject::~GameObject()

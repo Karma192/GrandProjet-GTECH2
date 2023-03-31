@@ -2,7 +2,7 @@
 #include "../../Instance/GameMaster.hpp"
 
 
-Player::Player()
+Player::Player() : GameObject(this)
 {
     CubeTest();
     DefineOwnBody(this);
@@ -32,7 +32,7 @@ void Player::Loop()
         else
             rectSprite.left += 50;
 
-        cube.setTextureRect(rectSprite);
+        _sprite.setTextureRect(rectSprite);
         clock.restart();
     }
 }
@@ -63,7 +63,7 @@ void Player::Render()
         IsAttacking = false;
         isActtk = true;
     }
-    GameMaster::GetInstance()->GetGameData().window->draw(cube);
+    GameMaster::GetInstance()->GetGameData().window->draw(_sprite);
     playerUI();
 }
 
@@ -112,17 +112,17 @@ void Player::CubeTest()
     // Load the sprite texture
     playerTexture.loadFromFile("ressources/sprites/player/adventurer-idle.png");
 
-    cube.setTexture(playerTexture);
-    cube.scale(3.0f, 3.0f);
-    cube.setPosition(sf::Vector2f(200, 200));
+    _sprite.setTexture(playerTexture);
+    _sprite.scale(3.0f, 3.0f);
+    _sprite.setPosition(sf::Vector2f(200, 200));
 
-    CubeBounds = cube.getGlobalBounds();
-    cube.setOrigin(CubeBounds.width/2.0f,CubeBounds.height/2.0f);
+    CubeBounds = _sprite.getGlobalBounds();
+    _sprite.setOrigin(CubeBounds.width/2.0f,CubeBounds.height/2.0f);
 
     sf::IntRect rectDefaultSprite = sf::IntRect(50, 0, 50, 37);
     rectSprite = rectDefaultSprite;
 
-    cube.setTextureRect(rectSprite);
+    _sprite.setTextureRect(rectSprite);
 }
 
 
@@ -141,7 +141,7 @@ void Player::ControllerMove()
 }
 
 void Player::MouseUsage() {
-    _playerCenter = cube.getPosition();
+    _playerCenter = _sprite.getPosition();
     _mousePos = sf::Mouse::getPosition(*GameMaster::GetInstance()->GetGameData().window);
     _worldPosition = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(_mousePos, GameMaster::GetInstance()->GetGameData().window->getView());
 
@@ -162,9 +162,9 @@ void Player::MouseUsage() {
 
 void Player::MovePlayer()
 {
-    cube.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
+    _sprite.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
     rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / M_PI;
-    cube.setRotation(rotation);
+    _sprite.setRotation(rotation);
 }
 
 void Player::KeyboardMove()
@@ -200,12 +200,12 @@ void Player::KeyboardMove()
 
 int Player::GetPlayerXPos()
 {
-    return cube.getPosition().x;
+    return _sprite.getPosition().x;
 }
 
 int Player::GetPlayerYPos()
 {
-    return cube.getPosition().y;
+    return _sprite.getPosition().y;
 }
 
 void Player::PlayerAttack()
@@ -218,8 +218,8 @@ void Player::PlayerBasicAttack()
 {
     hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
     hitboxTest.setFillColor(sf::Color::Blue);
-    hitboxTest.setPosition(cube.getPosition());
-    hitboxTest.setRotation(cube.getRotation());
+    hitboxTest.setPosition(_sprite.getPosition());
+    hitboxTest.setRotation(_sprite.getRotation());
     hitboxTest.setOrigin(CubeBounds.width / 2.0f, CubeBounds.height / 2.0f);
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))

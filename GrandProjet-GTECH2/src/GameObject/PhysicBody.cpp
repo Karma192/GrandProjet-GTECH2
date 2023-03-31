@@ -2,9 +2,11 @@
 #include "../Instance/PhysicsManager.hpp"
 #include "GameObject.hpp"
 
-PhysicBody::PhysicBody()
+PhysicBody::PhysicBody(GameObject* gameObject)
 {
-	_hitbox = new sf::FloatRect();
+	_owner = gameObject;
+	SetHitbox(gameObject->GetBounds());
+	PhysicsManager::GetInstance()->AddBody(this);
 }
 
 void PhysicBody::OnCollisionEnter(PhysicBody* other)

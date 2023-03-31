@@ -15,8 +15,10 @@ private:
 	// Fonction pour créer la hitbox
 	void SetHitbox(sf::FloatRect* rect);
 public:
-	PhysicBody();
+	PhysicBody(GameObject* gameObject);
+	virtual ~PhysicBody() {}
 
+	// Fonction pour récupérer la hitbox
 	sf::FloatRect* Hitbox() { return _hitbox; }
 
 	// Fonction à override pour déterminer les actions à faire OnCollision

@@ -2,7 +2,7 @@
 #include "../../Instance/GameMaster.hpp"
 
 
-Spells::Spells()
+Spells::Spells() : GameObject(this)
 {
 	CooldownFireBall = 0;
 }

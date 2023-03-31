@@ -1,11 +1,11 @@
 #include "ToNextScene.hpp"
 #include "../Instance/GameMaster.hpp"
 
-ToNextScene::ToNextScene()
+ToNextScene::ToNextScene() : GameObject(this)
 {
 }
 
-ToNextScene::ToNextScene(int s, sf::Sprite spr, int posx, int posy)
+ToNextScene::ToNextScene(int s, sf::Sprite spr, int posx, int posy) : GameObject(this)
 {
 	scene = s;
 	_sprite = spr;

@@ -1,6 +1,6 @@
 #include "Object.hpp"
 
-Object::Object()
+Object::Object() : GameObject(this)
 {
 	randomX = rand();
 	randomY = rand();
