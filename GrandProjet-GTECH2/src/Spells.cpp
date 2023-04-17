@@ -56,11 +56,10 @@ void Spells::handleCollision(CollisionObject* other)
 	}
 }
 
+
 void Spells::SetFireBall()
 {
-
-
-	aimDir = mousePosWindow - playerCenter;
+	/*aimDir = mousePosWindow - playerCenter;
 	aimDirNorm = aimDir / sqrt(pow(aimDir.x, 2) + pow(aimDir.y, 2));
 
 	float PI = 3.14159265f;
@@ -73,25 +72,26 @@ void Spells::SetFireBall()
 		b1.currVelocity = aimDirNorm * b1.maxSpeed;
 
 		bullets.push_back(Bullet(b1));
-	}
+	}*/
 }
 
 void Spells::Launch(sf::Vector2f StartPos, sf::Vector2f LaunchDir) 
 {
-	position = StartPos;
+	/*position = StartPos;
 	direction = LaunchDir;
 
 	direction = direction / std::sqrt(direction.x * direction.x + direction.y * direction.y);
 
-	launched = true;
+	launched = true;*/
 }
 
 void Spells::DrawSpell() 
 {
-	Spell.setRadius(10);
+	/*Spell.setRadius(10);
 	Spell.setFillColor(sf::Color::Green);
 	Spell.setPosition(position);
 	Spell.setOrigin(Spell.getGlobalBounds().width / 2 , Spell.getGlobalBounds().height / 2);
+	*/
 }
 
 void Spells::SetSlide() 
