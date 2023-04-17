@@ -28,7 +28,7 @@ public:
 	void AddToScene(GameObject*, int);
 
 private:
-	Layer* layers[10] = { nullptr };
+	Layer* layers[10];
 
 	void SetLayer();
 };

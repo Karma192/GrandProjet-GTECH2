@@ -2,7 +2,7 @@
 #include "../Instance/GameMaster.hpp"
 
 //Initialisation of all elements
-menuHUD::menuHUD() : GameObject(this)
+menuHUD::menuHUD()
 {
     selectionBck.setFillColor(sf::Color(144, 144, 144, 200));
 

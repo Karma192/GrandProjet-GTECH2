@@ -1,4 +1,5 @@
 #pragma once
+
 #include <stdio.h>
 #include <iostream>
 #include <SFML/Graphics.hpp>
@@ -8,14 +9,13 @@ class GameObject;
 class PhysicBody
 {
 private:
-	GameObject* _owner;
 	sf::FloatRect* _hitbox;
 	std::string _tag;
 	
 	// Fonction pour créer la hitbox
 	void SetHitbox(sf::FloatRect* rect);
 public:
-	PhysicBody(GameObject* gameObject);
+	PhysicBody();
 	virtual ~PhysicBody() {}
 
 	// Fonction pour récupérer la hitbox

@@ -11,14 +11,11 @@
 #include "../../MapGenerator.hpp"
 #include "../ToNextScene.hpp"
 
-
-
 class Player : public GameObject 
 {
 public:
 	Player();
 	virtual ~Player();
-
 
 	virtual void Loop()override;
 	virtual void Render()override;

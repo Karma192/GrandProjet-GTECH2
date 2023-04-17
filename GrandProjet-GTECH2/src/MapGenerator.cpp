@@ -3,7 +3,7 @@
 
 // Room class
 
-Room::Room(std::string file) : GameObject(this)
+Room::Room(std::string file)
 {
 	map.load(path + file);
 	background = new MapLayer(map, 0);
@@ -71,7 +71,7 @@ void RoomWallet::LoadAll()
 
 // MapGenerator class
 
-MapGenerator::MapGenerator() : GameObject(this) 
+MapGenerator::MapGenerator()
 {
 	wallet = new RoomWallet();
 }

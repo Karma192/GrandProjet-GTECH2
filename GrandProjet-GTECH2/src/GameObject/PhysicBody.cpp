@@ -2,11 +2,9 @@
 #include "../Instance/PhysicsManager.hpp"
 #include "GameObject.hpp"
 
-PhysicBody::PhysicBody(GameObject* gameObject)
+PhysicBody::PhysicBody()
 {
-	_owner = gameObject;
-	SetHitbox(gameObject->GetBounds());
-	PhysicsManager::GetInstance()->AddBody(this);
+	
 }
 
 void PhysicBody::OnCollisionEnter(PhysicBody* other)
@@ -26,7 +24,6 @@ void PhysicBody::OnCollisionEnter(PhysicBody* other)
 
 void PhysicBody::DefineOwnBody(GameObject* go)
 {
-	_owner = go;
 	SetHitbox(go->GetBounds());
 	PhysicsManager::AddBody(this);
 }

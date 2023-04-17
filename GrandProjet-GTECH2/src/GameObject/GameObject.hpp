@@ -8,13 +8,14 @@
 class GameObject : public PhysicBody
 {
 public:
-	GameObject(GameObject* self);
+	GameObject();
 	virtual ~GameObject();
 
-	bool _destructed = false;
 
 	// Setup des donn�es identitaires du GameObject
 	void SetID(std::string name, std::string tag);
+	// Initialisation du game object
+	virtual void Init();
 	// Boucle du game object
 	void Update();
 	// Processus en back du game object
@@ -30,8 +31,14 @@ public:
 	// Fonction pour r�cuperer le sprite du game object
 	sf::Sprite* GetSprite() { return &_sprite; }
 
+	bool IsInit() { return _init; }
+	bool IsDestructed() { return _destructed; }
+
 protected:
 	sf::Sprite _sprite;
 	sf::FloatRect _hurtbox;
 	std::string _name;
+	
+	bool _init = false;
+	bool _destructed = false;
 };

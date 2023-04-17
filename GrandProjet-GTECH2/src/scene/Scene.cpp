@@ -16,49 +16,45 @@ void GameScene::Update() {
 	gameData = GameMaster::GetInstance()->GetGameData();
 	this->Loop();
 	this->Render();
-	/*if (layers != nullptr) {
-		for (int i = 9; i > 0; i--) {
-			if (layers[i] != nullptr) {
-				for (int j = 0; j < layers[i]->objects.size(); j++) {
-					if (layers[i]->objects[j] != nullptr) {
-						layers[i]->objects[j]->Update(event, window);
-					}
-				}
-			}
-		}
-	}*/
-}
-
-void GameScene::Loop() {
-	for (auto i = *std::prev(std::end(this->layers)); i >= *std::begin(this->layers); i--) {
-		if (i->objects.empty() == false) {
-			for (int j = 0; j < (i->objects.size() - 1); j++) {
-				if (i->objects[j] != NULL) {
-					i->objects[j]->Loop();
+	for (int i = 0; i < 10; i++) 
+	{
+		if (layers[i] != nullptr) 
+		{
+			for (int j = 0; j < layers[i]->objects.size(); j++) 
+			{
+				if (layers[i]->objects[j] != nullptr) 
+				{
+					layers[i]->objects[j]->Update();
 				}
 			}
 		}
 	}
 }
 
-void GameScene::Render() {
-	for (auto i = *std::prev(std::end(this->layers)); i >= *std::begin(this->layers); i--) {
-		if (i->objects.empty() == false) {
-			for (int j = 0; j < (i->objects.size() - 1); j++) {
-				if (i->objects[j] != NULL) {
-					i->objects[j]->Render();
-				}
-			}
-		}
-	}
+void GameScene::Loop()
+{
+
 }
 
-void GameScene::AddToScene(GameObject* gameObject, int layer) {
+void GameScene::Render()
+{
+
+}
+
+void GameScene::AddToScene(GameObject* gameObject, int layer)
+{
+	if (layers[layer] == nullptr)
+	{
+		layers[layer] = new Layer();
+	}
+
 	layers[layer]->objects.push_back(gameObject);
 }
 
-void GameScene::SetLayer() {
-	for (int i = 0; i < 9; i++) {
-		layers[i] = new Layer;
+void GameScene::SetLayer()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		layers[i] = nullptr;
 	}
 }

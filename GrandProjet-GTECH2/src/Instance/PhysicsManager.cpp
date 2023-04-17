@@ -24,7 +24,7 @@ void PhysicsManager::Update()
 {
 #ifdef _DEBUG
 	//std::cout << "Body count : " << _bodies.size() << std::endl;
-	std::cout << "x : " << _bodies[0]->Hitbox()->left << "\ty : " << _bodies[0]->Hitbox()->top << std::endl;
+	//std::cout << "x : " << _bodies[0]->Hitbox()->left << "\ty : " << _bodies[0]->Hitbox()->top << std::endl;
 #endif // _DEBUG
 
 	for (int i = 0; i < _bodies.size(); i++)

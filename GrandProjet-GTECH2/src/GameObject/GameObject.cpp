@@ -1,9 +1,11 @@
 #include "GameObject.hpp"
 #include "../Instance/GameMaster.hpp"
 
-GameObject::GameObject(GameObject* self) : PhysicBody(self)
+GameObject::GameObject()
 {
-	GameMaster::AddGameObject(this);
+	_destructed = false;
+	_init = false;
+	GameMaster::GetInstance()->AddGameObject(this);
 }
 
 GameObject::~GameObject()
@@ -15,6 +17,12 @@ void GameObject::SetID(std::string name, std::string tag)
 {
 	_name = name;
 	SetCollideTag(tag);
+}
+
+void GameObject::Init()
+{
+	DefineOwnBody(this);
+	_init = true;
 }
 
 void GameObject::Update()

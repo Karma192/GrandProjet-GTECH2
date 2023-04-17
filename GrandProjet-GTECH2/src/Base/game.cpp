@@ -21,6 +21,7 @@ void Game::GameLoop()
 	while (window->isOpen())
 	{
 		window->clear();
+		GameMaster::GetInstance()->InitObject();
 		sm->Update();
 		Camera::GetInstance()->Update();
 		GameMaster::GetInstance()->Purge();

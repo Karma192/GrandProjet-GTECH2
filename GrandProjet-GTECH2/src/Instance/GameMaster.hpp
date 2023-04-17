@@ -38,6 +38,8 @@ public:
 	static std::vector<GameObject*> GetListGameObject();
 	// Fonction pour ajouter un objet � la liste
 	static void AddGameObject(GameObject*);
+	// Fonction pour initialiser les objets du jeu
+	static void InitObject();
 	// Fonction pour recuperer les donnees du jeu
 	static GameData GetGameData();
 	// Fonction pour changer de scene

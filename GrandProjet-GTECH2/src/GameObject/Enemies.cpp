@@ -1,6 +1,6 @@
 #include "Enemies.hpp"
 
-Enemies::Enemies() : GameObject(this)
+Enemies::Enemies()
 {
     Cube2Test();
     SetID("Enemy1", "Enemy");

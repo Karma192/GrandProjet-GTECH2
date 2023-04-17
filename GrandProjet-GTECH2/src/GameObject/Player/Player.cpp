@@ -2,7 +2,7 @@
 #include "../../Instance/GameMaster.hpp"
 
 
-Player::Player() : GameObject(this)
+Player::Player()
 {
     CubeTest();
     DefineOwnBody(this);
@@ -12,7 +12,7 @@ Player::Player() : GameObject(this)
 
 Player::~Player()
 {
-
+    
 }
 
 void Player::Loop()

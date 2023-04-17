@@ -32,6 +32,24 @@ void GameMaster::AddGameObject(GameObject* obj)
 	_listGameObject.push_back(obj);
 }
 
+void GameMaster::InitObject()
+{
+#if _DEBUG
+	std::cout << "GameObject Count : \t" << _listGameObject.size() << std::endl;
+	std::cout << "GameMaster::InitGame()" << std::endl;
+#endif // _DEBUG
+	for (int i = 0; i < _listGameObject.size(); i++)
+	{
+		if (_listGameObject[i] != nullptr)
+		{
+			if (!_listGameObject[i]->IsInit()) 
+			{
+				_listGameObject[i]->Init();
+			}
+		}
+	}
+}
+
 GameData GameMaster::GetGameData()
 {
 	return data;
@@ -68,7 +86,7 @@ void GameMaster::Purge()
 	{
 		for (int i = 0; i < _listGameObject.size()-1; i++) 
 		{
-			if (_listGameObject[i]->_destructed)
+			if (_listGameObject[i]->IsDestructed())
 			{
 				delete _listGameObject[i];
 				_listGameObject.erase(_listGameObject.begin() + i);
