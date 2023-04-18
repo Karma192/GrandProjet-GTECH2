@@ -23,7 +23,14 @@ void Player::Loop()
 
     // TEST //
 
-    animation.Animate(0.5f);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+    {
+        animation.AnimateTest(0.2f);
+    }
+    else
+    {
+        animation.Animate(0.2f);
+    }
 
     // TEST //
 }
@@ -163,9 +170,7 @@ void Player::playerUI()
 
 void Player::CubeTest()
 {
-    /* NEW */
-
-    animation.LoadAnimation("ressources/sprites/player/player_tilesheet.png", cube, 50, 37, 3.f);
+    animation.LoadAnimation("ressources/sprites/player/player_tilesheet.png", &cube, 50, 37, 3.f);
 
     animation.SetAnimation(false, 0);
 

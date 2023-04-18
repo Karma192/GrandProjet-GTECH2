@@ -1,15 +1,15 @@
 #include "Animation.h"
 
-void Animation::LoadAnimation(std::string filename, sf::Sprite &sprite, int frameWidth, int frameHeight, float scaleRatio)
+void Animation::LoadAnimation(std::string filename, sf::Sprite *sprite, int frameWidth, int frameHeight, float scaleRatio)
 {
+    _scaleRatio = scaleRatio;
+    _sprite = sprite;
+
     if (!texture.loadFromFile(filename))
     {
         std::cout << "Erreur chargement spritesheet" << std::endl;
         return;
     }
-
-    _sprite = sprite;
-    _sprite.setTexture(texture);
 
     int numColumns = texture.getSize().x / frameWidth;
     int numRows = texture.getSize().y / frameHeight;
@@ -20,24 +20,30 @@ void Animation::LoadAnimation(std::string filename, sf::Sprite &sprite, int fram
             frames.push_back(rect);
         }
     }
+
+    _sprite->setTexture(texture);
 }
 
 void Animation::SetAnimation(bool doFlip, int firstFrame)
 {
     if (doFlip)
     {
-        _sprite.setScale(-_scaleRatio, _scaleRatio);
+        // to the right
+        _sprite->setScale(-_scaleRatio, _scaleRatio);
     }
     else
     {
-        _sprite.setScale(_scaleRatio, _scaleRatio);
+        // to the left
+        _sprite->setScale(_scaleRatio, _scaleRatio);
     }
 
     frameIndex = { 0, 1, 2, 3 };
 
-    currentFrame = firstFrame;
+    frameIndexTest = { 8, 9, 10, 11, 12 };
 
-    _sprite.setTextureRect(frames[frameIndex[currentFrame]]);
+    // first frame start to 0
+    currentFrame = firstFrame;
+    currentFrameTest = firstFrame;
 }
 
 void Animation::Animate(float animSpeed)
@@ -45,7 +51,17 @@ void Animation::Animate(float animSpeed)
     if (clock.getElapsedTime().asSeconds() >= animSpeed)
     {
         currentFrame = (currentFrame + 1) % frameIndex.size();
-        _sprite.setTextureRect(frames[frameIndex[currentFrame]]);
+        _sprite->setTextureRect(frames[frameIndex[currentFrame]]);
+        clock.restart();
+    }
+}
+
+void Animation::AnimateTest(float animSpeed)
+{
+    if (clock.getElapsedTime().asSeconds() >= animSpeed)
+    {
+        currentFrameTest = (currentFrameTest + 1) % frameIndexTest.size();
+        _sprite->setTextureRect(frames[frameIndexTest[currentFrameTest]]);
         clock.restart();
     }
 }
