@@ -1,26 +1,24 @@
 #pragma once
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 class Animation
 {
 public:
-	void AnimationInit(sf::String texturePath, sf::Sprite* sprite, int startFrameColumn, int xImage, int yImage);
-	void SpriteAnimation(int nbFramesAnim, int nbTotalFramesX,
-		int startFrameLine, int endFrameColumn, int endFrameLine);
-	void flipSprite(sf::Sprite sprite, sf::Vector2f moveSpeed);
+	void LoadAnimation(std::string filename, sf::Sprite &sprite, int frameWidth, int frameHeight, float scaleRatio);
+	void SetAnimation(bool doFlip, int firstFrame);
+	void Animate(float animSpeed);
 
 private:
 	sf::Clock clock;
 	sf::Texture texture;
-	int counter = 2;
-	int flip = 1;
+	sf::Sprite _sprite;
 
-	int aStartFrameColumn;
-	int aXImage;
-	int aYImage;
-	sf::Sprite* aSprite;
-	sf::String aTexturePath;
-	sf::IntRect aRectSourceSprite;
+	std::vector<sf::IntRect> frames;
+	std::vector<int> frameIndex;
+	
+	float _scaleRatio;
+	int currentFrame;
 };
 

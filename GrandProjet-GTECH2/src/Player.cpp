@@ -21,17 +21,11 @@ void Player::Loop()
     _stopMoving = false;
     PlayerBasicAttack();
 
-    // Passage à la frame suivante de l'animation
-    if (clock.getElapsedTime().asSeconds() > 0.2f)
-    {
-        if (rectSprite.left == 150)
-            rectSprite.left = 0;
-        else
-            rectSprite.left += 50;
+    // TEST //
 
-        cube.setTextureRect(rectSprite);
-        clock.restart();
-    }
+    animation.Animate(0.5f);
+
+    // TEST //
 }
 
 void Player::Render()
@@ -169,20 +163,13 @@ void Player::playerUI()
 
 void Player::CubeTest()
 {
-    // Load the sprite texture
-    playerTexture.loadFromFile("ressources/sprites/player/adventurer-idle.png");
+    /* NEW */
 
-    cube.setTexture(playerTexture);
-    cube.scale(2.5f, 2.5f);
+    animation.LoadAnimation("ressources/sprites/player/player_tilesheet.png", cube, 50, 37, 3.f);
+
+    animation.SetAnimation(false, 0);
+
     cube.setPosition(sf::Vector2f(200, 200));
-
-    sf::IntRect rectDefaultSprite = sf::IntRect(50, 0, 50, 37);
-    rectSprite = rectDefaultSprite;
-
-    sf::Vector2f center(cube.getLocalBounds().width / 2.f - 82, cube.getLocalBounds().height / 2.f);
-    cube.setOrigin(center);
-
-    cube.setTextureRect(rectSprite);
 }
 
 void Player::ControllerMove()

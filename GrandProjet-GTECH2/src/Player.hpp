@@ -11,6 +11,7 @@
 #include "GameMaster.hpp"
 #include "MapGenerator.hpp"
 #include "Spells.hpp"
+#include "Animation.h"
 
 
 
@@ -63,6 +64,12 @@ public:
 	sf::Vector2f velocity;
 	sf::FloatRect CubeBounds = cube.getGlobalBounds();
 
+	// Lilian TEST
+
+	Animation animation;
+
+	// Lilian TEST
+
 	bool IsAttacking = false;
 
 protected:
@@ -72,7 +79,6 @@ protected:
 private:
 	sf::Texture playerTexture;
 	sf::Sprite playerSprite;
-	sf::Clock clock;
 	sf::IntRect rectSprite;
 
 	sf::Vector2i _mousePos;
