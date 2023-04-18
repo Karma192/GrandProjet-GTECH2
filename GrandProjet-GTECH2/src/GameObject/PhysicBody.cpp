@@ -4,7 +4,8 @@
 
 PhysicBody::PhysicBody()
 {
-	
+	_hitbox = nullptr;
+	_tag = "No Tag";
 }
 
 void PhysicBody::OnCollisionEnter(PhysicBody* other)

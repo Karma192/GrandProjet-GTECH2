@@ -38,6 +38,7 @@ void GameMaster::InitObject()
 	std::cout << "GameObject Count : \t" << _listGameObject.size() << std::endl;
 	std::cout << "GameMaster::InitGame()" << std::endl;
 #endif // _DEBUG
+
 	for (int i = 0; i < _listGameObject.size(); i++)
 	{
 		if (_listGameObject[i] != nullptr)
