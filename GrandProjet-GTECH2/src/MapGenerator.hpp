@@ -77,6 +77,8 @@ public:
     virtual void Loop()override;
     virtual void Render()override;
 
+    void AdjacentRoomDetection();
+
     bool collidesWith(CollisionObject* other) override;
     void handleCollision(CollisionObject* other) override;
 
@@ -97,4 +99,7 @@ private:
     void genDefiRoom();
     void genEnigmeRoom();
     void genSacrificeRoom();
+
+    int _playerPosX;
+    int _playerPosY;
 };

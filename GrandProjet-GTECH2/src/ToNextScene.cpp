@@ -10,6 +10,7 @@ ToNextScene::ToNextScene(int s, sf::Sprite spr, int posx, int posy)
 	scene = s;
 	_sprite = spr;
 	_sprite.setPosition(posx, posy);
+	GameMaster::GetInstance()->SetActiveMap(4);
 }
 
 ToNextScene::~ToNextScene()
@@ -39,6 +40,7 @@ bool ToNextScene::collidesWith(CollisionObject* other)
 		for (int i = 0; i < _spritevect.size(); i++) {
 			if (_spritevect[i].getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
 				map = i;
+				ChangeMap();
 				return true;
 			}
 		}
@@ -53,7 +55,6 @@ bool ToNextScene::collidesWith(CollisionObject* other)
 void ToNextScene::handleCollision(CollisionObject* other)
 {
 	if (dynamic_cast<Player*>(other)) {
-		ChangeMap();
 		std::cout << "Collide with a door" << std::endl;
 	}
 }

@@ -73,7 +73,7 @@ void GameMaster::SetActiveMap(int value)
 		data.indexMap = WEST;
 		break;
 	default:
-		data.indexMap = NORTH;
+		data.indexMap = value;
 		break;
 	}
 }
