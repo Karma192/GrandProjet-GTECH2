@@ -100,7 +100,15 @@ void RoomWallet::LoadAll()
 MapGenerator::MapGenerator() {
 	wallet = new RoomWallet();
 	genMap();
-	AdjacentRoomDetection();
+	FirstRoomDetection();
+
+	std::cout << "NORTH :" << map[_playerPosY - 1][_playerPosX] << std::endl;
+	std::cout << "EAST :" << map[_playerPosY][_playerPosX + 1] << std::endl;
+	std::cout << "SOUTH :" << map[_playerPosY + 1][_playerPosX] << std::endl;
+	std::cout << "WEST :" << map[_playerPosY][_playerPosX - 1] << std::endl;
+
+	_nextPlayerPosX = _playerPosX;
+	_nextPlayerPosY = _playerPosY;
 }
 
 MapGenerator::~MapGenerator() {
@@ -108,7 +116,7 @@ MapGenerator::~MapGenerator() {
 }
 
 void MapGenerator::Loop() {
-
+	FirstRoomDetection();
 }
 
 void MapGenerator::Render() {
@@ -136,16 +144,63 @@ void MapGenerator::Render() {
 	case INGAME:
 		switch (GameMaster::GetGameData().indexMap) {
 		case NORTH:
-			wallet->GetRoom(0)->Render();
+			if (map[_playerPosX - 1][_playerPosY] != '*') {
+				/*if (_lastPos == '#') {
+					_lastPos = 'F';
+				}
+				map[_playerPosX][_playerPosY] = _lastPos;*/
+
+				_nextRoom = map[_playerPosX - 1][_playerPosY];
+
+				_lastPos = _nextRoom;
+				AdjacentRoomDetection();
+				//map[_nextPlayerPosY - 1][_nextPlayerPosX] = '&';
+			}
 			break;
 		case EAST:
-			wallet->GetRoom(1)->Render();
+			if (map[_playerPosX][_playerPosY + 1] != '*') {
+				/*if (_lastPos == '#') {
+					_lastPos = 'F';
+				}
+				map[_playerPosX][_playerPosY] = _lastPos;*/
+
+				_nextRoom = map[_playerPosX][_playerPosY + 1];
+
+				_lastPos = _nextRoom;
+				AdjacentRoomDetection();
+				//map[_nextPlayerPosY][_nextPlayerPosX + 1] = '&';
+
+			}
 			break;
 		case SOUTH:
-			wallet->GetRoom(2)->Render();
+			if (map[_playerPosX + 1][_playerPosY] != '*') {
+				/*if (_lastPos == '#') {
+					_lastPos = 'F';
+				}
+				map[_playerPosX][_playerPosY] = _lastPos;*/
+
+				_nextRoom = map[_playerPosX + 1][_playerPosY];
+
+				_lastPos = _nextRoom;
+				AdjacentRoomDetection();
+				//map[_nextPlayerPosY + 1][_nextPlayerPosX] = '&';
+
+			}
 			break;
 		case WEST:
-			wallet->GetRoom(3)->Render();
+			if (map[_playerPosX][_playerPosY - 1] != '*') {
+				/*if (_lastPos == '#') {
+					_lastPos = 'F';
+				}
+				map[_playerPosX][_playerPosY] = _lastPos;*/
+
+				_nextRoom = map[_playerPosX][_playerPosY - 1];
+
+				_lastPos = _nextRoom;
+				AdjacentRoomDetection();
+				//map[_nextPlayerPosY][_nextPlayerPosX - 1] = '&';
+				
+			}
 			break;
 		default:
 			wallet->GetRoom(1)->Render();
@@ -156,21 +211,56 @@ void MapGenerator::Render() {
 		wallet->GetRoom(1)->Render();
 		break;
 	}
+
+	std::cout << "X : " << _playerPosX << std::endl;
+	std::cout << "Y : " << _playerPosY << std::endl;
+	drawMap();
 }
 
 void MapGenerator::AdjacentRoomDetection() {
+	switch (_nextRoom) {
+	case 'C':
+		wallet->GetRoom(3)->Render();
+		break;
+	case 'M':
+		break;
+	case 'V':
+		break;
+	case 'S':
+		wallet->GetRoom(4)->Render();
+		break;
+	case 'B':
+		wallet->GetRoom(2)->Render();
+		break;
+	case 'P':
+		break;
+	case 'E':
+		break;
+	case 'b':
+		break;
+	case 'D':
+		break;
+	case 'e':
+		break;
+	case 's':
+		break;
+	default:
+		break;
+	}
+	FirstRoomDetection();
+}
+
+void MapGenerator::FirstRoomDetection() {
 	for (int i = 0; i < 10; i++)
 	{
 		for (int j = 0; j < 10; j++)
 		{
-			if (map[i][j] == 'F') {
+			if (map[i][j] == 'F' || map[i][j] == '&') {
 				_playerPosX = i;
 				_playerPosY = j;
 			}
 		}
 	}
-	std::cout << "player posX : " << _playerPosX << std::endl;
-	std::cout << "player posY : " << _playerPosY << std::endl;
 }
 
 bool MapGenerator::collidesWith(CollisionObject* other)
@@ -622,4 +712,5 @@ void MapGenerator::genMap()
 	genEnigmeRoom();
 	genSacrificeRoom();
 	drawMap();
+	std::cout << std::endl;
 }

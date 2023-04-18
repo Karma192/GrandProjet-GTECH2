@@ -55,7 +55,6 @@ bool ToNextScene::collidesWith(CollisionObject* other)
 void ToNextScene::handleCollision(CollisionObject* other)
 {
 	if (dynamic_cast<Player*>(other)) {
-		std::cout << "Collide with a door" << std::endl;
 	}
 }
 
@@ -66,6 +65,5 @@ void ToNextScene::GoToScene()
 
 void ToNextScene::ChangeMap()
 {
-	std::cout << "map : " << map << std::endl;
 	GameMaster::GetInstance()->SetActiveMap(map);
 }
