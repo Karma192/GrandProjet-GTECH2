@@ -56,6 +56,28 @@ void GameMaster::SetActiveScene(int value)
 	}
 }
 
+void GameMaster::SetActiveMap(int value)
+{
+	switch (value)
+	{
+	case NORTH:
+		data.indexMap = NORTH;
+		break;
+	case EAST:
+		data.indexMap = EAST;
+		break;
+	case SOUTH:
+		data.indexMap = SOUTH;
+		break;
+	case WEST:
+		data.indexMap = WEST;
+		break;
+	default:
+		data.indexMap = NORTH;
+		break;
+	}
+}
+
 void GameMaster::SetWindow(RenderWindow* win, Event* e) 
 {
 	data.window = win;
@@ -83,3 +105,4 @@ void GameMaster::SetCollisionManager(CollisionManager* cm)
 {
 	_cm = cm;
 }
+

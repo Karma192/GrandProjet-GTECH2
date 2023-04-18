@@ -69,8 +69,13 @@ bool Player::collidesWith(CollisionObject* other) {
                 return true;
             }
         }
-        return false;
     }
+    if (ToNextScene* scene = dynamic_cast<ToNextScene*>(other)) {
+        if (cube.getGlobalBounds().intersects(scene->_sprite.getGlobalBounds())) {
+            return true;
+        }
+    }
+    return false;
 }
 
 
@@ -86,7 +91,7 @@ void Player::handleCollision(CollisionObject* other)
     }
 	if (dynamic_cast<MapGenerator*>(other)) 
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && _playerDirection != 1)
+        /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && _playerDirection != 1)
         {
             moveSpeed = sf::Vector2f(0.f, -100.f);
             MovePlayer();
@@ -106,7 +111,7 @@ void Player::handleCollision(CollisionObject* other)
             moveSpeed = sf::Vector2f(100.f, 0.f);
             MovePlayer();
         }
-        _stopMoving = true;
+        _stopMoving = true;*/
     }
 }
 

@@ -9,6 +9,7 @@ Room::Room(std::string file)
 	background = new MapLayer(map, 0);
 	decoration = new MapLayer(map, 1);
 	collision = new MapLayer(map, 2);
+	rect.clear();
 	GetTilesBounds();
 }
 
@@ -27,6 +28,9 @@ void Room::Render()
 	GameMaster::GetInstance()->GetGameData().window->draw(*background);
 	GameMaster::GetInstance()->GetGameData().window->draw(*decoration);
 	GameMaster::GetInstance()->GetGameData().window->draw(*collision);
+	for (int i = 0; i < rect.size(); i++) {
+		GameMaster::GetInstance()->GetGameData().window->draw(rect[i]);
+	}
 }
 
 bool Room::collidesWith(CollisionObject* other)
@@ -35,8 +39,8 @@ bool Room::collidesWith(CollisionObject* other)
 }
 
 void Room::GetTilesBounds() {
-	for (int x = 0; x < 60; x++) {
-		for (int y = 0; y < 40; y++) {
+	for (int x = 0; x < map.getTileCount().x; x++) {
+		for (int y = 0; y < map.getTileCount().y; y++) {
 			if(collision->getTile(x,y).ID != 0){
 				i++;
 				rectCube.setSize(sf::Vector2f(16, 16));
@@ -77,12 +81,25 @@ void RoomWallet::LoadAll()
 {
 	Room* inn = new Room("village/inside_tavern.tmx");
 	wallet.push_back(inn);
+
+	Room* spawn = new Room("dungeon/spawn_room.tmx");
+	wallet.push_back(spawn);
+
+	Room* boss = new Room("dungeon/boss_room.tmx");
+	wallet.push_back(boss);
+
+	Room* chest = new Room("dungeon/chest_room.tmx");
+	wallet.push_back(chest);
+
+	Room* trans = new Room("dungeon/transition_room.tmx");
+	wallet.push_back(trans);
 }
 
 // MapGenerator class
 
 MapGenerator::MapGenerator() {
 	wallet = new RoomWallet();
+	genMap();
 }
 
 MapGenerator::~MapGenerator() {
@@ -94,20 +111,37 @@ void MapGenerator::Loop() {
 }
 
 void MapGenerator::Render() {
-	wallet->GetRoom(0)->Render();
-	//switch (gameData.indexScene)
-	//{
-	//case LOBBY : 
-	//	if (gameData.indexMap == 0)
-	//	{
-
-	//	}
-
-	//	break;
-	//default:
-	//	break;
-	//}
-
+	std::cout << "index : " << GameMaster::GetGameData().indexMap << std::endl;
+	switch (GameMaster::GetGameData().indexScene)
+	{
+	case LOBBY:
+		if (GameMaster::GetGameData().indexMap == 0)
+		{
+			wallet->GetRoom(0)->Render();
+		}
+		break;
+	case INGAME:
+		switch (GameMaster::GetGameData().indexMap) {
+		case NORTH:
+			wallet->GetRoom(0)->Render();
+			break;
+		case EAST:
+			wallet->GetRoom(1)->Render();
+			break;
+		case SOUTH:
+			wallet->GetRoom(2)->Render();
+			break;
+		case WEST:
+			wallet->GetRoom(3)->Render();
+			break;
+		default:
+			wallet->GetRoom(0)->Render();
+			break;
+		}
+		break;
+	default:
+		break;
+	}
 }
 
 bool MapGenerator::collidesWith(CollisionObject* other)

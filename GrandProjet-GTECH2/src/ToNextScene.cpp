@@ -23,12 +23,27 @@ void ToNextScene::Loop()
 void ToNextScene::Render()
 {
 	GameMaster::GetGameData().window->draw(_sprite);
+	for (int i = 0; i < _spritevect.size(); i++) {
+		GameMaster::GetGameData().window->draw(_spritevect[i]);
+	}
+}
+
+void ToNextScene::CreateDoors(sf::Sprite spr, int posx, int posy) {
+	spr.setPosition(posx, posy);
+	_spritevect.push_back(spr);
 }
 
 bool ToNextScene::collidesWith(CollisionObject* other)
 {
 	if (Player* player = dynamic_cast<Player*>(other)) {
+		for (int i = 0; i < _spritevect.size(); i++) {
+			if (_spritevect[i].getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
+				map = i;
+				return true;
+			}
+		}
 		if (_sprite.getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
+			GoToScene();
 			return true;
 		}
 	}
@@ -38,14 +53,18 @@ bool ToNextScene::collidesWith(CollisionObject* other)
 void ToNextScene::handleCollision(CollisionObject* other)
 {
 	if (dynamic_cast<Player*>(other)) {
-		GoToScene();
-#if DEBUG
+		ChangeMap();
 		std::cout << "Collide with a door" << std::endl;
-#endif // DEBUG
 	}
 }
 
 void ToNextScene::GoToScene()
 {
 	GameMaster::GetInstance()->SetActiveScene(scene);
+}
+
+void ToNextScene::ChangeMap()
+{
+	std::cout << "map : " << map << std::endl;
+	GameMaster::GetInstance()->SetActiveMap(map);
 }

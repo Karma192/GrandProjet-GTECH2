@@ -36,7 +36,7 @@ void SceneManager::SwitchScene()
 	case INGAME:
 		ingame.Update();
 #ifdef _DEBUG
-		std::cout << "C'est le ingame !" << std::endl;
+		//std::cout << "C'est le ingame !" << std::endl;
 #endif // DEBUG
 		break;
 

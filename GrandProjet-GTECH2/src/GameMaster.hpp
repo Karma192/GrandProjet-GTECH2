@@ -18,6 +18,11 @@ enum {
 	MENU = 0,
 	LOBBY = 1,
 	INGAME = 2,
+
+	NORTH = 0,
+	EAST = 1,
+	SOUTH = 2,
+	WEST = 3,
 };
 
 class GameObject;
@@ -52,4 +57,6 @@ public:
 	void Purge();
 	// Fonction pour récupérer le CollisionManager
 	void SetCollisionManager(CollisionManager*);
+	// Fonction pour setup les maps
+	void SetActiveMap(int);
 };

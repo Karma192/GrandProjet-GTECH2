@@ -71,7 +71,6 @@ public:
     char map[10][10];
     RoomWallet* wallet;
 
-
     MapGenerator();
     ~MapGenerator();
 
@@ -98,5 +97,4 @@ private:
     void genDefiRoom();
     void genEnigmeRoom();
     void genSacrificeRoom();
-
 };
