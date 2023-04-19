@@ -4,8 +4,12 @@
 
 PhysicBody::PhysicBody()
 {
-	_hitbox = nullptr;
-	_tag = "No Tag";
+	_tag = "Default";
+}
+
+PhysicBody::~PhysicBody()
+{
+	delete _hurtbox;
 }
 
 void PhysicBody::OnCollisionEnter(PhysicBody* other)
@@ -23,22 +27,6 @@ void PhysicBody::OnCollisionEnter(PhysicBody* other)
 	}
 }
 
-void PhysicBody::DefineOwnBody(GameObject* go)
-{
-	SetHitbox(go->GetBounds());
-	PhysicsManager::AddBody(this);
-}
-
-void PhysicBody::SetHitbox(sf::FloatRect* rect)
-{
-	_hitbox = rect;
-}
-
-void PhysicBody::SetCollideTag(std::string tag)
-{
-	_tag = tag;
-}
-
 bool PhysicBody::CompareTag(std::string tag)
 {
 	return _tag == tag;
@@ -47,4 +35,22 @@ bool PhysicBody::CompareTag(std::string tag)
 std::string PhysicBody::GetTag()
 {
 	return _tag;
+}
+
+void PhysicBody::SetHitbox(sf::FloatRect* rect)
+{
+	_hurtbox = rect;
+	// Affiche les coordonnées de la hitbox
+	std::cout << "Hitbox: " << _hurtbox->left << " " << _hurtbox->top << " " << _hurtbox->width << " " << _hurtbox->height << std::endl;
+} 
+
+void PhysicBody::DefineOwnBody(GameObject* go)
+{
+	SetHitbox(go->GetBounds());
+	PhysicsManager::GetInstance()->AddBody(this);
+}
+
+void PhysicBody::SetCollideTag(std::string tag)
+{
+	_tag = tag;
 }

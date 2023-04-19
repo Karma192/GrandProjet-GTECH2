@@ -8,19 +8,12 @@ class GameObject;
 
 class PhysicBody
 {
-private:
-	sf::FloatRect* _hitbox;
-	std::string _tag;
-	
-	// Fonction pour créer la hitbox
-	void SetHitbox(sf::FloatRect* rect);
-
 public:
 	PhysicBody();
-	virtual ~PhysicBody() {}
+	virtual ~PhysicBody();
 
 	// Fonction pour récupérer la hitbox
-	sf::FloatRect* Hitbox() { return _hitbox; }
+	sf::FloatRect* Hitbox() { return _hurtbox; }
 
 	// Fonction à override pour déterminer les actions à faire OnCollision
 	virtual void OnCollisionEnter(PhysicBody* other);
@@ -28,9 +21,15 @@ public:
 	bool CompareTag(std::string tag);
 	// Fonction pour récupérer le tag de l'objet
 	std::string GetTag();
+	// Fonction pour créer la hitbox
+	void SetHitbox(sf::FloatRect* rect);
 	
+private:
+	sf::FloatRect* _hurtbox;
+	std::string _tag;
+
 protected:
-	// Fonction pour définir le propriétaire du PhysicBody
+	// Fonction pour définir le PhysicBody
 	void DefineOwnBody(GameObject* go);
 	// Fonction pour déterminer le tag de l'objet
 	void SetCollideTag(std::string tag);

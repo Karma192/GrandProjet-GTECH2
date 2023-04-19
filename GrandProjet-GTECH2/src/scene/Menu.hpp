@@ -8,10 +8,5 @@ public:
 	Menu();
 	virtual ~Menu();
 
-	menuHUD menuhud;
-
-	virtual void Loop()override;
-	virtual void Render()override;
-
-private:
+	menuHUD* menuhud;
 };

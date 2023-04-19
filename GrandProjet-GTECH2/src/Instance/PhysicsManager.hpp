@@ -8,7 +8,7 @@ class PhysicsManager
 {
 private:
 	static PhysicsManager* _instance;
-	static std::vector<PhysicBody*> _bodies;
+	std::vector<PhysicBody*> _bodies;
 
 public:
 	PhysicsManager();
@@ -22,7 +22,7 @@ public:
 	// Fonction pour mettre à jour les collisions
 	void Update();
 	// Fonction pour ajouter un PhysicBody à la liste des PhysicBody
-	static void AddBody(PhysicBody* obj);
+	void AddBody(PhysicBody* obj);
 	//Fonction pour retirer un PhysicBody de la liste des PhysicBody
-	static void RemoveBody(PhysicBody* body);
+	void RemoveBody(PhysicBody* body);
 };

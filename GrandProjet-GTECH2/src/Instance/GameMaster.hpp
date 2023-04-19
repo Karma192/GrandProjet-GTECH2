@@ -24,7 +24,7 @@ class GameMaster
 protected:
 	static GameMaster* instance;
 	static GameData data;
-	static std::vector<GameObject*> _listGameObject;
+	std::vector<GameObject*> _listGameObject;
 
 public:
 	GameMaster();
@@ -35,11 +35,11 @@ public:
 	static GameMaster* GetInstance();
 
 	// Fonction pour r�cuperer la liste d'objets
-	static std::vector<GameObject*> GetListGameObject();
+	std::vector<GameObject*> GetListGameObject();
 	// Fonction pour ajouter un objet � la liste
-	static void AddGameObject(GameObject*);
+	void AddGameObject(GameObject*);
 	// Fonction pour initialiser les objets du jeu
-	static void InitObject();
+	void InitObject();
 	// Fonction pour recuperer les donnees du jeu
 	static GameData GetGameData();
 	// Fonction pour changer de scene

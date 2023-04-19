@@ -4,15 +4,14 @@
 
 Player::Player()
 {
-    CubeTest();
-    DefineOwnBody(this);
+    SetSprite("sprites/player/adventurer-idle.png", sf::Vector2f(3.0f, 3.0f));
+    SetPosition(sf::Vector2f(200, 200));
     SetID("Player", "Player");
     this->playerHP = 20;
 }
 
 Player::~Player()
 {
-    
 }
 
 void Player::Loop()
@@ -32,7 +31,7 @@ void Player::Loop()
         else
             rectSprite.left += 50;
 
-        _sprite.setTextureRect(rectSprite);
+        Sprite()->setTextureRect(rectSprite);
         clock.restart();
     }
 }
@@ -63,7 +62,7 @@ void Player::Render()
         IsAttacking = false;
         isActtk = true;
     }
-    GameMaster::GetInstance()->GetGameData().window->draw(_sprite);
+    GameMaster::GetInstance()->GetGameData().window->draw(*Sprite());
     playerUI();
 }
 
@@ -104,27 +103,7 @@ void Player::playerUI()
         playerUITab[i].setPosition(playerUiSpellPosition);
         j += 60;
     }
-
 }
-
-void Player::CubeTest()
-{
-    // Load the sprite texture
-    playerTexture.loadFromFile("ressources/sprites/player/adventurer-idle.png");
-
-    _sprite.setTexture(playerTexture);
-    _sprite.scale(3.0f, 3.0f);
-    _sprite.setPosition(sf::Vector2f(200, 200));
-
-    CubeBounds = _sprite.getGlobalBounds();
-    _sprite.setOrigin(CubeBounds.width/2.0f,CubeBounds.height/2.0f);
-
-    sf::IntRect rectDefaultSprite = sf::IntRect(50, 0, 50, 37);
-    rectSprite = rectDefaultSprite;
-
-    _sprite.setTextureRect(rectSprite);
-}
-
 
 void Player::ControllerMove()
 {
@@ -141,7 +120,7 @@ void Player::ControllerMove()
 }
 
 void Player::MouseUsage() {
-    _playerCenter = _sprite.getPosition();
+    _playerCenter = Sprite()->getPosition();
     _mousePos = sf::Mouse::getPosition(*GameMaster::GetInstance()->GetGameData().window);
     _worldPosition = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(_mousePos, GameMaster::GetInstance()->GetGameData().window->getView());
 
@@ -152,7 +131,7 @@ void Player::MouseUsage() {
     angleDegrees = angleRadians * 180 / M_PI;
     angleDegrees += 180;
 
-    std::cout << angleDegrees << std::endl;
+    //std::cout << angleDegrees << std::endl;
 
     if (angleDegrees > 360)
     {
@@ -162,9 +141,9 @@ void Player::MouseUsage() {
 
 void Player::MovePlayer()
 {
-    _sprite.move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
+    Sprite()->move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
     rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / M_PI;
-    _sprite.setRotation(rotation);
+    Sprite()->setRotation(rotation);
 }
 
 void Player::KeyboardMove()
@@ -200,12 +179,12 @@ void Player::KeyboardMove()
 
 int Player::GetPlayerXPos()
 {
-    return _sprite.getPosition().x;
+    return Sprite()->getPosition().x;
 }
 
 int Player::GetPlayerYPos()
 {
-    return _sprite.getPosition().y;
+    return Sprite()->getPosition().y;
 }
 
 void Player::PlayerAttack()
@@ -218,8 +197,8 @@ void Player::PlayerBasicAttack()
 {
     hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
     hitboxTest.setFillColor(sf::Color::Blue);
-    hitboxTest.setPosition(_sprite.getPosition());
-    hitboxTest.setRotation(_sprite.getRotation());
+    hitboxTest.setPosition(Sprite()->getPosition());
+    hitboxTest.setRotation(Sprite()->getRotation());
     hitboxTest.setOrigin(CubeBounds.width / 2.0f, CubeBounds.height / 2.0f);
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))

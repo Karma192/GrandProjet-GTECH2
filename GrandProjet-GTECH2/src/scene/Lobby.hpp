@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Scene.hpp"
 #include "../GameObject/Player/Player.hpp"
 #include "../GameObject/Enemies.hpp"
@@ -12,8 +13,7 @@ public:
     Lobby();
     virtual ~Lobby();
 
-    virtual void Loop()override;
-    virtual void Render()override;
+    Player* GetPlayer();
 
 private:
     Player* p;

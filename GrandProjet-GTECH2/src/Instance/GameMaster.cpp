@@ -1,9 +1,9 @@
 #include "GameMaster.hpp"
 #include "../GameObject/GameObject.hpp"
+#include "PhysicsManager.hpp"
 
 GameMaster* GameMaster::instance = nullptr;
 GameData GameMaster::data;
-std::vector<GameObject*> GameMaster::_listGameObject;
 
 GameMaster::GameMaster()
 {
@@ -35,8 +35,8 @@ void GameMaster::AddGameObject(GameObject* obj)
 void GameMaster::InitObject()
 {
 #if _DEBUG
-	std::cout << "GameObject Count : \t" << _listGameObject.size() << std::endl;
-	std::cout << "GameMaster::InitGame()" << std::endl;
+	//std::cout << "GameObject Count : \t" << _listGameObject.size() << std::endl;
+	//std::cout << "GameMaster::InitGame() started..." << std::endl;
 #endif // _DEBUG
 
 	for (int i = 0; i < _listGameObject.size(); i++)
@@ -49,6 +49,9 @@ void GameMaster::InitObject()
 			}
 		}
 	}
+#if _DEBUG
+	//std::cout << "GameMaster::InitGame() ended..." << std::endl;
+#endif // _DEBUG
 }
 
 GameData GameMaster::GetGameData()
@@ -89,9 +92,9 @@ void GameMaster::Purge()
 		{
 			if (_listGameObject[i]->IsDestructed())
 			{
+				PhysicsManager::GetInstance()->RemoveBody(_listGameObject[i]);
 				delete _listGameObject[i];
 				_listGameObject.erase(_listGameObject.begin() + i);
-				
 			}
 		}
 	}

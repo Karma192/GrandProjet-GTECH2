@@ -2,10 +2,9 @@
 
 Enemies::Enemies()
 {
-    Cube2Test();
+    SetSprite("sprites/player/adventurer-idle.png", sf::Vector2f(3.0f, 3.0f));
+    SetPosition(sf::Vector2f(600, 100));
     SetID("Enemy1", "Enemy");
-    sf::FloatRect* hitbox = &cube2.getGlobalBounds();
-    //SetHitbox(hitbox);
     this->ennemieHP = 10;
 }
 
@@ -22,36 +21,23 @@ void Enemies::Loop()
 
 void Enemies::Render() 
 {
-    GameMaster::GetInstance()->GetGameData().window->draw(cube2);
+    GameMaster::GetInstance()->GetGameData().window->draw(*Sprite());
 }
 
 void Enemies::OnCollisionEnter(PhysicBody* other)
 {
+	std::cout << "Collision of " << GetName() <<" with a " << other->GetTag() << std::endl;
+
     if (other->CompareTag("Player"))
     {
-		std::cout << "Collision of " << GetName() <<" with player" << std::endl;
         ennemieHP--;
         std::cout << ennemieHP << std::endl;
         if (ennemieHP <= 0)
         {
-            std::cout << "ennemi mort";
-            cube2.setPosition(1800.f, 60.f);
-            FollowTarget(false);
             Destroy();
             //TODO DESTROY ENNEMIES
         }
 	}
-    if (other->CompareTag("Enemy"))
-    {
-		std::cout << "Collision of " << GetName() << " with enemy" << std::endl;
-	}
-}
-
-void Enemies::Cube2Test()
-{
-    cube2.setSize(sf::Vector2f(30.f, 30.f));
-    cube2.setFillColor(sf::Color::Blue);
-    cube2.setPosition(sf::Vector2f(800, 400));
 }
 
 void Enemies::FollowTarget(bool)

@@ -1,21 +1,45 @@
 #include "Scene.hpp"
 
-Layer::Layer() {
-	this->objects.push_back(nullptr);
+Layer::Layer() 
+{
+	
 }
 
-GameScene::GameScene() {
+GameScene::GameScene() 
+{
 	SetLayer();
 }
 
-GameScene::~GameScene() {
+GameScene::~GameScene() 
+{
 
 }
 
-void GameScene::Update() {
-	gameData = GameMaster::GetInstance()->GetGameData();
-	this->Loop();
-	this->Render();
+void GameScene::InitializeScene()
+{
+	for (int i = 0; i < 10; i++)
+	{
+		if (layers[i] != nullptr)
+		{
+			for (int j = 0; j < layers[i]->objects.size(); j++)
+			{
+				if (layers[i]->objects[j] != nullptr)
+				{
+					layers[i]->objects[j]->Create();
+				}
+			}
+		}
+	}
+}
+
+void GameScene::Update() 
+{
+	if (!_init)
+	{
+		InitializeScene();
+		_init = true;
+	}
+
 	for (int i = 0; i < 10; i++) 
 	{
 		if (layers[i] != nullptr) 
@@ -29,16 +53,19 @@ void GameScene::Update() {
 			}
 		}
 	}
+
+	this->Loop();
+	this->Render();
 }
 
 void GameScene::Loop()
 {
-
+	// code here
 }
 
 void GameScene::Render()
 {
-
+	// code here
 }
 
 void GameScene::AddToScene(GameObject* gameObject, int layer)

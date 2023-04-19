@@ -26,18 +26,17 @@ public:
 	void playerUI();
 
 	//Player controller
-	void CubeTest();
 	void MouseUsage();
 	void ControllerMove();
 	void MovePlayer();
 	void KeyboardMove();
 
+	//Player attributes
 	void setPv(int pv) { m_pv = pv; }
 	int getPv() const { return m_pv; }
 	void setAttack(int attack) { m_attack = attack; }
 	int getAttack() const { return m_attack; }
 
-	//Player attributes
 	int GetPlayerXPos();
 	int GetPlayerYPos();
 

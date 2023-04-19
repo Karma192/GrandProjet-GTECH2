@@ -1,36 +1,27 @@
 #include "Lobby.hpp"
 #include "../Instance/Camera.hpp"
 
-Lobby::Lobby() {
-	p = new Player();
-	e = new Enemies();
+Lobby::Lobby() 
+{
 	map = new MapGenerator();
+	AddToScene(map, 0);
+ 	p = new Player();
+	AddToScene(p, 1);
+	e = new Enemies();
+	AddToScene(e, 1);
 	//sp = new Spells();
-
-	/*sf::Texture texture;
-	texture.create(1, 1);
-	texture.loadFromFile("ressources/sprites/player/idle.png");
-	_door = new ToNextScene(0, sf::Sprite(texture),1 ,1);*/
 }
 
 Lobby::~Lobby()
 {
+	delete p;
+	delete e;
+	delete map;
+	//delete sp;
 }
 
-void Lobby::Loop() {
-	Camera::GetInstance()->SetFollow(p->GetSprite());
-	p->Loop();
-	//sp->Loop();
-	e->Loop();
-	//_door.Loop();
-}
-
-void Lobby::Render() {
-	map->Render();
-	p->Render();
-	//sp->Render();
-	e->Render();
-	//_door.Render();
-	//object.Render();
+Player* Lobby::GetPlayer() 
+{
+	return p;
 }
 

@@ -1,7 +1,6 @@
 #include "PhysicsManager.hpp"
 
 PhysicsManager* PhysicsManager::_instance = nullptr;
-std::vector<PhysicBody*> PhysicsManager::_bodies;
 
 PhysicsManager::PhysicsManager()
 {
@@ -41,9 +40,6 @@ void PhysicsManager::Update()
 				_bodies[j]->OnCollisionEnter(_bodies[i]);
 			}
 		}
-#ifdef _DEBUG
-		//std::cout << "Tag" << i << " : " << _bodies[i]->GetTag() << std::endl;
-#endif // _DEBUG
 	}
 }
 
