@@ -20,12 +20,12 @@ public:
 	sf::Sprite _sprite;
 
 	int mapIndex;
+	int map;
+	void ChangeMap();
 
 private:
 
 	std::vector <sf::Sprite> _spritevect;
-	int map;
 	int scene;
 	void GoToScene();
-	void ChangeMap();
 };

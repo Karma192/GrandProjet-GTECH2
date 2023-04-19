@@ -81,6 +81,8 @@ public:
 
     void FirstRoomDetection();
 
+    void PlayerRoomDetection();
+
     bool collidesWith(CollisionObject* other) override;
     void handleCollision(CollisionObject* other) override;
 
@@ -110,4 +112,6 @@ private:
 
     char _nextRoom;
     char _lastPos = '#';
+
+    Room* _renderRoom;
 };

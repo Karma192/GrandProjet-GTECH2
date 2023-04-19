@@ -48,8 +48,12 @@ bool ToNextScene::collidesWith(CollisionObject* other)
 			GoToScene();
 			return true;
 		}
+		else {
+			map = 4;
+			ChangeMap();
+			return false;
+		}
 	}
-	return false;
 }
 
 void ToNextScene::handleCollision(CollisionObject* other)

@@ -31,6 +31,7 @@ InGame::~InGame()
 
 void InGame::Loop() {
 	collisionmanager.updateCollisions();
+	map->Loop();
 	p->Loop();
 	sp.Loop();
 	if (e->_destructed == false)

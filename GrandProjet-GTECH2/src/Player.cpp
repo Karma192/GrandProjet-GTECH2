@@ -113,6 +113,10 @@ void Player::handleCollision(CollisionObject* other)
         }
         _stopMoving = true;*/
     }
+    if (dynamic_cast<ToNextScene*>(other))
+    {
+        cube.setPosition(0, 0);
+    }
 }
 
 

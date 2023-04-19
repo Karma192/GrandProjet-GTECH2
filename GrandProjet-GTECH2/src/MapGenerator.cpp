@@ -102,11 +102,6 @@ MapGenerator::MapGenerator() {
 	genMap();
 	FirstRoomDetection();
 
-	std::cout << "NORTH :" << map[_playerPosY - 1][_playerPosX] << std::endl;
-	std::cout << "EAST :" << map[_playerPosY][_playerPosX + 1] << std::endl;
-	std::cout << "SOUTH :" << map[_playerPosY + 1][_playerPosX] << std::endl;
-	std::cout << "WEST :" << map[_playerPosY][_playerPosX - 1] << std::endl;
-
 	_nextPlayerPosX = _playerPosX;
 	_nextPlayerPosY = _playerPosY;
 }
@@ -116,7 +111,7 @@ MapGenerator::~MapGenerator() {
 }
 
 void MapGenerator::Loop() {
-	FirstRoomDetection();
+	PlayerRoomDetection();
 }
 
 void MapGenerator::Render() {
@@ -145,92 +140,87 @@ void MapGenerator::Render() {
 		switch (GameMaster::GetGameData().indexMap) {
 		case NORTH:
 			if (map[_playerPosX - 1][_playerPosY] != '*') {
-				/*if (_lastPos == '#') {
-					_lastPos = 'F';
-				}
-				map[_playerPosX][_playerPosY] = _lastPos;*/
 
-				_nextRoom = map[_playerPosX - 1][_playerPosY];
+				_nextPlayerPosX = _playerPosX - 1;
+				_nextPlayerPosY = _playerPosY;
 
-				_lastPos = _nextRoom;
+				_playerPosX = _nextPlayerPosX;
+				_playerPosY = _nextPlayerPosY;
+
+				_nextRoom = map[_playerPosX][_playerPosY];
 				AdjacentRoomDetection();
-				//map[_nextPlayerPosY - 1][_nextPlayerPosX] = '&';
+				break;
 			}
 			break;
 		case EAST:
 			if (map[_playerPosX][_playerPosY + 1] != '*') {
-				/*if (_lastPos == '#') {
-					_lastPos = 'F';
-				}
-				map[_playerPosX][_playerPosY] = _lastPos;*/
 
-				_nextRoom = map[_playerPosX][_playerPosY + 1];
+				_nextPlayerPosX = _playerPosX;
+				_nextPlayerPosY = _playerPosY + 1;
 
-				_lastPos = _nextRoom;
+				_playerPosX = _nextPlayerPosX;
+				_playerPosY = _nextPlayerPosY;
+
+				_nextRoom = map[_playerPosX][_playerPosY];
 				AdjacentRoomDetection();
-				//map[_nextPlayerPosY][_nextPlayerPosX + 1] = '&';
-
+				break;
 			}
 			break;
 		case SOUTH:
 			if (map[_playerPosX + 1][_playerPosY] != '*') {
-				/*if (_lastPos == '#') {
-					_lastPos = 'F';
-				}
-				map[_playerPosX][_playerPosY] = _lastPos;*/
 
-				_nextRoom = map[_playerPosX + 1][_playerPosY];
+				_nextPlayerPosX = _playerPosX + 1;
+				_nextPlayerPosY = _playerPosY;
 
-				_lastPos = _nextRoom;
+				_playerPosX = _nextPlayerPosX;
+				_playerPosY = _nextPlayerPosY;
+
+				_nextRoom = map[_playerPosX][_playerPosY];
 				AdjacentRoomDetection();
-				//map[_nextPlayerPosY + 1][_nextPlayerPosX] = '&';
-
+				break;
 			}
 			break;
 		case WEST:
 			if (map[_playerPosX][_playerPosY - 1] != '*') {
-				/*if (_lastPos == '#') {
-					_lastPos = 'F';
-				}
-				map[_playerPosX][_playerPosY] = _lastPos;*/
 
-				_nextRoom = map[_playerPosX][_playerPosY - 1];
+				_nextPlayerPosX = _playerPosX;
+				_nextPlayerPosY = _playerPosY - 1;
 
-				_lastPos = _nextRoom;
+				_playerPosX = _nextPlayerPosX;
+				_playerPosY = _nextPlayerPosY;
+
+				_nextRoom = map[_playerPosX][_playerPosY];
 				AdjacentRoomDetection();
-				//map[_nextPlayerPosY][_nextPlayerPosX - 1] = '&';
-				
+				break;
 			}
 			break;
 		default:
-			wallet->GetRoom(1)->Render();
+			AdjacentRoomDetection();
+			_renderRoom->Render();
 			break;
 		}
 		break;
 	default:
-		wallet->GetRoom(1)->Render();
+		AdjacentRoomDetection();
+		_renderRoom->Render();
 		break;
 	}
-
-	std::cout << "X : " << _playerPosX << std::endl;
-	std::cout << "Y : " << _playerPosY << std::endl;
-	drawMap();
 }
 
 void MapGenerator::AdjacentRoomDetection() {
 	switch (_nextRoom) {
 	case 'C':
-		wallet->GetRoom(3)->Render();
+		_renderRoom = wallet->GetRoom(3);
 		break;
 	case 'M':
 		break;
 	case 'V':
 		break;
 	case 'S':
-		wallet->GetRoom(4)->Render();
+		_renderRoom = wallet->GetRoom(4);
 		break;
 	case 'B':
-		wallet->GetRoom(2)->Render();
+		_renderRoom = wallet->GetRoom(2);
 		break;
 	case 'P':
 		break;
@@ -245,9 +235,9 @@ void MapGenerator::AdjacentRoomDetection() {
 	case 's':
 		break;
 	default:
+		_renderRoom = wallet->GetRoom(1);
 		break;
 	}
-	FirstRoomDetection();
 }
 
 void MapGenerator::FirstRoomDetection() {
@@ -255,7 +245,20 @@ void MapGenerator::FirstRoomDetection() {
 	{
 		for (int j = 0; j < 10; j++)
 		{
-			if (map[i][j] == 'F' || map[i][j] == '&') {
+			if (map[i][j] == 'F') {
+				_playerPosX = i;
+				_playerPosY = j;
+			}
+		}
+	}
+}
+
+void MapGenerator::PlayerRoomDetection() {
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (map[i][j] == '&') {
 				_playerPosX = i;
 				_playerPosY = j;
 			}
