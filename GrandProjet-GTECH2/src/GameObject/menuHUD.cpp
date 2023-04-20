@@ -4,6 +4,8 @@
 //Initialisation of all elements
 menuHUD::menuHUD()
 {
+    SetID("Menu", "Buttons");
+
     selectionBck.setFillColor(sf::Color(144, 144, 144, 200));
 
     menuBackground.loadFromFile("ressources/background.jpg");
@@ -82,6 +84,11 @@ void menuHUD::Render()
         ChangeResolution();
         Language();
     }
+}
+
+void menuHUD::OnCollisionEnter(PhysicBody* other)
+{
+    // Do Nothing
 }
 
 void menuHUD::menuSelection()

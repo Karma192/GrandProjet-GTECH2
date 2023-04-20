@@ -11,3 +11,8 @@ Menu::~Menu()
 {
 	delete menuhud;
 }
+
+void Menu::Init()
+{
+	Camera::GetInstance()->ResetCamera();
+}

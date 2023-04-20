@@ -23,6 +23,8 @@ public:
     virtual void Loop()override;
     virtual void Render()override;
 
+    virtual void OnCollisionEnter(PhysicBody* other)override;
+
     void GetTilesBounds();
 
     MapLayer* background;
@@ -74,6 +76,8 @@ public:
 
     virtual void Loop()override;
     virtual void Render()override;
+
+    virtual void OnCollisionEnter(PhysicBody* other)override;
 
 private:
 

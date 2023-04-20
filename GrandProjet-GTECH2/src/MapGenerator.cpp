@@ -5,6 +5,8 @@
 
 Room::Room(std::string file)
 {
+	SetID("Room", "Room");
+
 	map.load(path + file);
 	background = new MapLayer(map, 0);
 	decoration = new MapLayer(map, 1);
@@ -27,6 +29,11 @@ void Room::Render()
 	GameMaster::GetInstance()->GetGameData().window->draw(*background);
 	GameMaster::GetInstance()->GetGameData().window->draw(*decoration);
 	GameMaster::GetInstance()->GetGameData().window->draw(*collision);
+}
+
+void Room::OnCollisionEnter(PhysicBody* other)
+{
+	// Do Nothing
 }
 
 void Room::GetTilesBounds() {
@@ -99,6 +106,11 @@ void MapGenerator::Render() {
 	//	break;
 	//}
 
+}
+
+void MapGenerator::OnCollisionEnter(PhysicBody* other)
+{
+	// Do Nothing
 }
 
 void MapGenerator::mapInit()

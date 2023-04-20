@@ -7,6 +7,8 @@ public:
 	InGame();
 	virtual ~InGame();
 
+	virtual void Init()override;
+
 private:
 
 };

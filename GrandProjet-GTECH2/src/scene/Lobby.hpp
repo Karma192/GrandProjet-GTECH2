@@ -13,7 +13,7 @@ public:
     Lobby();
     virtual ~Lobby();
 
-    Player* GetPlayer();
+    virtual void Init()override;
 
 private:
     Player* p;

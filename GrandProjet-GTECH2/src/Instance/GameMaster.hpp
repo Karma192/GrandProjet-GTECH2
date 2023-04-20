@@ -34,9 +34,9 @@ public:
 
 	static GameMaster* GetInstance();
 
-	// Fonction pour r�cuperer la liste d'objets
+	// Fonction pour recuperer la liste d'objets
 	std::vector<GameObject*> GetListGameObject();
-	// Fonction pour ajouter un objet � la liste
+	// Fonction pour ajouter un objet a la liste
 	void AddGameObject(GameObject*);
 	// Fonction pour initialiser les objets du jeu
 	void InitObject();
@@ -46,6 +46,6 @@ public:
 	void SetActiveScene(int);
 	// Fonction pour setup du Game Master
 	void SetWindow(RenderWindow*, Event*);
-	// Fonction pour d�truire les objets � d�truire
+	// Fonction pour detruire les objets a detruire
 	void Purge();
 };

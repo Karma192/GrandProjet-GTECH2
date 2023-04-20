@@ -12,9 +12,6 @@
 
 class SceneManager {
 public:
-	Menu menu;
-	Lobby lobby;
-	InGame ingame;
 
 	SceneManager();
 	virtual ~SceneManager();
@@ -22,5 +19,9 @@ public:
 	void Update();
 
 private:
+	int indexScene = 0;
+
+	GameScene* actualScene;
+
 	void SwitchScene();
 };

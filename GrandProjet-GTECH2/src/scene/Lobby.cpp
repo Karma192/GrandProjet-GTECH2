@@ -10,6 +10,7 @@ Lobby::Lobby()
 	e = new Enemies();
 	AddToScene(e, 1);
 	//sp = new Spells();
+	//AddToScene(sp, 1);
 }
 
 Lobby::~Lobby()
@@ -20,8 +21,7 @@ Lobby::~Lobby()
 	//delete sp;
 }
 
-Player* Lobby::GetPlayer() 
+void Lobby::Init()
 {
-	return p;
+	Camera::GetInstance()->SetFollow(p->Sprite());
 }
-

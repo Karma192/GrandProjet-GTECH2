@@ -8,3 +8,8 @@ InGame::InGame() {
 InGame::~InGame() {
 
 }
+
+void InGame::Init()
+{
+	Camera::GetInstance()->ResetCamera();
+}

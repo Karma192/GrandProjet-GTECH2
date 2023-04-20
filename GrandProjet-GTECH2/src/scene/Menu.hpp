@@ -8,5 +8,7 @@ public:
 	Menu();
 	virtual ~Menu();
 
+	virtual void Init()override;
+
 	menuHUD* menuhud;
 };

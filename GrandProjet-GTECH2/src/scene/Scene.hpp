@@ -17,6 +17,7 @@ public:
 	virtual ~GameScene();
 
 	void InitializeScene();
+	virtual void Init();
 
 	// Boucle de la scene
 	void Update();

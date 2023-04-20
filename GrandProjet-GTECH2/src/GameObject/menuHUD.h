@@ -1,10 +1,11 @@
 #pragma once 
+
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Config.hpp>
 #include <vector>
-//#include "scene/SceneManager.hpp"
 #include "GameObject.hpp"
+//#include "scene/SceneManager.hpp"
 
 class menuHUD : public GameObject
 {
@@ -17,6 +18,7 @@ public:
 	virtual void Loop()override;
 	virtual void Render()override;
 
+	virtual void OnCollisionEnter(PhysicBody* other)override;
 
 private:
 	bool optionOn = true;

@@ -17,6 +17,7 @@ GameScene::~GameScene()
 
 void GameScene::InitializeScene()
 {
+	Init();
 	for (int i = 0; i < 10; i++)
 	{
 		if (layers[i] != nullptr)
@@ -30,6 +31,11 @@ void GameScene::InitializeScene()
 			}
 		}
 	}
+}
+
+void GameScene::Init()
+{
+	// code here
 }
 
 void GameScene::Update() 
