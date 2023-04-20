@@ -27,15 +27,15 @@ public:
 	void Destroy();
 	// Fonction pour recuperer les bounds du game object
 	sf::FloatRect* GetBounds() { return &_sprite->getGlobalBounds(); }
-	// Fonction pour r�cuperer le nom du game object
+	// Fonction pour recuperer le nom du game object
 	std::string GetName() { return _name; }
 	// Fonction pour définir le sprite
 	void SetSprite(std::string file, sf::Vector2f scale);
 	// Fonction pour set la position
 	void SetPosition(sf::Vector2f position);
-	// Fonction pour r�cuperer le sprite du game object
+	// Fonction pour recuperer le sprite du game object
 	sf::Sprite* Sprite() { return _sprite; }
-	// Fonction pour vérifier si le game object est initialisé
+	// Fonction pour verifier si le game object est initialise
 	bool IsInit() { return _init; }
 	// Fonction pour vérifier si le game object doit être détruit
 	bool IsDestructed() { return _destructed; }

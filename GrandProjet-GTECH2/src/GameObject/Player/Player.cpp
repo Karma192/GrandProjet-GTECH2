@@ -142,8 +142,8 @@ void Player::MouseUsage() {
 void Player::MovePlayer()
 {
     Sprite()->move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
-    rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / M_PI;
-    Sprite()->setRotation(rotation);
+    //rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / M_PI;
+    //Sprite()->setRotation(rotation);
 }
 
 void Player::KeyboardMove()

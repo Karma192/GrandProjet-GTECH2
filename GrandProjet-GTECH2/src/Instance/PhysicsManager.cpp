@@ -31,7 +31,7 @@ void PhysicsManager::Update()
 		for (int j = i + 1; j < _bodies.size() - 1; j++)
 		{
 			bool isColliding = _bodies[i]->Hitbox()->intersects(*_bodies[j]->Hitbox());
-			bool isNull = _bodies[i]->Hitbox() != nullptr && _bodies[j]->Hitbox() != nullptr;
+			bool isNull = _bodies[i]->Hitbox() == nullptr && _bodies[j]->Hitbox() == nullptr;
 			bool isTheSame = _bodies[i] == _bodies[j];
 
 			if (isColliding && !isNull && !isTheSame)

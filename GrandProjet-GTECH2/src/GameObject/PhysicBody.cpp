@@ -40,8 +40,6 @@ std::string PhysicBody::GetTag()
 void PhysicBody::SetHitbox(sf::FloatRect* rect)
 {
 	_hurtbox = rect;
-	// Affiche les coordonnées de la hitbox
-	std::cout << "Hitbox: " << _hurtbox->left << " " << _hurtbox->top << " " << _hurtbox->width << " " << _hurtbox->height << std::endl;
 } 
 
 void PhysicBody::DefineOwnBody(GameObject* go)
