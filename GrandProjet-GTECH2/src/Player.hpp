@@ -68,6 +68,13 @@ public:
 
 	Animation animation;
 
+	std::vector<int> frameIndexIdle;
+	std::vector<int> frameIndexRun;
+	std::vector<int> frameIndexAttack1;
+	std::vector<int> frameIndexAttack2;
+	std::vector<int> frameIndexAttackZone;
+	std::vector<int> frameIndexDie;
+
 	// Lilian TEST
 
 	bool IsAttacking = false;

@@ -5,6 +5,7 @@
 #include "Player.hpp"
 #include "Object.hpp"
 #include "Spells.hpp"
+#include "Animation.h"
 
 class Enemies : public GameObject
 {
@@ -25,7 +26,7 @@ public:
 	int GetEnemieHP() { return ennemieHP; }
 	void SetEnemieHP(int damage) { damage = ennemieHP; }
 
-	sf::RectangleShape cube2;
+	sf::Sprite cube2;
 	sf::Clock clock2;
 
 	GameObject* target;
@@ -35,6 +36,16 @@ public:
 
 	int distance;
 
+	// Lilian TEST
+
+	Animation animationSlime;
+
+	std::vector<int> frameIndexIdle;
+	std::vector<int> frameIndexRun;
+	std::vector<int> frameIndexAttack;
+	std::vector<int> frameIndexDie;
+
+	// Lilian TEST
 
 private:
 	//void EnemyTest();

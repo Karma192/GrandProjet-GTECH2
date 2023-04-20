@@ -2,8 +2,10 @@
 
 void Animation::LoadAnimation(std::string filename, sf::Sprite *sprite, int frameWidth, int frameHeight, float scaleRatio)
 {
+    isAnimating = false;
     _scaleRatio = scaleRatio;
     _sprite = sprite;
+    stateAnimation = 1;
 
     if (!texture.loadFromFile(filename))
     {
@@ -21,12 +23,18 @@ void Animation::LoadAnimation(std::string filename, sf::Sprite *sprite, int fram
         }
     }
 
+    _sprite->setOrigin(frameWidth/2, frameHeight/2);
     _sprite->setTexture(texture);
 }
 
-void Animation::SetAnimation(bool doFlip, int firstFrame)
+void Animation::SetAnimation()
 {
-    if (doFlip)
+
+}
+
+void Animation::Animate(std::vector<int> frameIndex, float animSpeed, bool repeat, bool flip, int firstFrame)
+{
+    if (flip)
     {
         // to the right
         _sprite->setScale(-_scaleRatio, _scaleRatio);
@@ -37,31 +45,24 @@ void Animation::SetAnimation(bool doFlip, int firstFrame)
         _sprite->setScale(_scaleRatio, _scaleRatio);
     }
 
-    frameIndex = { 0, 1, 2, 3 };
-
-    frameIndexTest = { 8, 9, 10, 11, 12 };
-
-    // first frame start to 0
-    currentFrame = firstFrame;
-    currentFrameTest = firstFrame;
-}
-
-void Animation::Animate(float animSpeed)
-{
-    if (clock.getElapsedTime().asSeconds() >= animSpeed)
+    if (clock.getElapsedTime().asSeconds() >= animSpeed && repeat && !isAnimating)
     {
         currentFrame = (currentFrame + 1) % frameIndex.size();
         _sprite->setTextureRect(frames[frameIndex[currentFrame]]);
         clock.restart();
     }
-}
 
-void Animation::AnimateTest(float animSpeed)
-{
-    if (clock.getElapsedTime().asSeconds() >= animSpeed)
+    /*if (!repeat && !isAnimating)
     {
-        currentFrameTest = (currentFrameTest + 1) % frameIndexTest.size();
-        _sprite->setTextureRect(frames[frameIndexTest[currentFrameTest]]);
-        clock.restart();
-    }
+        for (currentFrame = 0; currentFrame < frameIndex.size(); currentFrame++)
+        {
+            sf::Clock clockTest;
+
+            if (clockTest.getElapsedTime().asSeconds() >= animSpeed)
+            {
+                _sprite->setTextureRect(frames[frameIndex[currentFrame]]);
+                clockTest.restart();
+            }
+        }
+    }*/
 }

@@ -23,15 +23,6 @@ void Player::Loop()
 
     // TEST //
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-    {
-        animation.AnimateTest(0.2f);
-    }
-    else
-    {
-        animation.Animate(0.2f);
-    }
-
     // TEST //
 }
 
@@ -172,7 +163,12 @@ void Player::CubeTest()
 {
     animation.LoadAnimation("ressources/sprites/player/player_tilesheet.png", &cube, 50, 37, 3.f);
 
-    animation.SetAnimation(false, 0);
+    frameIndexIdle = { 0, 1, 2, 3 };
+    frameIndexRun = { 8, 9, 10, 11 };
+    frameIndexAttack1 = { 44, 45, 46, 47 };
+    frameIndexAttack2 = { 48, 49, 50, 51, 52 };
+    frameIndexAttackZone = { 55, 56, 57, 58 };
+    frameIndexDie = { 65, 66, 67, 68 };
 
     cube.setPosition(sf::Vector2f(200, 200));
 }
@@ -230,28 +226,35 @@ void Player::KeyboardMove()
         {
             moveSpeed = sf::Vector2f(0.f, -100.f);
             _playerDirection = 1;
+            //animation.Animate(frameIndexRun, 0.2f, true, false, 0);
             MovePlayer();
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         {
             moveSpeed = sf::Vector2f(0.f, 100.f);
             _playerDirection = 2;
+            //animation.Animate(frameIndexRun, 0.2f, true, false, 0);
             MovePlayer();
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
         {
             moveSpeed = sf::Vector2f(-100.f, 0.f);
             _playerDirection = 3;
+            animation.Animate(frameIndexRun, 0.2f, true, true, 0);
             MovePlayer();
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
             moveSpeed = sf::Vector2f(100.f, 0.f);
             _playerDirection = 4;
+            animation.Animate(frameIndexRun, 0.2f, true, false, 0);
             MovePlayer();
         }
     }
-
+    else
+    {
+        animation.Animate(frameIndexIdle, 0.2f, true, false, 0);
+    }
 }
 
 int Player::GetPlayerXPos()
