@@ -43,6 +43,8 @@ private:
     sf::Vector2f playerCube;
     int i = 0;
     bool collisionCheck = false;
+
+    tmx::Layer& layer;
 };
 
 class RoomWallet

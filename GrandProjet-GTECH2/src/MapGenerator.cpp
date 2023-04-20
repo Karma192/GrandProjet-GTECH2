@@ -27,6 +27,7 @@ void Room::Render()
 	GameMaster::GetInstance()->GetGameData().window->draw(*background);
 	GameMaster::GetInstance()->GetGameData().window->draw(*decoration);
 	GameMaster::GetInstance()->GetGameData().window->draw(*collision);
+	GameMaster::GetInstance()->GetGameData().window->draw(*collision);
 }
 
 bool Room::collidesWith(CollisionObject* other)
