@@ -16,6 +16,8 @@ void Enemies::Loop()
 {
     //GetStunned();
     FollowTarget(follow);
+
+    animationSlime.Animate(frameIndexIdle, 0.2f, true, false, 0);
 }
 
 void Enemies::Render() 
@@ -75,8 +77,13 @@ void Enemies::handleCollision(CollisionObject* other)
 
 void Enemies::Cube2Test()
 {
-    cube2.setSize(sf::Vector2f(30.f, 30.f));
-    cube2.setFillColor(sf::Color::Blue);
+    animationSlime.LoadAnimation("ressources/sprites/slime/slime_tilesheet.png", &cube2, 32, 32, 3.f);
+
+    frameIndexIdle = { 0, 1, 2, 3 };
+    frameIndexRun = { 7, 8, 9, 10, 11, 12 };
+    frameIndexAttack = { 14, 15, 16, 17, 18, 19, 20 };
+    frameIndexDie = { 27, 28, 29, 30, 31 };
+
     cube2.setPosition(sf::Vector2f(800, 400));
 }
 
@@ -93,13 +100,11 @@ void Enemies::FollowTarget(bool)
     if (distance <= 150)
     {
         follow = true;
-        cube2.setFillColor(sf::Color::Blue);
         cube2.move(.02f * RelatPos);
     }
     else 
     {
         follow = false;
-        cube2.setFillColor(sf::Color::Green);
     }
 }
 

@@ -21,17 +21,9 @@ void Player::Loop()
     _stopMoving = false;
     PlayerBasicAttack();
 
-    // Passage à la frame suivante de l'animation
-    if (clock.getElapsedTime().asSeconds() > 0.2f)
-    {
-        if (rectSprite.left == 150)
-            rectSprite.left = 0;
-        else
-            rectSprite.left += 50;
+    // TEST //
 
-        cube.setTextureRect(rectSprite);
-        clock.restart();
-    }
+    // TEST //
 }
 
 void Player::Render()
@@ -169,20 +161,16 @@ void Player::playerUI()
 
 void Player::CubeTest()
 {
-    // Load the sprite texture
-    playerTexture.loadFromFile("ressources/sprites/player/adventurer-idle.png");
+    animation.LoadAnimation("ressources/sprites/player/player_tilesheet.png", &cube, 50, 37, 3.f);
 
-    cube.setTexture(playerTexture);
-    cube.scale(2.5f, 2.5f);
+    frameIndexIdle = { 0, 1, 2, 3 };
+    frameIndexRun = { 8, 9, 10, 11 };
+    frameIndexAttack1 = { 44, 45, 46, 47 };
+    frameIndexAttack2 = { 48, 49, 50, 51, 52 };
+    frameIndexAttackZone = { 55, 56, 57, 58 };
+    frameIndexDie = { 65, 66, 67, 68 };
+
     cube.setPosition(sf::Vector2f(200, 200));
-
-    sf::IntRect rectDefaultSprite = sf::IntRect(50, 0, 50, 37);
-    rectSprite = rectDefaultSprite;
-
-    sf::Vector2f center(cube.getLocalBounds().width / 2.f - 82, cube.getLocalBounds().height / 2.f);
-    cube.setOrigin(center);
-
-    cube.setTextureRect(rectSprite);
 }
 
 void Player::ControllerMove()
@@ -238,28 +226,35 @@ void Player::KeyboardMove()
         {
             moveSpeed = sf::Vector2f(0.f, -100.f);
             _playerDirection = 1;
+            //animation.Animate(frameIndexRun, 0.2f, true, false, 0);
             MovePlayer();
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         {
             moveSpeed = sf::Vector2f(0.f, 100.f);
             _playerDirection = 2;
+            //animation.Animate(frameIndexRun, 0.2f, true, false, 0);
             MovePlayer();
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
         {
             moveSpeed = sf::Vector2f(-100.f, 0.f);
             _playerDirection = 3;
+            animation.Animate(frameIndexRun, 0.2f, true, true, 0);
             MovePlayer();
         }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
             moveSpeed = sf::Vector2f(100.f, 0.f);
             _playerDirection = 4;
+            animation.Animate(frameIndexRun, 0.2f, true, false, 0);
             MovePlayer();
         }
     }
-
+    else
+    {
+        animation.Animate(frameIndexIdle, 0.2f, true, false, 0);
+    }
 }
 
 int Player::GetPlayerXPos()
