@@ -2,7 +2,7 @@
 
 Enemies::Enemies()
 {
-    SetSprite("sprites/player/adventurer-idle.png", sf::Vector2f(3.0f, 3.0f));
+    SetSprite("Debug", sf::Vector2f(3.0f, 3.0f));
     SetPosition(sf::Vector2f(200, 200));
     SetID("Enemy1", "Enemy");
     this->ennemieHP = 10;

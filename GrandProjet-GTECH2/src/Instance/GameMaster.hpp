@@ -46,6 +46,6 @@ public:
 	void SetActiveScene(int);
 	// Fonction pour setup du Game Master
 	void SetWindow(RenderWindow*, Event*);
-	// Fonction pour detruire les objets a detruire
+	// Fonction pour detruire les objets a detruir   e
 	void Purge();
 };

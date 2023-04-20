@@ -61,14 +61,22 @@ void GameObject::Destroy()
 
 void GameObject::SetSprite(std::string filePath, sf::Vector2f scale)
 {
-	sf::Texture text = sf::Texture();
-	text.loadFromFile(_path + filePath);
 
-	_sprite->setTexture(text);
+	if (filePath == "Debug")
+	{
+		_sprite->setTextureRect(sf::IntRect(10, 10, 50, 50));
+		_sprite->setColor(sf::Color::Red);
+	}
+	else {
+		sf::Texture text = sf::Texture();
+		text.loadFromFile(_path + filePath);
+		_sprite->setTexture(text);
+	}
+
 	_sprite->scale(scale.x, scale.y);
 	_sprite->setPosition(sf::Vector2f(200, 200));
 
-	_sprite->setOrigin(GetBounds()->width / 2.0f, GetBounds()->height / 2.0f);
+	_sprite->setOrigin(_sprite->getLocalBounds().width / 2.0f, _sprite->getLocalBounds().height / 2.0f);
 }
 
 void GameObject::SetPosition(sf::Vector2f position)
