@@ -4,7 +4,6 @@
 #include <math.h>
 #include "../GameObject.hpp"
 #include "Player.hpp"
-#include "Enemies.hpp"
 #include <chrono>
 
 class Spells : public GameObject

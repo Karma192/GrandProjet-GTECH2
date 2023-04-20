@@ -10,7 +10,6 @@
 #include "../Enemies.hpp"
 #include "../../MapGenerator.hpp"
 #include "../ToNextScene.hpp"
-#include "GameMaster.hpp"
 #include "Spells.hpp"
 
 class Player : public GameObject 

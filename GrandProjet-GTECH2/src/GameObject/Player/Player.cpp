@@ -7,6 +7,8 @@ Player::Player()
     SetSprite("sprites/player/adventurer-idle.png", sf::Vector2f(3.0f, 3.0f));
     SetPosition(sf::Vector2f(200, 200));
     SetID("Player", "Player");
+
+
     this->playerHP = 20;
 }
 

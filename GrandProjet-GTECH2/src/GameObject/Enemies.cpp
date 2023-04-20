@@ -30,7 +30,7 @@ void Enemies::OnCollisionEnter(PhysicBody* other)
 
     if (other->CompareTag("Player"))
     {
-        ennemieHP--;
+        // ennemieHP--;
         if (ennemieHP <= 0)
         {
             Destroy();
