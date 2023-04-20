@@ -64,8 +64,8 @@ bool Player::collidesWith(CollisionObject* other) {
         }
     }
     if (MapGenerator* map = dynamic_cast<MapGenerator*>(other)) {
-        for (int i = 0; i < map->wallet->GetRoom(0)->rect.size(); i++) {
-            if (cube.getGlobalBounds().intersects(map->wallet->GetRoom(0)->rect[i].getGlobalBounds())) {
+        for (int i = 0; i < map->_renderRoom->rect.size(); i++) {
+            if (cube.getGlobalBounds().intersects(map->_renderRoom->rect[i].getGlobalBounds())) {
                 return true;
             }
         }
@@ -91,7 +91,7 @@ void Player::handleCollision(CollisionObject* other)
     }
 	if (dynamic_cast<MapGenerator*>(other)) 
     {
-        /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && _playerDirection != 1)
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && _playerDirection != 1)
         {
             moveSpeed = sf::Vector2f(0.f, -100.f);
             MovePlayer();
@@ -111,7 +111,7 @@ void Player::handleCollision(CollisionObject* other)
             moveSpeed = sf::Vector2f(100.f, 0.f);
             MovePlayer();
         }
-        _stopMoving = true;*/
+        _stopMoving = true;
     }
     if (dynamic_cast<ToNextScene*>(other))
     {

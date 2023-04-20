@@ -101,7 +101,7 @@ MapGenerator::MapGenerator() {
 	wallet = new RoomWallet();
 	genMap();
 	FirstRoomDetection();
-
+	_renderRoom = wallet->GetRoom(0);
 	_nextPlayerPosX = _playerPosX;
 	_nextPlayerPosY = _playerPosY;
 }
@@ -120,19 +120,24 @@ void MapGenerator::Render() {
 	case LOBBY:
 		switch (GameMaster::GetGameData().indexMap) {
 		case NORTH:
-			wallet->GetRoom(0)->Render();
+			_renderRoom = wallet->GetRoom(0);
+			_renderRoom->Render();
 			break;
 		case EAST:
-			wallet->GetRoom(1)->Render();
+			_renderRoom = wallet->GetRoom(1);
+			_renderRoom->Render();
 			break;
 		case SOUTH:
-			wallet->GetRoom(2)->Render();
+			_renderRoom = wallet->GetRoom(2);
+			_renderRoom->Render();
 			break;
 		case WEST:
-			wallet->GetRoom(3)->Render();
+			_renderRoom = wallet->GetRoom(3);
+			_renderRoom->Render();
 			break;
 		default:
-			wallet->GetRoom(0)->Render();
+			_renderRoom = wallet->GetRoom(0);
+			_renderRoom->Render();
 			break;
 		}
 		break;
@@ -238,6 +243,8 @@ void MapGenerator::AdjacentRoomDetection() {
 		_renderRoom = wallet->GetRoom(1);
 		break;
 	}
+	std::cout << "X : " << _playerPosX << std::endl;
+	std::cout << "Y : " << _playerPosY << std::endl;
 }
 
 void MapGenerator::FirstRoomDetection() {
@@ -269,8 +276,8 @@ void MapGenerator::PlayerRoomDetection() {
 bool MapGenerator::collidesWith(CollisionObject* other)
 {
 	if (Player* player = dynamic_cast<Player*>(other)) {
-		for (int i = 0; i < wallet->GetRoom(0)->rect.size(); i++) {
-			if (wallet->GetRoom(0)->rect[i].getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
+		for (int i = 0; i < _renderRoom->rect.size(); i++) {
+			if (_renderRoom->rect[i].getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
 				return true;
 			}
 		}
