@@ -1,8 +1,8 @@
 #include "MapGenerator.hpp"
 #include "GameMaster.hpp"
 
-// Room class
 
+// Room class
 Room::Room(std::string file)
 {
 	map.load(path + file);
@@ -93,7 +93,8 @@ void MapGenerator::Loop() {
 
 }
 
-void MapGenerator::Render() {
+void MapGenerator::Render()
+{
 	wallet->GetRoom(0)->Render();
 	//switch (gameData.indexScene)
 	//{
@@ -107,7 +108,6 @@ void MapGenerator::Render() {
 	//default:
 	//	break;
 	//}
-
 }
 
 bool MapGenerator::collidesWith(CollisionObject* other)
@@ -137,7 +137,6 @@ void MapGenerator::mapInit()
 		{
 			map[i][j] = '*';
 		}
-
 	}
 }
 
@@ -149,9 +148,7 @@ void MapGenerator::drawMap()
 		{
 			std::cout << map[i][j] << " ";
 		}
-
 		std::cout << std::endl;
-
 	}
 }
 
@@ -169,9 +166,9 @@ void MapGenerator::genFirstRoom()
 	map[5][5] = 'F';
 	firstRoomX = 5;
 	firstRoomY = 5;
-
-
 }
+
+
 
 void MapGenerator::genChestAndMarchandRoom()
 {
@@ -221,7 +218,6 @@ void MapGenerator::genHealthRoom()
 		}
 		else
 		{
-
 			posX = rand() % H_MAX;
 			posY = rand() % W_MAX;
 
@@ -234,7 +230,6 @@ void MapGenerator::genHealthRoom()
 					map[posX][posY] = 'V';
 					counterRoom++;
 				}
-
 			}
 		}
 	}
@@ -310,7 +305,6 @@ void MapGenerator::genBossRoom()
 		}
 	}
 	map[lastRoomX][lastRoomY] = 'B';
-
 }
 
 void MapGenerator::genPariRoom()
@@ -328,7 +322,6 @@ void MapGenerator::genPariRoom()
 		}
 		else
 		{
-
 			posX = rand() % H_MAX;
 			posY = rand() % W_MAX;
 
@@ -342,7 +335,6 @@ void MapGenerator::genPariRoom()
 					map[posX][posY] = 'P';
 					counterRoom++;
 				}
-
 			}
 		}
 	}
@@ -364,7 +356,6 @@ void MapGenerator::genEmiliRoom()
 		}
 		else
 		{
-
 			posX = rand() % H_MAX;
 			posY = rand() % W_MAX;
 
@@ -379,7 +370,6 @@ void MapGenerator::genEmiliRoom()
 					map[posX][posY] = 'E';
 					counterRoom++;
 				}
-
 			}
 		}
 	}
@@ -392,7 +382,6 @@ void MapGenerator::genMiniBossRoom()
 	int counterRoom = 0;
 	srand(time(NULL));
 	miniBoss = rand() % 100;
-
 	while (counterRoom != 1)
 	{
 		if (miniBoss > 5)
@@ -401,7 +390,6 @@ void MapGenerator::genMiniBossRoom()
 		}
 		else
 		{
-
 			posX = rand() % H_MAX;
 			posY = rand() % W_MAX;
 
@@ -417,7 +405,6 @@ void MapGenerator::genMiniBossRoom()
 					map[posX][posY] = 'b';
 					counterRoom++;
 				}
-
 			}
 		}
 	}

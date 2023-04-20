@@ -35,6 +35,7 @@ public:
     std::vector<sf::RectangleShape> rect;
     sf::RectangleShape rectCube;
 
+
 private:
 
     std::string path = "ressources/map/";
@@ -83,6 +84,7 @@ public:
 
 private:
 
+    void resizeMap(const std::string& fileName, int newMapWidth, int newMapHeight, int newTileWidth, int newTileHeight);
     void mapInit();
     void drawMap();
     void genMap();
