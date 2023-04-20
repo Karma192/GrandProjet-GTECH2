@@ -1,49 +1,68 @@
 #include "Animation.h"
 
-void Animation::AnimationInit(sf::String texturePath, sf::Sprite* sprite, int startFrameColumn, int xImage, int yImage)
+void Animation::LoadAnimation(std::string filename, sf::Sprite *sprite, int frameWidth, int frameHeight, float scaleRatio)
 {
-	aTexturePath = texturePath;
-	aSprite = sprite;
-	aStartFrameColumn = startFrameColumn;
-	aXImage = xImage;
-	aYImage = yImage;
+    isAnimating = false;
+    _scaleRatio = scaleRatio;
+    _sprite = sprite;
+    stateAnimation = 1;
 
-	texture.loadFromFile(aTexturePath);
-	aSprite->setTexture(texture);
-	aSprite->scale(3.0f, 3.0f);
-	sf::IntRect rectSourceSprite(aStartFrameColumn * aXImage, 0, aXImage, aYImage);
-	aRectSourceSprite = rectSourceSprite;
+    if (!texture.loadFromFile(filename))
+    {
+        std::cout << "Erreur chargement spritesheet" << std::endl;
+        return;
+    }
+
+    int numColumns = texture.getSize().x / frameWidth;
+    int numRows = texture.getSize().y / frameHeight;
+
+    for (int y = 0; y < numRows; y++) {
+        for (int x = 0; x < numColumns; x++) {
+            sf::IntRect rect(x * frameWidth, y * frameHeight, frameWidth, frameHeight);
+            frames.push_back(rect);
+        }
+    }
+
+    _sprite->setOrigin(frameWidth/2, frameHeight/2);
+    _sprite->setTexture(texture);
 }
 
-
-void Animation::SpriteAnimation(int nbFramesAnim, int nbTotalFramesX, 
-	int startFrameLine, int endFrameColumn, int endFrameLine)
+void Animation::SetAnimation()
 {
-	if (clock.getElapsedTime().asMilliseconds() >= 100) {
-		// If the rect is at the right border of the spritesheet, and it isn't the end of the animation, 
-		// we put the rect on the next line on the first frame on the left
-		if (aRectSourceSprite.left >= (nbTotalFramesX - 1) * aXImage && counter < nbFramesAnim)
-		{
-			aRectSourceSprite.left = 0;
-			aRectSourceSprite.top += aYImage;
-			counter += 1;
-		}
-		// If the rect comes at the last frame of the animation, it goes back to the starting frame and reset the counter
-		else if (counter >= nbFramesAnim)
-		{
-			aRectSourceSprite.left = (aStartFrameColumn-1) * aXImage;
-			aRectSourceSprite.top = (startFrameLine-1) * aYImage;
-			counter = 1;
-		}
-		// The rect goes to the next frame on the right
-		else 
-		{
-			aRectSourceSprite.left += aXImage;
-			counter += 1;
-		}
-		aSprite->setTextureRect(aRectSourceSprite);
-		clock.restart();
-	}
-	
+
 }
 
+void Animation::Animate(std::vector<int> frameIndex, float animSpeed, bool repeat, bool flip, int firstFrame)
+{
+    if (flip)
+    {
+        // to the right
+        _sprite->setScale(-_scaleRatio, _scaleRatio);
+    }
+    else
+    {
+        // to the left
+        _sprite->setScale(_scaleRatio, _scaleRatio);
+    }
+
+    if (clock.getElapsedTime().asSeconds() >= animSpeed && repeat && !isAnimating)
+    {
+        currentFrame = (currentFrame + 1) % frameIndex.size();
+        _sprite->setTextureRect(frames[frameIndex[currentFrame]]);
+        clock.restart();
+    }
+
+    /*if (!repeat && !isAnimating)
+    {
+        for (currentFrame = 0; currentFrame < frameIndex.size(); currentFrame++)
+        {
+            sf::Clock clockTest;
+
+            if (clockTest.getElapsedTime().asSeconds() >= animSpeed)
+            {
+                _sprite->setTextureRect(frames[frameIndex[currentFrame]]);
+                clockTest.restart();
+            }
+        }
+    }*/
+}
