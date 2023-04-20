@@ -2,12 +2,10 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-using namespace sf;
-
 struct GameData {
 	int indexScene = 0;
-	RenderWindow* window = nullptr;
-	Event* event = nullptr;
+	sf::RenderWindow* window = nullptr;
+	sf::Event* event = nullptr;
 	int indexMap = 0;
 };
 
@@ -42,10 +40,16 @@ public:
 	void InitObject();
 	// Fonction pour recuperer les donnees du jeu
 	static GameData GetGameData();
+	// Fonction pour recuperer la fenetre
+	static sf::RenderWindow* Window();
+	// Fonction pour recuperer l'event
+	static sf::Event* Event();
+	// Fonction pour Draw les objets
+	static void Draw(sf::Drawable &drawable);
 	// Fonction pour changer de scene
 	void SetActiveScene(int);
 	// Fonction pour setup du Game Master
-	void SetWindow(RenderWindow*, Event*);
+	void SetWindow(sf::RenderWindow*, sf::Event*);
 	// Fonction pour detruire les objets a detruir   e
 	void Purge();
 };

@@ -16,6 +16,8 @@ SceneManager::~SceneManager()
 void SceneManager::Update()
 {
 	SwitchScene();
+	PhysicsManager::GetInstance()->Update();
+	GameMaster::GetInstance()->Purge();
 	actualScene->Update();
 }
 

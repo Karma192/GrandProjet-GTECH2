@@ -86,11 +86,6 @@ void menuHUD::Render()
     }
 }
 
-void menuHUD::OnCollisionEnter(PhysicBody* other)
-{
-    // Do Nothing
-}
-
 void menuHUD::menuSelection()
 {
     oldScreenSize = GameMaster::GetInstance()->GetGameData().window->getSize();

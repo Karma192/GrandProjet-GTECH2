@@ -17,14 +17,12 @@ public:
 
 	virtual void OnCollisionEnter(PhysicBody* other)override;
 
-	void Cube2Test();
 	void FollowTarget(bool);
 	void GetStunned();
 
 	int GetEnemieHP() { return ennemieHP; }
 	void SetEnemieHP(int damage) { damage = ennemieHP; }
 
-	sf::RectangleShape cube2;
 	sf::Clock clock2;
 
 	GameObject* target;

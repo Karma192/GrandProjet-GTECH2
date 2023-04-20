@@ -4,10 +4,9 @@
 
 Player::Player()
 {
-    SetSprite("sprites/player/adventurer-idle.png", sf::Vector2f(3.0f, 3.0f));
-    SetPosition(sf::Vector2f(200, 200));
+    SetSprite("Debug", sf::Vector2f(3.0f, 3.0f));
+    SetPosition(sf::Vector2f(400, 400));
     SetID("Player", "Player");
-
 
     this->playerHP = 20;
 }
@@ -33,28 +32,28 @@ void Player::Loop()
         else
             rectSprite.left += 50;
 
-        Sprite()->setTextureRect(rectSprite);
+        //Sprite().setTextureRect(rectSprite);
         clock.restart();
     }
 }
 
 void Player::Render()
 {
-    GameMaster::GetInstance()->GetGameData().window->draw(lifeBar);
-    GameMaster::GetInstance()->GetGameData().window->draw(playerUltiUI);
-    GameMaster::GetInstance()->GetGameData().window->draw(playerUltiUI);
+    GameMaster::Draw(lifeBar);
+    GameMaster::Draw(playerUltiUI);
+    GameMaster::Draw(playerUltiUI);
 
     for (int i = 0; i < 3; i++)
     {
-        GameMaster::GetInstance()->GetGameData().window->draw(playerUITab[i]);
+        GameMaster::Draw(playerUITab[i]);
     }
     
     if (isActtk == true && asAttacked == true) 
     { 
         IsAttacking = true;
-        GameMaster::GetInstance()->GetGameData().window->draw(hitboxTest);
+        GameMaster::Draw(hitboxTest);
     }
-    if (cdBasicAttack.getElapsedTime().asSeconds() >= 0.1f)
+    if (cdBasicAttack.getElapsedTime().asSeconds() >= 0.75f)
     {
         isActtk = false;
         asAttacked = false;
@@ -65,8 +64,9 @@ void Player::Render()
         IsAttacking = false;
         isActtk = true;
     }
-    GameMaster::GetInstance()->GetGameData().window->draw(*Sprite());
+
     playerUI();
+    GameMaster::Draw(Sprite());
 }
 
 void Player::OnCollisionEnter(PhysicBody* other)
@@ -118,13 +118,13 @@ void Player::ControllerMove()
 	{
 		MovePlayer();
 	}
-
 }
 
-void Player::MouseUsage() {
-    _playerCenter = Sprite()->getPosition();
-    _mousePos = sf::Mouse::getPosition(*GameMaster::GetInstance()->GetGameData().window);
-    _worldPosition = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(_mousePos, GameMaster::GetInstance()->GetGameData().window->getView());
+void Player::MouseUsage() 
+{
+    _playerCenter = Sprite().getPosition();
+    _mousePos = sf::Mouse::getPosition(*GameMaster::Window());
+    _worldPosition = GameMaster::Window()->mapPixelToCoords(_mousePos, GameMaster::Window()->getView());
 
     float dx = _worldPosition.x - _playerCenter.x;
     float dy = _worldPosition.y - _playerCenter.y;
@@ -143,8 +143,6 @@ void Player::MouseUsage() {
 
 void Player::MovePlayer()
 {
-    Sprite()->move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
-
     if (_dashing)
     {
         playerSpeed = 5;
@@ -153,11 +151,14 @@ void Player::MovePlayer()
     {
         playerSpeed = 20;
     }
+
+    Sprite().move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
 }
 
 void Player::KeyboardMove()
 {
-    if (!_stopMoving) {
+    if (!_stopMoving) 
+    {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
         {
             moveSpeed = sf::Vector2f(0.f, -100.f);
@@ -183,17 +184,16 @@ void Player::KeyboardMove()
             MovePlayer();
         }
     }
-
 }
 
 int Player::GetPlayerXPos()
 {
-    return Sprite()->getPosition().x;
+    return Sprite().getPosition().x;
 }
 
 int Player::GetPlayerYPos()
 {
-    return Sprite()->getPosition().y;
+    return Sprite().getPosition().y;
 }
 
 int Player::getPlayerSpeed()
@@ -216,9 +216,9 @@ void Player::PlayerBasicAttack()
 {
     hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
     hitboxTest.setFillColor(sf::Color::Blue);
-    hitboxTest.setPosition(Sprite()->getPosition());
-    hitboxTest.setRotation(Sprite()->getRotation());
-    hitboxTest.setOrigin(CubeBounds.width / 2.0f, CubeBounds.height / 2.0f);
+    hitboxTest.setPosition(Sprite().getPosition());
+    hitboxTest.setRotation(Sprite().getRotation());
+    hitboxTest.setOrigin(GetBounds().width / 2.0f, GetBounds().height / 2.0f);
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {

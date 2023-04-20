@@ -54,7 +54,14 @@ void GameScene::Update()
 			{
 				if (layers[i]->objects[j] != nullptr) 
 				{
-					layers[i]->objects[j]->Update();
+					if (layers[i]->objects[j]->IsDestructed())
+					{
+						delete layers[i]->objects[j];
+						layers[i]->objects.erase(layers[i]->objects.begin() + j);
+					}
+					else {
+						layers[i]->objects[j]->Update();
+					}
 				}
 			}
 		}

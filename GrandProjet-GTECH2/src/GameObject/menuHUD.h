@@ -18,8 +18,6 @@ public:
 	virtual void Loop()override;
 	virtual void Render()override;
 
-	virtual void OnCollisionEnter(PhysicBody* other)override;
-
 private:
 	bool optionOn = true;
 
@@ -64,5 +62,4 @@ private:
 	void GoBack();
 	void ChangeResolution();
 	void Language();
-
 };

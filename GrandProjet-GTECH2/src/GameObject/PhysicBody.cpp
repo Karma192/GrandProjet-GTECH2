@@ -9,7 +9,12 @@ PhysicBody::PhysicBody()
 
 PhysicBody::~PhysicBody()
 {
-	delete _hurtbox;
+	//delete _owner;
+}
+
+sf::FloatRect PhysicBody::Hitbox()
+{
+	return _owner->GetBounds();
 }
 
 void PhysicBody::OnCollisionEnter(PhysicBody* other)
@@ -37,14 +42,9 @@ std::string PhysicBody::GetTag()
 	return _tag;
 }
 
-void PhysicBody::SetHitbox(sf::FloatRect* rect)
-{
-	_hurtbox = rect;
-} 
-
 void PhysicBody::DefineOwnBody(GameObject* go)
 {
-	SetHitbox(go->GetBounds());
+	_owner = go;
 	PhysicsManager::GetInstance()->AddBody(this);
 }
 

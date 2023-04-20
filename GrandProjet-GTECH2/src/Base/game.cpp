@@ -24,7 +24,6 @@ void Game::GameLoop()
 		GameMaster::GetInstance()->InitObject();
 		sm->Update();
 		Camera::GetInstance()->Update();
-		GameMaster::GetInstance()->Purge();
 		window->display();
 
 		while (window->pollEvent(*event))

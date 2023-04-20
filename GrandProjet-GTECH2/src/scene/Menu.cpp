@@ -1,5 +1,6 @@
 #include "Menu.hpp"
 #include "../Instance/Camera.hpp"
+#include "../Instance/PhysicsManager.hpp"
 
 Menu::Menu() 
 {
@@ -9,7 +10,7 @@ Menu::Menu()
 
 Menu::~Menu() 
 {
-	delete menuhud;
+	PhysicsManager::GetInstance()->RemoveBody(menuhud);
 }
 
 void Menu::Init()

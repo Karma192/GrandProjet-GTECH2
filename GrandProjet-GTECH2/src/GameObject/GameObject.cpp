@@ -64,7 +64,8 @@ void GameObject::SetSprite(std::string filePath, sf::Vector2f scale)
 
 	if (filePath == "Debug")
 	{
-		_sprite->setTextureRect(sf::IntRect(10, 10, 50, 50));
+		_sprite->setTextureRect(sf::IntRect(10, 10, 10, 10));
+		_sprite->setTexture(sf::Texture());
 		_sprite->setColor(sf::Color::Red);
 	}
 	else {
@@ -74,7 +75,6 @@ void GameObject::SetSprite(std::string filePath, sf::Vector2f scale)
 	}
 
 	_sprite->scale(scale.x, scale.y);
-	_sprite->setPosition(sf::Vector2f(200, 200));
 
 	_sprite->setOrigin(_sprite->getLocalBounds().width / 2.0f, _sprite->getLocalBounds().height / 2.0f);
 }

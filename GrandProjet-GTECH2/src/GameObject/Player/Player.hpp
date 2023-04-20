@@ -54,8 +54,6 @@ public:
 	sf::Vector2f moveSpeed;
 	sf::View view;
 	float rotation;
-	sf::Vector2f velocity;
-	sf::FloatRect CubeBounds;
 
 	bool IsAttacking = false;
 
@@ -65,7 +63,6 @@ protected:
 
 private:
 	sf::Texture playerTexture;
-	sf::Sprite playerSprite;
 	sf::Clock clock;
 	sf::IntRect rectSprite;
 

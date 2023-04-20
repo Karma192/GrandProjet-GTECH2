@@ -59,6 +59,21 @@ GameData GameMaster::GetGameData()
 	return data;
 }
 
+sf::RenderWindow* GameMaster::Window()
+{
+	return data.window;
+}
+
+sf::Event* GameMaster::Event()
+{
+	return data.event;
+}
+
+void GameMaster::Draw(sf::Drawable& drawable)
+{
+	data.window->draw(drawable);
+}
+
 void GameMaster::SetActiveScene(int value)
 {
 	switch (value) 
@@ -78,7 +93,7 @@ void GameMaster::SetActiveScene(int value)
 	}
 }
 
-void GameMaster::SetWindow(RenderWindow* win, Event* e) 
+void GameMaster::SetWindow(sf::RenderWindow* win, sf::Event* e) 
 {
 	data.window = win;
 	data.event = e;

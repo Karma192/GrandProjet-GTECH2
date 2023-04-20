@@ -26,15 +26,19 @@ void PhysicsManager::Update()
 	//std::cout << "x : " << _bodies[0]->Hitbox()->left << "\ty : " << _bodies[0]->Hitbox()->top << std::endl;
 #endif // _DEBUG
 
+	//_bodies est un vector de PhysicBody* et la fonction Hitbox() retourne le sf::FloatRect de la hitbox
 	for (int i = 0; i < _bodies.size(); i++)
 	{
-		for (int j = i + 1; j < _bodies.size() - 1; j++)
+		for (int j = i + 1; j < _bodies.size(); j++)
 		{
-			bool isColliding = _bodies[i]->Hitbox()->intersects(*_bodies[j]->Hitbox());
-			bool isNull = _bodies[i]->Hitbox() == nullptr && _bodies[j]->Hitbox() == nullptr;
-			bool isTheSame = _bodies[i] == _bodies[j];
+			bool isNull = _bodies[i] == nullptr && _bodies[j] == nullptr;
+			if (isNull) continue; // Si les deux sont null, on passe à la boucle suivante
 
-			if (isColliding && !isNull && !isTheSame)
+			bool isTheSame = _bodies[i] == _bodies[j];
+			if (isTheSame) continue; // Si les deux sont les mêmes, on passe à la boucle suivante
+			
+			bool isColliding = _bodies[i]->Hitbox().intersects(_bodies[j]->Hitbox());
+			if (isColliding)
 			{
 				_bodies[i]->OnCollisionEnter(_bodies[j]);
 				_bodies[j]->OnCollisionEnter(_bodies[i]);

@@ -21,7 +21,7 @@ void Enemies::Loop()
 
 void Enemies::Render() 
 {
-    GameMaster::GetInstance()->GetGameData().window->draw(*Sprite());
+    GameMaster::Draw(Sprite());
 }
 
 void Enemies::OnCollisionEnter(PhysicBody* other)
@@ -30,10 +30,11 @@ void Enemies::OnCollisionEnter(PhysicBody* other)
 
     if (other->CompareTag("Player"))
     {
-        // ennemieHP--;
+         ennemieHP--;
         if (ennemieHP <= 0)
         {
-            Destroy();
+            //Destroy(); ne fonctionne pas encore...
+            Sprite().setPosition(-10000, 10000);
             //TODO DESTROY ENNEMIES
         }
 	}
@@ -43,7 +44,7 @@ void Enemies::FollowTarget(bool)
 {
     //Radius for Aggro
     //interval for aggro
-    sf::Vector2f FollowPos = cube2.getPosition();
+    sf::Vector2f FollowPos = Sprite().getPosition();
     sf::Vector2f RelatPos = TargetPos - FollowPos;
     distance = std::sqrt((TargetPos.x - FollowPos.x) * (TargetPos.x - FollowPos.x) +
         (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));
@@ -52,13 +53,11 @@ void Enemies::FollowTarget(bool)
     if (distance <= 150)
     {
         follow = true;
-        cube2.setFillColor(sf::Color::Blue);
-        cube2.move(.02f * RelatPos);
+        Sprite().move(.02f * RelatPos);
     }
     else 
     {
         follow = false;
-        cube2.setFillColor(sf::Color::Green);
     }
 }
 

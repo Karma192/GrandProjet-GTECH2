@@ -23,5 +23,5 @@ Lobby::~Lobby()
 
 void Lobby::Init()
 {
-	Camera::GetInstance()->SetFollow(p->Sprite());
+	Camera::GetInstance()->SetFollow(&p->Sprite());
 }
