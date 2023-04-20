@@ -26,8 +26,6 @@ void Enemies::Render()
 
 void Enemies::OnCollisionEnter(PhysicBody* other)
 {
-	std::cout << "Collision of " << GetName() <<" with a " << other->GetTag() << std::endl;
-
     if (other->CompareTag("Player"))
     {
          ennemieHP--;

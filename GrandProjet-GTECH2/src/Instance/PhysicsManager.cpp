@@ -26,7 +26,6 @@ void PhysicsManager::Update()
 	//std::cout << "x : " << _bodies[0]->Hitbox()->left << "\ty : " << _bodies[0]->Hitbox()->top << std::endl;
 #endif // _DEBUG
 
-	//_bodies est un vector de PhysicBody* et la fonction Hitbox() retourne le sf::FloatRect de la hitbox
 	for (int i = 0; i < _bodies.size(); i++)
 	{
 		for (int j = i + 1; j < _bodies.size(); j++)
@@ -36,6 +35,16 @@ void PhysicsManager::Update()
 
 			bool isTheSame = _bodies[i] == _bodies[j];
 			if (isTheSame) continue; // Si les deux sont les mêmes, on passe à la boucle suivante
+
+			bool isItTwoWall = _bodies[i]->CompareTag("Wall") && _bodies[j]->CompareTag("Wall");
+			if (isItTwoWall) continue; // Si les deux sont des murs, on passe à la boucle suivante
+
+			//bool thereIsAWall = _bodies[i]->CompareTag("Wall") || _bodies[j]->CompareTag("Wall");
+			//if (thereIsAWall) 
+			//{
+			//	bool isItPlayerAgainstaWall = _bodies[i]->CompareTag("Player") && _bodies[j]->CompareTag("Wall");
+			//	if (!isItPlayerAgainstaWall) continue; // Si le joueur entre en collision avec un mur, on passe à la boucle suivante
+			//}
 			
 			bool isColliding = _bodies[i]->Hitbox().intersects(_bodies[j]->Hitbox());
 			if (isColliding)

@@ -20,6 +20,8 @@ public:
 	bool CompareTag(std::string tag);
 	// Fonction pour récupérer le tag de l'objet
 	std::string GetTag();
+	// Fonction pour récupérer le GameObject
+	GameObject* GetOwner() { return _owner; }
 	
 private:
 	GameObject* _owner;

@@ -59,24 +59,34 @@ void GameObject::Destroy()
 	_destructed = true;
 }
 
-void GameObject::SetSprite(std::string filePath, sf::Vector2f scale)
+void GameObject::SetSprite(std::string spriteFile, sf::Vector2f scale)
 {
+	bool isDebug = spriteFile == "Debug";
+	bool isWall = spriteFile == "Wall";
 
-	if (filePath == "Debug")
+	if (isWall) 
 	{
-		_sprite->setTextureRect(sf::IntRect(10, 10, 10, 10));
+		_sprite->setTextureRect(sf::IntRect(0, 0, 16, 16));
 		_sprite->setTexture(sf::Texture());
 		_sprite->setColor(sf::Color::Red);
 	}
 	else {
-		sf::Texture text = sf::Texture();
-		text.loadFromFile(_path + filePath);
-		_sprite->setTexture(text);
+		if (isDebug) // Debug
+		{
+			_sprite->setTextureRect(sf::IntRect(10, 10, 10, 10));
+			_sprite->setTexture(sf::Texture());
+			_sprite->setColor(sf::Color::Blue);
+		}
+		else // GameObject Standard
+		{
+			sf::Texture text = sf::Texture();
+			text.loadFromFile(_path + spriteFile);
+			_sprite->setTexture(text);
+		}
+		_sprite->scale(scale.x, scale.y);
+		_sprite->setOrigin(_sprite->getLocalBounds().width / 2.0f,
+			_sprite->getLocalBounds().height / 2.0f);
 	}
-
-	_sprite->scale(scale.x, scale.y);
-
-	_sprite->setOrigin(_sprite->getLocalBounds().width / 2.0f, _sprite->getLocalBounds().height / 2.0f);
 }
 
 void GameObject::SetPosition(sf::Vector2f position)
