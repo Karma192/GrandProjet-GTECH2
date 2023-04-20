@@ -10,6 +10,8 @@
 #include "../Enemies.hpp"
 #include "../../MapGenerator.hpp"
 #include "../ToNextScene.hpp"
+#include "GameMaster.hpp"
+#include "Spells.hpp"
 
 class Player : public GameObject 
 {
@@ -39,6 +41,8 @@ public:
 
 	int GetPlayerXPos();
 	int GetPlayerYPos();
+	int getPlayerSpeed();
+	void setPlayerSpeed(float);
 
 	//Player attack
 	void PlayerAttack();
@@ -74,8 +78,13 @@ private:
 	float angleDegrees;
 
 	//Player attack basic
+	bool _dashing = false;
 	bool isActtk = true;
 	bool asAttacked = false;
+
+
+	//Dashing
+	int BoostSpeed;
 
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;
@@ -91,8 +100,7 @@ private:
 	sf::CircleShape playerUITab[4];
 
 
-
-	int playerHP;
+	int playerHP; 
 	int m_pv;
 	int m_attack;
 	int playerSpeed = 20;

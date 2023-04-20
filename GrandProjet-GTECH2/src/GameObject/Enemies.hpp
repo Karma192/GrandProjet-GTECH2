@@ -21,6 +21,9 @@ public:
 	void FollowTarget(bool);
 	void GetStunned();
 
+	int GetEnemieHP() { return ennemieHP; }
+	void SetEnemieHP(int damage) { damage = ennemieHP; }
+
 	sf::RectangleShape cube2;
 	sf::Clock clock2;
 
@@ -31,11 +34,11 @@ public:
 
 	int distance;
 
+
 private:
 	//void EnemyTest();
 
 	int ennemieHP; 
-
 	sf::Texture enemiesTexture;
 	sf::Sprite enemiesSprite;
 	sf::Vector2f TargetPos;

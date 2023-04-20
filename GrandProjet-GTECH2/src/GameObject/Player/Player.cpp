@@ -38,9 +38,10 @@ void Player::Loop()
 
 void Player::Render()
 {
-    GameMaster::GetInstance()->GetGameData().window->draw(enduranceBar);
     GameMaster::GetInstance()->GetGameData().window->draw(lifeBar);
     GameMaster::GetInstance()->GetGameData().window->draw(playerUltiUI);
+    GameMaster::GetInstance()->GetGameData().window->draw(playerUltiUI);
+
     for (int i = 0; i < 3; i++)
     {
         GameMaster::GetInstance()->GetGameData().window->draw(playerUITab[i]);
@@ -75,7 +76,6 @@ void Player::OnCollisionEnter(PhysicBody* other)
         playerHP--;
 	}
 }
-
 
 void Player::playerUI()
 {
@@ -142,8 +142,15 @@ void Player::MouseUsage() {
 void Player::MovePlayer()
 {
     Sprite()->move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
-    //rotation = std::atan2(moveSpeed.y, moveSpeed.x) * 180.0f / M_PI;
-    //Sprite()->setRotation(rotation);
+
+    if (_dashing)
+    {
+        playerSpeed = 5;
+    }
+    if (!_dashing)
+    {
+        playerSpeed = 20;
+    }
 }
 
 void Player::KeyboardMove()
@@ -185,6 +192,16 @@ int Player::GetPlayerXPos()
 int Player::GetPlayerYPos()
 {
     return Sprite()->getPosition().y;
+}
+
+int Player::getPlayerSpeed()
+{
+    return playerSpeed;
+}
+
+void Player::setPlayerSpeed(float OtherSpeed)
+{
+    playerSpeed = OtherSpeed;
 }
 
 void Player::PlayerAttack()

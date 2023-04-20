@@ -4,6 +4,8 @@
 #include <math.h>
 #include "../GameObject.hpp"
 #include "Player.hpp"
+#include "Enemies.hpp"
+#include <chrono>
 
 class Spells : public GameObject
 {
@@ -23,19 +25,38 @@ public:
 
 	sf::CircleShape Spell;
 	int CooldownFireBall;
-	int MaxCooldownFireBall = 0;
+	int MaxCooldownFireBall = 100;
+	float speed = 10;
+	int PlayerRapidity;
+
 
 	///For Slide
-	void SetSlide();
+	void SetDash();
+	int _Speed;
+	bool _canDash = true;
+	bool _asDash = false;
+	sf::Time DashReset;
+	sf::Clock clock;
+
+	///For third spell
+	void ThirdSpell();
+	int GetThirdSpellDamage() { return thirdSpellDamage;  };
+	sf::CircleShape _hitboxThirdSpell;
+	int thirdSpellDamage;
+
 
 private:
+
+	///Second spell
 	sf::Vector2f position;
 	sf::Vector2f direction;
 	sf::Vector2f PlayerPos;
 	sf::FloatRect PlayerBounds;
 	sf::Vector2f launchDirection;
-	float speed = 10;
-	float PlayerRotation;
+	sf::RectangleShape Cube;
+	int PlayerRotation;
 	bool launched = true;
+
+
 };
 

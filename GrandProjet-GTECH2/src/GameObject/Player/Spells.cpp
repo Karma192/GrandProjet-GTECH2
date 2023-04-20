@@ -16,12 +16,19 @@ Spells::~Spells()
 void Spells::Loop()
 {
 	SetFireBall();
+	SetDash();
+
 }
 
 void Spells::Render() 
 {
 	DrawSpell();
 	GameMaster::GetGameData().window->draw(Spell);
+	ThirdSpell();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+	{
+		GameMaster::GetInstance()->GetGameData().window->draw(_hitboxThirdSpell);
+	}
 }
 
 void Spells::SetFireBall() 
@@ -64,9 +71,38 @@ void Spells::DrawSpell()
 	Spell.setOrigin(PlayerBounds.width / 2.0f, PlayerBounds.height / 2.0f);
 }
 
-void Spells::SetSlide() 
+void Spells::SetDash() 
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		if (_canDash)
+		{
+			_canDash = false;
+			_asDash = true;
+			DashReset = sf::Time::Zero;
+			DashReset += clock.restart();
+		}
+	}	
 
+	if (clock.getElapsedTime().asSeconds() > 0.2f)
+	{
+		_asDash = false;
 	}
+
+	if (!_canDash)
+	{
+		if (clock.getElapsedTime().asSeconds() > 3.f)
+		{
+			_canDash = true;
+		}
+	}
+}
+
+void Spells::ThirdSpell()
+{
+	_hitboxThirdSpell.setRadius(80.f);
+	_hitboxThirdSpell.setFillColor(sf::Color::Blue);
+	_hitboxThirdSpell.setOrigin(_hitboxThirdSpell.getGlobalBounds().width/ 2.0f,
+		_hitboxThirdSpell.getGlobalBounds().height / 2.0f);
+	_hitboxThirdSpell.setPosition(PlayerPos);
 }

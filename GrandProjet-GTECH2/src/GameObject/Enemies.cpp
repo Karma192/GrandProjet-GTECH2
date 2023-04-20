@@ -31,7 +31,6 @@ void Enemies::OnCollisionEnter(PhysicBody* other)
     if (other->CompareTag("Player"))
     {
         ennemieHP--;
-        std::cout << ennemieHP << std::endl;
         if (ennemieHP <= 0)
         {
             Destroy();
