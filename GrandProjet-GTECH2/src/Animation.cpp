@@ -2,10 +2,8 @@
 
 void Animation::LoadAnimation(std::string filename, sf::Sprite *sprite, int frameWidth, int frameHeight, float scaleRatio)
 {
-    isAnimating = false;
     _scaleRatio = scaleRatio;
     _sprite = sprite;
-    stateAnimation = 1;
 
     if (!texture.loadFromFile(filename))
     {
@@ -27,12 +25,7 @@ void Animation::LoadAnimation(std::string filename, sf::Sprite *sprite, int fram
     _sprite->setTexture(texture);
 }
 
-void Animation::SetAnimation()
-{
-
-}
-
-void Animation::Animate(std::vector<int> frameIndex, float animSpeed, bool repeat, bool flip, int firstFrame)
+void Animation::Animate(std::vector<int> frameIndex, float animSpeed, bool flip)
 {
     if (flip)
     {
@@ -45,24 +38,23 @@ void Animation::Animate(std::vector<int> frameIndex, float animSpeed, bool repea
         _sprite->setScale(_scaleRatio, _scaleRatio);
     }
 
-    if (clock.getElapsedTime().asSeconds() >= animSpeed && repeat && !isAnimating)
+    std::cout << "ANIMATE" << std::endl;
+
+    //sf::Clock clock;
+
+    //for (size_t currentFrame = 0; currentFrame < frameIndex.size(); currentFrame++)
+    //{
+    //    if (clock.getElapsedTime().asSeconds() >= animSpeed)
+    //    {
+    //        _sprite->setTextureRect(frames[frameIndex[currentFrame]]);
+    //        clock.restart();
+    //    }
+    //}
+
+    /*if (clock.getElapsedTime().asSeconds() >= animSpeed)
     {
         currentFrame = (currentFrame + 1) % frameIndex.size();
         _sprite->setTextureRect(frames[frameIndex[currentFrame]]);
         clock.restart();
-    }
-
-    /*if (!repeat && !isAnimating)
-    {
-        for (currentFrame = 0; currentFrame < frameIndex.size(); currentFrame++)
-        {
-            sf::Clock clockTest;
-
-            if (clockTest.getElapsedTime().asSeconds() >= animSpeed)
-            {
-                _sprite->setTextureRect(frames[frameIndex[currentFrame]]);
-                clockTest.restart();
-            }
-        }
     }*/
 }

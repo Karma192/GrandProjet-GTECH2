@@ -17,7 +17,7 @@ void Enemies::Loop()
     //GetStunned();
     FollowTarget(follow);
 
-    animationSlime.Animate(frameIndexIdle, 0.2f, true, false, 0);
+    animationSlime.Animate(frameIndexIdle, 0.2f, false);
 }
 
 void Enemies::Render() 

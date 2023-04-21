@@ -13,7 +13,13 @@
 #include "Spells.hpp"
 #include "Animation.h"
 
-
+enum class AnimationState {
+	Idle = 0,
+	Run = 1,
+	Attack = 2,
+	Zone = 3,
+	Die = 4,
+};
 
 class Player : public GameObject {
 public:
@@ -66,12 +72,14 @@ public:
 
 	// Lilian TEST
 
+	void SetAnimation(AnimationState state);
+	AnimationState animationState;
+
 	Animation animation;
 
 	std::vector<int> frameIndexIdle;
 	std::vector<int> frameIndexRun;
-	std::vector<int> frameIndexAttack1;
-	std::vector<int> frameIndexAttack2;
+	std::vector<int> frameIndexAttack;
 	std::vector<int> frameIndexAttackZone;
 	std::vector<int> frameIndexDie;
 

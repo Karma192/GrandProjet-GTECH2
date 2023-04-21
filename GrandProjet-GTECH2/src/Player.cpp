@@ -23,7 +23,45 @@ void Player::Loop()
 
     // TEST //
 
+    //animation.Animate(frameIndexAttack, 0.15f, false);
+
+    SetAnimation(AnimationState::Idle);
+
+    //animation.Animate(frameIndexIdle, 0.3f, false);
+
     // TEST //
+}
+
+void Player::SetAnimation(AnimationState state)
+{
+    // Si l'animation en cours d'exécution est la même que celle demandée, ne rien faire
+    if (animationState == state) return;
+    
+    // Mettre à jour l'état de l'animation
+    animationState = state;
+
+    // Arrêter toutes les actions en cours d'exécution
+    //this->stopAllActions();
+
+    // Sélectionner l'animation à exécuter en fonction de l'état de l'animation
+    switch (animationState)
+    {
+    case AnimationState::Idle:
+        animation.Animate(frameIndexIdle, 0.3f, false);
+        break;
+    case AnimationState::Run:
+        animation.Animate(frameIndexRun, 0.3f, false);
+        break;
+    case AnimationState::Attack:
+        animation.Animate(frameIndexAttack, 0.15f, false);
+        break;
+    case AnimationState::Zone:
+        animation.Animate(frameIndexAttackZone, 0.3f, false);
+        break;
+    case AnimationState::Die:
+        animation.Animate(frameIndexDie, 0.3f, false);
+        break;
+    }
 }
 
 void Player::Render()
@@ -165,8 +203,7 @@ void Player::CubeTest()
 
     frameIndexIdle = { 0, 1, 2, 3 };
     frameIndexRun = { 8, 9, 10, 11 };
-    frameIndexAttack1 = { 44, 45, 46, 47 };
-    frameIndexAttack2 = { 48, 49, 50, 51, 52 };
+    frameIndexAttack = { 48, 49, 50, 51, 52 };
     frameIndexAttackZone = { 55, 56, 57, 58 };
     frameIndexDie = { 65, 66, 67, 68 };
 
@@ -226,34 +263,26 @@ void Player::KeyboardMove()
         {
             moveSpeed = sf::Vector2f(0.f, -100.f);
             _playerDirection = 1;
-            //animation.Animate(frameIndexRun, 0.2f, true, false, 0);
             MovePlayer();
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
         {
             moveSpeed = sf::Vector2f(0.f, 100.f);
             _playerDirection = 2;
-            //animation.Animate(frameIndexRun, 0.2f, true, false, 0);
             MovePlayer();
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
         {
             moveSpeed = sf::Vector2f(-100.f, 0.f);
             _playerDirection = 3;
-            animation.Animate(frameIndexRun, 0.2f, true, true, 0);
             MovePlayer();
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
         {
             moveSpeed = sf::Vector2f(100.f, 0.f);
             _playerDirection = 4;
-            animation.Animate(frameIndexRun, 0.2f, true, false, 0);
             MovePlayer();
         }
-    }
-    else
-    {
-        animation.Animate(frameIndexIdle, 0.2f, true, false, 0);
     }
 }
 
