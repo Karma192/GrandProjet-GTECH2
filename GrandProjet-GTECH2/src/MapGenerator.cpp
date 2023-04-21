@@ -93,6 +93,12 @@ void RoomWallet::LoadAll()
 
 	Room* trans = new Room("dungeon/transition_room.tmx");
 	wallet.push_back(trans);
+
+	Room* gambling = new Room("dungeon/gambling_room.tmx");
+	wallet.push_back(gambling);
+
+	Room* miniB = new Room("dungeon/mini_boss_room.tmx");
+	wallet.push_back(miniB);
 }
 
 // MapGenerator class
@@ -228,10 +234,12 @@ void MapGenerator::AdjacentRoomDetection() {
 		_renderRoom = wallet->GetRoom(2);
 		break;
 	case 'P':
+		_renderRoom = wallet->GetRoom(5);
 		break;
 	case 'E':
 		break;
 	case 'b':
+		_renderRoom = wallet->GetRoom(6);
 		break;
 	case 'D':
 		break;
