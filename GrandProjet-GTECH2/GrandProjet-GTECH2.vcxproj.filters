@@ -13,129 +13,180 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Fichiers d%27en-tête\scene">
+    <Filter Include="Fichiers d%27en-tête\Instance">
+      <UniqueIdentifier>{6b9cfc88-94c1-4485-860b-86f46c9da4b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Scene">
       <UniqueIdentifier>{b7de8f21-d04e-442f-8647-8ccc57e9ce2e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\scene">
+    <Filter Include="Fichiers sources\Scene">
       <UniqueIdentifier>{c2e1ae60-3df6-4286-ab3d-b0de4c89636f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Instance">
+      <UniqueIdentifier>{90710d3d-6e5c-4adf-a4a7-84ae6a14f25e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GameObject">
+      <UniqueIdentifier>{6ef0a3f0-6fb3-4e75-a385-b5979ed79fba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Base">
+      <UniqueIdentifier>{135e3cd6-f297-4e2a-ba0d-cf1d9b7070e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Archives">
+      <UniqueIdentifier>{a4023d83-816e-4fc8-ab78-a9cc1a7046f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Base">
+      <UniqueIdentifier>{c5c4e29e-0c7d-40f2-866e-070df76b9ce5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Archives">
+      <UniqueIdentifier>{d6f711bc-fc63-42e0-973a-1b8d07bc0df5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GameObject">
+      <UniqueIdentifier>{aad49813-b753-46ed-b003-9a0bf4caf2f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\GameObject\Player">
+      <UniqueIdentifier>{51c09427-142e-4ef6-bc98-850f9bd3796d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\GameObject\Player">
+      <UniqueIdentifier>{1a955531-2c48-40c8-873b-ecded4eccd2f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Enemies.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Game.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameMaster.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GameObject.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\menuHUD.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Object.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Player.cpp">
+    <ClCompile Include="src\MapGenerator.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="src\scene\InGame.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\scene\Lobby.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\scene\Menu.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\scene\Scene.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Scene</Filter>
     </ClCompile>
     <ClCompile Include="src\scene\SceneManager.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="src\CollisionManager.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="src\Instance\Camera.cpp">
+      <Filter>Fichiers sources\Instance</Filter>
     </ClCompile>
-    <ClCompile Include="src\CollisionObject.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="src\Instance\GameMaster.cpp">
+      <Filter>Fichiers sources\Instance</Filter>
     </ClCompile>
-    <ClCompile Include="src\Animation.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="src\Instance\PhysicsManager.cpp">
+      <Filter>Fichiers sources\Instance</Filter>
     </ClCompile>
-    <ClCompile Include="src\Doors.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="src\Base\game.cpp">
+      <Filter>Fichiers sources\Base</Filter>
     </ClCompile>
-    <ClCompile Include="src\MapGenerator.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="src\Base\main.cpp">
+      <Filter>Fichiers sources\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Archives\CollisionManager.cpp">
+      <Filter>Fichiers sources\Archives</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Archives\CollisionObject.cpp">
+      <Filter>Fichiers sources\Archives</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Animation.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Enemies.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\GameObject.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\menuHUD.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Object.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\PhysicBody.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\ToNextScene.cpp">
+      <Filter>Fichiers sources\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Player\Player.cpp">
+      <Filter>Fichiers sources\GameObject\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameObject\Player\Spells.cpp">
+      <Filter>Fichiers sources\GameObject\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Enemies.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Game.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameMaster.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GameObject.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\menuHUD.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Object.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Player.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\InGame.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\Lobby.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\Menu.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\Scene.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\scene\SceneManager.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="src\SFMLLayer.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Animation.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CollisionManager.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CollisionObject.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Doors.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\MapGenerator.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\Spells.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="src\scene\SceneManager.hpp">
+      <Filter>Fichiers d%27en-tête\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\Scene.hpp">
+      <Filter>Fichiers d%27en-tête\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\Menu.hpp">
+      <Filter>Fichiers d%27en-tête\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\Lobby.hpp">
+      <Filter>Fichiers d%27en-tête\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scene\InGame.hpp">
+      <Filter>Fichiers d%27en-tête\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Instance\Camera.hpp">
+      <Filter>Fichiers d%27en-tête\Instance</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Instance\GameMaster.hpp">
+      <Filter>Fichiers d%27en-tête\Instance</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Instance\PhysicsManager.hpp">
+      <Filter>Fichiers d%27en-tête\Instance</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Base\game.hpp">
+      <Filter>Fichiers d%27en-tête\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Archives\CollisionManager.h">
+      <Filter>Fichiers d%27en-tête\Archives</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Archives\CollisionObject.h">
+      <Filter>Fichiers d%27en-tête\Archives</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Animation.h">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Enemies.hpp">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\GameObject.hpp">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\menuHUD.h">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Object.hpp">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\PhysicBody.hpp">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\ToNextScene.hpp">
+      <Filter>Fichiers d%27en-tête\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Player\Player.hpp">
+      <Filter>Fichiers d%27en-tête\GameObject\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameObject\Player\Spells.hpp">
+      <Filter>Fichiers d%27en-tête\GameObject\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -148,7 +199,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ressources\map\village\village.tmx" />
-    <None Include="ressources\map\village\inside_tavern.tmx" />
-    <None Include="src\ClassDiagram.cd" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

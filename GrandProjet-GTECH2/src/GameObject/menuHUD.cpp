@@ -1,9 +1,11 @@
 #include "menuHUD.h"
-#include "GameMaster.hpp"
+#include "../Instance/GameMaster.hpp"
 
 //Initialisation of all elements
 menuHUD::menuHUD()
 {
+    SetID("Menu", "Buttons");
+
     selectionBck.setFillColor(sf::Color(144, 144, 144, 200));
 
     menuBackground.loadFromFile("ressources/background.jpg");
@@ -82,15 +84,6 @@ void menuHUD::Render()
         ChangeResolution();
         Language();
     }
-}
-
-bool menuHUD::collidesWith(CollisionObject* other)
-{
-    return false;
-}
-
-void menuHUD::handleCollision(CollisionObject* other)
-{
 }
 
 void menuHUD::menuSelection()

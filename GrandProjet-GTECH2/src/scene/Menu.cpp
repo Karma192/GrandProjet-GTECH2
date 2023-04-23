@@ -1,19 +1,19 @@
 #include "Menu.hpp"
-#include "../Camera.hpp"
+#include "../Instance/Camera.hpp"
+#include "../Instance/PhysicsManager.hpp"
 
-Menu::Menu() {
-	AddToScene(&menuhud, 0);
-}
-
-Menu::~Menu() {
-
-}
-
-void Menu::Loop() {
-	Camera::GetInstance()->ResetCamera();
-}
-
-void Menu::Render()
+Menu::Menu() 
 {
-	menuhud.Render();
+	menuhud = new menuHUD();
+	AddToScene(menuhud, 0);
+}
+
+Menu::~Menu() 
+{
+	PhysicsManager::GetInstance()->RemoveBody(menuhud);
+}
+
+void Menu::Init()
+{
+	Camera::GetInstance()->ResetCamera();
 }

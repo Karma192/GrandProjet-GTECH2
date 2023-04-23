@@ -2,7 +2,8 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include <string>
-#include "../GameMaster.hpp"
+#include "../Instance/GameMaster.hpp"
+#include "../Instance/PhysicsManager.hpp"
 #include "Menu.hpp"
 #include "Lobby.hpp"
 #include "InGame.hpp"
@@ -11,9 +12,6 @@
 
 class SceneManager {
 public:
-	Menu menu;
-	Lobby lobby;
-	InGame ingame;
 
 	SceneManager();
 	virtual ~SceneManager();
@@ -21,5 +19,9 @@ public:
 	void Update();
 
 private:
+	int indexScene = 0;
+
+	GameScene* actualScene;
+
 	void SwitchScene();
 };

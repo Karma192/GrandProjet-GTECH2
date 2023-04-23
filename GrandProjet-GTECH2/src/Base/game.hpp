@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-#include "scene/SceneManager.hpp"
+#include "../Scene/SceneManager.hpp"
 
 class Game {
 public:

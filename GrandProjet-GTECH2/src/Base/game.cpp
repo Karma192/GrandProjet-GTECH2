@@ -1,5 +1,5 @@
 #include "Game.hpp"
-#include "Camera.hpp"
+#include "../Instance/Camera.hpp"
 
 Game::Game() {
 	sm = new SceneManager;
@@ -21,9 +21,9 @@ void Game::GameLoop()
 	while (window->isOpen())
 	{
 		window->clear();
+		GameMaster::GetInstance()->InitObject();
 		sm->Update();
 		Camera::GetInstance()->Update();
-		GameMaster::GetInstance()->Purge();
 		window->display();
 
 		while (window->pollEvent(*event))

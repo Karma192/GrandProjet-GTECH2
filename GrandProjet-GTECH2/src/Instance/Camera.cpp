@@ -1,3 +1,4 @@
+#include "GameMaster.hpp"
 #include "Camera.hpp"
 
 Camera* Camera::_instance = nullptr;

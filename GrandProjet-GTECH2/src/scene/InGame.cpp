@@ -1,5 +1,5 @@
 #include  "InGame.hpp"
-#include "../Camera.hpp"
+#include "../Instance/Camera.hpp"
 
 InGame::InGame() {
 
@@ -9,10 +9,7 @@ InGame::~InGame() {
 
 }
 
-void InGame::Loop() {
+void InGame::Init()
+{
 	Camera::GetInstance()->ResetCamera();
-}
-
-void InGame::Render() {
-
 }

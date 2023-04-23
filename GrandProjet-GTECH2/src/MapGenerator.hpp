@@ -9,24 +9,44 @@
 #include <tmxlite/TileLayer.hpp>
 #include <tmxlite/ObjectGroup.hpp>
 #include "SFMLLayer.hpp"
-#include "Player.hpp"
-#include "GameObject.hpp"
+#include "GameObject/Player/Player.hpp"
+#include "GameObject/GameObject.hpp"
+
+#define TILE_SIZE 16
+
+class CollideTile : public GameObject
+{
+public:
+    CollideTile();
+    CollideTile(sf::Vector2f position);
+    virtual ~CollideTile();
+
+    virtual void Loop()override;
+    virtual void Render()override;
+
+    virtual void OnCollisionEnter(PhysicBody* other)override;
+
+private:
+    sf::Vector2f GetMTV(PhysicBody*);
+};
 
 class Room : public GameObject
 {
 public:
 
     Room() = default;
-    Room(std::string);
+    Room(std::string, sf::Vector2f);
     virtual ~Room();
 
     virtual void Loop()override;
     virtual void Render()override;
 
-    bool collidesWith(CollisionObject* other) override;
-    void handleCollision(CollisionObject* other) override;
+    virtual void OnCollisionEnter(PhysicBody* other)override;
 
+    // Fonction pour set les tiles de collision
     void GetTilesBounds();
+    // Fonction pour récupérer les tiles de collision
+    std::vector<CollideTile*> GetCollideTiles();
 
     MapLayer* background;
     MapLayer* decoration;
@@ -36,12 +56,10 @@ public:
     sf::RectangleShape rectCube;
 
 private:
-
+    std::vector<CollideTile*> _collideTiles;
+    sf::Vector2f _size;
     std::string path = "ressources/map/";
     tmx::Map map;
-    sf::Vector2f playerCube;
-    int i = 0;
-    bool collisionCheck = false;
 };
 
 class RoomWallet
@@ -73,13 +91,14 @@ public:
 
 
     MapGenerator();
-    ~MapGenerator();
+    virtual ~MapGenerator();
+
+    virtual void Init()override;
 
     virtual void Loop()override;
     virtual void Render()override;
 
-    bool collidesWith(CollisionObject* other) override;
-    void handleCollision(CollisionObject* other) override;
+    virtual void OnCollisionEnter(PhysicBody* other)override;
 
 private:
 

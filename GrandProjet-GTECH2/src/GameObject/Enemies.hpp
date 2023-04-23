@@ -2,34 +2,33 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "GameObject.hpp"
-#include "Player.hpp"
-#include "Object.hpp"
-#include "Spells.hpp"
+#include "../GameObject/Player/Player.hpp"
+#include "../GameObject/PhysicBody.hpp"
+#include "../Instance/GameMaster.hpp"
 #include "Animation.h"
 
 class Enemies : public GameObject
 {
 public:
-	Enemies();
-	~Enemies();
+	Enemies() = default;
+	Enemies(GameObject*);
+	virtual ~Enemies();
+
+	virtual void Init()override;
 
 	virtual void Loop()override;
 	virtual void Render()override;
 
-	bool collidesWith(CollisionObject* other) override;
-	void handleCollision(CollisionObject* other) override;
+	virtual void OnCollisionEnter(PhysicBody* other)override;
 
-	void Cube2Test();
-	void FollowTarget(bool);
+	// Fonction de suivi de la cible
+	void FollowTarget();
 	void GetStunned();
 
 	int GetEnemieHP() { return ennemieHP; }
 	void SetEnemieHP(int damage) { damage = ennemieHP; }
 
-	sf::Sprite cube2;
 	sf::Clock clock2;
-
-	GameObject* target;
 
 	bool follow = false;
 	bool IsFixed = true;
@@ -48,11 +47,10 @@ public:
 	// Lilian TEST
 
 private:
-	//void EnemyTest();
+	GameObject* _target;
 
 	int ennemieHP; 
 	sf::Texture enemiesTexture;
 	sf::Sprite enemiesSprite;
 	sf::Vector2f TargetPos;
-	//Object object;
 };

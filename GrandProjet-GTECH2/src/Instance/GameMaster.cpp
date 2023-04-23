@@ -1,9 +1,9 @@
 #include "GameMaster.hpp"
-#include "GameObject.hpp"
+#include "../GameObject/GameObject.hpp"
+#include "PhysicsManager.hpp"
 
 GameMaster* GameMaster::instance = nullptr;
 GameData GameMaster::data;
-std::vector<GameObject*> GameMaster::_listGameObject;
 
 GameMaster::GameMaster()
 {
@@ -32,9 +32,46 @@ void GameMaster::AddGameObject(GameObject* obj)
 	_listGameObject.push_back(obj);
 }
 
+void GameMaster::InitObject()
+{
+#if _DEBUG
+	//std::cout << "GameObject Count : \t" << _listGameObject.size() << std::endl;
+	//std::cout << "GameMaster::InitGame() started..." << std::endl;
+#endif // _DEBUG
+
+	for (int i = 0; i < _listGameObject.size(); i++)
+	{
+		if (_listGameObject[i] != nullptr)
+		{
+			if (!_listGameObject[i]->IsInit()) 
+			{
+				_listGameObject[i]->Init();
+			}
+		}
+	}
+#if _DEBUG
+	//std::cout << "GameMaster::InitGame() ended..." << std::endl;
+#endif // _DEBUG
+}
+
 GameData GameMaster::GetGameData()
 {
 	return data;
+}
+
+sf::RenderWindow* GameMaster::Window()
+{
+	return data.window;
+}
+
+sf::Event* GameMaster::Event()
+{
+	return data.event;
+}
+
+void GameMaster::Draw(sf::Drawable& drawable)
+{
+	data.window->draw(drawable);
 }
 
 void GameMaster::SetActiveScene(int value)
@@ -56,7 +93,7 @@ void GameMaster::SetActiveScene(int value)
 	}
 }
 
-void GameMaster::SetWindow(RenderWindow* win, Event* e) 
+void GameMaster::SetWindow(sf::RenderWindow* win, sf::Event* e) 
 {
 	data.window = win;
 	data.event = e;
@@ -68,18 +105,12 @@ void GameMaster::Purge()
 	{
 		for (int i = 0; i < _listGameObject.size()-1; i++) 
 		{
-			if (_listGameObject[i]->_destructed)
+			if (_listGameObject[i]->IsDestructed())
 			{
-				_cm->removeObject(_listGameObject[i]);
+				PhysicsManager::GetInstance()->RemoveBody(_listGameObject[i]);
 				delete _listGameObject[i];
 				_listGameObject.erase(_listGameObject.begin() + i);
-				
 			}
 		}
 	}
 }
-void GameMaster::SetCollisionManager(CollisionManager* cm)
-{
-	_cm = cm;
-}
-

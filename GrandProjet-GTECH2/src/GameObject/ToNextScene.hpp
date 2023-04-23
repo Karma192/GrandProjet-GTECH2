@@ -1,7 +1,8 @@
 #pragma once
 
+#include <iostream>
 #include "GameObject.hpp"
-#include "Player.hpp"
+#include "Player/Player.hpp"
 
 class ToNextScene : public GameObject
 {
@@ -13,8 +14,6 @@ public:
 	void Loop()override;
 	void Render()override;
 
-	bool collidesWith(CollisionObject* other) override;
-	void handleCollision(CollisionObject* other) override;
 	sf::Sprite _sprite;
 private:
 	int scene;

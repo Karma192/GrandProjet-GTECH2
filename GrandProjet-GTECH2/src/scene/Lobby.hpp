@@ -1,30 +1,27 @@
 #pragma once
+
 #include "Scene.hpp"
-#include "../Player.hpp"
-#include "../Enemies.hpp"
+#include "../GameObject/Player/Player.hpp"
+#include "../GameObject/Enemies.hpp"
 #include "../MapGenerator.hpp"
-#include "../Object.hpp"
-#include "../Doors.hpp"
-#include "../Spells.hpp"
-#include "../CollisionManager.h"
-#include "../ToNextScene.hpp"
+#include "../GameObject/Object.hpp"
+#include "../GameObject/Player/Spells.hpp"
+#include "../GameObject/ToNextScene.hpp"
 
 class Lobby : public GameScene {
 public:
     Lobby();
     virtual ~Lobby();
 
-    virtual void Loop()override;
-    virtual void Render()override;
+    virtual void Init()override;
 
 private:
     Player* p;
     //Object object;
     Enemies* e;
-    Spells sp;
+    //Spells* sp;
     MapGenerator* map;
-    ToNextScene _door;
-    CollisionManager collisionmanager;
+    //ToNextScene* _door;
     
     sf::Texture menuBackground;
     sf::Sprite menuBckSprite;

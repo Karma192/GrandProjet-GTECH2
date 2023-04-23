@@ -1,47 +1,44 @@
 #include "SceneManager.hpp"
-#include "../Camera.hpp"
+#include "../Instance/Camera.hpp"
 
 SceneManager::SceneManager() 
 {
+	actualScene = new Menu();
+	indexScene = 0;
 }
 
 SceneManager::~SceneManager()
 {
+	delete actualScene;
 }
 
 // Switch between scene's Loop
 void SceneManager::Update()
 {
 	SwitchScene();
+	PhysicsManager::GetInstance()->Update();
+	GameMaster::GetInstance()->Purge();
+	actualScene->Update();
 }
 
 // Function for switch between all scenes
 void SceneManager::SwitchScene()
 {
-	switch (GameMaster::GetInstance()->GetGameData().indexScene)
+	if (indexScene != GameMaster::GetGameData().indexScene)
 	{
-	case MENU:
-		menu.Update();
-#ifdef _DEBUG
-		//std::cout << "C'est le menu !" << std::endl;
-#endif // DEBUG
-		break;
+		indexScene = GameMaster::GetGameData().indexScene;
 
-	case LOBBY:
-		lobby.Update();
-#ifdef _DEBUG
-		//std::cout << "C'est le lobby !" << std::endl;
-#endif // DEBUG
-		break;
-
-	case INGAME:
-		ingame.Update();
-#ifdef _DEBUG
-		std::cout << "C'est le ingame !" << std::endl;
-#endif // DEBUG
-		break;
-
-	default:
-		break;
+		switch (indexScene)
+		{
+		case Scene::MENU:
+			actualScene = new Menu();
+			break;
+		case Scene::LOBBY:
+			actualScene = new Lobby();
+			break;
+		case Scene::INGAME:
+			actualScene = new InGame();
+			break;
+		}
 	}
 }

@@ -1,10 +1,78 @@
 #include "MapGenerator.hpp"
-#include "GameMaster.hpp"
+#include "Instance/GameMaster.hpp"
+
+// CollideTile class
+
+CollideTile::CollideTile()
+{
+	SetID("CollideTile", "CollideTile");
+}
+
+CollideTile::CollideTile(sf::Vector2f position)
+{
+	SetSprite("Debug", sf::Vector2f(1, 1));
+	SetPosition(sf::Vector2f(position.x * TILE_SIZE, position.y * TILE_SIZE));
+	SetID("CollideTile", "CollideTile");
+}
+
+CollideTile::~CollideTile()
+{
+}
+
+void CollideTile::Loop()
+{
+}
+
+void CollideTile::Render()
+{
+}
+
+void CollideTile::OnCollisionEnter(PhysicBody* other)
+{
+	if (other->GetTag() == "Player")
+	{
+		sf::Vector2f mtv = GetMTV(other);
+		other->GetOwner()->Sprite().move(mtv);
+	}
+}
+
+sf::Vector2f CollideTile::GetMTV(PhysicBody* other)
+{
+	sf::FloatRect rect1 = Sprite().getGlobalBounds();
+	sf::FloatRect rect2 = other->Hitbox();
+
+	float overlapX = 0, overlapY = 0;
+	if (rect1.left < rect2.left) {
+		overlapX = rect1.left + rect1.width - rect2.left;
+	}
+	else {
+		overlapX = rect2.left + rect2.width - rect1.left;
+	}
+
+	if (rect1.top < rect2.top) {
+		overlapY = rect1.top + rect1.height - rect2.top;
+	}
+	else {
+		overlapY = rect2.top + rect2.height - rect1.top;
+	}
+
+	if (overlapX < overlapY) {
+		return sf::Vector2f(overlapX * (rect1.left < rect2.left ? -1 : 1), 0);
+	}
+	else {
+		return sf::Vector2f(0, overlapY * (rect1.top < rect2.top ? -1 : 1));
+	}
+}
+
 
 // Room class
 
-Room::Room(std::string file)
+Room::Room(std::string file, sf::Vector2f roomSize)
 {
+	SetID("Room", "Room");
+
+	_size = roomSize;
+
 	map.load(path + file);
 	background = new MapLayer(map, 0);
 	decoration = new MapLayer(map, 1);
@@ -14,7 +82,14 @@ Room::Room(std::string file)
 
 Room::~Room()
 {
+	delete background;
+	delete decoration;
+	delete collision;
 
+	for (auto tile : _collideTiles)
+	{
+		delete tile;
+	}
 }
 
 void Room::Loop()
@@ -27,33 +102,36 @@ void Room::Render()
 	GameMaster::GetInstance()->GetGameData().window->draw(*background);
 	GameMaster::GetInstance()->GetGameData().window->draw(*decoration);
 	GameMaster::GetInstance()->GetGameData().window->draw(*collision);
-}
 
-bool Room::collidesWith(CollisionObject* other)
-{
-	return false;
-}
-
-void Room::GetTilesBounds() {
-	for (int x = 0; x < 60; x++) {
-		for (int y = 0; y < 40; y++) {
-			if(collision->getTile(x,y).ID != 0){
-				i++;
-				rectCube.setSize(sf::Vector2f(16, 16));
-				rectCube.setFillColor(sf::Color::Red);
-				rectCube.setPosition(sf::Vector2f(16*x,16*y));
-				if (rectCube.getGlobalBounds().contains(playerCube)) {
-					collisionCheck = true;
-				}
-				rect.push_back(rectCube);
-			}
-		}
+	for (auto tile : _collideTiles)
+	{
+		tile->Render();
 	}
 }
 
-void Room::handleCollision(CollisionObject* other)
+void Room::OnCollisionEnter(PhysicBody* other)
 {
+	// Do Nothing
+}
 
+void Room::GetTilesBounds() {
+	for (int x = 0; x < _size.x; x++)
+	{
+		for (int y = 0; y < _size.y; y++)
+		{
+			if (collision->getTile(x, y).ID != 0)
+			{
+				CollideTile* tile = new CollideTile(sf::Vector2f(x, y));
+				_collideTiles.push_back(tile);
+			}
+		}
+	}
+	std::cout << "Number of tiles : " << _collideTiles.size() << std::endl;
+}
+
+std::vector<CollideTile*> Room::GetCollideTiles()
+{
+	return _collideTiles;
 }
 
 // RoomWallet class
@@ -65,69 +143,58 @@ RoomWallet::RoomWallet()
 
 RoomWallet::~RoomWallet()
 {
-
+	for (auto room : wallet)
+	{
+		delete room;
+	}
 }
 
 Room* RoomWallet::GetRoom(int room)
 {
 	return wallet[room];
-} 
+}
 
 void RoomWallet::LoadAll()
 {
-	Room* inn = new Room("village/inside_tavern.tmx");
+	Room* inn = new Room("village/inside_tavern.tmx", sf::Vector2f(60, 40));
 	wallet.push_back(inn);
 }
 
 // MapGenerator class
 
-MapGenerator::MapGenerator() {
+MapGenerator::MapGenerator()
+{
 	wallet = new RoomWallet();
 }
 
-MapGenerator::~MapGenerator() {
+MapGenerator::~MapGenerator() 
+{
+	delete wallet;
+}
+
+void MapGenerator::Loop() 
+{
 
 }
 
-void MapGenerator::Loop() {
-
-}
-
-void MapGenerator::Render() {
+void MapGenerator::Render() 
+{
 	wallet->GetRoom(0)->Render();
-	//switch (gameData.indexScene)
-	//{
-	//case LOBBY : 
-	//	if (gameData.indexMap == 0)
-	//	{
-
-	//	}
-
-	//	break;
-	//default:
-	//	break;
-	//}
-
 }
 
-bool MapGenerator::collidesWith(CollisionObject* other)
+void MapGenerator::Init()
 {
-	if (Player* player = dynamic_cast<Player*>(other)) {
-		for (int i = 0; i < wallet->GetRoom(0)->rect.size(); i++) {
-			if (wallet->GetRoom(0)->rect[i].getGlobalBounds().intersects(player->cube.getGlobalBounds())) {
-				return true;
-			}
-		}
-	}
-	return false;
+	/*wallet->GetRoom(0)->GetCollideTiles();
+	for (auto tile : wallet->GetRoom(0)->GetCollideTiles())
+	{
+		tile->Create();
+	}*/
 }
 
-void MapGenerator::handleCollision(CollisionObject* other)
+void MapGenerator::OnCollisionEnter(PhysicBody* other)
 {
-	if (dynamic_cast<Player*>(other)) {
-	}
+	// Do Nothing
 }
-
 
 void MapGenerator::mapInit()
 {

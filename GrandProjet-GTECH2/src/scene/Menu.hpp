@@ -1,6 +1,6 @@
 #pragma once
 #include "Scene.hpp"
-#include "../menuHUD.h"
+#include "../GameObject/menuHUD.h"
 
 
 class Menu : public GameScene {
@@ -8,10 +8,7 @@ public:
 	Menu();
 	virtual ~Menu();
 
-	menuHUD menuhud;
+	virtual void Init()override;
 
-	virtual void Loop()override;
-	virtual void Render()override;
-
-private:
+	menuHUD* menuhud;
 };

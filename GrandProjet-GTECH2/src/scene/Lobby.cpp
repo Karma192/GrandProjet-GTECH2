@@ -1,47 +1,25 @@
 #include "Lobby.hpp"
-#include "../Camera.hpp"
+#include "../Instance/Camera.hpp"
 
-Lobby::Lobby() {
-	e = new Enemies();
-	p = new Player();
+Lobby::Lobby() 
+{
+ 	p = new Player();
+	AddToScene(p, 1);
+	e = new Enemies(p);
+	AddToScene(e, 1);
 	map = new MapGenerator();
-
-
-	GameMaster::GetInstance()->SetCollisionManager(&collisionmanager);
-
-	collisionmanager.addObject(map);
-	collisionmanager.addObject(e);
-	collisionmanager.addObject(p);
-	collisionmanager.addObject(&sp);
-
-	//collisionmanager.addObject(&object);
-	collisionmanager.addObject(&_door);
-
-	sf::Texture texture;
-	texture.create(1, 1);
-	texture.loadFromFile("ressources/sprites/player/idle.png");
-	_door = ToNextScene(0, sf::Sprite(texture), 300, 600);
+	AddToScene(map, 0);
 }
 
 Lobby::~Lobby()
 {
+	delete p;
+	delete e;
+	delete map;
+	//delete sp;
 }
 
-void Lobby::Loop() {
-	Camera::GetInstance()->SetFollow(&p->cube);
-	collisionmanager.updateCollisions();
-	p->Loop();
-	sp.Loop();
-	if (e->_destructed == false)
-		e->Loop();
+void Lobby::Init()
+{
+	Camera::GetInstance()->SetFollow(&p->Sprite());
 }
-
-void Lobby::Render() {
-	map->Render();
-	sp.Render();
-	p->Render();
-	if (e->_destructed == false)
-		e->Render();
-	_door.Render();
-}
-
