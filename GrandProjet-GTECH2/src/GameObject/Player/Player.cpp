@@ -8,21 +8,23 @@ Player::Player()
     SetPosition(sf::Vector2f(400, 400));
     SetID("Player", "Player");
 
-    this->playerHP = 20;
+    _spellsManager = new SpellsManager(this);
+    playerHP = 20;
 }
 
 Player::~Player()
 {
+    delete _spellsManager;
 }
 
 void Player::Loop()
 {
     ControllerMove();
     KeyboardMove();
-    PlayerAttack();
     MouseUsage();
-    _stopMoving = false;
+    PlayerAttack();
     PlayerBasicAttack();
+    _spellsManager->UpdateSpell();
 
     // Passage à la frame suivante de l'animation
     if (clock.getElapsedTime().asSeconds() > 0.2f)
@@ -143,67 +145,41 @@ void Player::MouseUsage()
 
 void Player::MovePlayer()
 {
-    if (_dashing)
-    {
-        playerSpeed = 5;
-    }
-    if (!_dashing)
-    {
-        playerSpeed = 20;
-    }
-
-    Sprite().move(moveSpeed.x / playerSpeed, moveSpeed.y / playerSpeed);
+    Sprite().move(moveSpeed.x / playerSpeed * _modifierSpeed, moveSpeed.y / playerSpeed * _modifierSpeed);
 }
 
 void Player::KeyboardMove()
 {
-    if (!_stopMoving) 
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-        {
-            moveSpeed = sf::Vector2f(0.f, -100.f);
-            _playerDirection = 1;
-            MovePlayer();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-        {
-            moveSpeed = sf::Vector2f(0.f, 100.f);
-            _playerDirection = 2;
-            MovePlayer();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
-        {
-            moveSpeed = sf::Vector2f(-100.f, 0.f);
-            _playerDirection = 3;
-            MovePlayer();
-        }
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-        {
-            moveSpeed = sf::Vector2f(100.f, 0.f);
-            _playerDirection = 4;
-            MovePlayer();
-        }
+        moveSpeed = sf::Vector2f(0.f, -100.f);
+        MovePlayer();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    {
+        moveSpeed = sf::Vector2f(0.f, 100.f);
+        MovePlayer();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+    {
+        moveSpeed = sf::Vector2f(-100.f, 0.f);
+        MovePlayer();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    {
+        moveSpeed = sf::Vector2f(100.f, 0.f);
+        MovePlayer();
     }
 }
 
-int Player::GetPlayerXPos()
+sf::Vector2f Player::GetPlayerPosition()
 {
-    return Sprite().getPosition().x;
+    return Sprite().getPosition();
 }
 
-int Player::GetPlayerYPos()
+float Player::GetPlayerAimDegree()
 {
-    return Sprite().getPosition().y;
-}
-
-int Player::getPlayerSpeed()
-{
-    return playerSpeed;
-}
-
-void Player::setPlayerSpeed(float OtherSpeed)
-{
-    playerSpeed = OtherSpeed;
+    return angleDegrees;
 }
 
 void Player::PlayerAttack()
@@ -223,16 +199,16 @@ void Player::PlayerBasicAttack()
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
         if (angleDegrees > 45 && angleDegrees < 135) {
-            hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() - 30.f);
+            hitboxTest.setPosition(GetPlayerPosition().x, GetPlayerPosition().y - 30.f);
         }
         if (angleDegrees > 135 && angleDegrees < 225) {
-            hitboxTest.setPosition(GetPlayerXPos() + 30.f, GetPlayerYPos());
+            hitboxTest.setPosition(GetPlayerPosition().x + 30.f, GetPlayerPosition().y);
         }
         if (angleDegrees > 225 && angleDegrees < 315) {
-            hitboxTest.setPosition(GetPlayerXPos(), GetPlayerYPos() + 30.f);
+            hitboxTest.setPosition(GetPlayerPosition().x, GetPlayerPosition().y + 30.f);
         }
         if (angleDegrees > 325 || angleDegrees < 45) {
-            hitboxTest.setPosition(GetPlayerXPos() - 30.f, GetPlayerYPos());
+            hitboxTest.setPosition(GetPlayerPosition().x - 30.f, GetPlayerPosition().y);
         }
     }
 }

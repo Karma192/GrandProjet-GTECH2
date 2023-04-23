@@ -7,8 +7,6 @@ Lobby::Lobby()
 	AddToScene(p, 1);
 	e = new Enemies();
 	AddToScene(e, 1);
-	//sp = new Spells();
-	//AddToScene(sp, 1);
 	map = new MapGenerator();
 	AddToScene(map, 0);
 }

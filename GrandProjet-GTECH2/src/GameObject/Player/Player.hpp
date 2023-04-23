@@ -33,15 +33,15 @@ public:
 	void KeyboardMove();
 
 	//Player attributes
-	void setPv(int pv) { m_pv = pv; }
-	int getPv() const { return m_pv; }
-	void setAttack(int attack) { m_attack = attack; }
-	int getAttack() const { return m_attack; }
+	sf::Vector2f GetPlayerPosition();
 
-	int GetPlayerXPos();
-	int GetPlayerYPos();
-	int getPlayerSpeed();
-	void setPlayerSpeed(float);
+	// Fonction pour récuperer l'angle de visée du joueur
+	float GetPlayerAimDegree();
+
+	// Fonction pour ajouter une valeur au modificateur de vitesse
+	void AddSpeedModifier(float value) { _modifierSpeed += value; }
+	// Fonction pour réinitialiser le modificateur de vitesse
+	void ResetSpeedModifier() { _modifierSpeed = 1; }
 
 	//Player attack
 	void PlayerAttack();
@@ -52,16 +52,12 @@ public:
 
 	//Player draw
 	sf::Vector2f moveSpeed;
-	sf::View view;
-	float rotation;
 
 	bool IsAttacking = false;
 
-protected:
-	float endurancePlayer = 100;
-	float cd_Endurance = endurance.getElapsedTime().asSeconds();
-
 private:
+	SpellsManager* _spellsManager;
+
 	sf::Texture playerTexture;
 	sf::Clock clock;
 	sf::IntRect rectSprite;
@@ -70,17 +66,15 @@ private:
 	sf::Vector2f _playerCenter;
 	sf::Vector2f _worldPosition;
 	sf::Vector2f _aimDir;
-	float _aimDirNorm;
 	float angleDegrees;
+
+	float endurancePlayer = 100;
+	float cd_Endurance = endurance.getElapsedTime().asSeconds();
 
 	//Player attack basic
 	bool _dashing = false;
 	bool isActtk = true;
 	bool asAttacked = false;
-
-
-	//Dashing
-	int BoostSpeed;
 
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;
@@ -95,21 +89,10 @@ private:
 
 	sf::CircleShape playerUITab[4];
 
-
 	int playerHP; 
 	int m_pv;
 	int m_attack;
 	int playerSpeed = 20;
+	float _modifierSpeed = 1;
 	sf::Clock endurance;
-
-	bool lookingLeft = false;
-
-	int _playerDirection = 0;
-	bool _stopMoving = false;
-	int _wallTouched = 0;
-
-	bool _collideUp;
-	bool _collideDown;
-	bool _collideLeft;
-	bool _collideRight;
 };

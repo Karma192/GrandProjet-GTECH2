@@ -63,6 +63,7 @@ void GameObject::SetSprite(std::string spriteFile, sf::Vector2f scale)
 {
 	bool isDebug = spriteFile == "Debug";
 	bool isWall = spriteFile == "Wall";
+	bool isDefault = spriteFile == "Default";
 
 	if (isWall) 
 	{
@@ -70,12 +71,18 @@ void GameObject::SetSprite(std::string spriteFile, sf::Vector2f scale)
 		_sprite->setTexture(sf::Texture());
 		_sprite->setColor(sf::Color::Red);
 	}
+	else if (isDefault)
+	{
+		_sprite->setTextureRect(sf::IntRect(0, 0, 10, 10));
+		_sprite->setTexture(sf::Texture());
+		_sprite->setColor(sf::Color::Green);
+	}
 	else {
 		if (isDebug) // Debug
 		{
 			_sprite->setTextureRect(sf::IntRect(10, 10, 10, 10));
 			_sprite->setTexture(sf::Texture());
-			_sprite->setColor(sf::Color::Blue);
+			_sprite->setColor(sf::Color::Red);
 		}
 		else // GameObject Standard
 		{

@@ -26,15 +26,15 @@ void Enemies::Render()
 
 void Enemies::OnCollisionEnter(PhysicBody* other)
 {
-    if (other->CompareTag("Player"))
+    if (other->CompareTag("Spell"))
     {
-         ennemieHP--;
+		ennemieHP--;
         if (ennemieHP <= 0)
         {
-            //Destroy(); ne fonctionne pas encore...
-            Sprite().setPosition(-10000, 10000);
-            //TODO DESTROY ENNEMIES
-        }
+			//Destroy(); ne fonctionne pas encore...
+			Sprite().setPosition(-10000, 10000);
+			//TODO DESTROY ENNEMIES
+		}
 	}
 }
 

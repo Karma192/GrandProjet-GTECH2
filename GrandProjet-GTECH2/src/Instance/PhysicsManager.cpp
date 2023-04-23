@@ -36,8 +36,8 @@ void PhysicsManager::Update()
 			bool isTheSame = _bodies[i] == _bodies[j];
 			if (isTheSame) continue; // Si les deux sont les mêmes, on passe à la boucle suivante
 
-			bool isItTwoWall = _bodies[i]->CompareTag("Wall") && _bodies[j]->CompareTag("Wall");
-			if (isItTwoWall) continue; // Si les deux sont des murs, on passe à la boucle suivante
+			//bool isItTwoWall = _bodies[i]->CompareTag("Wall") && _bodies[j]->CompareTag("Wall");
+			//if (isItTwoWall) continue; // Si les deux sont des murs, on passe à la boucle suivante
 
 			//bool thereIsAWall = _bodies[i]->CompareTag("Wall") || _bodies[j]->CompareTag("Wall");
 			//if (thereIsAWall) 

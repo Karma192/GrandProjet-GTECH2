@@ -184,11 +184,11 @@ void MapGenerator::Render()
 
 void MapGenerator::Init()
 {
-	wallet->GetRoom(0)->GetCollideTiles();
+	/*wallet->GetRoom(0)->GetCollideTiles();
 	for (auto tile : wallet->GetRoom(0)->GetCollideTiles())
 	{
 		tile->Create();
-	}
+	}*/
 }
 
 void MapGenerator::OnCollisionEnter(PhysicBody* other)
