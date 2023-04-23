@@ -85,7 +85,7 @@ void Dash::SetStrenght(float strenght)
 
 ThirdSpell::ThirdSpell()
 {
-	SetSprite("Default", sf::Vector2f(8, 8));
+	SetSprite("Default", sf::Vector2f(10, 10));
 	SetID("AOE", "Spell");
 	_cooldown = new Cooldown(200);
 	SetLifeTime(30);

@@ -4,12 +4,12 @@
 
 Player::Player()
 {
-    SetSprite("Debug", sf::Vector2f(3.0f, 3.0f));
+    SetSprite("Default", sf::Vector2f(1.0f, 1.0f));
     SetPosition(sf::Vector2f(400, 400));
     SetID("Player", "Player");
 
     _spellsManager = new SpellsManager(this);
-    playerHP = 20;
+    playerHP = 100;
 }
 
 Player::~Player()
@@ -17,26 +17,27 @@ Player::~Player()
     delete _spellsManager;
 }
 
+void Player::Init()
+{
+    animation.LoadAnimation("ressources/sprites/player/player_tilesheet.png", &Sprite(), 50, 37, 3.f);
+
+    frameIndexIdle = { 0, 1, 2, 3 };
+    frameIndexRun = { 8, 9, 10, 11 };
+    frameIndexAttack1 = { 44, 45, 46, 47 };
+    frameIndexAttack2 = { 48, 49, 50, 51, 52 };
+    frameIndexAttackZone = { 55, 56, 57, 58 };
+    frameIndexDie = { 65, 66, 67, 68 };
+}
+
 void Player::Loop()
 {
+    _isAttacking = false;
     ControllerMove();
     KeyboardMove();
     MouseUsage();
     PlayerAttack();
     PlayerBasicAttack();
     _spellsManager->UpdateSpell();
-
-    // Passage à la frame suivante de l'animation
-    if (clock.getElapsedTime().asSeconds() > 0.2f)
-    {
-        if (rectSprite.left == 150)
-            rectSprite.left = 0;
-        else
-            rectSprite.left += 50;
-
-        //Sprite().setTextureRect(rectSprite);
-        clock.restart();
-    }
 }
 
 void Player::Render()
@@ -50,22 +51,23 @@ void Player::Render()
         GameMaster::Draw(playerUITab[i]);
     }
     
-    if (isActtk == true && asAttacked == true) 
-    { 
-        IsAttacking = true;
-        GameMaster::Draw(hitboxTest);
-    }
-    if (cdBasicAttack.getElapsedTime().asSeconds() >= 0.75f)
+    bool canAttack = _cooldownBA <= 0;
+
+    if (_isAttacking && canAttack) 
     {
-        isActtk = false;
-        asAttacked = false;
-        cdBasicAttack.restart();
+        GameMaster::Draw(_basicAttack);
+        _frame++;
+        if (_frame >= _activeFrame)
+        {
+            _frame = 0;
+            ResetBasicAttackCooldown();
+        }
     }
     else
     {
-        IsAttacking = false;
-        isActtk = true;
-    }
+		_frame = 0;
+        _cooldownBA--;
+	}
 
     playerUI();
     GameMaster::Draw(Sprite());
@@ -83,7 +85,11 @@ void Player::OnCollisionEnter(PhysicBody* other)
 
 void Player::playerUI()
 {
-    lifeBar.setSize(sf::Vector2f(300.f, 25.f));
+    float lifeBarSize = (playerHP * 300) / 100;
+    if (lifeBarSize < 0)
+		lifeBarSize = 0;
+
+    lifeBar.setSize(sf::Vector2f(lifeBarSize, 25.f));
     lifeBar.setFillColor(sf::Color::Green);
     sf::Vector2f lifeBarV = GameMaster::GetInstance()->GetGameData().window->mapPixelToCoords(sf::Vector2i(2, 800));
     lifeBar.setPosition(lifeBarV);
@@ -112,11 +118,11 @@ void Player::playerUI()
 void Player::ControllerMove()
 {
 	float deadZone = 5.f;
-	moveSpeed.x = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
-	moveSpeed.y = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
+    _moveDirection.x = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
+    _moveDirection.y = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
 	
-	if (moveSpeed.x > deadZone || moveSpeed.y > deadZone || 
-		moveSpeed.x < -deadZone || moveSpeed.y < -deadZone)
+	if (_moveDirection.x > deadZone || _moveDirection.y > deadZone ||
+        _moveDirection.x < -deadZone || _moveDirection.y < -deadZone)
 	{
 		MovePlayer();
 	}
@@ -145,30 +151,37 @@ void Player::MouseUsage()
 
 void Player::MovePlayer()
 {
-    Sprite().move(moveSpeed.x / playerSpeed * _modifierSpeed, moveSpeed.y / playerSpeed * _modifierSpeed);
+    Sprite().move(_moveDirection.x / playerSpeed * _modifierSpeed, _moveDirection.y / playerSpeed * _modifierSpeed);
 }
 
 void Player::KeyboardMove()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
     {
-        moveSpeed = sf::Vector2f(0.f, -100.f);
+        _moveDirection = sf::Vector2f(0.f, -100.f);
+        //animation.Animate(frameIndexRun, 0.2f, true, false, 0);
         MovePlayer();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
-        moveSpeed = sf::Vector2f(0.f, 100.f);
+        _moveDirection = sf::Vector2f(0.f, 100.f);
+        //animation.Animate(frameIndexRun, 0.2f, true, false, 0);
         MovePlayer();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
     {
-        moveSpeed = sf::Vector2f(-100.f, 0.f);
+        _moveDirection = sf::Vector2f(-100.f, 0.f);
+        animation.Animate(frameIndexRun, 0.2f, true, true, 0);
         MovePlayer();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
-        moveSpeed = sf::Vector2f(100.f, 0.f);
+        _moveDirection = sf::Vector2f(100.f, 0.f);
+        animation.Animate(frameIndexRun, 0.2f, true, false, 0);
         MovePlayer();
+    }
+    else {
+        animation.Animate(frameIndexIdle, 0.2f, true, false, 0);
     }
 }
 
@@ -185,30 +198,31 @@ float Player::GetPlayerAimDegree()
 void Player::PlayerAttack()
 {
     PlayerBasicAttack();
-    asAttacked = true;
 }
 
 void Player::PlayerBasicAttack()
 {
-    hitboxTest.setSize(sf::Vector2f(30.f, 30.f));
-    hitboxTest.setFillColor(sf::Color::Blue);
-    hitboxTest.setPosition(Sprite().getPosition());
-    hitboxTest.setRotation(Sprite().getRotation());
-    hitboxTest.setOrigin(GetBounds().width / 2.0f, GetBounds().height / 2.0f);
+    _basicAttack.setSize(sf::Vector2f(50.f, 50.f));
+    _basicAttack.setFillColor(sf::Color::Blue);
+    _basicAttack.setPosition(Sprite().getPosition());
+    _basicAttack.setRotation(Sprite().getRotation());
+    _basicAttack.setOrigin(Sprite().getLocalBounds().width / 2.0f, Sprite().getLocalBounds().height / 2.0f);
 
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
+        _isAttacking = true;
+
         if (angleDegrees > 45 && angleDegrees < 135) {
-            hitboxTest.setPosition(GetPlayerPosition().x, GetPlayerPosition().y - 30.f);
+            _basicAttack.setPosition(GetPlayerPosition().x, GetPlayerPosition().y - 40.f);
         }
         if (angleDegrees > 135 && angleDegrees < 225) {
-            hitboxTest.setPosition(GetPlayerPosition().x + 30.f, GetPlayerPosition().y);
+            _basicAttack.setPosition(GetPlayerPosition().x + 40.f, GetPlayerPosition().y);
         }
         if (angleDegrees > 225 && angleDegrees < 315) {
-            hitboxTest.setPosition(GetPlayerPosition().x, GetPlayerPosition().y + 30.f);
+            _basicAttack.setPosition(GetPlayerPosition().x, GetPlayerPosition().y + 40.f);
         }
         if (angleDegrees > 325 || angleDegrees < 45) {
-            hitboxTest.setPosition(GetPlayerPosition().x - 30.f, GetPlayerPosition().y);
+            _basicAttack.setPosition(GetPlayerPosition().x - 40.f, GetPlayerPosition().y);
         }
     }
 }

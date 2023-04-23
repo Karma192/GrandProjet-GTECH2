@@ -5,7 +5,7 @@ Lobby::Lobby()
 {
  	p = new Player();
 	AddToScene(p, 1);
-	e = new Enemies();
+	e = new Enemies(p);
 	AddToScene(e, 1);
 	map = new MapGenerator();
 	AddToScene(map, 0);

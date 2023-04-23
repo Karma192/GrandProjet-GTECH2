@@ -11,13 +11,15 @@
 #include "../../MapGenerator.hpp"
 #include "../ToNextScene.hpp"
 #include "Spells.hpp"
-#include "Animation.h"
+#include "../Animation.h"
 
 class Player : public GameObject 
 {
 public:
 	Player();
 	virtual ~Player();
+
+	virtual void Init()override;
 
 	virtual void Loop()override;
 	virtual void Render()override;
@@ -48,12 +50,6 @@ public:
 	void PlayerAttack();
 	void PlayerBasicAttack();
 
-	sf::Clock cdBasicAttack;
-	sf::RectangleShape hitboxTest;
-
-	//Player draw
-	sf::Vector2f moveSpeed;
-
 	// Lilian TEST
 
 	Animation animation;
@@ -66,8 +62,6 @@ public:
 	std::vector<int> frameIndexDie;
 
 	// Lilian TEST
-
-	bool IsAttacking = false;
 
 private:
 	SpellsManager* _spellsManager;
@@ -83,12 +77,14 @@ private:
 	float angleDegrees;
 
 	float endurancePlayer = 100;
-	float cd_Endurance = endurance.getElapsedTime().asSeconds();
 
 	//Player attack basic
-	bool _dashing = false;
-	bool isActtk = true;
-	bool asAttacked = false;
+	sf::RectangleShape _basicAttack;
+	bool _isAttacking = false;
+	int _activeFrame = 10;
+	int _frame = 0;
+	int _cooldownBA = 0;
+	void ResetBasicAttackCooldown() { _cooldownBA = 30;  }
 
 	//rectangle pour endurance + vie
 	sf::RectangleShape enduranceBar;
@@ -103,9 +99,8 @@ private:
 
 	sf::CircleShape playerUITab[4];
 
-	int playerHP; 
-	int m_pv;
-	int m_attack;
+	int playerHP;
+	sf::Vector2f _moveDirection;
 	int playerSpeed = 20;
 	float _modifierSpeed = 1;
 	sf::Clock endurance;

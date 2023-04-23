@@ -1,22 +1,35 @@
 #include "Enemies.hpp"
 
-Enemies::Enemies()
+Enemies::Enemies(GameObject* tar)
 {
-    SetSprite("Debug", sf::Vector2f(3.0f, 3.0f));
-    SetPosition(sf::Vector2f(200, 200));
+    SetSprite("Default", sf::Vector2f(1.0f, 1.0f));
+    SetPosition(sf::Vector2f(250, 250));
     SetID("Enemy1", "Enemy");
+    _target = tar;
     this->ennemieHP = 10;
 }
 
 Enemies::~Enemies()
 {
+    delete _target;
+}
 
+void Enemies::Init()
+{
+    animationSlime.LoadAnimation("ressources/sprites/slime/slime_tilesheet.png", &Sprite(), 32, 32, 3.f);
+
+    frameIndexIdle = { 0, 1, 2, 3 };
+    frameIndexRun = { 7, 8, 9, 10, 11, 12 };
+    frameIndexAttack = { 14, 15, 16, 17, 18, 19, 20 };
+    frameIndexDie = { 27, 28, 29, 30, 31 };
 }
 
 void Enemies::Loop() 
 {
     //GetStunned();
-    FollowTarget(follow);
+    FollowTarget();
+
+    animationSlime.Animate(frameIndexIdle, 0.2f, true, false, 0);
 }
 
 void Enemies::Render() 
@@ -38,8 +51,10 @@ void Enemies::OnCollisionEnter(PhysicBody* other)
 	}
 }
 
-void Enemies::FollowTarget(bool)
+void Enemies::FollowTarget()
 {
+    TargetPos = _target->Sprite().getPosition();
+
     //Radius for Aggro
     //interval for aggro
     sf::Vector2f FollowPos = Sprite().getPosition();
@@ -48,10 +63,10 @@ void Enemies::FollowTarget(bool)
         (TargetPos.y - FollowPos.y) * (TargetPos.y - FollowPos.y));
 
 
-    if (distance <= 150)
+    if (distance <= 250)
     {
         follow = true;
-        Sprite().move(.02f * RelatPos);
+        Sprite().move(0.02f * RelatPos);
     }
     else 
     {
