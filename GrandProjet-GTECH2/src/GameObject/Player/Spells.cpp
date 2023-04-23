@@ -19,11 +19,11 @@ void Spell::Reset()
 
 FireBall::FireBall(sf::Vector2f pos)
 {
-	SetSprite("Default", sf::Vector2f(1, 1));
+	SetSprite("Default", sf::Vector2f(2, 2));
 	SetID("FireBall", "Spell");
 	SetPosition(pos);
-	_cooldown = new Cooldown(500);
-	SetLifeTime(500);
+	_cooldown = new Cooldown(200);
+	SetLifeTime(100);
 }
 
 FireBall::~FireBall()
@@ -87,7 +87,7 @@ ThirdSpell::ThirdSpell()
 {
 	SetSprite("Default", sf::Vector2f(8, 8));
 	SetID("AOE", "Spell");
-	_cooldown = new Cooldown(300);
+	_cooldown = new Cooldown(200);
 	SetLifeTime(30);
 }
 
@@ -130,10 +130,15 @@ SpellsManager::SpellsManager(Player* p)
 		spell->SetPlayer(_player);
 	}
 
+	for (auto spell : _spells)
+	{
+		spell->Create();
+	}
+
 	_indexSpell = 0;
 }
 
-SpellsManager::~SpellsManager() 
+SpellsManager::~SpellsManager()
 {
 	delete _fireBallSpell;
 	delete _dashSpell;
@@ -145,7 +150,7 @@ void SpellsManager::UpdateSpell()
 {
 	CastSpell();
 
-	_fireBallSpell->SetDirection(_launchDirection);
+	_fireBallSpell->SetDirection(LaunchDirection());
 
 	for (auto spell : _spells)
 	{
@@ -173,11 +178,11 @@ void SpellsManager::PurgeSpell()
 	}
 }
 
-void SpellsManager::SetLaunchDirection()
+sf::Vector2f SpellsManager::LaunchDirection()
 {
-	_launchDirection = sf::Vector2f(std::cos(_player->GetPlayerAimDegree() * 3.14159265 / 180), 
-		std::sin(_player->GetPlayerAimDegree() * 3.14159265 / 180));
-
+	_launchDirection = sf::Vector2f(std::cos(_player->GetPlayerAimDegree() * 3.14159265 / 180) * -1,
+		std::sin(_player->GetPlayerAimDegree() * 3.14159265 / 180) * -1);
+	return _launchDirection;
 }
 
 void SpellsManager::CastSpell()
@@ -199,7 +204,8 @@ void SpellsManager::CastSpell()
 	{
 		if (!_spaceIsPressed)
 		{
-			_spells[_indexSpell]->Use();
+			if (_spells[_indexSpell]->GetCooldown()->IsReady())
+				_spells[_indexSpell]->Use();
 		}
 		_spaceIsPressed = true;
 	}

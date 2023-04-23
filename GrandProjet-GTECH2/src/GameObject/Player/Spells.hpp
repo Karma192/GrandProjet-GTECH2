@@ -14,6 +14,19 @@ public:
 	Spell() = default;
 	virtual ~Spell() { delete _cooldown; delete _player; }
 
+	// Struct de cooldown
+	struct Cooldown
+	{
+		int _cooldown;
+		int _maxCooldown;
+
+		Cooldown(int maxCooldown) : _cooldown(0), _maxCooldown(maxCooldown) {}
+
+		bool IsReady() { return _cooldown <= 0; }
+		void Update() { _cooldown--; }
+		void Reset() { _cooldown = _maxCooldown; }
+	};
+
 	// Fonction pour utiliser le sort
 	void Use() { Reset(); _cooldown->Reset(); }
 	// Fonction pour reinitialiser le sort
@@ -46,6 +59,7 @@ public:
 			SetPosition(sf::Vector2f(-100000, -100000));
 			InactiveUpdate();
 		}
+		_cooldown->Update();
 	}
 
 	virtual void Loop()override {}
@@ -56,23 +70,12 @@ public:
 	// Fonction pour définir le pointeur vers le player
 	void SetPlayer(Player* player) { _player = player; }
 
+	// Fonction pour retouner le cooldown
+	Cooldown* GetCooldown() { return _cooldown; }
 	// Fonction pour retourner si le sort est détruit
 	bool IsDestroyed() { return _destroyed; }
 	// Fonction pour retourner si le sort est actif
 	bool IsActive() { return _isActive; }
-
-	// Struct de cooldown
-	struct Cooldown
-	{
-		int _cooldown;
-		int _maxCooldown;
-
-		Cooldown(int maxCooldown) : _cooldown(0), _maxCooldown(maxCooldown) {}
-
-		bool IsReady() { return _cooldown <= 0; }
-		void Update() { _cooldown--; }
-		void Reset() { _cooldown = _maxCooldown; }
-	};
 
 private:
 	// Fonction pour mettre à jour la durée de vie du sort
@@ -111,7 +114,7 @@ public:
 private:
 	sf::Vector2f _position;
 	sf::Vector2f _direction;
-	float _speed = 10;
+	float _speed = 20;
 };
 
 class Dash :public Spell
@@ -128,7 +131,6 @@ public:
 	void SetStrenght(float strenght);
 
 private:
-	bool _active;
 	float _strenght = 0.5f;
 };
 
@@ -158,8 +160,8 @@ public:
 	void PurgeSpell();
 
 private:
-	// Fonction pour définir la direction du lancement du sort
-	void SetLaunchDirection();
+	// Fonction pour retourner la direction du lancement du sort
+	sf::Vector2f LaunchDirection();
 	// Fonction pour utiliser des sorts
 	void CastSpell();
 
