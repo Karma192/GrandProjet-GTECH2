@@ -32,6 +32,16 @@ public:
 
 	int distance;
 
+	// Lilian TEST
+
+	Animation animationSlime;
+
+	std::vector<int> frameIndexIdle;
+	std::vector<int> frameIndexRun;
+	std::vector<int> frameIndexAttack;
+	std::vector<int> frameIndexDie;
+
+	// Lilian TEST
 
 private:
 	//void EnemyTest();

@@ -11,6 +11,7 @@
 #include "../../MapGenerator.hpp"
 #include "../ToNextScene.hpp"
 #include "Spells.hpp"
+#include "Animation.h"
 
 class Player : public GameObject 
 {
@@ -35,12 +36,12 @@ public:
 	//Player attributes
 	sf::Vector2f GetPlayerPosition();
 
-	// Fonction pour récuperer l'angle de visée du joueur
+	// Fonction pour rï¿½cuperer l'angle de visï¿½e du joueur
 	float GetPlayerAimDegree();
 
 	// Fonction pour ajouter une valeur au modificateur de vitesse
 	void AddSpeedModifier(float value) { _modifierSpeed += value; }
-	// Fonction pour réinitialiser le modificateur de vitesse
+	// Fonction pour rï¿½initialiser le modificateur de vitesse
 	void ResetSpeedModifier() { _modifierSpeed = 1; }
 
 	//Player attack
@@ -52,6 +53,19 @@ public:
 
 	//Player draw
 	sf::Vector2f moveSpeed;
+
+	// Lilian TEST
+
+	Animation animation;
+
+	std::vector<int> frameIndexIdle;
+	std::vector<int> frameIndexRun;
+	std::vector<int> frameIndexAttack1;
+	std::vector<int> frameIndexAttack2;
+	std::vector<int> frameIndexAttackZone;
+	std::vector<int> frameIndexDie;
+
+	// Lilian TEST
 
 	bool IsAttacking = false;
 
